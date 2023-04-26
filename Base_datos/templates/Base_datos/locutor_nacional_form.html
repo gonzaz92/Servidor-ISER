@@ -1,0 +1,14 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+
+<div style="text-align: center;">
+    <form enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input class="btn btn-primary" type="submit" value="Cargar">
+    </form>
+    <p></p>
+</div>
+
+{% endblock %}

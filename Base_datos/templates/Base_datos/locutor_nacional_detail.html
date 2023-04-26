@@ -1,0 +1,76 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+
+<div style="padding: 5%;">
+    <div style="padding-bottom: 1%;">
+        <h1>
+            Expediente:
+            {{locutor_nacional.expediente}}
+        </h1>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Apellido y Nombre:
+            {{locutor_nacional.apellido}}, {{locutor_nacional.nombre}}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Documento N°: {{locutor_nacional.DNI}} - Habilitación: {{locutor_nacional.habilitación}} - Disposición: {{locutor_nacional.disposición}}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Formulario de datos personales:
+            {% if locutor_nacional.formulario %}
+                <a href="{{ locutor_nacional.formulario.url }}" target="_blank">
+                    {{locutor_nacional.formulario}}
+                </a>
+            {% endif %}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Copia del D.N.I.:
+            {% if locutor_nacional.pdf_dni %}
+                <a href="{{locutor_nacional.pdf_dni.url }}" target="_blank">
+                    {{locutor_nacional.pdf_dni}}
+                </a>
+            {% endif %}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Secundario: {{locutor_nacional.secundario}} - 
+            {% if locutor_nacional.pdf_secundario %}
+                <a href="{{ locutor_nacional.pdf_secundario.url }}" target="_blank">
+                    {{locutor_nacional.pdf_secundario}}
+                </a>
+            {% endif %}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Instituto: {{locutor_nacional.instituto}} - 
+            {% if locutor_nacional.pdf_instituto %}
+                <a href="{{locutor_nacional.pdf_instituto.url}}" target="_blank">
+                    {{locutor_nacional.pdf_instituto}}
+                </a>
+            {% endif %}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Acta de examen:
+            {% if locutor_nacional.acta %}
+            <a href="{{locutor_nacional.acta.url}}" target="_blank">
+                {{locutor_nacional.acta}}
+            </a>
+            {% endif %}
+        </h2>
+    </div>
+    <p></p>
+</div>
+    
+{% endblock %}
