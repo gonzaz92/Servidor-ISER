@@ -1,0 +1,45 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+
+<div style="margin: 1%; width: 100%; display: flex">
+    <div>
+        <h2 style="font-weight: bold">Incompletos</h2>
+    </div>
+    <div style="margin-left: 71%;">
+        <a class="btn btn-primary btn-lg" style="justify-content: right;" href="{% url 'locutores_nacionales' %}" type="submit">Volver</a>
+    </div>
+</div>
+<div style="margin: 0; padding: 0; display: grid ;place-items: center">
+    <table style="width: 100%; margin-left: 5%">
+        <thead>
+            <th>Apellido</th>
+               <th>Nombre</th>
+               <th>Documento</th>
+               <th>Habilitación</th>
+               <th>Instituto</th>
+               <th>Expediente</th>
+               <th>Disposicion</th>
+               <th>Documentación</th>
+         </thead>
+        <tbody>
+            {% for locutor_nacional in ln %}
+                {% if not locutor_nacional.disposición %}
+                <tr>
+                    <td style="padding-bottom: 1%">{{locutor_nacional.apellido}}</td>
+                    <td>{{locutor_nacional.nombre}}</td>
+                    <td>{{locutor_nacional.DNI}}</td>
+                    <td>{{locutor_nacional.habilitación}}</td>
+                    <td>{{locutor_nacional.instituto}}</td>
+                    <td>{{locutor_nacional.expediente}}</td>
+                    <td>{{locutor_nacional.disposición}}</td>
+                    <td><a class="link" href="{% url 'ver_locutor' locutor_nacional.id %}" type="submit">Abrir</a></td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<p></p>
+
+{% endblock %}
