@@ -40,3 +40,8 @@ class ListarLocutorNacional(ListView):
 
 class VerLocutorNacional(DetailView):
     model = Locutor_nacional
+
+class ActualizarLN(UpdateView):
+    model = Locutor_nacional
+    succes_url = reverse_lazy('ver_locutor')
+    fields = '__all__'

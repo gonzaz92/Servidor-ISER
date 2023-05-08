@@ -33,7 +33,11 @@
                     <td>{{locutor_nacional.instituto}}</td>
                     <td>{{locutor_nacional.expediente}}</td>
                     <td>{{locutor_nacional.disposición}}</td>
-                    <td><a class="link" href="{% url 'ver_locutor' locutor_nacional.id %}" type="submit">Abrir</a></td>
+                    <td>
+                        <a class="link" href="{% url 'ver_locutor' locutor_nacional.id %}" type="submit">Abrir</a>
+                        -
+                        <a class="link" href="{% url 'actualizar_ln' locutor_nacional.id %}" type="submit">Actualizar</a>
+                    </td>
                 </tr>
                 {% endif %}
             {% endfor %}
