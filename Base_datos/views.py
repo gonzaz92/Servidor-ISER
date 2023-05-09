@@ -10,14 +10,7 @@ from django.db.models import Q
 def index(request):
     return render(request, 'Base_datos/index.html')
 
-def locutores(request):
-    return render(request, 'Base_datos/locutores_nacionales.html')
-
-def ln_incompletos(request):
-    ln = Locutor_nacional.objects.all()
-    return render(request, 'Base_datos/ln_incompletos.html', {'ln' : ln} )
-
-class UserSingUp(LoginRequiredMixin, CreateView):
+"""class UserSingUp(LoginRequiredMixin, CreateView):
     form_class = UsuarioForm
     template_name = 'registration/singup.html'
     success_url = reverse_lazy('mi_blog_listar')
@@ -26,8 +19,16 @@ class UserLogin(LoginView):
     next_page = reverse_lazy('mi_blog_listar')
 
 class UserLogout(LogoutView):
-    next_page = reverse_lazy('mi_blog_index')
+    next_page = reverse_lazy('mi_blog_index')"""
 
+#Locutores Nacionales
+
+def locutores(request):
+    return render(request, 'Base_datos/locutores_nacionales.html')
+
+def ln_incompletos(request):
+    ln = Locutor_nacional.objects.all()
+    return render(request, 'Base_datos/ln_incompletos.html', {'ln' : ln} )
 
 class CrearLocutorNacional(CreateView):
     model = Locutor_nacional
@@ -43,5 +44,31 @@ class VerLocutorNacional(DetailView):
 
 class ActualizarLN(UpdateView):
     model = Locutor_nacional
-    succes_url = reverse_lazy('ver_locutor')
+    success_url = reverse_lazy('locutores_nacionales')
+    fields = '__all__'
+
+#Locutores Locales
+
+def locutor_local(request):
+    return render(request, 'Base_datos/locutores_locales.html')
+
+def ll_incompletos(request):
+    ll = Locutor_local.objects.all()
+    return render(request, 'Base_datos/ll_incompletos.html', {'ll' : ll} )
+
+class CrearLocutorLocal(CreateView):
+    model = Locutor_local
+    success_url = reverse_lazy('locutores_locales')
+    fields = '__all__'
+
+class ListarLocutorLocal(ListView):
+    model = Locutor_local
+    fields = Locutor_local.apellido, Locutor_local.nombre, Locutor_local.dni, Locutor_local.habilitacion, Locutor_local.localidad, Locutor_local.provincia, Locutor_local.expediente, Locutor_local.disposicion
+
+class VerLocutorLocal(DetailView):
+    model = Locutor_local
+    
+class ActualizarLL(UpdateView):
+    model = Locutor_local
+    success_url = reverse_lazy('locutores_locales')
     fields = '__all__'

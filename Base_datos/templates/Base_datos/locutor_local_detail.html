@@ -1,0 +1,88 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+
+<h1 style="text-align: center;">Locutor Local</h1>
+
+<p></p>
+
+<div style="padding: 5%;">
+    <div style="padding-bottom: 1%;">
+        <h1>
+            Expediente:
+            {{locutor_local.expediente}}
+        </h1>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Apellido y Nombre:
+            {{locutor_local.apellido}}, {{locutor_local.nombre}}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Documento N°: {{locutor_local.dni}} - Habilitación: {{locutor_local.habilitacion}} - Disposición: {{locutor_local.disposicion}}
+        </h2>
+        <h2>
+            Localidad: {{locutor_local.localidad}} - Provincia: {{locutor_local.provincia}}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Formulario de datos personales:
+            {% if locutor_local.formulario %}
+                <a href="{{ locutor_local.formulario.url }}" target="_blank">
+                    {{locutor_local.formulario}}
+                </a>
+            {% endif %}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Copia del D.N.I.:
+            {% if locutor_local.pdf_dni %}
+                <a href="{{locutor_local.pdf_dni.url }}" target="_blank">
+                    {{locutor_local.pdf_dni}}
+                </a>
+            {% endif %}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Secundario: {{locutor_local.secundario}} - 
+            {% if locutor_local.pdf_secundario %}
+                <a href="{{ locutor_local.pdf_secundario.url }}" target="_blank">
+                    {{locutor_local.pdf_secundario}}
+                </a>
+            {% endif %}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Certificado:
+            {% if locutor_local.certificado %}
+                <a href="{{locutor_local.certificado.url }}" target="_blank">
+                    {{locutor_local.certificado}}
+                </a>
+            {% endif %}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Acta de examen:
+            {% if locutor_local.acta %}
+            <a href="{{locutor_local.acta.url}}" target="_blank">
+                {{locutor_local.acta}}
+            </a>
+            {% endif %}
+        </h2>
+        <p>
+            </thead>
+                <a class="btn btn-primary btn-lg" style="margin-left: 90%;" href="{% url 'actualizar_ll' locutor_local.id %}" type="submit">Actualizar</a>
+            </thead>
+        </p>
+    </div>
+    <p></p>
+</div>
+    
+{% endblock %}

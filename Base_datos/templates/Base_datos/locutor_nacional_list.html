@@ -4,9 +4,9 @@
 
 <div style="margin: 1%; width: 100%; display: flex">
     <div>
-        <h2 style="font-weight: bold">Habilitados</h2>
+        <h2 style="font-weight: bold">Locutores Nacionales Habilitados</h2>
     </div>
-    <div style="margin-left: 71%;">
+    <div style="margin-left: 55%;">
         <a class="btn btn-primary btn-lg" style="justify-content: right;" href="{% url 'locutores_nacionales' %}" type="submit">Volver</a>
     </div>
 </div>
@@ -14,13 +14,13 @@
     <table style="width: 100%; margin-left: 5%">
         <thead>
             <th>Apellido</th>
-               <th>Nombre</th>
-               <th>Documento</th>
-               <th>Habilitación</th>
-               <th>Instituto</th>
-               <th>Expediente</th>
-               <th>Disposicion</th>
-               <th>Documentación</th>
+            <th>Nombre</th>
+            <th>Documento</th>
+            <th>Habilitación</th>
+            <th>Instituto</th>
+            <th>Expediente</th>
+            <th>Disposicion</th>
+            <th>Documentación</th>
          </thead>
         <tbody>
             {% for locutor_nacional in object_list %}
