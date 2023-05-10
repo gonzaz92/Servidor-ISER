@@ -16,6 +16,9 @@ class Locutor_nacional(models.Model):
     expediente = models.CharField(max_length=100, null='True', blank=True)
     disposición = models.CharField(max_length=100, null='True', blank=True)
 
+    def display_name(self):
+        return "Locutor/a Nacional"
+
 class Locutor_local(models.Model):
     apellido = models.CharField(max_length=100)
     nombre = models.CharField(max_length=100)
@@ -32,6 +35,9 @@ class Locutor_local(models.Model):
     expediente = models.CharField(max_length=100, null='True', blank=True)
     disposicion = models.CharField(max_length=100, null='True', blank=True)
 
+    def display_name(self):
+        return "Locutor/a Local"
+
 class Operador_nacional_radio(models.Model):
     apellido = models.CharField(max_length=100)
     nombre = models.CharField(max_length=100)
@@ -46,6 +52,9 @@ class Operador_nacional_radio(models.Model):
     habilitación = models.CharField(max_length=9, null='True', blank=True)
     expediente = models.CharField(max_length=100, null='True', blank=True)
     disposición = models.CharField(max_length=100, null='True', blank=True)
+
+    def display_name(self):
+        return "Operador/a de Radio"
 
 class Operador_nacional_tv(models.Model):
     apellido = models.CharField(max_length=100)
@@ -62,6 +71,9 @@ class Operador_nacional_tv(models.Model):
     expediente = models.CharField(max_length=100, null='True', blank=True)
     disposición = models.CharField(max_length=100, null='True', blank=True)
 
+    def display_name(self):
+        return "Operador/a de TV"
+
 class Operador_nacional_planta(models.Model):
     apellido = models.CharField(max_length=100)
     nombre = models.CharField(max_length=100)
@@ -76,6 +88,9 @@ class Operador_nacional_planta(models.Model):
     habilitación = models.CharField(max_length=9, null='True', blank=True)
     expediente = models.CharField(max_length=100, null='True', blank=True)
     disposición = models.CharField(max_length=100, null='True', blank=True)
+
+    def display_name(self):
+        return "Operador/a de Planta"
 
 class Operador_local_radio(models.Model):
     apellido = models.CharField(max_length=100)
@@ -93,6 +108,9 @@ class Operador_local_radio(models.Model):
     expediente = models.CharField(max_length=100, null='True', blank=True)
     disposicion = models.CharField(max_length=100, null='True', blank=True)
 
+    def display_name(self):
+        return "Operador/a Local Radio"
+
 class Operador_local_tv(models.Model):
     apellido = models.CharField(max_length=100)
     nombre = models.CharField(max_length=100)
@@ -108,6 +126,9 @@ class Operador_local_tv(models.Model):
     habilitacion = models.CharField(max_length=9, null='True', blank=True)
     expediente = models.CharField(max_length=100, null='True', blank=True)
     disposicion = models.CharField(max_length=100, null='True', blank=True)
+
+    def display_name(self):
+        return "Operador/a Local TV"
 
 class Operador_local_planta(models.Model):
     apellido = models.CharField(max_length=100)
@@ -125,6 +146,9 @@ class Operador_local_planta(models.Model):
     expediente = models.CharField(max_length=100, null='True', blank=True)
     disposicion = models.CharField(max_length=100, null='True', blank=True)
 
+    def display_name(self):
+        return "Operador/a Local Planta"
+
 class Productor(models.Model):
     apellido = models.CharField(max_length=100)
     nombre = models.CharField(max_length=100)
@@ -140,6 +164,9 @@ class Productor(models.Model):
     expediente = models.CharField(max_length=100, null='True', blank=True)
     disposición = models.CharField(max_length=100, null='True', blank=True)
 
+    def display_name(self):
+        return "Productor/a y Director/a"
+
 class Guionista(models.Model):
     apellido = models.CharField(max_length=100)
     nombre = models.CharField(max_length=100)
@@ -154,3 +181,6 @@ class Guionista(models.Model):
     habilitación = models.CharField(max_length=9, null='True', blank=True)
     expediente = models.CharField(max_length=100, null='True', blank=True)
     disposición = models.CharField(max_length=100, null='True', blank=True)
+
+    def display_name(self):
+        return "Guionista"

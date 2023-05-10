@@ -18,12 +18,15 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.admin.views.decorators import staff_member_required
-from Base_datos.views import (index, locutores, ln_incompletos,CrearLocutorNacional, ListarLocutorNacional, VerLocutorNacional, ActualizarLN,
+from Base_datos.views import (index, buscar,
+                              locutores, ln_incompletos,CrearLocutorNacional, ListarLocutorNacional, VerLocutorNacional, ActualizarLN,
                               locutor_local, ll_incompletos, CrearLocutorLocal, ListarLocutorLocal, VerLocutorLocal, ActualizarLL)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
+    path('buscar/', buscar, name='buscar'),
+
     path('locutores_nacionales/', locutores, name='locutores_nacionales'),
     path('carga_locutor_nacional/', CrearLocutorNacional.as_view(), name='carga_locutor_nacional'),
     path('lista_locutores_nacionales/', ListarLocutorNacional.as_view(), name='lista_locutor_nacional'),

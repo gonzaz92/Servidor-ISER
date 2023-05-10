@@ -1,0 +1,39 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+
+{% if resultados %}
+    <ul>
+        <table align="center" style="width: 95%;">
+            <thead>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>Documento</th>
+                <th>Categoría</th>
+                <th>Documentación</th>
+            </thead>
+            <tbody>
+                {% for resultado in resultados %}
+                <tr>
+                    <td>{{ resultado.apellido }}</td>
+                    <td>{{ resultado.nombre }}</td>
+                    <td>{{ resultado.dni }} {{ resultado.DNI }}</td>
+                    <td>{{ resultado.display_name }}</td>
+                    <td>
+                        {% if resultado.display_name == 'Locutor/a Nacional' %}
+                            <a href="{% url 'ver_locutor' resultado.id %}" type="submit">Abrir</a>
+                        {% elif resultado.display_name == 'Locutor/a Local' %}
+                            <a href="{% url 'ver_locutor_local' resultado.id %}" type="submit">Abrir</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </ul>
+{% else %}
+    <p>No se encontraron resultados.</p>
+
+{% endif %}
+
+{% endblock %}

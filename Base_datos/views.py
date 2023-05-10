@@ -10,6 +10,13 @@ from django.db.models import Q
 def index(request):
     return render(request, 'Base_datos/index.html')
 
+def buscar(request):
+    query = request.GET.get('q')
+    resultados_ln = Locutor_nacional.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query) | Q(id__icontains=query))
+    resultados_ll = Locutor_local.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(dni__icontains=query) | Q(id__icontains=query))
+    resultados = list(resultados_ln) + list(resultados_ll)
+    return render(request, 'Base_datos/resultados_busqueda.html', {'resultados':resultados})
+
 """class UserSingUp(LoginRequiredMixin, CreateView):
     form_class = UsuarioForm
     template_name = 'registration/singup.html'

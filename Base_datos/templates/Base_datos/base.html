@@ -36,10 +36,12 @@
                     <div class="m-4 m-lg-5">
                         <h1 class="display-5 fw-bold">¡Bases de Datos!</h1>
                         <p class="fs-4">Primer intento de base de datos</p>
-                        <div class="input-group">
-                            <input class="form-control" type="text" name="buscar" placeholder="Buscar..." aria-label="Buscar..." aria-describedby="button-search" />
-                            <button class="btn btn-primary btn-lg" id="button-search" type="submit">Busqueda</a>
-                        </div>
+                        <form action="{% url 'buscar' %}" method="get">
+                            <div class="input-group">
+                                <input class="form-control" type="text" name="q" placeholder="Buscar..." aria-label="Buscar..." aria-describedby="button-search" />
+                                <button class="btn btn-primary btn-lg" id="button-search" type="submit">Busqueda</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
