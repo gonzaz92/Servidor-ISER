@@ -20,7 +20,11 @@ from django.conf.urls.static import static
 from django.contrib.admin.views.decorators import staff_member_required
 from Base_datos.views import (index, buscar,
                               locutores, ln_incompletos,CrearLocutorNacional, ListarLocutorNacional, VerLocutorNacional, ActualizarLN,
-                              locutor_local, ll_incompletos, CrearLocutorLocal, ListarLocutorLocal, VerLocutorLocal, ActualizarLL)
+                              locutor_local, ll_incompletos, CrearLocutorLocal, ListarLocutorLocal, VerLocutorLocal, ActualizarLL,
+                              operadores_nacionales,
+                              oprn_incompletos, CrearOperadordeRadio, ListarOperadordeRadio, VerOperadordeRadio, ActualizarOPR,
+                              optvn_incompletos ,CrearOperadordeTV, ListarOperadordeTV, VerOperadordeTV, ActualizarOPTV,
+                              opplantan_incompletos ,CrearOperadordePlanta, ListarOperadordePlanta, VerOperadordePlanta, ActualizarOPPlanta,)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -40,6 +44,14 @@ urlpatterns = [
     path('locutores_locales_incompletos/', ll_incompletos, name='ll_incompletos'),
     path('locutor_local/<int:pk>/', VerLocutorLocal.as_view(), name='ver_locutor_local'),
     path('locutor_local/<int:pk>/actualizar', ActualizarLL.as_view(), name='actualizar_ll'),
+
+    path('operadores_nacionales/', operadores_nacionales, name='operadores_nacionales'),
+
+    path('carga_operador_nacional_radio', CrearOperadordeRadio.as_view(), name='carga_operador_radio'),
+    path('lista_operador_nacional_radio', ListarOperadordeRadio.as_view(), name='lista_operador_nacional_radio'),
+    path('operadores_nacionales_radio', oprn_incompletos, name='oprn_incompletos'),
+    path('operador_nacional_radio/<int:pk>/', VerOperadordeRadio.as_view(), name='ver_operador_nacional_radio'),
+    path('operador_nacional_radio/<int:pk>/actualizar', ActualizarOPR.as_view(), name='actualizar_operador_nacional_radio'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

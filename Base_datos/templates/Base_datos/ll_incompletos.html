@@ -24,7 +24,7 @@
          </thead>
         <tbody>
             {% for locutor_local in ll %}
-                {% if not locutor_local.disposicion %}
+                {% if not locutor_local.número_disposición %}
                 <tr>
                     <td style="text-transform: uppercase; padding-bottom: 1%">{{locutor_local.apellido}}</td>
                     <td style="text-transform: capitalize; padding-bottom: 1%;">{{locutor_local.nombre}}</td>
@@ -32,7 +32,7 @@
                     <td style="padding-bottom: 1%;">{{locutor_local.habilitación}}</td>
                     <td style="text-transform: capitalize; padding-bottom: 1%;">{{locutor_local.localidad}}</td>
                     <td style="text-transform: capitalize; padding-bottom: 1%;">{{locutor_local.provincia}}</td>
-                    <td style="padding-bottom: 1%; font-size: small;">EX-{{locutor_local.año_expediente}}-{{locutor_local.número_expediete}}- -APN-SDYME#ENACOM</td>
+                    <td style="padding-bottom: 1%; font-size: small;">EX-{{locutor_local.año_expediente}}-{{locutor_local.número_expediente}}- -APN-SDYME#ENACOM</td>
                     <td style="padding-bottom: 1%;">
                         <a class="link" href="{% url 'ver_locutor_local' locutor_local.id %}" type="submit">Abrir</a>
                         -

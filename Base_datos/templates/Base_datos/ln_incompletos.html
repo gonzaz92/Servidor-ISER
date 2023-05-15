@@ -14,16 +14,16 @@
     <table style="width: 95%; margin-left: 5%">
         <thead>
             <th>Apellido</th>
-               <th>Nombre</th>
-               <th>Documento</th>
-               <th>Habilitación</th>
-               <th>Instituto</th>
-               <th>Expediente</th>
-               <th>Documentación</th>
+            <th>Nombre</th>
+            <th>Documento N°</th>
+            <th>Habilitación</th>
+            <th>Instituto</th>
+            <th>Expediente</th>
+            <th>Documentación</th>
          </thead>
         <tbody>
             {% for locutor_nacional in ln %}
-                {% if not locutor_nacional.disposición %}
+                {% if not locutor_nacional.número_disposición %}
                 <tr>
                     <td style="text-transform: uppercase; padding-bottom: 1%">{{locutor_nacional.apellido}}</td>
                     <td style="text-transform: capitalize; padding-bottom: 1%;">{{locutor_nacional.nombre}}</td>

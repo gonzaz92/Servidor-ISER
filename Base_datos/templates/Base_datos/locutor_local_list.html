@@ -15,7 +15,7 @@
         <thead>
             <th>Apellido</th>
             <th>Nombre</th>
-            <th>Documento</th>
+            <th>Documento N°</th>
             <th>Habilitación</th>
             <th>Localidad</th>
             <th>Provincia</th>
@@ -25,7 +25,7 @@
          </thead>
         <tbody>
             {% for locutor_local in object_list %}
-                {% if locutor_local.disposicion %}
+                {% if locutor_local.número_disposición %}
                 <tr>
                     <td style="text-transform: uppercase; padding-bottom: 1%">{{locutor_local.apellido}}</td>
                     <td style="text-transform: capitalize; padding-bottom: 1%;">{{locutor_local.nombre}}</td>
