@@ -44,7 +44,8 @@ class CrearLocutorNacional(CreateView):
 
 class ListarLocutorNacional(ListView):
     model = Locutor_nacional
-    fields = Locutor_nacional.apellido, Locutor_nacional.nombre, Locutor_nacional.DNI, Locutor_nacional.habilitación, Locutor_nacional.instituto, Locutor_nacional.expediente, Locutor_nacional.disposición
+    fields = (Locutor_nacional.apellido, Locutor_nacional.nombre, Locutor_nacional.DNI, Locutor_nacional.habilitación, Locutor_nacional.instituto,
+        Locutor_nacional.año_expediente, Locutor_nacional.número_expediente,Locutor_nacional.año_disposición, Locutor_nacional.número_disposición)
 
 class VerLocutorNacional(DetailView):
     model = Locutor_nacional
@@ -70,7 +71,8 @@ class CrearLocutorLocal(CreateView):
 
 class ListarLocutorLocal(ListView):
     model = Locutor_local
-    fields = Locutor_local.apellido, Locutor_local.nombre, Locutor_local.dni, Locutor_local.habilitacion, Locutor_local.localidad, Locutor_local.provincia, Locutor_local.expediente, Locutor_local.disposicion
+    fields = (Locutor_local.apellido, Locutor_local.nombre, Locutor_local.DNI, Locutor_local.habilitación, Locutor_local.localidad, Locutor_local.provincia,
+        Locutor_local.año_expediente, Locutor_local.número_expediente,Locutor_local.año_disposición, Locutor_local.número_disposición)
 
 class VerLocutorLocal(DetailView):
     model = Locutor_local

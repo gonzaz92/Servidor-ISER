@@ -15,14 +15,14 @@
             <tbody>
                 {% for resultado in resultados %}
                 <tr>
-                    <td>{{ resultado.apellido }}</td>
-                    <td>{{ resultado.nombre }}</td>
-                    <td>{{ resultado.dni }} {{ resultado.DNI }}</td>
-                    <td>{{ resultado.display_name }}</td>
+                    <td style="text-transform: uppercase; padding-bottom: 1%;">{{ resultado.apellido }}</td>
+                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ resultado.nombre }}</td>
+                    <td style="padding-bottom: 1%;">{{ resultado.dni }} {{ resultado.DNI }}</td>
+                    <td style="padding-bottom: 1%;">{{ resultado.display_name }}</td>
                     <td>
-                        {% if resultado.display_name == 'Locutor/a Nacional' %}
+                        {% if resultado.display_name == 'Locutor-a Nacional' %}
                             <a href="{% url 'ver_locutor' resultado.id %}" type="submit">Abrir</a>
-                        {% elif resultado.display_name == 'Locutor/a Local' %}
+                        {% elif resultado.display_name == 'Locutor-a Local' %}
                             <a href="{% url 'ver_locutor_local' resultado.id %}" type="submit">Abrir</a>
                         {% endif %}
                     </td>

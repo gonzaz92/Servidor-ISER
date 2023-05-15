@@ -26,14 +26,16 @@
             {% for locutor_nacional in object_list %}
                 {% if locutor_nacional.disposición %}
                 <tr>
-                    <td style="padding-bottom: 1%">{{locutor_nacional.apellido}}</td>
-                    <td>{{locutor_nacional.nombre}}</td>
-                    <td>{{locutor_nacional.DNI}}</td>
-                    <td>{{locutor_nacional.habilitación}}</td>
-                    <td>{{locutor_nacional.instituto}}</td>
-                    <td>{{locutor_nacional.expediente}}</td>
-                    <td>{{locutor_nacional.disposición}}</td>
-                    <td><a class="link" href="{% url 'ver_locutor' locutor_nacional.id %}" type="submit">Abrir</a></td>
+                    <td style="text-transform: uppercase; padding-bottom: 1%">{{locutor_nacional.apellido}}</td>
+                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{locutor_nacional.nombre}}</td>
+                    <td style="padding-bottom: 1%;">{{locutor_nacional.DNI}}</td>
+                    <td style="padding-bottom: 1%;">{{locutor_nacional.habilitación}}</td>
+                    <td style="text-transform: uppercase; padding-bottom: 1%;">{{locutor_nacional.instituto}}</td>
+                    <td style="padding-bottom: 1%; font-size: small;">EX-{{locutor_nacional.año_expediente}}-{{locutor_nacional.número_expediente}}- -APN-SDYME#ENACOM</td>
+                    <td style="padding-bottom: 1%; font-size: small;">DI-{{locutor_nacional.año_disposición}}-{{locutor_nacional.número_disposición}}-APN-DNSA#ENACOM</td>
+                    <td style="padding-bottom: 1%;">
+                        <a class="link" href="{% url 'ver_locutor' locutor_nacional.id %}" type="submit">Abrir</a>
+                    </td>
                 </tr>
                 {% endif %}
             {% endfor %}
