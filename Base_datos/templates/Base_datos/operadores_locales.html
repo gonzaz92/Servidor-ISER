@@ -2,7 +2,7 @@
 
 {% block contenido %}
 
-<h1 style="text-align: center; font-weight: bold;">Operadores Nacionales</h1>
+<h1 style="text-align: center; font-weight: bold;">Operadores Locales</h1>
 
 <p style="padding-bottom: 1%;"></p>
 
@@ -13,9 +13,9 @@
             <div class="col-lg-6 col-xxl-4 mb-5">
                 <div class="card bg-light border-0 h-100">
                     <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                        <a class="nav-link" href="{% url 'carga_operador_radio' %}">
+                        <a class="nav-link" href="{% url 'carga_operador_radio_local' %}">
                             <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-card-heading"></i></div>
-                            <h2 class="fs-4 fw-bold">Cargar Operador/a de Radio Nuevo/a</h2>
+                            <h2 class="fs-4 fw-bold">Cargar Operador/a Local de Radio Nuevo/a</h2>
                             <p class="mb-0">With Bootstrap 5, we've created a fresh new layout for this template!</p>
                         </a>
                     </div>
@@ -24,9 +24,9 @@
             <div class="col-lg-6 col-xxl-4 mb-5">
                 <div class="card bg-light border-0 h-100">
                     <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                        <a class="nav-link" href="{% url 'oprn_incompletos' %}">
+                        <a class="nav-link" href="{% url 'oprl_incompletos' %}">
                             <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-card-heading"></i></div>
-                            <h2 class="fs-4 fw-bold">Operadores de Radio Incompletos</h2>
+                            <h2 class="fs-4 fw-bold">Operadores Locales de Radio Incompletos</h2>
                             <p class="mb-0">The heroic part of this template is the jumbotron hero header!</p>
                         </a>
                     </div>
@@ -35,9 +35,9 @@
             <div class="col-lg-6 col-xxl-4 mb-5">
                 <div class="card bg-light border-0 h-100">
                     <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                        <a class="nav-link" href="{% url 'lista_operador_nacional_radio' %}">
+                        <a class="nav-link" href="{% url 'lista_operador_local_radio' %}">
                             <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-card-heading"></i></div>
-                            <h2 class="fs-4 fw-bold">Operadores de Radio Habilitados</h2>
+                            <h2 class="fs-4 fw-bold">Operadores Locales de Radio Habilitados</h2>
                             <p class="mb-0">The heroic part of this template is the jumbotron hero header!</p>
                         </a>
                     </div>
@@ -46,9 +46,9 @@
             <div class="col-lg-6 col-xxl-4 mb-5">
                 <div class="card bg-light border-0 h-100">
                     <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                        <a class="nav-link" href="{% url 'carga_operador_tv' %}">
+                        <a class="nav-link" href="{% url 'carga_operador_tv_local' %}">
                             <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-card-heading"></i></div>
-                            <h2 class="fs-4 fw-bold">Cargar Operador/a de TV Nuevo/a</h2>
+                            <h2 class="fs-4 fw-bold">Cargar Operador/a Local de TV Nuevo/a</h2>
                             <p class="mb-0">With Bootstrap 5, we've created a fresh new layout for this template!</p>
                         </a>
                     </div>
@@ -57,9 +57,9 @@
             <div class="col-lg-6 col-xxl-4 mb-5">
                 <div class="card bg-light border-0 h-100">
                     <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                        <a class="nav-link" href="{% url 'optvn_incompletos' %}">
+                        <a class="nav-link" href="{% url 'optvl_incompletos' %}">
                             <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-card-heading"></i></div>
-                            <h2 class="fs-4 fw-bold">Operadores de TV Incompletos</h2>
+                            <h2 class="fs-4 fw-bold">Operadores Locales de TV Incompletos</h2>
                             <p class="mb-0">The heroic part of this template is the jumbotron hero header!</p>
                         </a>
                     </div>
@@ -68,9 +68,9 @@
             <div class="col-lg-6 col-xxl-4 mb-5">
                 <div class="card bg-light border-0 h-100">
                     <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                        <a class="nav-link" href="{% url 'lista_operador_nacional_tv' %}">
+                        <a class="nav-link" href="{% url 'lista_operador_local_tv' %}">
                             <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-card-heading"></i></div>
-                            <h2 class="fs-4 fw-bold">Operadores de TV Habilitados</h2>
+                            <h2 class="fs-4 fw-bold">Operadores Locales de TV Habilitados</h2>
                             <p class="mb-0">The heroic part of this template is the jumbotron hero header!</p>
                         </a>
                     </div>
@@ -79,9 +79,9 @@
             <div class="col-lg-6 col-xxl-4 mb-5">
                 <div class="card bg-light border-0 h-100">
                     <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                        <a class="nav-link" href="{% url 'carga_operador_planta' %}">
+                        <a class="nav-link" href="{% url 'carga_operador_planta_local' %}">
                             <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-card-heading"></i></div>
-                            <h2 class="fs-4 fw-bold">Cargar Operador/a de Planta Transmisora Nuevo/a</h2>
+                            <h2 class="fs-4 fw-bold">Cargar Operador/a Local de Planta Transmisora Nuevo/a</h2>
                             <p class="mb-0">With Bootstrap 5, we've created a fresh new layout for this template!</p>
                         </a>
                     </div>
@@ -90,9 +90,9 @@
             <div class="col-lg-6 col-xxl-4 mb-5">
                 <div class="card bg-light border-0 h-100">
                     <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                        <a class="nav-link" href="{% url 'opplantan_incompletos' %}">
+                        <a class="nav-link" href="{% url 'opplantal_incompletos' %}">
                             <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-card-heading"></i></div>
-                            <h2 class="fs-4 fw-bold">Operadores de Planta Transmisora Incompletos</h2>
+                            <h2 class="fs-4 fw-bold">Operadores Locales de Planta Transmisora Incompletos</h2>
                             <p class="mb-0">The heroic part of this template is the jumbotron hero header!</p>
                         </a>
                     </div>
@@ -101,9 +101,9 @@
             <div class="col-lg-6 col-xxl-4 mb-5">
                 <div class="card bg-light border-0 h-100">
                     <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                        <a class="nav-link" href="{% url 'lista_operador_nacional_planta' %}">
+                        <a class="nav-link" href="{% url 'lista_operador_local_planta' %}">
                             <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-card-heading"></i></div>
-                            <h2 class="fs-4 fw-bold">Operadores de Planta Transmisora Habilitados</h2>
+                            <h2 class="fs-4 fw-bold">Operadores Locales de Planta Transmisora Habilitados</h2>
                             <p class="mb-0">The heroic part of this template is the jumbotron hero header!</p>
                         </a>
                     </div>

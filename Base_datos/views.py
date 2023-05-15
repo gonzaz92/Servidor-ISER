@@ -15,7 +15,13 @@ def buscar(request):
     resultados_ln = Locutor_nacional.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
     resultados_ll = Locutor_local.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
     resultados_oprn = Operador_nacional_radio.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
-    resultados = list(resultados_ln) + list(resultados_ll) + list(resultados_oprn)
+    resultados_optvn = Operador_nacional_tv.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
+    resultados_opplantan = Operador_nacional_planta.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
+    resultados_oprl = Operador_local_radio.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
+    resultados_optvl = Operador_local_tv.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
+    resultados_opplantal = Operador_local_planta.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
+    resultados = (list(resultados_ln) + list(resultados_ll) + list(resultados_oprn) + list(resultados_optvn) + list(resultados_opplantan) +
+                  list(resultados_oprl) + list(resultados_optvl) + list(resultados_opplantal))
     return render(request, 'Base_datos/resultados_busqueda.html', {'resultados':resultados})
 
 """class UserSingUp(LoginRequiredMixin, CreateView):
@@ -116,7 +122,7 @@ class ActualizarOPR(UpdateView):
 
 def optvn_incompletos(request):
     optvn = Operador_nacional_tv.objects.all()
-    return render(request, 'Base_datos/optvn_incompletos.html', {'oprn' : optvn} )
+    return render(request, 'Base_datos/optvn_incompletos.html', {'optvn' : optvn} )
 
 class CrearOperadordeTV(CreateView):
     model = Operador_nacional_tv
@@ -140,7 +146,7 @@ class ActualizarOPTV(UpdateView):
 
 def opplantan_incompletos(request):
     opplantan = Operador_nacional_planta.objects.all()
-    return render(request, 'Base_datos/opplanta_incompletos.html', {'opplantan' : opplantan} )
+    return render(request, 'Base_datos/opplantan_incompletos.html', {'opplantan' : opplantan} )
 
 class CrearOperadordePlanta(CreateView):
     model = Operador_nacional_planta
@@ -158,4 +164,81 @@ class VerOperadordePlanta(DetailView):
 class ActualizarOPPlanta(UpdateView):
     model = Operador_nacional_planta
     success_url = reverse_lazy('operadores_nacionales')
+    fields = '__all__'
+
+#Operadores Locales
+
+def operadores_locales(request):
+    return render(request, 'Base_datos/operadores_locales.html')
+
+#Operadores de Radio
+
+def oprl_incompletos(request):
+    oprl = Operador_local_radio.objects.all()
+    return render(request, 'Base_datos/oprl_incompletos.html', {'oprl' : oprl} )
+
+class CrearOperadordeRadioLocal(CreateView):
+    model = Operador_local_radio
+    success_url = reverse_lazy('operadores_locales')
+    fields = '__all__'
+
+class ListarOperadordeRadioLocal(ListView):
+    model = Operador_local_radio
+    fields = (Operador_local_radio.apellido, Operador_local_radio.nombre, Operador_local_radio.DNI, Operador_local_radio.habilitación,
+              Operador_local_radio.año_expediente, Operador_local_radio.número_expediente, Operador_local_radio.año_disposición, Operador_local_radio.número_disposición)
+
+class VerOperadordeRadioLocal(DetailView):
+    model = Operador_local_radio
+
+class ActualizarOPRLocal(UpdateView):
+    model = Operador_local_radio
+    success_url = reverse_lazy('operadores_locales')
+    fields = '__all__'
+
+#Operadores de TV
+
+def optvl_incompletos(request):
+    optvl = Operador_local_tv.objects.all()
+    return render(request, 'Base_datos/optvl_incompletos.html', {'optvl' : optvl} )
+
+class CrearOperadordeTVLocal(CreateView):
+    model = Operador_local_tv
+    success_url = reverse_lazy('operadores_locales')
+    fields = '__all__'
+
+class ListarOperadordeTVLocal(ListView):
+    model = Operador_local_tv
+    fields = (Operador_local_tv.apellido, Operador_local_tv.nombre, Operador_local_tv.DNI, Operador_local_tv.habilitación,
+              Operador_local_tv.año_expediente, Operador_local_tv.número_expediente, Operador_local_tv.año_disposición, Operador_local_tv.número_disposición)
+
+class VerOperadordeTVLocal(DetailView):
+    model = Operador_local_tv
+
+class ActualizarOPTVLocal(UpdateView):
+    model = Operador_local_tv
+    success_url = reverse_lazy('operadores_locales')
+    fields = '__all__'
+
+#Operadores de Planta
+
+def opplantal_incompletos(request):
+    opplantal = Operador_local_planta.objects.all()
+    return render(request, 'Base_datos/opplantal_incompletos.html', {'opplantal' : opplantal} )
+
+class CrearOperadordePlantaLocal(CreateView):
+    model = Operador_local_planta
+    success_url = reverse_lazy('operadores_local')
+    fields = '__all__'
+
+class ListarOperadordePlantaLocal(ListView):
+    model = Operador_local_planta
+    fields = (Operador_local_planta.apellido, Operador_local_planta.nombre, Operador_local_planta.DNI, Operador_local_planta.habilitación,
+              Operador_local_planta.año_expediente, Operador_local_planta.número_expediente, Operador_local_planta.año_disposición, Operador_local_planta.número_disposición)
+
+class VerOperadordePlantaLocal(DetailView):
+    model = Operador_local_planta
+
+class ActualizarOPPlantaLocal(UpdateView):
+    model = Operador_local_planta
+    success_url = reverse_lazy('operadores_locales')
     fields = '__all__'

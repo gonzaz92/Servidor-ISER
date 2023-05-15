@@ -1,0 +1,88 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+
+<h1 style="text-align: center;">Operador/a Local de Radio</h1>
+
+<p></p>
+
+<div style="padding-left: 5%;">
+    <div style="padding-bottom: 1%;">
+        <h1>
+            Expediente:
+            EX-{{operador_local_radio.año_expediente}}-{{operador_local_radio.número_expediente}}- -APN-SDYME#ENACOM
+        </h1>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Apellido y Nombre:
+            {{operador_local_radio.apellido}}, {{operador_local_radio.nombre}}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Documento N°: {{operador_local_radio.DNI}} - Habilitación: {{operador_local_radio.habilitación}} - Disposición: DI-{{operador_local_radio.año_disposición}}-{{operador_local_radio.número_disposición}}-APN-DNSA#ENACOM
+        </h2>
+        <h2>
+            Localidad: {{operador_local_radio.localidad}} - Provincia: {{operador_local_radio.provincia}} 
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Formulario de datos personales:
+            {% if operador_local_radio.formulario %}
+                <a href="{{ operador_local_radio.formulario.url }}" target="_blank">
+                    {{operador_local_radio.formulario}}
+                </a>
+            {% endif %}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Copia del D.N.I.:
+            {% if operador_local_radio.pdf_dni %}
+                <a href="{{ operador_local_radio.pdf_dni.url }}" target="_blank">
+                    {{operador_local_radio.pdf_dni}}
+                </a>
+            {% endif %}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Secundario: {{operador_local_radio.secundario}} - 
+            {% if operador_local_radio.pdf_secundario %}
+                <a href="{{ operador_local_radio.pdf_secundario.url }}" target="_blank">
+                    {{operador_local_radio.pdf_secundario}}
+                </a>
+            {% endif %}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Certificado:
+            {% if operador_local_radio.certificado %}
+            <a href="{{ operador_local_radio.certificado.url }}" target="_blank">
+                {{operador_local_radio.certificado}}
+            </a>
+        {% endif %}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Acta de examen:
+            {% if operador_local_radio.acta %}
+            <a href="{{ operador_local_radio.acta.url }}" target="_blank">
+                {{operador_local_radio.acta}}
+            </a>
+            {% endif %}
+        </h2>
+        <p>
+            </thead>
+                <a class="btn btn-primary btn-lg" style="margin-left: 90%;" href="{% url 'actualizar_operador_local_radio' operador_local_radio.id %}" type="submit">Actualizar</a>
+            </thead>
+        </p>
+    </div>
+    <p></p>
+</div>
+    
+{% endblock %}

@@ -38,7 +38,7 @@
         <h2>
             Copia del D.N.I.:
             {% if operador_nacional_radio.pdf_dni %}
-                <a href="{{operador_nacional_radio.pdf_dni.url }}" target="_blank">
+                <a href="{{ operador_nacional_radio.pdf_dni.url }}" target="_blank">
                     {{operador_nacional_radio.pdf_dni}}
                 </a>
             {% endif %}
@@ -58,7 +58,7 @@
         <h2>
             Instituto: {{operador_nacional_radio.instituto}} - 
             {% if operador_nacional_radio.pdf_instituto %}
-                <a href="{{operador_nacional_radio.pdf_instituto.url}}" target="_blank">
+                <a href="{{ operador_nacional_radio.pdf_instituto.url }}" target="_blank">
                     {{operador_nacional_radio.pdf_instituto}}
                 </a>
             {% endif %}
@@ -68,7 +68,7 @@
         <h2>
             Acta de examen:
             {% if operador_nacional_radio.acta %}
-            <a href="{{operador_nacional_radio.acta.url}}" target="_blank">
+            <a href="{{ operador_nacional_radio.acta.url }}" target="_blank">
                 {{operador_nacional_radio.acta}}
             </a>
             {% endif %}

@@ -24,7 +24,11 @@ from Base_datos.views import (index, buscar,
                               operadores_nacionales,
                               oprn_incompletos, CrearOperadordeRadio, ListarOperadordeRadio, VerOperadordeRadio, ActualizarOPR,
                               optvn_incompletos ,CrearOperadordeTV, ListarOperadordeTV, VerOperadordeTV, ActualizarOPTV,
-                              opplantan_incompletos ,CrearOperadordePlanta, ListarOperadordePlanta, VerOperadordePlanta, ActualizarOPPlanta,)
+                              opplantan_incompletos ,CrearOperadordePlanta, ListarOperadordePlanta, VerOperadordePlanta, ActualizarOPPlanta,
+                              operadores_locales,
+                              oprl_incompletos, CrearOperadordeRadioLocal, ListarOperadordeRadioLocal, VerOperadordeRadioLocal, ActualizarOPRLocal,
+                              optvl_incompletos, CrearOperadordeTVLocal, ListarOperadordeTVLocal, VerOperadordeTVLocal, ActualizarOPTVLocal,
+                              opplantal_incompletos, CrearOperadordePlantaLocal, ListarOperadordePlantaLocal, VerOperadordePlantaLocal, ActualizarOPPlantaLocal,)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -52,6 +56,39 @@ urlpatterns = [
     path('operadores_nacionales_radio', oprn_incompletos, name='oprn_incompletos'),
     path('operador_nacional_radio/<int:pk>/', VerOperadordeRadio.as_view(), name='ver_operador_nacional_radio'),
     path('operador_nacional_radio/<int:pk>/actualizar', ActualizarOPR.as_view(), name='actualizar_operador_nacional_radio'),
+
+    path('carga_operador_nacional_tv', CrearOperadordeTV.as_view(), name='carga_operador_tv'),
+    path('lista_operador_nacional_tv', ListarOperadordeTV.as_view(), name='lista_operador_nacional_tv'),
+    path('operadores_nacionales_tv', optvn_incompletos, name='optvn_incompletos'),
+    path('operador_nacional_tv/<int:pk>/', VerOperadordeTV.as_view(), name='ver_operador_nacional_tv'),
+    path('operador_nacional_tv/<int:pk>/actualizar', ActualizarOPTV.as_view(), name='actualizar_operador_nacional_tv'),
+
+    path('carga_operador_nacional_planta', CrearOperadordePlanta.as_view(), name='carga_operador_planta'),
+    path('lista_operador_nacional_planta', ListarOperadordePlanta.as_view(), name='lista_operador_nacional_planta'),
+    path('operadores_nacionales_planta', opplantan_incompletos, name='opplantan_incompletos'),
+    path('operador_nacional_planta/<int:pk>/', VerOperadordePlanta.as_view(), name='ver_operador_nacional_planta'),
+    path('operador_nacional_planta/<int:pk>/actualizar', ActualizarOPPlanta.as_view(), name='actualizar_operador_nacional_planta'),
+
+    path('operadores_locales/', operadores_locales, name='operadores_locales'),
+
+    path('carga_operador_local_radio', CrearOperadordeRadioLocal.as_view(), name='carga_operador_radio_local'),
+    path('lista_operador_local_radio', ListarOperadordeRadioLocal.as_view(), name='lista_operador_local_radio'),
+    path('operadores_local_radio', oprl_incompletos, name='oprl_incompletos'),
+    path('operador_local_radio/<int:pk>/', VerOperadordeRadioLocal.as_view(), name='ver_operador_local_radio'),
+    path('operador_local_radio/<int:pk>/actualizar', ActualizarOPRLocal.as_view(), name='actualizar_operador_local_radio'),
+
+    path('carga_operador_local_tv', CrearOperadordeTVLocal.as_view(), name='carga_operador_tv_local'),
+    path('lista_operador_local_tv', ListarOperadordeTVLocal.as_view(), name='lista_operador_local_tv'),
+    path('operadores_local_tv', optvl_incompletos, name='optvl_incompletos'),
+    path('operador_local_tv/<int:pk>/', VerOperadordeTVLocal.as_view(), name='ver_operador_local_tv'),
+    path('operador_local_tv/<int:pk>/actualizar', ActualizarOPTVLocal.as_view(), name='actualizar_operador_local_tv'),
+
+    path('carga_operador_local_planta', CrearOperadordePlantaLocal.as_view(), name='carga_operador_planta_local'),
+    path('lista_operador_local_planta', ListarOperadordePlantaLocal.as_view(), name='lista_operador_local_planta'),
+    path('operadores_local_planta', opplantal_incompletos, name='opplantal_incompletos'),
+    path('operador_local_planta/<int:pk>/', VerOperadordePlantaLocal.as_view(), name='ver_operador_local_planta'),
+    path('operador_local_planta/<int:pk>/actualizar', ActualizarOPPlantaLocal.as_view(), name='actualizar_operador_local_planta'),
+    
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

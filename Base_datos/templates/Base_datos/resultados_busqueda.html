@@ -24,8 +24,18 @@
                             <a href="{% url 'ver_locutor' resultado.id %}" type="submit">Abrir</a>
                         {% elif resultado.display_name == 'Locutor-a Local' %}
                             <a href="{% url 'ver_locutor_local' resultado.id %}" type="submit">Abrir</a>
-                            {% elif resultado.display_name == 'Operador-a de Radio' %}
+                        {% elif resultado.display_name == 'Operador-a de Radio' %}
                             <a href="{% url 'ver_operador_nacional_radio' resultado.id %}" type="submit">Abrir</a>
+                        {% elif resultado.display_name == 'Operador-a de TV' %}
+                            <a href="{% url 'ver_operador_nacional_tv' resultado.id %}" type="submit">Abrir</a>
+                        {% elif resultado.display_name == 'Operador-a de Planta' %}
+                            <a href="{% url 'ver_operador_nacional_planta' resultado.id %}" type="submit">Abrir</a>
+                        {% elif resultado.display_name == 'Operador-a Local Radio' %}
+                            <a href="{% url 'ver_operador_local_radio' resultado.id %}" type="submit">Abrir</a>
+                        {% elif resultado.display_name == 'Operador-a Local TV' %}
+                            <a href="{% url 'ver_operador_local_tv' resultado.id %}" type="submit">Abrir</a>
+                        {% elif resultado.display_name == 'Operador-a Local Planta' %}
+                            <a href="{% url 'ver_operador_local_planta' resultado.id %}" type="submit">Abrir</a>
                         {% endif %}
                     </td>
                 </tr>

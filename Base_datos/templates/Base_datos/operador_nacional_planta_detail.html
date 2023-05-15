@@ -1,0 +1,85 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+
+<h1 style="text-align: center;">Operador/a Nacional de Planta</h1>
+
+<p></p>
+
+<div style="padding-left: 5%;">
+    <div style="padding-bottom: 1%;">
+        <h1>
+            Expediente:
+            EX-{{operador_nacional_planta.año_expediente}}-{{operador_nacional_planta.número_expediente}}- -APN-SDYME#ENACOM
+        </h1>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Apellido y Nombre:
+            {{operador_nacional_planta.apellido}}, {{operador_nacional_planta.nombre}}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Documento N°: {{operador_nacional_planta.DNI}} - Habilitación: {{operador_nacional_planta.habilitación}} - Disposición: DI-{{operador_nacional_planta.año_disposición}}-{{operador_nacional_planta.número_disposición}}-APN-DNSA#ENACOM
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Formulario de datos personales:
+            {% if operador_nacional_planta.formulario %}
+                <a href="{{ operador_nacional_planta.formulario.url }}" target="_blank">
+                    {{operador_nacional_planta.formulario}}
+                </a>
+            {% endif %}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Copia del D.N.I.:
+            {% if operador_nacional_planta.pdf_dni %}
+                <a href="{{ operador_nacional_planta.pdf_dni.url }}" target="_blank">
+                    {{operador_nacional_planta.pdf_dni}}
+                </a>
+            {% endif %}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Secundario: {{operador_nacional_planta.secundario}} - 
+            {% if operador_nacional_planta.pdf_secundario %}
+                <a href="{{ operador_nacional_planta.pdf_secundario.url }}" target="_blank">
+                    {{operador_nacional_planta.pdf_secundario}}
+                </a>
+            {% endif %}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Instituto: {{operador_nacional_planta.instituto}} - 
+            {% if operador_nacional_planta.pdf_instituto %}
+                <a href="{{ operador_nacional_planta.pdf_instituto.url }}" target="_blank">
+                    {{operador_nacional_planta.pdf_instituto}}
+                </a>
+            {% endif %}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Acta de examen:
+            {% if operador_nacional_planta.acta %}
+            <a href="{{ operador_nacional_planta.acta.url }}" target="_blank">
+                {{operador_nacional_planta.acta}}
+            </a>
+            {% endif %}
+        </h2>
+        <p>
+            </thead>
+                <a class="btn btn-primary btn-lg" style="margin-left: 90%;" href="{% url 'actualizar_operador_nacional_planta' operador_nacional_planta.id %}" type="submit">Actualizar</a>
+            </thead>
+        </p>
+    </div>
+    <p></p>
+</div>
+    
+{% endblock %}
