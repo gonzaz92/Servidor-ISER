@@ -36,6 +36,10 @@
                             <a href="{% url 'ver_operador_local_tv' resultado.id %}" type="submit">Abrir</a>
                         {% elif resultado.display_name == 'Operador-a Local Planta' %}
                             <a href="{% url 'ver_operador_local_planta' resultado.id %}" type="submit">Abrir</a>
+                        {% elif resultado.display_name == 'Productor-a y Director-a' %}
+                            <a href="{% url 'ver_productor' resultado.id %}" type="submit">Abrir</a>
+                        {% elif resultado.display_name == 'Guionista' %}
+                            <a href="{% url 'ver_guionista' resultado.id %}" type="submit">Abrir</a>
                         {% endif %}
                     </td>
                 </tr>

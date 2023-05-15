@@ -21,8 +21,10 @@ def buscar(request):
     resultados_oprl = Operador_local_radio.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
     resultados_optvl = Operador_local_tv.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
     resultados_opplantal = Operador_local_planta.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
+    resultados_prod = Productor.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
+    resultado_guion = Guionista.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
     resultados = (list(resultados_ln) + list(resultados_ll) + list(resultados_oprn) + list(resultados_optvn) + list(resultados_opplantan) +
-                  list(resultados_oprl) + list(resultados_optvl) + list(resultados_opplantal))
+                  list(resultados_oprl) + list(resultados_optvl) + list(resultados_opplantal) + list(resultados_prod) + list(resultado_guion))
     return render(request, 'Base_datos/resultados_busqueda.html', {'resultados':resultados})
 
 """class UserSingUp(LoginRequiredMixin, CreateView):
@@ -242,4 +244,58 @@ class VerOperadordePlantaLocal(DetailView):
 class ActualizarOPPlantaLocal(UpdateView):
     model = Operador_local_planta
     success_url = reverse_lazy('operadores_locales')
+    fields = '__all__'
+
+#Productores y Directores
+
+def productores(request):
+    return render(request, 'Base_datos/productores_y_directores.html')
+
+def prod_incompletos(request):
+    prod = Productor.objects.all()
+    return render(request, 'Base_datos/prod_incompletos.html', {'prod' : prod} )
+
+class CrearProductor(CreateView):
+    model = Productor
+    success_url = reverse_lazy('productores_y_directores')
+    fields = '__all__'
+
+class ListarProductor(ListView):
+    model = Productor
+    fields = (Productor.apellido, Productor.nombre, Productor.DNI, Productor.habilitación, Productor.instituto,
+              Productor.año_expediente, Productor.número_expediente, Productor.año_disposición, Productor.número_disposición)
+
+class VerProductor(DetailView):
+    model = Productor
+
+class ActualizarProd(UpdateView):
+    model = Productor
+    success_url = reverse_lazy('productores_y_directores')
+    fields = '__all__'
+
+#Guionistas
+
+def guionistas(request):
+    return render(request, 'Base_datos/guionistas.html')
+
+def guion_incompletos(request):
+    guion = Guionista.objects.all()
+    return render(request, 'Base_datos/guion_incompletos.html', {'guion' : guion} )
+
+class CrearGuionista(CreateView):
+    model = Guionista
+    success_url = reverse_lazy('guionistas')
+    fields = '__all__'
+
+class ListarGuionista(ListView):
+    model = Guionista
+    fields = (Guionista.apellido, Guionista.nombre, Guionista.DNI, Guionista.habilitación, Guionista.instituto,
+              Guionista.año_expediente, Guionista.número_expediente, Guionista.año_disposición, Guionista.número_disposición)
+
+class VerGuionista(DetailView):
+    model = Guionista
+
+class ActualizarGuion(UpdateView):
+    model = Guionista
+    success_url = reverse_lazy('guionistas')
     fields = '__all__'

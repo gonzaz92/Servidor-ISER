@@ -1,0 +1,85 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+
+<h1 style="text-align: center;">Productor/ y Director/a para Radio y TV</h1>
+
+<p></p>
+
+<div style="padding-left: 5%;">
+    <div style="padding-bottom: 1%;">
+        <h1>
+            Expediente:
+            EX-{{productor.año_expediente}}-{{productor.número_expediente}}- -APN-SDYME#ENACOM
+        </h1>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Apellido y Nombre:
+            {{productor.apellido}}, {{productor.nombre}}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Documento N°: {{productor.DNI}} - Habilitación: {{productor.habilitación}} - Disposición: DI-{{productor.año_disposición}}-{{productor.número_disposición}}-APN-DNSA#ENACOM
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Formulario de datos personales:
+            {% if productor.formulario %}
+                <a href="{{ productor.formulario.url }}" target="_blank">
+                    {{productor.formulario}}
+                </a>
+            {% endif %}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Copia del D.N.I.:
+            {% if productor.pdf_dni %}
+                <a href="{{productor.pdf_dni.url }}" target="_blank">
+                    {{productor.pdf_dni}}
+                </a>
+            {% endif %}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Secundario: {{productor.secundario}} - 
+            {% if productor.pdf_secundario %}
+                <a href="{{ productor.pdf_secundario.url }}" target="_blank">
+                    {{productor.pdf_secundario}}
+                </a>
+            {% endif %}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Instituto: {{productor.instituto}} - 
+            {% if productor.pdf_instituto %}
+                <a href="{{productor.pdf_instituto.url}}" target="_blank">
+                    {{productor.pdf_instituto}}
+                </a>
+            {% endif %}
+        </h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+        <h2>
+            Acta de examen:
+            {% if productor.acta %}
+            <a href="{{productor.acta.url}}" target="_blank">
+                {{productor.acta}}
+            </a>
+            {% endif %}
+        </h2>
+        <p>
+            </thead>
+                <a class="btn btn-primary btn-lg" style="margin-left: 90%;" href="{% url 'actualizar_prod' productor.id %}" type="submit">Actualizar</a>
+            </thead>
+        </p>
+    </div>
+    <p></p>
+</div>
+    
+{% endblock %}
