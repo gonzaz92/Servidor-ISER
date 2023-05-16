@@ -1,0 +1,14 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+<div style="text-align: center">
+    <h2 style="font-weight: bold;">Registrar Usuario</h2>
+    <p></p>
+    <form  method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn btn-primary" type="submit" value="Registarme">
+    </form>
+</div>
+<p></p>
+{% endblock %}

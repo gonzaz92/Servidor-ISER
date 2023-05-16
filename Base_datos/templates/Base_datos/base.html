@@ -18,13 +18,19 @@
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container px-lg-5">
-                <a class="navbar-brand" href="#!">Instituto Superior de Enseñanza Radiofónica</a>
+                <a class="navbar-brand" href="{% url 'index' %}">Instituto Superior de Enseñanza Radiofónica</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'index' %}">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Salir</a></li>
+                        {% if user.is_superuser %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'alta_usuario' %}">Nuevo usuario</a></li>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link"aria-current="page" href="{% url 'index' %}">Inicio</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Salir</a></li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -52,16 +58,18 @@
         <footer class="py-5 bg-dark">
             <div class="container">
                 <p class="m-0 text-center text-white">
-                    <thead>
-                        <a> Inicio - </a>
-                        <a> Locutores Nacionales - </a>
-                        <a> Locutores Locales - </a>
-                        <a> Operadores Nacionales - </a>
-                        <a> Operadores Locales - </a>
-                        <a> Productores y Directores - </a>
-                        <a> Guionistas - </a>
-                        <a> Expedientes</a>
-                    </thead>
+                    {% if user.is_authenticated%}
+                        <thead>
+                            <a class="nav-link" href="{% url 'index' %}" style="display: inline-block;"> Inicio - </a>
+                            <a class="nav-link" href="{% url 'locutores_nacionales' %}" style="display: inline-block;"> Locutores Nacionales - </a>
+                            <a class="nav-link" href="{% url 'locutores_locales' %}" style="display: inline-block;"> Locutores Locales - </a>
+                            <a class="nav-link" href="{% url 'operadores_nacionales' %}" style="display: inline-block;"> Operadores Nacionales - </a>
+                            <a class="nav-link" href="{% url 'operadores_locales' %}" style="display: inline-block;"> Operadores Locales - </a>
+                            <a class="nav-link" href="{% url 'productores_y_directores' %}" style="display: inline-block;"> Productores y Directores - </a>
+                            <a class="nav-link" href="{% url 'guionistas' %}" style="display: inline-block;"> Guionistas - </a>
+                            <a class="nav-link" href="{% url 'index' %}" style="display: inline-block;"> Expedientes</a>
+                        </thead>
+                    {% endif %}
                 </p>
                 <p></p>
                 <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>

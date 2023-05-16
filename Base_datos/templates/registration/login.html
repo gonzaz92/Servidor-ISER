@@ -1,0 +1,10 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+    <form style="text-align: center" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn btn-primary" type="submit" value="Ingresar">
+    </form>
+    <p></p>
+{% endblock %}
