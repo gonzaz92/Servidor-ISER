@@ -1,5 +1,3 @@
-from typing import Any
-from django import http
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from Base_datos.models import (Locutor_nacional, Locutor_local, Operador_nacional_radio, Operador_nacional_tv, Operador_nacional_planta,
