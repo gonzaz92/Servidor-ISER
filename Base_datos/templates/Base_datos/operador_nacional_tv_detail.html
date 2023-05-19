@@ -2,84 +2,87 @@
 
 {% block contenido %}
 
-<h1 style="text-align: center;">Operador/a Nacional de TV</h1>
+  <h1 style="text-align: center;">Operador/a Nacional de Estudios de Servicios de Comunicación Audiovisual - TV</h1>
 
-<p></p>
+  <hr>
 
-<div style="padding-left: 5%;">
+  <div style="padding-left: 5%;">
     <div style="padding-bottom: 1%;">
-        <h1>
-            Expediente:
-            EX-{{operador_nacional_tv.año_expediente}}-{{operador_nacional_tv.número_expediente}}- -APN-SDYME#ENACOM
-        </h1>
+        <h2 style="font-weight: bold; margin-right: 10px;">Apellido y Nombre: <span style="text-transform: uppercase;">{{operador_nacional_tv.apellido}}</span>, {{operador_nacional_tv.nombre}}</h2>
     </div>
     <div style="padding-bottom: 1%;">
-        <h2>
-            Apellido y Nombre:
-            {{operador_nacional_tv.apellido}}, {{operador_nacional_tv.nombre}}
+      <h1>Expediente: EX-{{operador_nacional_tv.año_expediente}}-{{operador_nacional_tv.número_expediente}}-APN-SDYME#ENACOM</h1>
+    </div>
+    <div style="padding-bottom: 1%;">
+      <h2 style="margin-right: 10px;">Documento N°: {{operador_nacional_tv.DNI}} - Habilitación: {{operador_nacional_tv.habilitación}} - Disposición: DI-{{operador_nacional_tv.año_disposición}}-{{operador_nacional_tv.número_disposición}}-APN-DNSA#ENACOM</h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+      {% if operador_nacional_tv.formulario %}
+      <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
+        <h2 style="margin-right: 10px;">Formulario de datos personales:
+          <a href="{{ operador_nacional_tv.formulario.url }}" target="_blank">{{operador_nacional_tv.formulario}}</a>
         </h2>
+      </div>
+      {% else %}
+      <div style="background-color: #fff7ae; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
+        <h2 style="margin-right: 10px;">Formulario de datos personales: No disponible</h2>
+      </div>
+      {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-        <h2>
-            Documento N°: {{operador_nacional_tv.DNI}} - Habilitación: {{operador_nacional_tv.habilitación}} - Disposición: DI-{{operador_nacional_tv.año_disposición}}-{{operador_nacional_tv.número_disposición}}-APN-DNSA#ENACOM
+      {% if operador_nacional_tv.pdf_dni %}
+      <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
+        <h2 style="margin-right: 10px;">Copia del D.N.I.:
+          <a href="{{operador_nacional_tv.pdf_dni.url }}" target="_blank">{{operador_nacional_tv.pdf_dni}}</a>
         </h2>
+      </div>
+      {% else %}
+      <div style="background-color: #fff7ae; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
+        <h2 style="margin-right: 10px;">Copia del D.N.I.: No disponible</h2>
+      </div>
+      {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-        <h2>
-            Formulario de datos personales:
-            {% if operador_nacional_tv.formulario %}
-                <a href="{{ operador_nacional_tv.formulario.url }}" target="_blank">
-                    {{operador_nacional_tv.formulario}}
-                </a>
-            {% endif %}
+      {% if operador_nacional_tv.pdf_secundario %}
+      <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
+        <h2 style="margin-right: 10px;">Secundario: {{operador_nacional_tv.secundario}} -
+          <a href="{{ operador_nacional_tv.pdf_secundario.url }}" target="_blank">{{operador_nacional_tv.pdf_secundario}}</a>
         </h2>
+      </div>
+      {% else %}
+      <div style="background-color: #fff7ae; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
+        <h2 style="margin-right: 10px;">Secundario: No disponible</h2>
+      </div>
+      {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-        <h2>
-            Copia del D.N.I.:
-            {% if operador_nacional_tv.pdf_dni %}
-                <a href="{{ operador_nacional_tv.pdf_dni.url }}" target="_blank">
-                    {{operador_nacional_tv.pdf_dni}}
-                </a>
-            {% endif %}
+      {% if operador_nacional_tv.pdf_instituto %}
+      <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
+        <h2 style="margin-right: 10px;">Instituto: {{operador_nacional_tv.instituto}} -
+          <a href="{{operador_nacional_tv.pdf_instituto.url}}" target="_blank">{{operador_nacional_tv.pdf_instituto}}</a>
         </h2>
+      </div>
+      {% else %}
+      <div style="background-color: #fff7ae; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
+        <h2 style="margin-right: 10px;">Instituto: No disponible</h2>
+      </div>
+      {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-        <h2>
-            Secundario: {{operador_nacional_tv.secundario}} - 
-            {% if operador_nacional_tv.pdf_secundario %}
-                <a href="{{ operador_nacional_tv.pdf_secundario.url }}" target="_blank">
-                    {{operador_nacional_tv.pdf_secundario}}
-                </a>
-            {% endif %}
+      {% if operador_nacional_tv.acta %}
+      <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
+        <h2 style="margin-right: 10px;">Acta de examen:
+          <a href="{{operador_nacional_tv.acta.url}}" target="_blank">{{operador_nacional_tv.acta}}</a>
         </h2>
+      </div>
+      {% else %}
+      <div style="background-color: #fff7ae; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
+        <h2 style="margin-right: 10px;">Acta de examen: No disponible</h2>
+      </div>
+      {% endif %}
     </div>
-    <div style="padding-bottom: 1%;">
-        <h2>
-            Instituto: {{operador_nacional_tv.instituto}} - 
-            {% if operador_nacional_tv.pdf_instituto %}
-                <a href="{{ operador_nacional_tv.pdf_instituto.url }}" target="_blank">
-                    {{operador_nacional_tv.pdf_instituto}}
-                </a>
-            {% endif %}
-        </h2>
+    <div style="padding-bottom: 1%; display: flex; justify-content: flex-end; margin-right: 10px; margin-top: 10px;">
+      <a class="btn btn-primary btn-lg" href="{% url 'actualizar_operador_nacional_tv' operador_nacional_tv.id %}" type="submit" style="margin-right: 10px;">Actualizar</a>
     </div>
-    <div style="padding-bottom: 1%;">
-        <h2>
-            Acta de examen:
-            {% if operador_nacional_tv.acta %}
-            <a href="{{ operador_nacional_tv.acta.url }}" target="_blank">
-                {{operador_nacional_tv.acta}}
-            </a>
-            {% endif %}
-        </h2>
-        <p>
-            </thead>
-                <a class="btn btn-primary btn-lg" style="margin-left: 90%;" href="{% url 'actualizar_operador_nacional_tv' operador_nacional_tv.id %}" type="submit">Actualizar</a>
-            </thead>
-        </p>
-    </div>
-    <p></p>
-</div>
-    
+  </div>
 {% endblock %}

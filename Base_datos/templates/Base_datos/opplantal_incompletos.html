@@ -1,49 +1,50 @@
 {% extends 'Base_datos/base.html' %}
 
 {% block contenido %}
-
-<div style="margin: 1%; width: 95%; display: flex">
+<div style="margin: 1%; width: 95%; display: flex; justify-content: space-between;">
     <div>
-        <h2 style="font-weight: bold">Operadores Locales de Planta Transmisora Incompletos</h2>
+        <h2 style="font-weight: bold;">Operadores Locales de Planta Transmisora Incompletos</h2>
     </div>
-    <div style="margin-left: 54%;">
+    <div>
         <a class="btn btn-primary btn-lg" style="justify-content: right;" href="{% url 'operadores_locales' %}" type="submit">Volver</a>
     </div>
 </div>
-<div style="margin: 0; padding: 0; display: grid ;place-items: center">
-    <table style="width: 95%; margin-left: 5%">
+
+<div style="margin: 0; padding: 0; display: grid; place-items: center;">
+    <table style="width: 95%; margin-left: 5%;">
         <thead>
-            <th>Apellido</th>
-            <th>Nombre</th>
-            <th>Documento N°</th>
-            <th>Habilitación</th>
-            <th>Localidad</th>
-            <th>Provincia</th>
-            <th>Expediente</th>
-            <th>Documentación</th>
-         </thead>
+            <tr>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>Documento N°</th>
+                <th>Habilitación</th>
+                <th>Localidad</th>
+                <th>Provincia</th>
+                <th>Expediente</th>
+                <th>Documentación</th>
+            </tr>
+        </thead>
         <tbody>
-            {% for operador_planta_l in opplantal %}
-                {% if not operador_planta_l.número_disposición %}
-                <tr>
-                    <td style="text-transform: uppercase; padding-bottom: 1%">{{operador_planta_l.apellido}}</td>
-                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{operador_planta_l.nombre}}</td>
-                    <td style="padding-bottom: 1%;">{{operador_planta_l.DNI}}</td>
-                    <td style="padding-bottom: 1%;">{{operador_planta_l.habilitación}}</td>
-                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{operador_planta_l.localidad}}</td>
-                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{operador_planta_l.provincia}}</td>
-                    <td style="padding-bottom: 1%; font-size: small;">EX-{{operador_planta_l.año_expediente}}-{{operador_planta_l.número_expediente}}- -APN-SDYME#ENACOM</td>
-                    <td style="padding-bottom: 1%;">
-                        <a class="link" href="{% url 'ver_operador_local_planta' operador_planta_l.id %}" type="submit">Abrir</a>
-                        -
-                        <a class="link" href="{% url 'actualizar_operador_local_planta' operador_planta_l.id %}" type="submit">Actualizar</a>
-                    </td>
-                </tr>
+            {% for operador_local_planta in opplantal %}
+                {% if not operador_local_planta.número_disposición %}
+                    <tr>
+                        <td style="text-transform: uppercase; padding-bottom: 1%;">{{ operador_local_planta.apellido }}</td>
+                        <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_planta.nombre }}</td>
+                        <td style="padding-bottom: 1%;">{{ operador_local_planta.DNI }}</td>
+                        <td style="padding-bottom: 1%;">{{ operador_local_planta.habilitación }}</td>
+                        <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_planta.localidad }}</td>
+                        <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_planta.provincia }}</td>
+                        <td style="padding-bottom: 1%; font-size: small;">EX-{{ operador_local_planta.año_expediente }}-{{ operador_local_planta.número_expediente }}- -APN-SDYME#ENACOM</td>
+                        <td style="padding-bottom: 1%;">
+                            <a class="link" href="{% url 'ver_operador_local_planta' operador_local_planta.id %}" type="submit">Abrir</a>
+                            -
+                            <a class="link" href="{% url 'actualizar_operador_local_planta' operador_local_planta.id %}" type="submit">Actualizar</a>
+                        </td>
+                    </tr>
                 {% endif %}
             {% endfor %}
         </tbody>
     </table>
 </div>
 <p></p>
-
 {% endblock %}

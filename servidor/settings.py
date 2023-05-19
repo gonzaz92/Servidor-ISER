@@ -130,3 +130,5 @@ LOGIN_URL = '/login/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'documentación')
 MEDIA_URL = '/documentacion/'
+
+CSRF_TRUSTED_ORIGINS = []

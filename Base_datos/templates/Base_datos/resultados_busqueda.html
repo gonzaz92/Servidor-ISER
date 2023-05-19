@@ -3,53 +3,52 @@
 {% block contenido %}
 
 {% if resultados %}
-    <ul>
-        <table align="center" style="width: 95%;">
-            <thead>
+    <table align="center" style="width: 95%;">
+        <thead>
+            <tr>
                 <th>Apellido</th>
                 <th>Nombre</th>
                 <th>Documento</th>
                 <th>Categoría</th>
                 <th>Documentación</th>
-            </thead>
-            <tbody>
-                {% for resultado in resultados %}
-                <tr>
-                    <td style="text-transform: uppercase; padding-bottom: 1%;">{{ resultado.apellido }}</td>
-                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ resultado.nombre }}</td>
-                    <td style="padding-bottom: 1%;">{{ resultado.dni }} {{ resultado.DNI }}</td>
-                    <td style="padding-bottom: 1%;">{{ resultado.display_name }}</td>
-                    <td>
-                        {% if resultado.display_name == 'Locutor-a Nacional' %}
-                            <a href="{% url 'ver_locutor' resultado.id %}" type="submit">Abrir</a>
-                        {% elif resultado.display_name == 'Locutor-a Local' %}
-                            <a href="{% url 'ver_locutor_local' resultado.id %}" type="submit">Abrir</a>
-                        {% elif resultado.display_name == 'Operador-a de Radio' %}
-                            <a href="{% url 'ver_operador_nacional_radio' resultado.id %}" type="submit">Abrir</a>
-                        {% elif resultado.display_name == 'Operador-a de TV' %}
-                            <a href="{% url 'ver_operador_nacional_tv' resultado.id %}" type="submit">Abrir</a>
-                        {% elif resultado.display_name == 'Operador-a de Planta' %}
-                            <a href="{% url 'ver_operador_nacional_planta' resultado.id %}" type="submit">Abrir</a>
-                        {% elif resultado.display_name == 'Operador-a Local Radio' %}
-                            <a href="{% url 'ver_operador_local_radio' resultado.id %}" type="submit">Abrir</a>
-                        {% elif resultado.display_name == 'Operador-a Local TV' %}
-                            <a href="{% url 'ver_operador_local_tv' resultado.id %}" type="submit">Abrir</a>
-                        {% elif resultado.display_name == 'Operador-a Local Planta' %}
-                            <a href="{% url 'ver_operador_local_planta' resultado.id %}" type="submit">Abrir</a>
-                        {% elif resultado.display_name == 'Productor-a y Director-a' %}
-                            <a href="{% url 'ver_productor' resultado.id %}" type="submit">Abrir</a>
-                        {% elif resultado.display_name == 'Guionista' %}
-                            <a href="{% url 'ver_guionista' resultado.id %}" type="submit">Abrir</a>
-                        {% endif %}
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </ul>
+            </tr>
+        </thead>
+        <tbody>
+            {% for resultado in resultados %}
+            <tr>
+                <td style="text-transform: uppercase; padding-bottom: 1%;">{{ resultado.apellido }}</td>
+                <td style="text-transform: capitalize; padding-bottom: 1%;">{{ resultado.nombre }}</td>
+                <td style="padding-bottom: 1%;">{{ resultado.dni }} {{ resultado.DNI }}</td>
+                <td style="padding-bottom: 1%;">{{ resultado.display_name }}</td>
+                <td>
+                    {% if resultado.display_name == 'Locutor-a Nacional' %}
+                        <a href="{% url 'ver_locutor' resultado.id %}" type="submit">Abrir</a>
+                    {% elif resultado.display_name == 'Locutor-a Local' %}
+                        <a href="{% url 'ver_locutor_local' resultado.id %}" type="submit">Abrir</a>
+                    {% elif resultado.display_name == 'Operador-a de Radio' %}
+                        <a href="{% url 'ver_operador_nacional_radio' resultado.id %}" type="submit">Abrir</a>
+                    {% elif resultado.display_name == 'Operador-a de TV' %}
+                        <a href="{% url 'ver_operador_nacional_tv' resultado.id %}" type="submit">Abrir</a>
+                    {% elif resultado.display_name == 'Operador-a de Planta' %}
+                        <a href="{% url 'ver_operador_nacional_planta' resultado.id %}" type="submit">Abrir</a>
+                    {% elif resultado.display_name == 'Operador-a Local Radio' %}
+                        <a href="{% url 'ver_operador_local_radio' resultado.id %}" type="submit">Abrir</a>
+                    {% elif resultado.display_name == 'Operador-a Local TV' %}
+                        <a href="{% url 'ver_operador_local_tv' resultado.id %}" type="submit">Abrir</a>
+                    {% elif resultado.display_name == 'Operador-a Local Planta' %}
+                        <a href="{% url 'ver_operador_local_planta' resultado.id %}" type="submit">Abrir</a>
+                    {% elif resultado.display_name == 'Productor-a y Director-a' %}
+                        <a href="{% url 'ver_productor' resultado.id %}" type="submit">Abrir</a>
+                    {% elif resultado.display_name == 'Guionista' %}
+                        <a href="{% url 'ver_guionista' resultado.id %}" type="submit">Abrir</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% else %}
     <p>No se encontraron resultados.</p>
-
 {% endif %}
 
 {% endblock %}

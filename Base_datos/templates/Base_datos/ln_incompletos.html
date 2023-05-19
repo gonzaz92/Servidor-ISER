@@ -1,36 +1,38 @@
 {% extends 'Base_datos/base.html' %}
 
 {% block contenido %}
-
 <div style="margin: 1%; width: 95%; display: flex">
     <div>
         <h2 style="font-weight: bold">Locutores Nacionales Incompletos</h2>
     </div>
-    <div style="margin-left: 54%;">
+    <div style="margin-left: auto;">
         <a class="btn btn-primary btn-lg" style="justify-content: right;" href="{% url 'locutores_nacionales' %}" type="submit">Volver</a>
     </div>
 </div>
+
 <div style="margin: 0; padding: 0; display: grid ;place-items: center">
     <table style="width: 95%; margin-left: 5%">
         <thead>
-            <th>Apellido</th>
-            <th>Nombre</th>
-            <th>Documento N°</th>
-            <th>Habilitación</th>
-            <th>Instituto</th>
-            <th>Expediente</th>
-            <th>Documentación</th>
-         </thead>
+            <tr>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>Documento N°</th>
+                <th>Habilitación</th>
+                <th>Instituto</th>
+                <th>Expediente</th>
+                <th>Documentación</th>
+            </tr>
+        </thead>
         <tbody>
             {% for locutor_nacional in ln %}
                 {% if not locutor_nacional.número_disposición %}
                 <tr>
-                    <td style="text-transform: uppercase; padding-bottom: 1%">{{locutor_nacional.apellido}}</td>
-                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{locutor_nacional.nombre}}</td>
-                    <td style="padding-bottom: 1%;">{{locutor_nacional.DNI}}</td>
-                    <td style="padding-bottom: 1%;">{{locutor_nacional.habilitación}}</td>
-                    <td style="text-transform: uppercase; padding-bottom: 1%;">{{locutor_nacional.instituto}}</td>
-                    <td style="padding-bottom: 1%; font-size: small;">EX-{{locutor_nacional.año_expediente}}-{{locutor_nacional.número_expediente}}- -APN-SDYME#ENACOM</td>
+                    <td style="text-transform: uppercase; padding-bottom: 1%">{{ locutor_nacional.apellido }}</td>
+                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ locutor_nacional.nombre }}</td>
+                    <td style="padding-bottom: 1%;">{{ locutor_nacional.DNI }}</td>
+                    <td style="padding-bottom: 1%;">{{ locutor_nacional.habilitación }}</td>
+                    <td style="text-transform: uppercase; padding-bottom: 1%;">{{ locutor_nacional.instituto }}</td>
+                    <td style="padding-bottom: 1%; font-size: small;">EX-{{ locutor_nacional.año_expediente }}-{{ locutor_nacional.número_expediente }}- -APN-SDYME#ENACOM</td>
                     <td style="padding-bottom: 1%;">
                         <a class="link" href="{% url 'ver_locutor' locutor_nacional.id %}" type="submit">Abrir</a>
                         -
@@ -42,6 +44,6 @@
         </tbody>
     </table>
 </div>
-<p></p>
 
+<p></p>
 {% endblock %}

@@ -1,8 +1,8 @@
 from django.db import models
 from django.core.validators import MaxValueValidator
 
-def subida_documentacion(instace, filename):
-    return f"documentación/{instace.display_name()}/{instace.apellido}_{instace.nombre}/{filename}"
+def subida_documentacion(instance, filename):
+    return f"documentación/{instance.display_name()}/{instance.apellido.upper()}_{instance.nombre.capitalize()}/{filename}"
 
 class Locutor_nacional(models.Model):
     apellido = models.CharField(max_length=100)

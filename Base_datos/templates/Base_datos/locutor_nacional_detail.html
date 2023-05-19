@@ -2,84 +2,87 @@
 
 {% block contenido %}
 
-<h1 style="text-align: center;">Locutor/a Nacional</h1>
+  <h1 style="text-align: center;">Locutor/a Nacional</h1>
 
-<p></p>
+  <hr>
 
-<div style="padding-left: 5%;">
+  <div style="padding-left: 5%;">
     <div style="padding-bottom: 1%;">
-        <h1>
-            Expediente:
-            EX-{{locutor_nacional.año_expediente}}-{{locutor_nacional.número_expediente}}- -APN-SDYME#ENACOM
-        </h1>
+        <h2 style="font-weight: bold; margin-right: 10px;">Apellido y Nombre: <span style="text-transform: uppercase;">{{locutor_nacional.apellido}}</span>, {{locutor_nacional.nombre}}</h2>
     </div>
     <div style="padding-bottom: 1%;">
-        <h2>
-            Apellido y Nombre:
-            {{locutor_nacional.apellido}}, {{locutor_nacional.nombre}}
+      <h1>Expediente: EX-{{locutor_nacional.año_expediente}}-{{locutor_nacional.número_expediente}}-APN-SDYME#ENACOM</h1>
+    </div>
+    <div style="padding-bottom: 1%;">
+      <h2 style="margin-right: 10px;">Documento N°: {{locutor_nacional.DNI}} - Habilitación: {{locutor_nacional.habilitación}} - Disposición: DI-{{locutor_nacional.año_disposición}}-{{locutor_nacional.número_disposición}}-APN-DNSA#ENACOM</h2>
+    </div>
+    <div style="padding-bottom: 1%;">
+      {% if locutor_nacional.formulario %}
+      <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
+        <h2 style="margin-right: 10px;">Formulario de datos personales:
+          <a href="{{ locutor_nacional.formulario.url }}" target="_blank">{{locutor_nacional.formulario}}</a>
         </h2>
+      </div>
+      {% else %}
+      <div style="background-color: #fff7ae; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
+        <h2 style="margin-right: 10px;">Formulario de datos personales: No disponible</h2>
+      </div>
+      {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-        <h2>
-            Documento N°: {{locutor_nacional.DNI}} - Habilitación: {{locutor_nacional.habilitación}} - Disposición: DI-{{locutor_nacional.año_disposición}}-{{locutor_nacional.número_disposición}}-APN-DNSA#ENACOM
+      {% if locutor_nacional.pdf_dni %}
+      <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
+        <h2 style="margin-right: 10px;">Copia del D.N.I.:
+          <a href="{{locutor_nacional.pdf_dni.url }}" target="_blank">{{locutor_nacional.pdf_dni}}</a>
         </h2>
+      </div>
+      {% else %}
+      <div style="background-color: #fff7ae; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
+        <h2 style="margin-right: 10px;">Copia del D.N.I.: No disponible</h2>
+      </div>
+      {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-        <h2>
-            Formulario de datos personales:
-            {% if locutor_nacional.formulario %}
-                <a href="{{ locutor_nacional.formulario.url }}" target="_blank">
-                    {{locutor_nacional.formulario}}
-                </a>
-            {% endif %}
+      {% if locutor_nacional.pdf_secundario %}
+      <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
+        <h2 style="margin-right: 10px;">Secundario: {{locutor_nacional.secundario}} -
+          <a href="{{ locutor_nacional.pdf_secundario.url }}" target="_blank">{{locutor_nacional.pdf_secundario}}</a>
         </h2>
+      </div>
+      {% else %}
+      <div style="background-color: #fff7ae; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
+        <h2 style="margin-right: 10px;">Secundario: No disponible</h2>
+      </div>
+      {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-        <h2>
-            Copia del D.N.I.:
-            {% if locutor_nacional.pdf_dni %}
-                <a href="{{locutor_nacional.pdf_dni.url }}" target="_blank">
-                    {{locutor_nacional.pdf_dni}}
-                </a>
-            {% endif %}
+      {% if locutor_nacional.pdf_instituto %}
+      <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
+        <h2 style="margin-right: 10px;">Instituto: {{locutor_nacional.instituto}} -
+          <a href="{{locutor_nacional.pdf_instituto.url}}" target="_blank">{{locutor_nacional.pdf_instituto}}</a>
         </h2>
+      </div>
+      {% else %}
+      <div style="background-color: #fff7ae; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
+        <h2 style="margin-right: 10px;">Instituto: No disponible</h2>
+      </div>
+      {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-        <h2>
-            Secundario: {{locutor_nacional.secundario}} - 
-            {% if locutor_nacional.pdf_secundario %}
-                <a href="{{ locutor_nacional.pdf_secundario.url }}" target="_blank">
-                    {{locutor_nacional.pdf_secundario}}
-                </a>
-            {% endif %}
+      {% if locutor_nacional.acta %}
+      <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
+        <h2 style="margin-right: 10px;">Acta de examen:
+          <a href="{{locutor_nacional.acta.url}}" target="_blank">{{locutor_nacional.acta}}</a>
         </h2>
+      </div>
+      {% else %}
+      <div style="background-color: #fff7ae; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
+        <h2 style="margin-right: 10px;">Acta de examen: No disponible</h2>
+      </div>
+      {% endif %}
     </div>
-    <div style="padding-bottom: 1%;">
-        <h2>
-            Instituto: {{locutor_nacional.instituto}} - 
-            {% if locutor_nacional.pdf_instituto %}
-                <a href="{{locutor_nacional.pdf_instituto.url}}" target="_blank">
-                    {{locutor_nacional.pdf_instituto}}
-                </a>
-            {% endif %}
-        </h2>
+    <div style="padding-bottom: 1%; display: flex; justify-content: flex-end; margin-right: 10px; margin-top: 10px;">
+      <a class="btn btn-primary btn-lg" href="{% url 'actualizar_ln' locutor_nacional.id %}" type="submit" style="margin-right: 10px;">Actualizar</a>
     </div>
-    <div style="padding-bottom: 1%;">
-        <h2>
-            Acta de examen:
-            {% if locutor_nacional.acta %}
-            <a href="{{locutor_nacional.acta.url}}" target="_blank">
-                {{locutor_nacional.acta}}
-            </a>
-            {% endif %}
-        </h2>
-        <p>
-            </thead>
-                <a class="btn btn-primary btn-lg" style="margin-left: 90%;" href="{% url 'actualizar_ln' locutor_nacional.id %}" type="submit">Actualizar</a>
-            </thead>
-        </p>
-    </div>
-    <p></p>
-</div>
-    
+  </div>
 {% endblock %}
