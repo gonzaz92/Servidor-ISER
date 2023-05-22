@@ -41,16 +41,21 @@ class UserLogin(LoginView):
 class UserLogout(LogoutView):
     next_page = reverse_lazy('index')
 
-#Locutores Nacionales
+############################################################# Locutores Nacionales ######################################################################
 
 @login_required
 def locutores(request):
     return render(request, 'Base_datos/locutores_nacionales.html')
 
 @login_required
+def ln_completos(request):
+    lnc = Locutor_nacional.objects.all()
+    return render(request, 'Base_datos/locutor_nacional_completos.html', {'lnc' : lnc})
+
+@login_required
 def ln_incompletos(request):
     ln = Locutor_nacional.objects.all()
-    return render(request, 'Base_datos/ln_incompletos.html', {'ln' : ln} )
+    return render(request, 'Base_datos/ln_incompletos.html', {'ln' : ln})
 
 @method_decorator(login_required, name='get')
 class CrearLocutorNacional(CreateView):
@@ -74,11 +79,16 @@ class ActualizarLN(UpdateView):
     success_url = reverse_lazy('locutores_nacionales')
     fields = '__all__'
 
-#Locutores Locales
+############################################################# Locutores Locales ######################################################################
 
 @login_required
 def locutor_local(request):
     return render(request, 'Base_datos/locutores_locales.html')
+
+@login_required
+def ll_completos(request):
+    llc = Locutor_local.objects.all()
+    return render(request, 'Base_datos/locutor_local_completos.html', {'llc' : llc})
 
 @login_required
 def ll_incompletos(request):
@@ -107,13 +117,18 @@ class ActualizarLL(UpdateView):
     success_url = reverse_lazy('locutores_locales')
     fields = '__all__'
 
-#Operadores Nacionales
+############################################################# Operadores Nacionales ######################################################################
 
 @login_required
 def operadores_nacionales(request):
     return render(request, 'Base_datos/operadores_nacionales.html')
 
-#Operadores de Radio
+############################################################# Operadores de Radio ######################################################################
+
+@login_required
+def oprn_completos(request):
+    oprnc = Operador_nacional_radio.objects.all()
+    return render(request, 'Base_datos/operador_nacional_radio_completos.html', {'oprnc' : oprnc})
 
 @login_required
 def oprn_incompletos(request):
@@ -142,7 +157,12 @@ class ActualizarOPR(UpdateView):
     success_url = reverse_lazy('operadores_nacionales')
     fields = '__all__'
 
-#Operadores de TV
+############################################################# Operadores de TV ######################################################################
+
+@login_required
+def optvn_completos(request):
+    optvnc = Operador_nacional_tv.objects.all()
+    return render(request, 'Base_datos/operador_nacional_tv_completos.html', {'optvc' : optvnc})
 
 @login_required
 def optvn_incompletos(request):
@@ -171,7 +191,12 @@ class ActualizarOPTV(UpdateView):
     success_url = reverse_lazy('operadores_nacionales')
     fields = '__all__'
 
-#Operadores de Planta
+############################################################# Operadores de Planta ######################################################################
+
+@login_required
+def opplantan_completos(request):
+    opplantanc = Operador_nacional_planta.objects.all()
+    return render(request, 'Base_datos/operador_nacional_planta_completos.html', {'opplantanc' : opplantanc})
 
 @login_required
 def opplantan_incompletos(request):
@@ -200,13 +225,18 @@ class ActualizarOPPlanta(UpdateView):
     success_url = reverse_lazy('operadores_nacionales')
     fields = '__all__'
 
-#Operadores Locales
+############################################################# Operadores Locales ######################################################################
 
 @login_required
 def operadores_locales(request):
     return render(request, 'Base_datos/operadores_locales.html')
 
-#Operadores de Radio
+############################################################# Operadores de Radio ######################################################################
+
+@login_required
+def oprl_completos(request):
+    oprlc = Operador_local_radio.objects.all()
+    return render(request, 'Base_datos/operador_local_radio_completos.html', {'oprlc' : oprlc})
 
 @login_required
 def oprl_incompletos(request):
@@ -235,7 +265,12 @@ class ActualizarOPRLocal(UpdateView):
     success_url = reverse_lazy('operadores_locales')
     fields = '__all__'
 
-#Operadores de TV
+############################################################# Operadores de TV ######################################################################
+
+@login_required
+def optvl_completos(request):
+    optvlc = Operador_local_tv.objects.all()
+    return render(request, 'Base_datos/operador_local_tv_completos.html', {'optvlc' : optvlc})
 
 @login_required
 def optvl_incompletos(request):
@@ -264,7 +299,12 @@ class ActualizarOPTVLocal(UpdateView):
     success_url = reverse_lazy('operadores_locales')
     fields = '__all__'
 
-#Operadores de Planta
+############################################################# Operadores de Planta ######################################################################
+
+@login_required
+def opplantal_completos(request):
+    opplantalc = Operador_local_planta.objects.all()
+    return render(request, 'Base_datos/operador_local_planta_completos.html', {'opplantalc' : opplantalc})
 
 @login_required
 def opplantal_incompletos(request):
@@ -293,11 +333,16 @@ class ActualizarOPPlantaLocal(UpdateView):
     success_url = reverse_lazy('operadores_locales')
     fields = '__all__'
 
-#Productores y Directores
+############################################################# Productores y Directores ######################################################################
 
 @login_required
 def productores(request):
     return render(request, 'Base_datos/productores_y_directores.html')
+
+@login_required
+def prod_completos(request):
+    prodc = Productor.objects.all()
+    return render(request, 'Base_datos/productores_completos.html', {'prodc' : prodc})
 
 def prod_incompletos(request):
     prod = Productor.objects.all()
@@ -325,11 +370,16 @@ class ActualizarProd(UpdateView):
     success_url = reverse_lazy('productores_y_directores')
     fields = '__all__'
 
-#Guionistas
+############################################################# Guionistas ######################################################################
 
 @login_required
 def guionistas(request):
     return render(request, 'Base_datos/guionistas.html')
+
+@login_required
+def guion_completos(request):
+    guionc = Guionista.objects.all()
+    return render(request, 'Base_datos/guionistas_completos.html', {'guionc' : guionc})
 
 @login_required
 def guion_incompletos(request):
