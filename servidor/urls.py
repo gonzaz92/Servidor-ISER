@@ -18,7 +18,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.admin.views.decorators import staff_member_required
-from Base_datos.views import (index, buscar, UserSingUp, UserLogin, UserLogout,
+from Base_datos.views import (index, buscar, UserSingUp, UserLogin, UserLogout, ChangePassword,
                               locutores, ln_completos, ln_incompletos, CrearLocutorNacional, ListarLocutorNacional, VerLocutorNacional, ActualizarLN,
                               locutor_local, ll_completos, ll_incompletos, CrearLocutorLocal, ListarLocutorLocal, VerLocutorLocal, ActualizarLL,
                               operadores_nacionales,
@@ -39,6 +39,7 @@ urlpatterns = [
     path('alta_usuario/', staff_member_required(UserSingUp.as_view()), name='alta_usuario'),
     path('login/', UserLogin.as_view(), name='login'),
     path('logout/', UserLogout.as_view(next_page='/'), name='logout'),
+    path('change_password/', ChangePassword.as_view(), name='change_password'),
 
     #Locutores Nacionales
 

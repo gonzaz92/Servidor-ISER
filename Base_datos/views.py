@@ -5,7 +5,8 @@ from Base_datos.models import (Locutor_nacional, Locutor_local, Operador_naciona
 from django.urls import reverse_lazy
 from django.db.models import Q
 from Base_datos.forms import UsuarioForm
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
@@ -40,6 +41,11 @@ class UserLogin(LoginView):
 
 class UserLogout(LogoutView):
     next_page = reverse_lazy('index')
+
+class ChangePassword(PasswordChangeView):
+    form_class = PasswordChangeForm
+    template_name = 'registration/change_password.html'
+    success_url = reverse_lazy('index')
 
 ############################################################# Locutores Nacionales ######################################################################
 
