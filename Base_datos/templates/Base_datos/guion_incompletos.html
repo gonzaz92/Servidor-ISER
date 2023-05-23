@@ -25,7 +25,7 @@
         </thead>
         <tbody>
             {% for gui in guion %}
-                {% if not gui.número_disposición %}
+                {% if not gui.formulario or not gui.pdf_dni or not gui.pdf_secundario or not gui.pdf_instituto or not gui.acta %}
                 <tr>
                     <td style="text-transform: uppercase; padding-bottom: 1%">{{ gui.apellido }}</td>
                     <td style="text-transform: capitalize; padding-bottom: 1%;">{{ gui.nombre }}</td>

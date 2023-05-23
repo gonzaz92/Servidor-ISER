@@ -24,8 +24,8 @@
             </tr>
         </thead>
         <tbody>
-            {% for operador_nacional_tv in guionc %}
-                {% if operador_nacional_tv.pdf_dni and operador_nacional_tv.pdf_secundario and operador_nacional_tv.pdf_instituto and operador_nacional_tv.acta %}
+            {% for operador_nacional_tv in optvnc %}
+                {% if operador_nacional_tv.formulario and operador_nacional_tv.pdf_dni and operador_nacional_tv.pdf_secundario and operador_nacional_tv.pdf_instituto and operador_nacional_tv.acta %}
                     {% if not operador_nacional_tv.número_disposición %}
                         <tr>
                             <td style="text-transform: uppercase; padding-bottom: 1%">{{ operador_nacional_tv.apellido }}</td>

@@ -26,7 +26,7 @@
         </thead>
         <tbody>
             {% for locutor_local in ll %}
-                {% if not locutor_local.número_disposición %}
+                {% if not locutor_local.formulario or not locutor_local.pdf_dni or not locutor_local.pdf_secundario or not locutor_local.certificado or not locutor_local.acta %}
                     <tr>
                         <td style="text-transform: uppercase; padding-bottom: 1%;">{{ locutor_local.apellido }}</td>
                         <td style="text-transform: capitalize; padding-bottom: 1%;">{{ locutor_local.nombre }}</td>

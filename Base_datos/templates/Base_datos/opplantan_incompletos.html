@@ -25,7 +25,7 @@
         </thead>
         <tbody>
             {% for operador_nacional_planta in opplantan %}
-                {% if not operador_nacional_planta.número_disposición %}
+                {% if not operador_nacional_planta.formulario or not operador_nacional_planta.pdf_dni or not operador_nacional_planta.pdf_secundario or not operador_nacional_planta.pdf_instituto or not operador_nacional_planta.acta %}
                 <tr>
                     <td style="text-transform: uppercase; padding-bottom: 1%">{{ operador_nacional_planta.apellido }}</td>
                     <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_nacional_planta.nombre }}</td>

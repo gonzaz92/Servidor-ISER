@@ -25,7 +25,7 @@
         </thead>
         <tbody>
             {% for locutor_nacional in lnc %}
-                {% if locutor_nacional.pdf_dni and locutor_nacional.pdf_secundario and locutor_nacional.pdf_instituto and locutor_nacional.acta %}
+                {% if locutor_nacional.formulario and locutor_nacional.pdf_dni and locutor_nacional.pdf_secundario and locutor_nacional.pdf_instituto and locutor_nacional.acta %}
                     {% if not locutor_nacional.número_disposición %}
                         <tr>
                             <td style="text-transform: uppercase; padding-bottom: 1%">{{ locutor_nacional.apellido }}</td>

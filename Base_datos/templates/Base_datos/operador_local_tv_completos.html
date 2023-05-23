@@ -26,7 +26,7 @@
         </thead>
         <tbody>
             {% for operador_local_tv in optvlc %}
-                {% if operador_local_tv.pdf_dni and operador_local_tv.pdf_secundario and operador_local_tv.certificado %}
+                {% if operador_local_tv.formulario and operador_local_tv.pdf_dni and operador_local_tv.pdf_secundario and operador_local_tv.certificado and operador_local_tv.acta %}
                     {% if not operador_local_tv.número_disposición %}
                         <tr>
                             <td style="text-transform: uppercase; padding-bottom: 1%;">{{ operador_local_tv.apellido }}</td>

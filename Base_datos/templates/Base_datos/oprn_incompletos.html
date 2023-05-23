@@ -25,7 +25,7 @@
         </thead>
         <tbody>
             {% for operador_nacional_radio in oprn %}
-                {% if not operador_nacional_radio.número_disposición %}
+                {% if not operador_nacional_radio.formulario or not operador_nacional_radio.pdf_dni or not operador_nacional_radio.pdf_secundario or not operador_nacional_radio.pdf_instituto or not operador_nacional_radio.acta %}
                 <tr>
                     <td style="text-transform: uppercase; padding-bottom: 1%">{{ operador_nacional_radio.apellido }}</td>
                     <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_nacional_radio.nombre }}</td>

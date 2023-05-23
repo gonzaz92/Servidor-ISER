@@ -26,7 +26,7 @@
         </thead>
         <tbody>
             {% for operador_local_radio in oprlc %}
-                {% if operador_local_radio.pdf_dni and operador_local_radio.pdf_secundario and operador_local_radio.certificado %}
+                {% if operador_local_radio.formulario and operador_local_radio.pdf_dni and operador_local_radio.pdf_secundario and operador_local_radio.certificado and operador_local_radio.acta %}
                     {% if not operador_local_radio.número_disposición %}
                         <tr>
                             <td style="text-transform: uppercase; padding-bottom: 1%;">{{ operador_local_radio.apellido }}</td>

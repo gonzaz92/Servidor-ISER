@@ -26,7 +26,7 @@
         </thead>
         <tbody>
             {% for operador_local_tv in optvl %}
-                {% if not operador_local_tv.número_disposición %}
+                {% if not operador_local_tv.formulario or not operador_local_tv.pdf_dni or not operador_local_tv.pdf_secundario or not operador_local_tv.certificado or not operador_local_tv.acta %}
                     <tr>
                         <td style="text-transform: uppercase; padding-bottom: 1%;">{{ operador_local_tv.apellido }}</td>
                         <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_tv.nombre }}</td>

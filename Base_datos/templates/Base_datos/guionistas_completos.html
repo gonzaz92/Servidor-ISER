@@ -25,7 +25,7 @@
         </thead>
         <tbody>
             {% for guic in guionc %}
-                {% if guic.pdf_dni and guic.pdf_secundario and guic.pdf_instituto and guic.acta %}
+                {% if guic.formulario and guic.pdf_dni and guic.pdf_secundario and guic.pdf_instituto and guic.acta %}
                     {% if not guic.número_disposición %}
                         <tr>
                             <td style="text-transform: uppercase; padding-bottom: 1%">{{ guic.apellido }}</td>

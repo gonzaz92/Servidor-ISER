@@ -26,7 +26,7 @@
         </thead>
         <tbody>
             {% for operador_local_planta in opplantalc %}
-                {% if operador_local_planta.pdf_dni and operador_local_planta.pdf_secundario and operador_local_planta.certificado %}
+                {% if operador_local_planta.formulario and operador_local_planta.pdf_dni and operador_local_planta.pdf_secundario and operador_local_planta.certificado and operador_local_planta.acta %}
                     {% if not operador_local_planta.número_disposición %}
                         <tr>
                             <td style="text-transform: uppercase; padding-bottom: 1%;">{{ operador_local_planta.apellido }}</td>
