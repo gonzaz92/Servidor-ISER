@@ -1,0 +1,42 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+    <div style="margin: 1%; width: 95%; display: flex">
+        <div>
+            <h2 style="font-weight: bold">Expedientes en Curso</h2>
+        </div>
+        <div style="margin-left: auto">
+            <a class="btn btn-primary btn-lg" style="justify-content: flex-end;" href="" type="submit">Volver</a>
+        </div>
+    </div>
+
+    <div style="margin: 0; padding: 0; display: grid ;place-items: center">
+        <table style="width: 95%; margin-left: 5%">
+            <thead>
+                <tr>
+                    <th>Expediente</th>
+                    <th>Categoría</th>
+                    <th>Instituto o Localidad</th>
+                    <th>Fecha de Creación</th>                    
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exp in object_list %}
+                        <tr>
+                            <td style="padding-bottom: 1%; font-size: small;">EX-{{exp.Año_de_Expediente}}-{{exp.Número_de_Expediente}}- -APN-SDYME#ENACOM</td>
+                            <td style="text-transform: uppercase; padding-bottom: 1%">{{exp.Categoría}}</td>
+                            <td style="text-transform: capitalize; padding-bottom: 1%;">{{exp.Instituto_o_Localidad}}</td>
+                            <td style="padding-bottom: 1%;">{{ exp.Fecha_de_Creación}}</td>
+                            <td style="padding-bottom: 1%;">{{exp.Estado}}</td>
+                            <td style="text-transform: uppercase; padding-bottom: 1%;">{{exp.Instituto}}</td>
+                            <td style="padding-bottom: 1%;">
+                                <a class="link" href="" type="submit">Abrir</a>
+                            </td>
+                        </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <p></p>
+{% endblock %}

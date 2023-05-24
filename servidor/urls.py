@@ -31,6 +31,7 @@ from Base_datos.views import (index, buscar, UserSingUp, UserLogin, UserLogout, 
                               opplantal_completos, opplantal_incompletos, CrearOperadordePlantaLocal, ListarOperadordePlantaLocal, VerOperadordePlantaLocal, ActualizarOPPlantaLocal,
                               productores, prod_completos, prod_incompletos, CrearProductor, ListarProductor, VerProductor, ActualizarProd,
                               guionistas, guion_completos, guion_incompletos, CrearGuionista, ListarGuionista, VerGuionista, ActualizarGuion)
+from expedientes.views import expedientes, CrearExpediente, ListarExpedientes
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -142,6 +143,12 @@ urlpatterns = [
     path('guionistas_incompletos/', guion_incompletos, name= 'guion_incompletos'),
     path('guionista/<int:pk>/', VerGuionista.as_view(), name='ver_guionista'),
     path('guionista/<int:pk>/actualizar/', ActualizarGuion.as_view(), name='actualizar_guion'),    
+
+    #############Expedientes###############
+
+    path('expedientes/', expedientes, name='expedientes'),
+    path('cargar_expediente/', CrearExpediente.as_view(), name='carga_expediente'),
+    path('lista_expedientes/', ListarExpedientes.as_view(), name='lista_expedientes'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

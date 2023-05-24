@@ -7,7 +7,7 @@ from django.db.models import Q
 from Base_datos.forms import UsuarioForm
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils.decorators import method_decorator
 
 @login_required
@@ -64,6 +64,7 @@ def ln_incompletos(request):
     return render(request, 'Base_datos/ln_incompletos.html', {'ln' : ln})
 
 @method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class CrearLocutorNacional(CreateView):
     model = Locutor_nacional
     success_url = reverse_lazy('locutores_nacionales')
@@ -80,6 +81,7 @@ class VerLocutorNacional(DetailView):
     model = Locutor_nacional
 
 @method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class ActualizarLN(UpdateView):
     model = Locutor_nacional
     success_url = reverse_lazy('locutores_nacionales')
@@ -102,6 +104,7 @@ def ll_incompletos(request):
     return render(request, 'Base_datos/ll_incompletos.html', {'ll' : ll} )
 
 @method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class CrearLocutorLocal(CreateView):
     model = Locutor_local
     success_url = reverse_lazy('locutores_locales')
@@ -117,7 +120,8 @@ class ListarLocutorLocal(ListView):
 class VerLocutorLocal(DetailView):
     model = Locutor_local
 
-@method_decorator(login_required, name='get')    
+@method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class ActualizarLL(UpdateView):
     model = Locutor_local
     success_url = reverse_lazy('locutores_locales')
@@ -142,6 +146,7 @@ def oprn_incompletos(request):
     return render(request, 'Base_datos/oprn_incompletos.html', {'oprn' : oprn} )
 
 @method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class CrearOperadordeRadio(CreateView):
     model = Operador_nacional_radio
     success_url = reverse_lazy('operadores_nacionales')
@@ -158,6 +163,7 @@ class VerOperadordeRadio(DetailView):
     model = Operador_nacional_radio
 
 @method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class ActualizarOPR(UpdateView):
     model = Operador_nacional_radio
     success_url = reverse_lazy('operadores_nacionales')
@@ -176,6 +182,7 @@ def optvn_incompletos(request):
     return render(request, 'Base_datos/optvn_incompletos.html', {'optvn' : optvn} )
 
 @method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class CrearOperadordeTV(CreateView):
     model = Operador_nacional_tv
     success_url = reverse_lazy('operadores_nacionales')
@@ -192,6 +199,7 @@ class VerOperadordeTV(DetailView):
     model = Operador_nacional_tv
 
 @method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class ActualizarOPTV(UpdateView):
     model = Operador_nacional_tv
     success_url = reverse_lazy('operadores_nacionales')
@@ -210,6 +218,7 @@ def opplantan_incompletos(request):
     return render(request, 'Base_datos/opplantan_incompletos.html', {'opplantan' : opplantan} )
 
 @method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class CrearOperadordePlanta(CreateView):
     model = Operador_nacional_planta
     success_url = reverse_lazy('operadores_nacionales')
@@ -226,6 +235,7 @@ class VerOperadordePlanta(DetailView):
     model = Operador_nacional_planta
 
 @method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class ActualizarOPPlanta(UpdateView):
     model = Operador_nacional_planta
     success_url = reverse_lazy('operadores_nacionales')
@@ -250,6 +260,7 @@ def oprl_incompletos(request):
     return render(request, 'Base_datos/oprl_incompletos.html', {'oprl' : oprl} )
 
 @method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class CrearOperadordeRadioLocal(CreateView):
     model = Operador_local_radio
     success_url = reverse_lazy('operadores_locales')
@@ -266,6 +277,7 @@ class VerOperadordeRadioLocal(DetailView):
     model = Operador_local_radio
 
 @method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class ActualizarOPRLocal(UpdateView):
     model = Operador_local_radio
     success_url = reverse_lazy('operadores_locales')
@@ -284,6 +296,7 @@ def optvl_incompletos(request):
     return render(request, 'Base_datos/optvl_incompletos.html', {'optvl' : optvl} )
 
 @method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class CrearOperadordeTVLocal(CreateView):
     model = Operador_local_tv
     success_url = reverse_lazy('operadores_locales')
@@ -300,6 +313,7 @@ class VerOperadordeTVLocal(DetailView):
     model = Operador_local_tv
 
 @method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class ActualizarOPTVLocal(UpdateView):
     model = Operador_local_tv
     success_url = reverse_lazy('operadores_locales')
@@ -318,6 +332,7 @@ def opplantal_incompletos(request):
     return render(request, 'Base_datos/opplantal_incompletos.html', {'opplantal' : opplantal} )
 
 @method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class CrearOperadordePlantaLocal(CreateView):
     model = Operador_local_planta
     success_url = reverse_lazy('operadores_locales')
@@ -334,6 +349,7 @@ class VerOperadordePlantaLocal(DetailView):
     model = Operador_local_planta
 
 @method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class ActualizarOPPlantaLocal(UpdateView):
     model = Operador_local_planta
     success_url = reverse_lazy('operadores_locales')
@@ -355,6 +371,7 @@ def prod_incompletos(request):
     return render(request, 'Base_datos/prod_incompletos.html', {'prod' : prod} )
 
 @method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class CrearProductor(CreateView):
     model = Productor
     success_url = reverse_lazy('productores_y_directores')
@@ -371,6 +388,7 @@ class VerProductor(DetailView):
     model = Productor
 
 @method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class ActualizarProd(UpdateView):
     model = Productor
     success_url = reverse_lazy('productores_y_directores')
@@ -393,6 +411,7 @@ def guion_incompletos(request):
     return render(request, 'Base_datos/guion_incompletos.html', {'guion' : guion} )
 
 @method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class CrearGuionista(CreateView):
     model = Guionista
     success_url = reverse_lazy('guionistas')
@@ -409,6 +428,7 @@ class VerGuionista(DetailView):
     model = Guionista
 
 @method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class ActualizarGuion(UpdateView):
     model = Guionista
     success_url = reverse_lazy('guionistas')
