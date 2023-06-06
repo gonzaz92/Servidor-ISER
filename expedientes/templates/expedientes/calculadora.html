@@ -1,0 +1,162 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+
+<head>
+    <title>Calculadora Anual</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+    
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 0 20px;
+        }
+    
+        .month-box {
+            flex-basis: 30%;
+            padding: 20px;
+            border-radius: 5px;
+        }
+    
+        .trimester-box {
+            flex-basis: 20%;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    
+        .month-title {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+    
+        .annual-box {
+            flex-basis: 30%;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: rgb(220, 220, 220); /* Agregar fondo gris */
+        }
+    
+        .widget {
+            flex-basis: 30%;
+            padding: 20px;
+            border-radius: 5px;
+        }
+    
+        /* Colores por trimestre y meses */
+        .trimester1,
+        .month1,
+        .month2,
+        .month3 {
+            background-color: #e2f1f8;
+        }
+    
+        .trimester2,
+        .month4,
+        .month5,
+        .month6 {
+            background-color: #f8e2e2;
+        }
+    
+        .trimester3,
+        .month7,
+        .month8,
+        .month9 {
+            background-color: #f8f5e2;
+        }
+    
+        .trimester4,
+        .month10,
+        .month11,
+        .month12 {
+            background-color: #e2f8e9;
+        }
+    </style>
+    
+</head>
+<body>
+    <h2 style="text-align: center;">Habilitaciones Mensuales</h2>
+    {% for mes, categorias_ordenadas, total_todas_categorias in datos_anuales %}
+        {% if forloop.counter0|divisibleby:3 %}
+            <div class="row">
+        {% endif %}
+        
+        <div class="month-box month{{ forloop.counter }}">
+            <h3 class="month-title">{{ mes }}</h3>
+            <table>
+                <tbody>
+                    {% for categoria, total in categorias_ordenadas %}
+                        <tr>
+                            <td>{{ categoria }}:</td>
+                            <td> {{ total }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p>Total del mes: {{ total_todas_categorias }}</p>
+        </div>
+        
+        {% if forloop.counter|divisibleby:3 or forloop.last %}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    <div style="text-align: center;">
+        <h2>Habilitaciones por Trimestres</h2>
+        <div class="row">
+          {% for trimestre_data in datos_trimestrales %}
+          <div class="trimester-box trimester{{ forloop.counter }}">
+            <h3 class="month-title">
+              {% if forloop.counter == 1 %}
+                Primer Trimestre
+              {% elif forloop.counter == 2 %}
+                Segundo Trimestre
+              {% elif forloop.counter == 3 %}
+                Tercer Trimestre
+              {% else %}
+                Cuarto Trimestre
+              {% endif %}
+            </h3>
+            {% for categorias, total in trimestre_data %}
+            <table>
+                <tbody>
+                  {% for categoria, total_categoria in categorias %}
+                  <tr>
+                      <td>{{ categoria }}:</td>
+                      <td>{{ total_categoria }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+            </table>
+            <p>Total del trimestre: {{ total }}</p>
+            {% endfor %}
+          </div>
+          {% endfor %}
+        </div>
+    </div>
+
+    <div style="text-align: center;">
+        <h2>Datos Anuales</h2>
+        <div class="annual-box" style="text-align: center;">
+            <table style="margin: 0 auto;">
+                <tbody>
+                    {% for categoria, total in categorias_ordenadas_anual %}
+                        <tr>
+                            <td>{{ categoria }}:</td>
+                            <td>{{ total }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p>Total del año: {{ total_todas_categorias_anual }}</p>
+        </div>
+    </div>
+    
+</body>
+</html>
+
+{% endblock %}

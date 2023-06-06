@@ -28,10 +28,11 @@
                             <td style="text-transform: uppercase; padding-bottom: 1%">{{exp.Categoría}}</td>
                             <td style="text-transform: capitalize; padding-bottom: 1%;">{{exp.Instituto_o_Localidad}}</td>
                             <td style="padding-bottom: 1%;">{{ exp.Fecha_de_Creación}}</td>
+                            <td style="padding-bottom: 1%;">{{ exp.Fecha_de_disposición}}</td>
                             <td style="padding-bottom: 1%;">{{exp.Estado}}</td>
                             <td style="text-transform: uppercase; padding-bottom: 1%;">{{exp.Instituto}}</td>
                             <td style="padding-bottom: 1%;">
-                                <a class="link" href="" type="submit">Abrir</a>
+                                <a class="link" href="{% url 'actualizar_expediente' exp.id %}" type="submit">Abrir</a>
                             </td>
                         </tr>
                 {% endfor %}

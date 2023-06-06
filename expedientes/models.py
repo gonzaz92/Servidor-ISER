@@ -33,11 +33,3 @@ class Expediente(models.Model):
     Categoría = models.CharField(max_length=43, choices=categorias)
     Fecha_de_disposición = models.DateField(null='True', blank=True)
     Estado = models.CharField(max_length=20, choices=tipos_de_estado)
-
-    def formatted_fecha_creacion(self, fecha):
-        return fecha.strftime('%d-%m-%Y')
-
-    def save(self, *args, **kwargs):
-        # Convertir la fecha de creación a una cadena de texto antes de guardarla
-        self.Fecha_de_Creación = str(self.Fecha_de_Creación)
-        super().save(*args, **kwargs)
