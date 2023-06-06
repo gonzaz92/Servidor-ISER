@@ -25,20 +25,22 @@
         </thead>
         <tbody>
             {% for gui in guion %}
-                {% if not gui.formulario or not gui.pdf_dni or not gui.pdf_secundario or not gui.pdf_instituto or not gui.acta %}
-                <tr>
-                    <td style="text-transform: uppercase; padding-bottom: 1%">{{ gui.apellido }}</td>
-                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ gui.nombre }}</td>
-                    <td style="padding-bottom: 1%;">{{ gui.DNI }}</td>
-                    <td style="padding-bottom: 1%;">{{ gui.habilitación }}</td>
-                    <td style="text-transform: uppercase; padding-bottom: 1%;">{{ gui.instituto }}</td>
-                    <td style="padding-bottom: 1%; font-size: small;">EX-{{ gui.año_expediente }}-{{ gui.número_expediente }}- -APN-SDYME#ENACOM</td>
-                    <td style="padding-bottom: 1%;">
-                        <a class="link" href="{% url 'ver_guionista' gui.id %}" type="submit">Abrir</a>
-                        -
-                        <a class="link" href="{% url 'actualizar_guion' gui.id %}" type="submit">Actualizar</a>
-                    </td>
-                </tr>
+                {% if not gui.número_disposición %}
+                    {% if not gui.formulario or not gui.pdf_dni or not gui.pdf_secundario or not gui.pdf_instituto or not gui.acta %}
+                    <tr>
+                        <td style="text-transform: uppercase; padding-bottom: 1%">{{ gui.apellido }}</td>
+                        <td style="text-transform: capitalize; padding-bottom: 1%;">{{ gui.nombre }}</td>
+                        <td style="padding-bottom: 1%;">{{ gui.DNI }}</td>
+                        <td style="padding-bottom: 1%;">{{ gui.habilitación }}</td>
+                        <td style="text-transform: uppercase; padding-bottom: 1%;">{{ gui.instituto }}</td>
+                        <td style="padding-bottom: 1%; font-size: small;">EX-{{ gui.año_expediente }}-{{ gui.número_expediente }}- -APN-SDYME#ENACOM</td>
+                        <td style="padding-bottom: 1%;">
+                            <a class="link" href="{% url 'ver_guionista' gui.id %}" type="submit">Abrir</a>
+                            -
+                            <a class="link" href="{% url 'actualizar_guion' gui.id %}" type="submit">Actualizar</a>
+                        </td>
+                    </tr>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
         </tbody>

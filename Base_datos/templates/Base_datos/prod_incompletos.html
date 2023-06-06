@@ -25,20 +25,22 @@
         </thead>
         <tbody>
             {% for productor in prod %}
-                {% if not productor.formulario or not productor.pdf_dni or not productor.pdf_secundario or not productor.instituto or not productor.acta%}
-                <tr>
-                    <td style="text-transform: uppercase; padding-bottom: 1%">{{ productor.apellido }}</td>
-                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ productor.nombre }}</td>
-                    <td style="padding-bottom: 1%;">{{ productor.DNI }}</td>
-                    <td style="padding-bottom: 1%;">{{ productor.habilitación }}</td>
-                    <td style="text-transform: uppercase; padding-bottom: 1%;">{{ productor.instituto }}</td>
-                    <td style="padding-bottom: 1%; font-size: small;">EX-{{ productor.año_expediente }}-{{ productor.número_expediente }}- -APN-SDYME#ENACOM</td>
-                    <td style="padding-bottom: 1%;">
-                        <a class="link" href="{% url 'ver_productor' productor.id %}" type="submit">Abrir</a>
-                        -
-                        <a class="link" href="{% url 'actualizar_prod' productor.id %}" type="submit">Actualizar</a>
-                    </td>
-                </tr>
+                {% if not productor.número_disposición %}
+                    {% if not productor.formulario or not productor.pdf_dni or not productor.pdf_secundario or not productor.instituto or not productor.acta%}
+                    <tr>
+                        <td style="text-transform: uppercase; padding-bottom: 1%">{{ productor.apellido }}</td>
+                        <td style="text-transform: capitalize; padding-bottom: 1%;">{{ productor.nombre }}</td>
+                        <td style="padding-bottom: 1%;">{{ productor.DNI }}</td>
+                        <td style="padding-bottom: 1%;">{{ productor.habilitación }}</td>
+                        <td style="text-transform: uppercase; padding-bottom: 1%;">{{ productor.instituto }}</td>
+                        <td style="padding-bottom: 1%; font-size: small;">EX-{{ productor.año_expediente }}-{{ productor.número_expediente }}- -APN-SDYME#ENACOM</td>
+                        <td style="padding-bottom: 1%;">
+                            <a class="link" href="{% url 'ver_productor' productor.id %}" type="submit">Abrir</a>
+                            -
+                            <a class="link" href="{% url 'actualizar_prod' productor.id %}" type="submit">Actualizar</a>
+                        </td>
+                    </tr>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
         </tbody>

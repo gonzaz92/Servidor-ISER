@@ -65,6 +65,7 @@ def calcular_trimestres():
 
     return datos_trimestrales
 
+@login_required
 def calculadora_anual(request):
     datos_anuales = []
     
@@ -90,15 +91,21 @@ def calculadora_anual(request):
 
     return render(request, 'expedientes/calculadora.html', context)
 
+@method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class CrearExpediente(CreateView):
     template_name = 'expedientes/expediente_form.html'
     form_class = ExpedienteForm
     success_url = reverse_lazy('expedientes')
 
+@method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class ListarExpedientes(ListView):
     model = Expediente
     fields = Expediente.Año_de_Expediente, Expediente.Número_de_Expediente, Expediente.Categoría, Expediente.Instituto_o_Localidad, Expediente.Fecha_de_Creación, Expediente.Estado
 
+@method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class ActualizarExpediente(UpdateView):
     model = Expediente
     success_url = reverse_lazy('expedientes')
