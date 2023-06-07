@@ -31,7 +31,7 @@ from Base_datos.views import (index, buscar, UserSingUp, UserLogin, UserLogout, 
                               opplantal_completos, opplantal_incompletos, CrearOperadordePlantaLocal, ListarOperadordePlantaLocal, VerOperadordePlantaLocal, ActualizarOPPlantaLocal,
                               productores, prod_completos, prod_incompletos, CrearProductor, ListarProductor, VerProductor, ActualizarProd,
                               guionistas, guion_completos, guion_incompletos, CrearGuionista, ListarGuionista, VerGuionista, ActualizarGuion)
-from expedientes.views import expedientes, calculadora_anual, CrearExpediente, ListarExpedientes, ActualizarExpediente
+from expedientes.views import expedientes, calculadora_anual, calculadora_anual_anio_anterior,CrearExpediente, ListarExpedientes, ActualizarExpediente
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -150,6 +150,7 @@ urlpatterns = [
     path('cargar_expediente/', CrearExpediente.as_view(), name='carga_expediente'),
     path('lista_expedientes/', ListarExpedientes.as_view(), name='lista_expedientes'),
     path('expediente/<int:pk>/actualizar', ActualizarExpediente.as_view(), name='actualizar_expediente'),
+    path('expediente/calcular/año_pasado', calculadora_anual_anio_anterior, name='año_pasado'),
     path('expediente/calcular/', calculadora_anual, name='calculadora'),
 ]
 

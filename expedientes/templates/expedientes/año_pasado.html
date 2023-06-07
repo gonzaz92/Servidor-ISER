@@ -79,8 +79,8 @@
     
 </head>
 <body>
-    <h2 style="text-align: center;">Habilitaciones Mensuales {% now "Y" %}</h2>
-    {% for mes, categorias_ordenadas, total_todas_categorias in datos_anuales %}
+    <h2 style="text-align: center;">Habilitaciones Mensuales {{ anio_anterior }}</h2>
+    {% for mes, categorias_ordenadas, total_todas_categorias in datos_anuales_anio_anterior %}
         {% if forloop.counter0|divisibleby:3 %}
             <div class="row">
         {% endif %}
@@ -106,9 +106,9 @@
     {% endfor %}
 
     <div style="text-align: center;">
-        <h2>Habilitaciones por Trimestres {% now "Y" %}</h2>
+        <h2>Habilitaciones por Trimestres {{ anio_anterior }}</h2>
         <div class="row">
-          {% for trimestre_data in datos_trimestrales %}
+          {% for trimestre_data in datos_trimestrales_anio_anterior %}
           <div class="trimester-box trimester{{ forloop.counter }}">
             <h3 class="month-title">
               {% if forloop.counter == 1 %}
@@ -140,11 +140,11 @@
     </div>
 
     <div style="text-align: center;">
-        <h2>Datos Anuales {% now "Y" %}</h2>
+        <h2>Datos Anuales {{ anio_anterior }}</h2>
         <div class="annual-box" style="text-align: center;">
             <table style="margin: 0 auto;">
                 <tbody>
-                    {% for categoria, total in categorias_ordenadas_anual %}
+                    {% for categoria, total in categorias_ordenadas_anual_anio_anterior %}
                         <tr>
                             <td>{{ categoria }}:</td>
                             <td>{{ total }}</td>
@@ -152,7 +152,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-            <p>Total del año: {{ total_todas_categorias_anual }}</p>
+            <p>Total del año: {{ total_todas_categorias_anual_anio_anterior }}</p>
         </div>
     </div>
     
