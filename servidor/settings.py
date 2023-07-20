@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Base_datos.apps.BaseDatosConfig',
     'expedientes.apps.ExpedientesConfig',
+    'correo.apps.CorreoConfig',
 ]
 
 MIDDLEWARE = [
