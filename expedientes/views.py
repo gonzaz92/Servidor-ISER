@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils.decorators import method_decorator
 from django.db.models import Sum
 from django.utils import timezone
+from django.db.models import Q
 
 @login_required
 def expedientes(request):
@@ -15,6 +16,11 @@ def expedientes(request):
 def expedientes_finalizados(request):
     expe = Expediente.objects.all()
     return render(request, 'expedientes/expedientes_finalizados.html', {'expe' : expe})
+
+def buscar_expedientes(request):
+    query = request.GET.get('q')
+    resultados_expedientes = Expediente.objects.filter(Q(Año_de_Expediente__icontains=query) | Q(Número_de_Expediente__icontains=query))
+    return render(request, 'expedientes/resultados_expedientes.html', {'resultados_expedientes': resultados_expedientes})
 
 orden_categorias = [
         'Locutores Nacionales',

@@ -2,6 +2,15 @@
 
 {% block contenido %}
 
+<div style="margin: 1%; width: 95%; display: flex">
+    <div>
+        <h2 style="font-weight: bold">Resultados de Búsqueda</h2>
+    </div>
+    <div style="margin-left: auto">
+        <a class="btn btn-primary btn-lg" style="justify-content: flex-end;" href="{% url 'expedientes' %}" type="submit">Volver</a>
+    </div>
+</div>
+
 {% if resultados %}
     <table align="center" style="width: 95%;">
         <thead>

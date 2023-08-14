@@ -1,0 +1,42 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+    <div style="margin: 1%; width: 95%; display: flex">
+        <div>
+            <h2 style="font-weight: bold">Resultados de Búsqueda</h2>
+        </div>
+        <div style="margin-left: auto">
+            <a class="btn btn-primary btn-lg" style="justify-content: flex-end;" href="{% url 'expedientes' %}" type="submit">Volver</a>
+        </div>
+    </div>
+
+    <div style="margin: 0; padding: 0; display: grid ;place-items: center">
+        <table style="width: 95%; margin-left: 5%">
+            <thead>
+                <tr>
+                    <th>Expediente</th>
+                    <th>Categoría</th>
+                    <th>Instituto o Localidad</th>
+                    <th>Fecha de Creación</th>                    
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for resultado in resultados_expedientes %}
+                    <tr>
+                        <td style="padding-bottom: 1%; font-size: small;">EX-{{resultado.Año_de_Expediente}}-{{resultado.Número_de_Expediente}}- -APN-SDYME#ENACOM</td>
+                        <td style="text-transform: uppercase; padding-bottom: 1%">{{resultado.Categoría}}</td>
+                        <td style="text-transform: capitalize; padding-bottom: 1%;">{{resultado.Instituto_o_Localidad}}</td>
+                        <td style="padding-bottom: 1%;">{{resultado.Fecha_de_Creación}}</td>
+                        <td style="padding-bottom: 1%;">{{resultado.Estado}}</td>
+                        <td style="text-transform: uppercase; padding-bottom: 1%;">{{resultado.Instituto}}</td>
+                        <td style="padding-bottom: 1%;">
+                            <a class="link" href="{% url 'actualizar_expediente' resultado.id %}" type="submit">Abrir</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <p></p>
+{% endblock %}

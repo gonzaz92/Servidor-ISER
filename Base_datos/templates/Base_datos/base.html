@@ -43,22 +43,43 @@
     </nav>
 
     <!-- Header-->
-    <header class="py-5">
-        <div class="container px-lg-5">
-            <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
-                <div class="m-4 m-lg-5">
-                    <h1 class="display-5 fw-bold">¡Bases de Datos!</h1>
-                    <p class="fs-4">Base de datos I.S.E.R.</p>
-                    <form action="{% url 'buscar' %}" method="get">
-                        <div class="input-group">
-                            <input class="form-control" type="text" name="q" placeholder="Apellido, Nombre o DNI..." aria-label="Buscar..." aria-describedby="button-search" />
-                            <button class="btn btn-primary btn-lg" id="button-search" type="submit">Buscar</button>
-                        </div>
-                    </form>
+    {% if not request.resolver_match.view_name == 'expedientes' and not request.resolver_match.view_name == 'lista_expedientes' and not request.resolver_match.view_name == 'expedientes_finalizados' %}
+        <header class="py-5">
+            <div class="container px-lg-5">
+                <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+                    <div class="m-4 m-lg-5">
+                        <h1 class="display-5 fw-bold">¡Bases de Datos!</h1>
+                        <p class="fs-4">Búsqueda de Personas</p>
+                        <form action="{% url 'buscar' %}" method="get">
+                            <div class="input-group">
+                                <input class="form-control" type="text" name="q" placeholder="Apellido, Nombre o DNI..." aria-label="Buscar..." aria-describedby="button-search" />
+                                <input type="hidden" name="tipo" value="personas">
+                                <button class="btn btn-primary btn-lg" id="button-search" type="submit">Buscar</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
+        {% elif request.resolver_match.view_name == 'expedientes' or request.resolver_match.view_name == 'lista_expedientes' or request.resolver_match.view_name == 'expedientes_finalizados' %}
+            <header class="py-5">
+                <div class="container px-lg-5">
+                    <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+                        <div class="m-4 m-lg-5">
+                            <h1 class="display-5 fw-bold">¡Bases de Datos!</h1>
+                            <p class="fs-4">Búsqueda de Expedientes</p>
+                            <form action="{% url 'buscar_expedientes' %}" method="get">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" name="q" placeholder="Año o Número de expediente" aria-label="Buscar..." aria-describedby="button-search" />
+                                    <input type="hidden" name="tipo" value="expedientes">
+                                    <button class="btn btn-primary btn-lg" id="button-search" type="submit">Buscar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </header>
+    {% endif %}   
 
     <!-- Page Content-->
     {% block contenido %}
@@ -76,7 +97,8 @@
                 <a class="nav-link" href="{% url 'operadores_locales' %}" style="display: inline-block;">Operadores Locales - </a>
                 <a class="nav-link" href="{% url 'productores_y_directores' %}" style="display: inline-block;">Productores y Directores - </a>
                 <a class="nav-link" href="{% url 'guionistas' %}" style="display: inline-block;">Guionistas - </a>
-                <a class="nav-link" href="{% url 'index' %}" style="display: inline-block;">Expedientes</a>
+                <a class="nav-link" href="{% url 'expedientes' %}" style="display: inline-block;">Expedientes - </a>
+                <a class="nav-link" href="{% url 'correo' %}" style="display: inline-block;">Correo</a>
                 {% endif %}
             </p>
             <p></p>
