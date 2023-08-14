@@ -32,7 +32,7 @@ from Base_datos.views import (index, buscar, UserSingUp, UserLogin, UserLogout, 
                               productores, prod_completos, prod_incompletos, CrearProductor, ListarProductor, VerProductor, ActualizarProd,
                               guionistas, guion_completos, guion_incompletos, CrearGuionista, ListarGuionista, VerGuionista, ActualizarGuion)
 from expedientes.views import expedientes, calculadora_anual, calculadora_anual_anio_anterior,CrearExpediente, ListarExpedientes, ActualizarExpediente
-from correo.views import correo, NuevoEnvio
+from correo.views import correo, correo_finalizados, NuevoEnvio, ListarCorreo, ActualizarCorreo
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -157,7 +157,10 @@ urlpatterns = [
     ###############Correo#########################
     
     path('correo/', correo, name='correo'),
-    path('correo/nuevo_envio/', NuevoEnvio.as_view(), name='nuevo_envio')
+    path('correo/nuevo_envio/', NuevoEnvio.as_view(), name='nuevo_envio'),
+    path('correo/listar/', ListarCorreo.as_view(), name='listar_correo'),
+    path('correo/<int:pk>/actualizar/', ActualizarCorreo.as_view(), name='actualizar_correo'),
+    path('correo/finalizados/', correo_finalizados, name='correo_finalizados' )
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

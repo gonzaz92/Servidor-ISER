@@ -6,7 +6,7 @@
             <h2 style="font-weight: bold">Expedientes en Curso</h2>
         </div>
         <div style="margin-left: auto">
-            <a class="btn btn-primary btn-lg" style="justify-content: flex-end;" href="" type="submit">Volver</a>
+            <a class="btn btn-primary btn-lg" style="justify-content: flex-end;" href="{% url 'expedientes' %}" type="submit">Volver</a>
         </div>
     </div>
 
@@ -28,7 +28,6 @@
                             <td style="text-transform: uppercase; padding-bottom: 1%">{{exp.Categoría}}</td>
                             <td style="text-transform: capitalize; padding-bottom: 1%;">{{exp.Instituto_o_Localidad}}</td>
                             <td style="padding-bottom: 1%;">{{ exp.Fecha_de_Creación}}</td>
-                            <td style="padding-bottom: 1%;">{{ exp.Fecha_de_disposición}}</td>
                             <td style="padding-bottom: 1%;">{{exp.Estado}}</td>
                             <td style="text-transform: uppercase; padding-bottom: 1%;">{{exp.Instituto}}</td>
                             <td style="padding-bottom: 1%;">
