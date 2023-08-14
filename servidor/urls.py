@@ -19,19 +19,19 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.admin.views.decorators import staff_member_required
 from Base_datos.views import (index, buscar, UserSingUp, UserLogin, UserLogout, ChangePassword,
-                              locutores, ln_completos, ln_incompletos, CrearLocutorNacional, ListarLocutorNacional, VerLocutorNacional, ActualizarLN,
-                              locutor_local, ll_completos, ll_incompletos, CrearLocutorLocal, ListarLocutorLocal, VerLocutorLocal, ActualizarLL,
-                              operadores_nacionales,
-                              oprn_completos, oprn_incompletos, CrearOperadordeRadio, ListarOperadordeRadio, VerOperadordeRadio, ActualizarOPR,
-                              optvn_completos, optvn_incompletos, CrearOperadordeTV, ListarOperadordeTV, VerOperadordeTV, ActualizarOPTV,
-                              opplantan_completos, opplantan_incompletos, CrearOperadordePlanta, ListarOperadordePlanta, VerOperadordePlanta, ActualizarOPPlanta,
-                              operadores_locales,
-                              oprl_completos, oprl_incompletos, CrearOperadordeRadioLocal, ListarOperadordeRadioLocal, VerOperadordeRadioLocal, ActualizarOPRLocal,
-                              optvl_completos, optvl_incompletos, CrearOperadordeTVLocal, ListarOperadordeTVLocal, VerOperadordeTVLocal, ActualizarOPTVLocal,
-                              opplantal_completos, opplantal_incompletos, CrearOperadordePlantaLocal, ListarOperadordePlantaLocal, VerOperadordePlantaLocal, ActualizarOPPlantaLocal,
-                              productores, prod_completos, prod_incompletos, CrearProductor, ListarProductor, VerProductor, ActualizarProd,
-                              guionistas, guion_completos, guion_incompletos, CrearGuionista, ListarGuionista, VerGuionista, ActualizarGuion)
-from expedientes.views import expedientes, calculadora_anual, calculadora_anual_anio_anterior,CrearExpediente, ListarExpedientes, ActualizarExpediente
+                            locutores, ln_completos, ln_incompletos, CrearLocutorNacional, ListarLocutorNacional, VerLocutorNacional, ActualizarLN,
+                            locutor_local, ll_completos, ll_incompletos, CrearLocutorLocal, ListarLocutorLocal, VerLocutorLocal, ActualizarLL,
+                            operadores_nacionales,
+                            oprn_completos, oprn_incompletos, CrearOperadordeRadio, ListarOperadordeRadio, VerOperadordeRadio, ActualizarOPR,
+                            optvn_completos, optvn_incompletos, CrearOperadordeTV, ListarOperadordeTV, VerOperadordeTV, ActualizarOPTV,
+                            opplantan_completos, opplantan_incompletos, CrearOperadordePlanta, ListarOperadordePlanta, VerOperadordePlanta, ActualizarOPPlanta,
+                            operadores_locales,
+                            oprl_completos, oprl_incompletos, CrearOperadordeRadioLocal, ListarOperadordeRadioLocal, VerOperadordeRadioLocal, ActualizarOPRLocal,
+                            optvl_completos, optvl_incompletos, CrearOperadordeTVLocal, ListarOperadordeTVLocal, VerOperadordeTVLocal, ActualizarOPTVLocal,
+                            opplantal_completos, opplantal_incompletos, CrearOperadordePlantaLocal, ListarOperadordePlantaLocal, VerOperadordePlantaLocal, ActualizarOPPlantaLocal,
+                            productores, prod_completos, prod_incompletos, CrearProductor, ListarProductor, VerProductor, ActualizarProd,
+                            guionistas, guion_completos, guion_incompletos, CrearGuionista, ListarGuionista, VerGuionista, ActualizarGuion)
+from expedientes.views import expedientes, expedientes_finalizados,calculadora_anual, calculadora_anual_anio_anterior,CrearExpediente, ListarExpedientes, ActualizarExpediente
 from correo.views import correo, correo_finalizados, NuevoEnvio, ListarCorreo, ActualizarCorreo
 
 urlpatterns = [
@@ -150,6 +150,7 @@ urlpatterns = [
     path('expedientes/', expedientes, name='expedientes'),
     path('cargar_expediente/', CrearExpediente.as_view(), name='carga_expediente'),
     path('lista_expedientes/', ListarExpedientes.as_view(), name='lista_expedientes'),
+    path('expedientes_finalizados/', expedientes_finalizados, name='expedientes_finalizados'),
     path('expediente/<int:pk>/actualizar', ActualizarExpediente.as_view(), name='actualizar_expediente'),
     path('expediente/calcular/año_pasado', calculadora_anual_anio_anterior, name='año_pasado'),
     path('expediente/calcular/', calculadora_anual, name='calculadora'),

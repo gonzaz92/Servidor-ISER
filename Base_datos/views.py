@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from Base_datos.models import (Locutor_nacional, Locutor_local, Operador_nacional_radio, Operador_nacional_tv, Operador_nacional_planta,
-                               Operador_local_radio, Operador_local_tv, Operador_local_planta, Productor, Guionista)
+                            Operador_local_radio, Operador_local_tv, Operador_local_planta, Productor, Guionista)
 from django.urls import reverse_lazy
 from django.db.models import Q
 from Base_datos.forms import UsuarioForm
@@ -28,7 +28,7 @@ def buscar(request):
     resultados_prod = Productor.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
     resultado_guion = Guionista.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
     resultados = (list(resultados_ln) + list(resultados_ll) + list(resultados_oprn) + list(resultados_optvn) + list(resultados_opplantan) +
-                  list(resultados_oprl) + list(resultados_optvl) + list(resultados_opplantal) + list(resultados_prod) + list(resultado_guion))
+                list(resultados_oprl) + list(resultados_optvl) + list(resultados_opplantal) + list(resultados_prod) + list(resultado_guion))
     return render(request, 'Base_datos/resultados_busqueda.html', {'resultados':resultados})
 
 class UserSingUp(CreateView):
@@ -74,7 +74,7 @@ class CrearLocutorNacional(CreateView):
 class ListarLocutorNacional(ListView):
     model = Locutor_nacional
     fields = (Locutor_nacional.apellido, Locutor_nacional.nombre, Locutor_nacional.DNI, Locutor_nacional.habilitación, Locutor_nacional.instituto,
-              Locutor_nacional.año_expediente, Locutor_nacional.número_expediente,Locutor_nacional.año_disposición, Locutor_nacional.número_disposición)
+            Locutor_nacional.año_expediente, Locutor_nacional.número_expediente,Locutor_nacional.año_disposición, Locutor_nacional.número_disposición)
 
 @method_decorator(login_required, name='get')
 class VerLocutorNacional(DetailView):
@@ -114,7 +114,7 @@ class CrearLocutorLocal(CreateView):
 class ListarLocutorLocal(ListView):
     model = Locutor_local
     fields = (Locutor_local.apellido, Locutor_local.nombre, Locutor_local.DNI, Locutor_local.habilitación, Locutor_local.localidad, Locutor_local.provincia,
-              Locutor_local.año_expediente, Locutor_local.número_expediente,Locutor_local.año_disposición, Locutor_local.número_disposición)
+            Locutor_local.año_expediente, Locutor_local.número_expediente,Locutor_local.año_disposición, Locutor_local.número_disposición)
 
 @method_decorator(login_required, name='get')
 class VerLocutorLocal(DetailView):
@@ -156,7 +156,7 @@ class CrearOperadordeRadio(CreateView):
 class ListarOperadordeRadio(ListView):
     model = Operador_nacional_radio
     fields = (Operador_nacional_radio.apellido, Operador_nacional_radio.nombre, Operador_nacional_radio.DNI, Operador_nacional_radio.habilitación, Operador_nacional_radio.instituto,
-              Operador_nacional_radio.año_expediente, Operador_nacional_radio.número_expediente, Operador_nacional_radio.año_disposición, Operador_nacional_radio.número_disposición)
+            Operador_nacional_radio.año_expediente, Operador_nacional_radio.número_expediente, Operador_nacional_radio.año_disposición, Operador_nacional_radio.número_disposición)
 
 @method_decorator(login_required, name='get')
 class VerOperadordeRadio(DetailView):
@@ -192,7 +192,7 @@ class CrearOperadordeTV(CreateView):
 class ListarOperadordeTV(ListView):
     model = Operador_nacional_tv
     fields = (Operador_nacional_tv.apellido, Operador_nacional_tv.nombre, Operador_nacional_tv.DNI, Operador_nacional_tv.habilitación, Operador_nacional_tv.instituto,
-              Operador_nacional_tv.año_expediente, Operador_nacional_tv.número_expediente, Operador_nacional_tv.año_disposición, Operador_nacional_tv.número_disposición)
+            Operador_nacional_tv.año_expediente, Operador_nacional_tv.número_expediente, Operador_nacional_tv.año_disposición, Operador_nacional_tv.número_disposición)
 
 @method_decorator(login_required, name='get')
 class VerOperadordeTV(DetailView):
@@ -228,7 +228,7 @@ class CrearOperadordePlanta(CreateView):
 class ListarOperadordePlanta(ListView):
     model = Operador_nacional_planta
     fields = (Operador_nacional_planta.apellido, Operador_nacional_planta.nombre, Operador_nacional_planta.DNI, Operador_nacional_planta.habilitación, Operador_nacional_planta.instituto,
-              Operador_nacional_planta.año_expediente, Operador_nacional_planta.número_expediente, Operador_nacional_planta.año_disposición, Operador_nacional_planta.número_disposición)
+            Operador_nacional_planta.año_expediente, Operador_nacional_planta.número_expediente, Operador_nacional_planta.año_disposición, Operador_nacional_planta.número_disposición)
 
 @method_decorator(login_required, name='get')
 class VerOperadordePlanta(DetailView):
@@ -270,7 +270,7 @@ class CrearOperadordeRadioLocal(CreateView):
 class ListarOperadordeRadioLocal(ListView):
     model = Operador_local_radio
     fields = (Operador_local_radio.apellido, Operador_local_radio.nombre, Operador_local_radio.DNI, Operador_local_radio.habilitación,
-              Operador_local_radio.año_expediente, Operador_local_radio.número_expediente, Operador_local_radio.año_disposición, Operador_local_radio.número_disposición)
+            Operador_local_radio.año_expediente, Operador_local_radio.número_expediente, Operador_local_radio.año_disposición, Operador_local_radio.número_disposición)
 
 @method_decorator(login_required, name='get')
 class VerOperadordeRadioLocal(DetailView):
@@ -306,7 +306,7 @@ class CrearOperadordeTVLocal(CreateView):
 class ListarOperadordeTVLocal(ListView):
     model = Operador_local_tv
     fields = (Operador_local_tv.apellido, Operador_local_tv.nombre, Operador_local_tv.DNI, Operador_local_tv.habilitación,
-              Operador_local_tv.año_expediente, Operador_local_tv.número_expediente, Operador_local_tv.año_disposición, Operador_local_tv.número_disposición)
+            Operador_local_tv.año_expediente, Operador_local_tv.número_expediente, Operador_local_tv.año_disposición, Operador_local_tv.número_disposición)
 
 @method_decorator(login_required, name='get')
 class VerOperadordeTVLocal(DetailView):
@@ -342,7 +342,7 @@ class CrearOperadordePlantaLocal(CreateView):
 class ListarOperadordePlantaLocal(ListView):
     model = Operador_local_planta
     fields = (Operador_local_planta.apellido, Operador_local_planta.nombre, Operador_local_planta.DNI, Operador_local_planta.habilitación,
-              Operador_local_planta.año_expediente, Operador_local_planta.número_expediente, Operador_local_planta.año_disposición, Operador_local_planta.número_disposición)
+            Operador_local_planta.año_expediente, Operador_local_planta.número_expediente, Operador_local_planta.año_disposición, Operador_local_planta.número_disposición)
 
 @method_decorator(login_required, name='get')
 class VerOperadordePlantaLocal(DetailView):
@@ -381,7 +381,7 @@ class CrearProductor(CreateView):
 class ListarProductor(ListView):
     model = Productor
     fields = (Productor.apellido, Productor.nombre, Productor.DNI, Productor.habilitación, Productor.instituto,
-              Productor.año_expediente, Productor.número_expediente, Productor.año_disposición, Productor.número_disposición)
+            Productor.año_expediente, Productor.número_expediente, Productor.año_disposición, Productor.número_disposición)
 
 @method_decorator(login_required, name='get')
 class VerProductor(DetailView):
@@ -421,7 +421,7 @@ class CrearGuionista(CreateView):
 class ListarGuionista(ListView):
     model = Guionista
     fields = (Guionista.apellido, Guionista.nombre, Guionista.DNI, Guionista.habilitación, Guionista.instituto,
-              Guionista.año_expediente, Guionista.número_expediente, Guionista.año_disposición, Guionista.número_disposición)
+            Guionista.año_expediente, Guionista.número_expediente, Guionista.año_disposición, Guionista.número_disposición)
 
 @method_decorator(login_required, name='get')
 class VerGuionista(DetailView):

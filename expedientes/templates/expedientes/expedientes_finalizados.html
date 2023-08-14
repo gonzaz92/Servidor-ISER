@@ -3,7 +3,7 @@
 {% block contenido %}
     <div style="margin: 1%; width: 95%; display: flex">
         <div>
-            <h2 style="font-weight: bold">Expedientes en Curso</h2>
+            <h2 style="font-weight: bold">Expedientes Finalizados</h2>
         </div>
         <div style="margin-left: auto">
             <a class="btn btn-primary btn-lg" style="justify-content: flex-end;" href="{% url 'expedientes' %}" type="submit">Volver</a>
@@ -22,8 +22,8 @@
                 </tr>
             </thead>
             <tbody>
-                {% for exp in object_list %}
-                    {% if exp.Estado != 'Finalizado' %}
+                {% for exp in expe %}
+                    {% if exp.Estado == 'Finalizado' %}
                         <tr>
                             <td style="padding-bottom: 1%; font-size: small;">EX-{{exp.Año_de_Expediente}}-{{exp.Número_de_Expediente}}- -APN-SDYME#ENACOM</td>
                             <td style="text-transform: uppercase; padding-bottom: 1%">{{exp.Categoría}}</td>

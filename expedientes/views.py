@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from expedientes.forms import ExpedienteForm
 from expedientes.models import Expediente
-from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils.decorators import method_decorator
@@ -11,6 +11,10 @@ from django.utils import timezone
 @login_required
 def expedientes(request):
     return render(request, 'expedientes/expedientes.html')
+
+def expedientes_finalizados(request):
+    expe = Expediente.objects.all()
+    return render(request, 'expedientes/expedientes_finalizados.html', {'expe' : expe})
 
 orden_categorias = [
         'Locutores Nacionales',
@@ -145,3 +149,10 @@ class ActualizarExpediente(UpdateView):
     model = Expediente
     success_url = reverse_lazy('expedientes')
     fields = '__all__'
+
+@method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
+class BorrarExpediente(DeleteView):
+    model = Expediente
+    success_url = reverse_lazy('expedientes')
+    slug_field = 'all'
