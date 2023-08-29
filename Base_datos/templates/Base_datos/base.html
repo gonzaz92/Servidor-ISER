@@ -43,7 +43,7 @@
     </nav>
 
     <!-- Header-->
-    {% if not request.resolver_match.view_name == 'expedientes' and not request.resolver_match.view_name == 'lista_expedientes' and not request.resolver_match.view_name == 'expedientes_finalizados' %}
+    {% if not request.resolver_match.view_name == 'expedientes' and not request.resolver_match.view_name == 'lista_expedientes' and not request.resolver_match.view_name == 'expedientes_finalizados' and not request.resolver_match.view_name == 'carga_expediente' %}
         <header class="py-5">
             <div class="container px-lg-5">
                 <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
@@ -61,7 +61,7 @@
                 </div>
             </div>
         </header>
-        {% elif request.resolver_match.view_name == 'expedientes' or request.resolver_match.view_name == 'lista_expedientes' or request.resolver_match.view_name == 'expedientes_finalizados' %}
+        {% elif request.resolver_match.view_name == 'expedientes' or request.resolver_match.view_name == 'lista_expedientes' or request.resolver_match.view_name == 'expedientes_finalizados' or request.resolver_match.view_name == 'carga_expediente' %}
             <header class="py-5">
                 <div class="container px-lg-5">
                     <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
