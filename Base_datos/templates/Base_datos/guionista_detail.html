@@ -81,6 +81,19 @@
       </div>
       {% endif %}
     </div>
+    <div style="padding-bottom: 1%;">
+      {% if guionista.acuse %}
+      <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
+        <h2 style="margin-right: 10px;">Acuse de Recibo:
+          <a href="{{guionista.acuse.url}}" target="_blank">{{guionista.acuse}}</a>
+        </h2>
+      </div>
+      {% else %}
+      <div style="background-color: #fff7ae; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
+        <h2 style="margin-right: 10px;">Acuse de Recibo: No disponible</h2>
+      </div>
+      {% endif %}
+    </div>
     <div style="padding-bottom: 1%; display: flex; justify-content: flex-end; margin-right: 10px; margin-top: 10px;">
       <a class="btn btn-primary btn-lg" href="{% url 'actualizar_guion' guionista.id %}" type="submit" style="margin-right: 10px;">Actualizar</a>
     </div>

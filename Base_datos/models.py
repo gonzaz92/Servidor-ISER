@@ -20,6 +20,7 @@ class Locutor_nacional(models.Model):
     número_expediente = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True)
     año_disposición = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True)
     número_disposición = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True)
+    acuse = models.FileField(upload_to=subida_documentacion, null='True', blank=True, verbose_name='Acuse')
 
     def display_name(self):
         return "Locutor-a Nacional"
@@ -41,6 +42,7 @@ class Locutor_local(models.Model):
     número_expediente = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True)
     año_disposición = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True)
     número_disposición = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True)
+    acuse = models.FileField(upload_to=subida_documentacion, null='True', blank=True, verbose_name='Acuse')
 
     def display_name(self):
         return "Locutor-a Local"
@@ -61,6 +63,7 @@ class Operador_nacional_radio(models.Model):
     número_expediente = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True)
     año_disposición = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True)
     número_disposición = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True)
+    acuse = models.FileField(upload_to=subida_documentacion, null='True', blank=True, verbose_name='Acuse')
 
     def display_name(self):
         return "Operador-a de Radio"
@@ -81,6 +84,7 @@ class Operador_nacional_tv(models.Model):
     número_expediente = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True)
     año_disposición = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True)
     número_disposición = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True)
+    acuse = models.FileField(upload_to=subida_documentacion, null='True', blank=True, verbose_name='Acuse')
 
     def display_name(self):
         return "Operador-a de TV"
@@ -101,6 +105,7 @@ class Operador_nacional_planta(models.Model):
     número_expediente = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True)
     año_disposición = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True)
     número_disposición = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True)
+    acuse = models.FileField(upload_to=subida_documentacion, null='True', blank=True, verbose_name='Acuse')
 
     def display_name(self):
         return "Operador-a de Planta"
@@ -122,6 +127,7 @@ class Operador_local_radio(models.Model):
     número_expediente = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True)
     año_disposición = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True)
     número_disposición = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True)
+    acuse = models.FileField(upload_to=subida_documentacion, null='True', blank=True, verbose_name='Acuse')
 
     def display_name(self):
         return "Operador-a Local Radio"
@@ -143,6 +149,7 @@ class Operador_local_tv(models.Model):
     número_expediente = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True)
     año_disposición = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True)
     número_disposición = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True)
+    acuse = models.FileField(upload_to=subida_documentacion, null='True', blank=True, verbose_name='Acuse')
 
     def display_name(self):
         return "Operador-a Local TV"
@@ -164,6 +171,7 @@ class Operador_local_planta(models.Model):
     número_expediente = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True)
     año_disposición = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True)
     número_disposición = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True)
+    acuse = models.FileField(upload_to=subida_documentacion, null='True', blank=True, verbose_name='Acuse')
 
     def display_name(self):
         return "Operador-a Local Planta"
@@ -184,6 +192,7 @@ class Productor(models.Model):
     número_expediente = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True)
     año_disposición = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True)
     número_disposición = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True)
+    acuse = models.FileField(upload_to=subida_documentacion, null='True', blank=True, verbose_name='Acuse')
 
     def display_name(self):
         return "Productor-a y Director-a"
@@ -204,6 +213,7 @@ class Guionista(models.Model):
     número_expediente = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True)
     año_disposición = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True)
     número_disposición = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True)
+    acuse = models.FileField(upload_to=subida_documentacion, null='True', blank=True, verbose_name='Acuse')
 
     def display_name(self):
         return "Guionista"

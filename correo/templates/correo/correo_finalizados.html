@@ -6,7 +6,7 @@
             <h2 style="font-weight: bold">Envíos en Finalizados</h2>
         </div>
         <div style="margin-left: auto">
-            <a class="btn btn-primary btn-lg" style="justify-content: flex-end;" href="" type="submit">Volver</a>
+            <a class="btn btn-primary btn-lg" style="justify-content: flex-end;" href="{% url 'correo' %}" type="submit">Volver</a>
         </div>
     </div>
 
@@ -25,13 +25,13 @@
                 {% for cor in corre %}
                     {% if cor.acuse %}
                         <tr>
-                            <td style="padding-bottom: 1%; font-size: small;">{{cor.destinatario}}</td>
+                            <td style="padding-bottom: 1%; font-size: small;">{{cor.destinatario}}, {{cor.nombre}}</td>
                             <td style="text-transform: uppercase; padding-bottom: 1%">{{cor.envio}}</td>
                             <td style="text-transform: capitalize; padding-bottom: 1%;">{{cor.direccion}}</td>
                             <td style="padding-bottom: 1%;">{{ cor.seguimiento}}</td>
                             <td style="padding-bottom: 1%;">
                                 {% if cor.acuse %}
-                                Cargado
+                                <a href="{{cor.acuse.url}}" target="_blank">Cargado</a>
                                 {% endif %}
                             </td>
                             <td style="padding-bottom: 1%;">
