@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator
+from django.core.exceptions import ValidationError
 
 tipos_de_estado = (
     ('Revisión ISER', 'Revisión ISER'),
@@ -24,9 +25,13 @@ categorias = (
     ('Guionistas de Radio y TV', 'Guionistas de Radio y TV'),
 )
 
+def validar_numero(self):
+    if not self.isnumeric():
+        raise ValidationError('Solo ingrese números en el siguiente campo')
+
 class Expediente(models.Model):
     Año_de_Expediente = models.IntegerField(validators=[MaxValueValidator(9999)])
-    Número_de_Expediente = models.IntegerField(validators=[MaxValueValidator(999999999)])
+    Número_de_Expediente = models.CharField(max_length=9, validators=[validar_numero])
     Fecha_de_Creación = models.DateField()
     Cantidad_de_Habilitados = models.IntegerField()
     Instituto_o_Localidad= models.CharField(max_length=100)
