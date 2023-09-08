@@ -13,10 +13,12 @@ from django.db.models import Q
 def expedientes(request):
     return render(request, 'expedientes/expedientes.html')
 
+@login_required
 def expedientes_finalizados(request):
     expe = Expediente.objects.all()
     return render(request, 'expedientes/expedientes_finalizados.html', {'expe' : expe})
 
+@login_required
 def buscar_expedientes(request):
     query = request.GET.get('q')
     resultados_expedientes = Expediente.objects.filter(Q(Año_de_Expediente__icontains=query) | Q(Número_de_Expediente__icontains=query))
@@ -137,27 +139,26 @@ def calculadora_anual_anio_anterior(request):
 
 
 @method_decorator(login_required, name='get')
-@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Habilitaciones').exists()), name='get')
 class CrearExpediente(CreateView):
     template_name = 'expedientes/expediente_form.html'
     form_class = ExpedienteForm
     success_url = reverse_lazy('expedientes')
 
 @method_decorator(login_required, name='get')
-@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
 class ListarExpedientes(ListView):
     model = Expediente
     fields = Expediente.Año_de_Expediente, Expediente.Número_de_Expediente, Expediente.Categoría, Expediente.Instituto_o_Localidad, Expediente.Fecha_de_Creación, Expediente.Estado
 
 @method_decorator(login_required, name='get')
-@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Habilitaciones').exists()), name='get')
 class ActualizarExpediente(UpdateView):
     model = Expediente
     success_url = reverse_lazy('expedientes')
     fields = '__all__'
 
 @method_decorator(login_required, name='get')
-@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Registro').exists()), name='get')
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Habilitaciones').exists()), name='get')
 class BorrarExpediente(DeleteView):
     model = Expediente
     success_url = reverse_lazy('expedientes')

@@ -59,6 +59,11 @@ def ln_completos(request):
     return render(request, 'Base_datos/locutor_nacional_completos.html', {'lnc' : lnc})
 
 @login_required
+def ln_completos_exp(request):
+    lnc_exp = Locutor_nacional.objects.all()
+    return render(request, 'Base_datos/locutor_nacional_completos.html', {'lnc_exp' : lnc_exp})
+
+@login_required
 def ln_incompletos(request):
     ln = Locutor_nacional.objects.all()
     return render(request, 'Base_datos/ln_incompletos.html', {'ln' : ln})
