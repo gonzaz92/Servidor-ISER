@@ -61,7 +61,7 @@ def ln_completos(request):
 @login_required
 def ln_completos_exp(request):
     lnc_exp = Locutor_nacional.objects.all()
-    return render(request, 'Base_datos/locutor_nacional_completos.html', {'lnc_exp' : lnc_exp})
+    return render(request, 'Base_datos/locutor_nacional_completos_exp.html', {'lnc_exp' : lnc_exp})
 
 @login_required
 def ln_incompletos(request):
@@ -102,6 +102,11 @@ def locutor_local(request):
 def ll_completos(request):
     llc = Locutor_local.objects.all()
     return render(request, 'Base_datos/locutor_local_completos.html', {'llc' : llc})
+
+@login_required
+def ll_completos_exp(request):
+    llc_exp = Locutor_local.objects.all()
+    return render(request, 'Base_datos/locutor_local_completos_exp.html', {'llc_exp' : llc_exp})
 
 @login_required
 def ll_incompletos(request):
@@ -146,6 +151,11 @@ def oprn_completos(request):
     return render(request, 'Base_datos/operador_nacional_radio_completos.html', {'oprnc' : oprnc})
 
 @login_required
+def oprn_completos_exp(request):
+    oprnc_exp = Operador_nacional_radio.objects.all()
+    return render(request, 'Base_datos/operador_nacional_radio_completos_exp.html', {'oprnc_exp' : oprnc_exp})
+
+@login_required
 def oprn_incompletos(request):
     oprn = Operador_nacional_radio.objects.all()
     return render(request, 'Base_datos/oprn_incompletos.html', {'oprn' : oprn} )
@@ -179,7 +189,12 @@ class ActualizarOPR(UpdateView):
 @login_required
 def optvn_completos(request):
     optvnc = Operador_nacional_tv.objects.all()
-    return render(request, 'Base_datos/operador_nacional_tv_completos.html', {'optvc' : optvnc})
+    return render(request, 'Base_datos/operador_nacional_tv_completos.html', {'optvnc' : optvnc})
+
+@login_required
+def optvn_completos_exp(request):
+    optvnc_exp = Operador_nacional_tv.objects.all()
+    return render(request, 'Base_datos/operador_nacional_tv_completos_exp.html', {'optvnc_exp' : optvnc_exp})
 
 @login_required
 def optvn_incompletos(request):
@@ -216,6 +231,11 @@ class ActualizarOPTV(UpdateView):
 def opplantan_completos(request):
     opplantanc = Operador_nacional_planta.objects.all()
     return render(request, 'Base_datos/operador_nacional_planta_completos.html', {'opplantanc' : opplantanc})
+
+@login_required
+def opplantan_completos_exp(request):
+    opplantanc_exp = Operador_nacional_planta.objects.all()
+    return render(request, 'Base_datos/operador_nacional_planta_completos_exp.html', {'opplantanc_exp' : opplantanc_exp})
 
 @login_required
 def opplantan_incompletos(request):
@@ -260,6 +280,11 @@ def oprl_completos(request):
     return render(request, 'Base_datos/operador_local_radio_completos.html', {'oprlc' : oprlc})
 
 @login_required
+def oprl_completos_exp(request):
+    oprlc_exp = Operador_local_radio.objects.all()
+    return render(request, 'Base_datos/operador_local_radio_completos_exp.html', {'oprlc_exp' : oprlc_exp})
+
+@login_required
 def oprl_incompletos(request):
     oprl = Operador_local_radio.objects.all()
     return render(request, 'Base_datos/oprl_incompletos.html', {'oprl' : oprl} )
@@ -296,6 +321,11 @@ def optvl_completos(request):
     return render(request, 'Base_datos/operador_local_tv_completos.html', {'optvlc' : optvlc})
 
 @login_required
+def optvl_completos_exp(request):
+    optvlc_exp = Operador_local_tv.objects.all()
+    return render(request, 'Base_datos/operador_local_tv_completos_exp.html', {'optvlc_exp' : optvlc_exp})
+
+@login_required
 def optvl_incompletos(request):
     optvl = Operador_local_tv.objects.all()
     return render(request, 'Base_datos/optvl_incompletos.html', {'optvl' : optvl} )
@@ -330,6 +360,11 @@ class ActualizarOPTVLocal(UpdateView):
 def opplantal_completos(request):
     opplantalc = Operador_local_planta.objects.all()
     return render(request, 'Base_datos/operador_local_planta_completos.html', {'opplantalc' : opplantalc})
+
+@login_required
+def opplantal_completos_exp(request):
+    opplantalc_exp = Operador_local_planta.objects.all()
+    return render(request, 'Base_datos/operador_local_planta_completos_exp.html', {'opplantalc_exp' : opplantalc_exp})
 
 @login_required
 def opplantal_incompletos(request):
@@ -371,6 +406,11 @@ def prod_completos(request):
     prodc = Productor.objects.all()
     return render(request, 'Base_datos/productores_completos.html', {'prodc' : prodc})
 
+@login_required
+def prod_completos_exp(request):
+    prodc_exp = Productor.objects.all()
+    return render(request, 'Base_datos/productores_completos_exp.html', {'prodc_exp' : prodc_exp})
+
 def prod_incompletos(request):
     prod = Productor.objects.all()
     return render(request, 'Base_datos/prod_incompletos.html', {'prod' : prod} )
@@ -409,6 +449,11 @@ def guionistas(request):
 def guion_completos(request):
     guionc = Guionista.objects.all()
     return render(request, 'Base_datos/guionistas_completos.html', {'guionc' : guionc})
+
+@login_required
+def guion_completos_exp(request):
+    guionc_exp = Guionista.objects.all()
+    return render(request, 'Base_datos/guionistas_completos_exp.html', {'guionc_exp' : guionc_exp})
 
 @login_required
 def guion_incompletos(request):

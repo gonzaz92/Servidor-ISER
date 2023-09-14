@@ -3,7 +3,7 @@
 {% block contenido %}
 <div style="margin: 1%; width: 95%; display: flex">
     <div>
-        <h2 style="font-weight: bold">Operadores Nacionales de Planta Transmisora para Habilitar</h2>
+        <h2 style="font-weight: bold">Operadores Nacionales de Planta Transmisora en Trámite de Habilitación</h2>
     </div>
     <div style="margin-left: auto;">
         <a class="btn btn-primary btn-lg" style="justify-content: right;" href="{% url 'operadores_nacionales' %}" type="submit">Volver</a>
@@ -19,19 +19,21 @@
                 <th>Documento N°</th>
                 <th>Habilitación</th>
                 <th>Instituto</th>
+                <th>Expediente</th>
                 <th>Documentación</th>
             </tr>
         </thead>
         <tbody>
-            {% for operador_nacional_planta in opplantanc %}
-                {% if operador_nacional_planta.formulario and operador_nacional_planta.pdf_dni and operador_nacional_planta.pdf_secundario and operador_nacional_planta.pdf_instituto and operador_nacional_planta.acta %}
-                    {% if not operador_nacional_planta.número_disposición and not operador_nacional_planta.año_expediente and not operador_nacional_planta.número_expediente %}
+            {% for operador_nacional_planta in opplantanc_exp %}
+                {% if operador_nacional_planta.formulario and operador_nacional_planta.pdf_dni and operador_nacional_planta.pdf_secundario and operador_nacional_planta.pdf_instituto and operador_nacional_planta.acta and operador_nacional_planta.año_expediente and operador_nacional_planta.número_expediente %}
+                    {% if not operador_nacional_planta.número_disposición %}
                         <tr>
                             <td style="text-transform: uppercase; padding-bottom: 1%">{{ operador_nacional_planta.apellido }}</td>
                             <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_nacional_planta.nombre }}</td>
                             <td style="padding-bottom: 1%;">{{ operador_nacional_planta.DNI }}</td>
                             <td style="padding-bottom: 1%;">{{ operador_nacional_planta.habilitación }}</td>
                             <td style="text-transform: uppercase; padding-bottom: 1%;">{{ operador_nacional_planta.instituto }}</td>
+                            <td style="padding-bottom: 1%; font-size: small;">EX-{{ operador_nacional_planta.año_expediente }}-{{ operador_nacional_planta.número_expediente }}- -APN-SDYME#ENACOM</td>
                             <td style="padding-bottom: 1%;">
                                 <a class="link" href="{% url 'ver_operador_nacional_planta' operador_nacional_planta.id %}" type="submit">Abrir</a>
                                 -

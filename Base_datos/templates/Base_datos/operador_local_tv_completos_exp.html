@@ -3,7 +3,7 @@
 {% block contenido %}
 <div style="margin: 1%; width: 95%; display: flex; justify-content: space-between;">
     <div>
-        <h2 style="font-weight: bold;">Operadores Locales de TV para Habilitar</h2>
+        <h2 style="font-weight: bold;">Operadores Locales de TV en Trámite de Habilitación</h2>
     </div>
     <div>
         <a class="btn btn-primary btn-lg" style="justify-content: right;" href="{% url 'operadores_locales' %}" type="submit">Volver</a>
@@ -20,13 +20,14 @@
                 <th>Habilitación</th>
                 <th>Localidad</th>
                 <th>Provincia</th>
+                <th>Expediente</th>
                 <th>Documentación</th>
             </tr>
         </thead>
         <tbody>
-            {% for operador_local_tv in optvlc %}
-                {% if operador_local_tv.formulario and operador_local_tv.pdf_dni and operador_local_tv.pdf_secundario and operador_local_tv.certificado and operador_local_tv.acta %}
-                    {% if not operador_local_tv.número_disposición and not operador_local_tv.año_expediente and not operador_local_tv.número_expediente %}
+            {% for operador_local_tv in optvlc_exp %}
+                {% if operador_local_tv.formulario and operador_local_tv.pdf_dni and operador_local_tv.pdf_secundario and operador_local_tv.certificado and operador_local_tv.acta and operador_local_tv.año_expediente and operador_local_tv.número_expediente %}
+                    {% if not operador_local_tv.número_disposición %}
                         <tr>
                             <td style="text-transform: uppercase; padding-bottom: 1%;">{{ operador_local_tv.apellido }}</td>
                             <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_tv.nombre }}</td>
@@ -34,6 +35,7 @@
                             <td style="padding-bottom: 1%;">{{ operador_local_tv.habilitación }}</td>
                             <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_tv.localidad }}</td>
                             <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_tv.provincia }}</td>
+                            <td style="padding-bottom: 1%; font-size: small;">EX-{{ operador_local_tv.año_expediente }}-{{ operador_local_tv.número_expediente }}- -APN-SDYME#ENACOM</td>
                             <td style="padding-bottom: 1%;">
                                 <a class="link" href="{% url 'ver_operador_local_tv' operador_local_tv.id %}" type="submit">Abrir</a>
                                 -

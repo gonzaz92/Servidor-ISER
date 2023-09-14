@@ -3,7 +3,7 @@
 {% block contenido %}
 <div style="margin: 1%; width: 95%; display: flex; justify-content: space-between;">
     <div>
-        <h2 style="font-weight: bold;">Locutores Locales Pendientes de Habilitar</h2>
+        <h2 style="font-weight: bold;">Locutores Locales en Trámite de Habilitación</h2>
     </div>
     <div>
         <a class="btn btn-primary btn-lg" style="justify-content: right;" href="{% url 'locutores_locales' %}" type="submit">Volver</a>
@@ -20,13 +20,14 @@
                 <th>Habilitación</th>
                 <th>Localidad</th>
                 <th>Provincia</th>
+                <th>Expediente</th>
                 <th>Documentación</th>
             </tr>
         </thead>
         <tbody>
-            {% for locutor_local in llc %}
-                {% if locutor_local.formulario and locutor_local.pdf_dni and locutor_local.pdf_secundario and locutor_local.certificado and locutor_local.acta %}
-                    {% if not locutor_local.número_disposición and not locutor_local.año_expediente and not locutor_local.número_expediente %}
+            {% for locutor_local in llc_exp %}
+                {% if locutor_local.formulario and locutor_local.pdf_dni and locutor_local.pdf_secundario and locutor_local.certificado and locutor_local.acta and locutor_local.año_expediente and locutor_local.número_expediente %}
+                    {% if not locutor_local.número_disposición %}
                         <tr>
                             <td style="text-transform: uppercase; padding-bottom: 1%;">{{ locutor_local.apellido }}</td>
                             <td style="text-transform: capitalize; padding-bottom: 1%;">{{ locutor_local.nombre }}</td>
@@ -34,6 +35,7 @@
                             <td style="padding-bottom: 1%;">{{ locutor_local.habilitación }}</td>
                             <td style="text-transform: capitalize; padding-bottom: 1%;">{{ locutor_local.localidad }}</td>
                             <td style="text-transform: capitalize; padding-bottom: 1%;">{{ locutor_local.provincia }}</td>
+                            <td style="padding-bottom: 1%; font-size: small;">EX-{{ locutor_local.año_expediente }}-{{ locutor_local.número_expediente }}- -APN-SDYME#ENACOM</td>
                             <td style="padding-bottom: 1%;">
                                 <a class="link" href="{% url 'ver_locutor_local' locutor_local.id %}" type="submit">Abrir</a>
                                 -

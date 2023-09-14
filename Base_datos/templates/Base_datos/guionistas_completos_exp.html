@@ -3,7 +3,7 @@
 {% block contenido %}
 <div style="margin: 1%; width: 95%; display: flex">
     <div>
-        <h2 style="font-weight: bold">Guionistas Pendientes de Habilitar</h2>
+        <h2 style="font-weight: bold">Guionistas en Trámite de Habilitación</h2>
     </div>
     <div style="margin-left: auto;">
         <a class="btn btn-primary btn-lg" style="justify-content: right;" href="{% url 'guionistas' %}" type="submit">Volver</a>
@@ -19,19 +19,21 @@
                 <th>Documento N°</th>
                 <th>Habilitación</th>
                 <th>Instituto</th>
+                <th>Expediente</th>
                 <th>Documentación</th>
             </tr>
         </thead>
         <tbody>
-            {% for guic in guionc %}
-                {% if guic.formulario and guic.pdf_dni and guic.pdf_secundario and guic.pdf_instituto and guic.acta %}
-                    {% if not guic.número_disposición and not guic.año_expediente and not guic.número_expediente %}
+            {% for guic in guionc_exp %}
+                {% if guic.formulario and guic.pdf_dni and guic.pdf_secundario and guic.pdf_instituto and guic.acta and guic.año_expediente and guic.número_expediente %}
+                    {% if not guic.número_disposición %}
                         <tr>
                             <td style="text-transform: uppercase; padding-bottom: 1%">{{ guic.apellido }}</td>
                             <td style="text-transform: capitalize; padding-bottom: 1%;">{{ guic.nombre }}</td>
                             <td style="padding-bottom: 1%;">{{ guic.DNI }}</td>
                             <td style="padding-bottom: 1%;">{{ guic.habilitación }}</td>
                             <td style="text-transform: uppercase; padding-bottom: 1%;">{{ guic.instituto }}</td>
+                            <td style="padding-bottom: 1%; font-size: small;">EX-{{ guic.año_expediente }}-{{ guic.número_expediente }}- -APN-SDYME#ENACOM</td>
                             <td style="padding-bottom: 1%;">
                                 <a class="link" href="{% url 'ver_guionista' guic.id %}" type="submit">Abrir</a>
                                 -

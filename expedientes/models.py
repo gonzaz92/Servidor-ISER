@@ -3,6 +3,7 @@ from django.core.validators import MaxValueValidator
 from django.core.exceptions import ValidationError
 
 tipos_de_estado = (
+    ('Armado ISER', 'Armado ISER'),
     ('Revisión ISER', 'Revisión ISER'),
     ('Revisión DNSA', 'Revisión DNSA'),
     ('Esperando Dictamen', 'Esperando Dictamen'),

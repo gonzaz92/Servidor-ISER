@@ -26,7 +26,7 @@
         <tbody>
             {% for productor in prod %}
                 {% if not productor.número_disposición %}
-                    {% if not productor.formulario or not productor.pdf_dni or not productor.pdf_secundario or not productor.instituto or not productor.acta%}
+                    {% if not productor.formulario or not productor.pdf_dni or not productor.pdf_secundario or not productor.pdf_instituto or not productor.acta %}
                     <tr>
                         <td style="text-transform: uppercase; padding-bottom: 1%">{{ productor.apellido }}</td>
                         <td style="text-transform: capitalize; padding-bottom: 1%;">{{ productor.nombre }}</td>
