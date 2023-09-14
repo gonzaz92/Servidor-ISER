@@ -33,7 +33,7 @@ def validar_numero(self):
 class Expediente(models.Model):
     Año_de_Expediente = models.IntegerField(validators=[MaxValueValidator(9999)])
     Número_de_Expediente = models.CharField(max_length=9, validators=[validar_numero])
-    Fecha_de_Creación = models.DateField()
+    Fecha_de_Creación = models.DateField(verbose_name='Fecha de Caratulación')
     Cantidad_de_Habilitados = models.IntegerField()
     Instituto_o_Localidad= models.CharField(max_length=100)
     Categoría = models.CharField(max_length=43, choices=categorias)
