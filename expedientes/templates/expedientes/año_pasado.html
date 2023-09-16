@@ -108,34 +108,34 @@
     <div style="text-align: center;">
         <h2>Habilitaciones por Trimestres {{ anio_anterior }}</h2>
         <div class="row">
-          {% for trimestre_data in datos_trimestrales_anio_anterior %}
-          <div class="trimester-box trimester{{ forloop.counter }}">
+            {% for trimestre_data in datos_trimestrales_anio_anterior %}
+            <div class="trimester-box trimester{{ forloop.counter }}">
             <h3 class="month-title">
-              {% if forloop.counter == 1 %}
+                {% if forloop.counter == 1 %}
                 Primer Trimestre
-              {% elif forloop.counter == 2 %}
+                {% elif forloop.counter == 2 %}
                 Segundo Trimestre
-              {% elif forloop.counter == 3 %}
+                {% elif forloop.counter == 3 %}
                 Tercer Trimestre
-              {% else %}
+                {% else %}
                 Cuarto Trimestre
-              {% endif %}
+                {% endif %}
             </h3>
             {% for categorias, total in trimestre_data %}
             <table>
                 <tbody>
-                  {% for categoria, total_categoria in categorias %}
-                  <tr>
-                      <td>{{ categoria }}:</td>
-                      <td>{{ total_categoria }}</td>
-                  </tr>
-                  {% endfor %}
+                    {% for categoria, total_categoria in categorias %}
+                    <tr>
+                        <td>{{ categoria }}:</td>
+                        <td>{{ total_categoria }}</td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
             <p>Total del trimestre: {{ total }}</p>
             {% endfor %}
-          </div>
-          {% endfor %}
+            </div>
+            {% endfor %}
         </div>
     </div>
 

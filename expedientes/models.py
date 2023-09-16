@@ -35,7 +35,7 @@ class Expediente(models.Model):
     Número_de_Expediente = models.CharField(max_length=9, validators=[validar_numero])
     Fecha_de_Creación = models.DateField(verbose_name='Fecha de Caratulación')
     Cantidad_de_Habilitados = models.IntegerField()
-    Instituto_o_Localidad= models.CharField(max_length=100)
+    Instituto_o_Localidad = models.CharField(max_length=100)
     Categoría = models.CharField(max_length=43, choices=categorias)
     Fecha_de_disposición = models.DateField(null='True', blank=True)
     Estado = models.CharField(max_length=20, choices=tipos_de_estado)
