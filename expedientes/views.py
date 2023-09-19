@@ -162,4 +162,4 @@ class ActualizarExpediente(UpdateView):
 class BorrarExpediente(DeleteView):
     model = Expediente
     success_url = reverse_lazy('expedientes')
-    slug_field = 'all'
+    field = 'all'
