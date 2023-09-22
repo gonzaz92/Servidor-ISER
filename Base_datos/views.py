@@ -80,6 +80,9 @@ class ListarLocutorNacional(ListView):
     model = Locutor_nacional
     fields = (Locutor_nacional.apellido, Locutor_nacional.nombre, Locutor_nacional.DNI, Locutor_nacional.habilitación, Locutor_nacional.instituto,
             Locutor_nacional.año_expediente, Locutor_nacional.número_expediente,Locutor_nacional.año_disposición, Locutor_nacional.número_disposición)
+    
+    def get_queryset(self):
+        return Locutor_nacional.objects.all().order_by('-habilitación')
 
 @method_decorator(login_required, name='get')
 class VerLocutorNacional(DetailView):
@@ -125,6 +128,9 @@ class ListarLocutorLocal(ListView):
     model = Locutor_local
     fields = (Locutor_local.apellido, Locutor_local.nombre, Locutor_local.DNI, Locutor_local.habilitación, Locutor_local.localidad, Locutor_local.provincia,
             Locutor_local.año_expediente, Locutor_local.número_expediente,Locutor_local.año_disposición, Locutor_local.número_disposición)
+    
+    def get_queryset(self):
+        return Locutor_local.objects.all().order_by('-habilitación')
 
 @method_decorator(login_required, name='get')
 class VerLocutorLocal(DetailView):
@@ -172,6 +178,9 @@ class ListarOperadordeRadio(ListView):
     model = Operador_nacional_radio
     fields = (Operador_nacional_radio.apellido, Operador_nacional_radio.nombre, Operador_nacional_radio.DNI, Operador_nacional_radio.habilitación, Operador_nacional_radio.instituto,
             Operador_nacional_radio.año_expediente, Operador_nacional_radio.número_expediente, Operador_nacional_radio.año_disposición, Operador_nacional_radio.número_disposición)
+    
+    def get_queryset(self):
+        return Operador_nacional_radio.objects.all().order_by('-habilitación')
 
 @method_decorator(login_required, name='get')
 class VerOperadordeRadio(DetailView):
@@ -213,6 +222,9 @@ class ListarOperadordeTV(ListView):
     model = Operador_nacional_tv
     fields = (Operador_nacional_tv.apellido, Operador_nacional_tv.nombre, Operador_nacional_tv.DNI, Operador_nacional_tv.habilitación, Operador_nacional_tv.instituto,
             Operador_nacional_tv.año_expediente, Operador_nacional_tv.número_expediente, Operador_nacional_tv.año_disposición, Operador_nacional_tv.número_disposición)
+    
+    def get_queryset(self):
+        return Operador_nacional_tv.objects.all().order_by('-habilitación')
 
 @method_decorator(login_required, name='get')
 class VerOperadordeTV(DetailView):
@@ -254,6 +266,9 @@ class ListarOperadordePlanta(ListView):
     model = Operador_nacional_planta
     fields = (Operador_nacional_planta.apellido, Operador_nacional_planta.nombre, Operador_nacional_planta.DNI, Operador_nacional_planta.habilitación, Operador_nacional_planta.instituto,
             Operador_nacional_planta.año_expediente, Operador_nacional_planta.número_expediente, Operador_nacional_planta.año_disposición, Operador_nacional_planta.número_disposición)
+    
+    def get_queryset(self):
+        return Operador_nacional_planta.objects.all().order_by('-habilitación')
 
 @method_decorator(login_required, name='get')
 class VerOperadordePlanta(DetailView):
@@ -301,6 +316,9 @@ class ListarOperadordeRadioLocal(ListView):
     model = Operador_local_radio
     fields = (Operador_local_radio.apellido, Operador_local_radio.nombre, Operador_local_radio.DNI, Operador_local_radio.habilitación,
             Operador_local_radio.año_expediente, Operador_local_radio.número_expediente, Operador_local_radio.año_disposición, Operador_local_radio.número_disposición)
+    
+    def get_queryset(self):
+        return Operador_local_radio.objects.all().order_by('-habilitación')
 
 @method_decorator(login_required, name='get')
 class VerOperadordeRadioLocal(DetailView):
@@ -342,6 +360,9 @@ class ListarOperadordeTVLocal(ListView):
     model = Operador_local_tv
     fields = (Operador_local_tv.apellido, Operador_local_tv.nombre, Operador_local_tv.DNI, Operador_local_tv.habilitación,
             Operador_local_tv.año_expediente, Operador_local_tv.número_expediente, Operador_local_tv.año_disposición, Operador_local_tv.número_disposición)
+    
+    def get_queryset(self):
+        return Operador_local_tv.objects.all().order_by('-habilitación')
 
 @method_decorator(login_required, name='get')
 class VerOperadordeTVLocal(DetailView):
@@ -383,6 +404,9 @@ class ListarOperadordePlantaLocal(ListView):
     model = Operador_local_planta
     fields = (Operador_local_planta.apellido, Operador_local_planta.nombre, Operador_local_planta.DNI, Operador_local_planta.habilitación,
             Operador_local_planta.año_expediente, Operador_local_planta.número_expediente, Operador_local_planta.año_disposición, Operador_local_planta.número_disposición)
+    
+    def get_queryset(self):
+        return Operador_local_planta.objects.all().order_by('-habilitación')
 
 @method_decorator(login_required, name='get')
 class VerOperadordePlantaLocal(DetailView):
@@ -427,6 +451,9 @@ class ListarProductor(ListView):
     model = Productor
     fields = (Productor.apellido, Productor.nombre, Productor.DNI, Productor.habilitación, Productor.instituto,
             Productor.año_expediente, Productor.número_expediente, Productor.año_disposición, Productor.número_disposición)
+    
+    def get_queryset(self):
+        return Productor.objects.all().order_by('-habilitación')
 
 @method_decorator(login_required, name='get')
 class VerProductor(DetailView):
@@ -472,6 +499,9 @@ class ListarGuionista(ListView):
     model = Guionista
     fields = (Guionista.apellido, Guionista.nombre, Guionista.DNI, Guionista.habilitación, Guionista.instituto,
             Guionista.año_expediente, Guionista.número_expediente, Guionista.año_disposición, Guionista.número_disposición)
+    
+    def get_queryset(self):
+        return Guionista.objects.all().order_by('-habilitación')
 
 @method_decorator(login_required, name='get')
 class VerGuionista(DetailView):
