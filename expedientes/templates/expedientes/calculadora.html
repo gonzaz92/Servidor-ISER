@@ -79,7 +79,8 @@
     
 </head>
 <body>
-    <h2 style="text-align: center;">Habilitaciones Mensuales {% now "Y" %}</h2>
+    <h2 style="text-align: center; font-weight: bold ">Habilitaciones Mensuales {{ año }}</h2>
+    <div class="mt-5"></div>
     {% for mes, categorias_ordenadas, total_todas_categorias in datos_anuales %}
         {% if forloop.counter0|divisibleby:3 %}
             <div class="row">
@@ -97,7 +98,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-            <p>Total del mes: {{ total_todas_categorias }}</p>
+            <p style="font-weight: bold">Total del mes: {{ total_todas_categorias }}</p>
         </div>
         
         {% if forloop.counter|divisibleby:3 or forloop.last %}
@@ -105,8 +106,11 @@
         {% endif %}
     {% endfor %}
 
-    <div style="text-align: center;">
-        <h2>Habilitaciones por Trimestres {% now "Y" %}</h2>
+    <div class="mt-5"></div>
+
+    <h2  style="text-align: center; font-weight: bold">Habilitaciones Trimestrales {{ año }}</h2>
+    <div>
+        <div class="mt-5"></div>
         <div class="row">
             {% for trimestre_data in datos_trimestrales %}
             <div class="trimester-box trimester{{ forloop.counter }}">
@@ -132,15 +136,18 @@
                     {% endfor %}
                 </tbody>
             </table>
-            <p>Total del trimestre: {{ total }}</p>
+            <p style="font-weight: bold">Total del trimestre: {{ total }}</p>
             {% endfor %}
             </div>
             {% endfor %}
         </div>
     </div>
 
+    <div class="mt-5"></div>
+
     <div style="text-align: center;">
-        <h2>Datos Anuales {% now "Y" %}</h2>
+        <h2 style="font-weight: bold">Habilitaciones Anuales {{ año }}</h2>
+        <div class="mt-5"></div>
         <div class="annual-box" style="text-align: center;">
             <table style="margin: 0 auto;">
                 <tbody>
@@ -152,7 +159,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-            <p>Total del año: {{ total_todas_categorias_anual }}</p>
+            <p style="font-weight: bold">Total del año: {{ total_todas_categorias_anual }}</p>
         </div>
     </div>
     

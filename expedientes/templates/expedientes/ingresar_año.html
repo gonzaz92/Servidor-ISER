@@ -1,0 +1,19 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center mb-4" style="font-weight: bold">Ingrese un Año</h1>
+            <form method="post" action="{% url 'meta' %}" class="text-center">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="anio_actual_input" name="anio_actual" class="form-control mb-3" placeholder="Ingrese el año de consulta de Metas">
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Ingresar</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="mt-5"></div> <!-- Espacio adicional entre el formulario y el pie de página -->
+{% endblock %}
