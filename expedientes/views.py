@@ -6,24 +6,39 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils.decorators import method_decorator
 from django.db.models import Sum
-from django.utils import timezone
 from django.db.models import Q
+
+def permiso_carga(user):
+    return user.has_perm('expedientes.add_expediente')
+
+def permiso_actualizar(user):
+    return user.has_perm('expedientes.change_expediente')
+
+def permiso_borrar(user):
+    return user.has_perm('expedientes.delete_expediente')
+
+def permiso_ver(user):
+    return user.has_perm('expedientes.view_expediente')
 
 @login_required
 def expedientes(request):
     return render(request, 'expedientes/expedientes.html')
 
 @login_required
+@user_passes_test(permiso_ver)
 def expedientes_finalizados(request):
     expe = Expediente.objects.all()
     return render(request, 'expedientes/expedientes_finalizados.html', {'expe' : expe})
 
 @login_required
+@user_passes_test(permiso_ver)
 def buscar_expedientes(request):
     query = request.GET.get('q')
     resultados_expedientes = Expediente.objects.filter(Q(Año_de_Expediente__icontains=query) | Q(Número_de_Expediente__icontains=query))
     return render(request, 'expedientes/resultados_expedientes.html', {'resultados_expedientes': resultados_expedientes})
 
+@login_required
+@user_passes_test(permiso_ver)
 def año(request):
     if request.method == 'POST':
         anio_actual = request.POST.get('anio_actual', '')
@@ -114,26 +129,27 @@ def calculadora_anual(request, anio_actual):
     return render(request, 'expedientes/calculadora.html', context)
 
 @method_decorator(login_required, name='get')
-@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Habilitaciones').exists()), name='get')
+@method_decorator(user_passes_test(permiso_carga), name='get')
 class CrearExpediente(CreateView):
     template_name = 'expedientes/expediente_form.html'
     form_class = ExpedienteForm
     success_url = reverse_lazy('expedientes')
 
 @method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(permiso_ver), name='get')
 class ListarExpedientes(ListView):
     model = Expediente
     fields = Expediente.Año_de_Expediente, Expediente.Número_de_Expediente, Expediente.Categoría, Expediente.Instituto_o_Localidad, Expediente.Fecha_de_Creación, Expediente.Estado
 
 @method_decorator(login_required, name='get')
-@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Habilitaciones').exists()), name='get')
+@method_decorator(user_passes_test(permiso_actualizar), name='get')
 class ActualizarExpediente(UpdateView):
     model = Expediente
     success_url = reverse_lazy('expedientes')
     fields = '__all__'
 
 @method_decorator(login_required, name='get')
-@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Habilitaciones').exists()), name='get')
+@method_decorator(user_passes_test(permiso_borrar), name='get')
 class BorrarExpediente(DeleteView):
     model = Expediente
     success_url = reverse_lazy('expedientes')
