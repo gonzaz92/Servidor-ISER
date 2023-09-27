@@ -23,6 +23,9 @@ class Persona(models.Model):
     class Meta:
         abstract = True
         permissions = [('view_complete_and_incomplete', 'view complete and incomplete')]
+    
+    def __str__(self):
+        return f'{self.apellido.upper()}, {self.nombre.capitalize()}, {self.DNI}'
 
 class Nacional(models.Model):
     instituto = models.CharField(max_length=100, null='True', blank=True, verbose_name='Egresado de')
@@ -42,9 +45,6 @@ class Local(models.Model):
 class Locutor_nacional(Persona, Nacional):
     def display_name(self):
         return "Locutor-a Nacional"
-    
-    def __str__(self):
-        return f'{self.apellido.upper()}, {self.nombre.capitalize()}, {self.DNI}'
 
 class Locutor_local(Persona, Local):
     def display_name(self):
