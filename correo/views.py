@@ -22,7 +22,7 @@ def correo(request):
 @login_required
 @user_passes_test(permiso_ver)
 def correo_finalizados(request):
-    corre = Correo.objects.all()
+    corre = Correo.objects.all().order_by('-envio')
     return render(request, 'correo/correo_finalizados.html', {'corre' : corre})
 
 @method_decorator(login_required, name='get')
@@ -37,6 +37,9 @@ class NuevoEnvio(CreateView):
 class ListarCorreo(ListView):
     model = Correo
     fields = Correo.envio, Correo.seguimiento, Correo.destinatario, Correo.direccion
+
+    def get_queryset(self):
+        return Correo.objects.all().order_by('-envio')
 
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(permiso_actualizar), name='get')

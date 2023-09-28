@@ -27,7 +27,7 @@ def expedientes(request):
 @login_required
 @user_passes_test(permiso_ver)
 def expedientes_finalizados(request):
-    expe = Expediente.objects.all()
+    expe = Expediente.objects.all().order_by('-Fecha_de_Creación')
     return render(request, 'expedientes/expedientes_finalizados.html', {'expe' : expe})
 
 @login_required
@@ -140,6 +140,9 @@ class CrearExpediente(CreateView):
 class ListarExpedientes(ListView):
     model = Expediente
     fields = Expediente.Año_de_Expediente, Expediente.Número_de_Expediente, Expediente.Categoría, Expediente.Instituto_o_Localidad, Expediente.Fecha_de_Creación, Expediente.Estado
+
+    def get_queryset(self):
+        return Expediente.objects.all().order_by('-Fecha_de_Creación')
 
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(permiso_actualizar), name='get')
