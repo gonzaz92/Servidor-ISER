@@ -120,6 +120,8 @@ def actualizar_guionista(user):
 def ver_guionista(user):
     return user.has_perm('Base_datos.view_guionista')
 
+######################################################
+
 @login_required
 def index(request):
     return render(request, 'Base_datos/index.html')

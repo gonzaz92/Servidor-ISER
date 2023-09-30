@@ -1,24 +1,21 @@
 from django.db import models
 from django.core.validators import MaxValueValidator
 
-def subida_documentacion(instance, filename):
-    return f"documentación/{instance.display_name()}/{instance.apellido.upper()}_{instance.nombre.capitalize()}/{filename}"
-
 class Persona(models.Model):
     apellido = models.CharField(max_length=100, verbose_name='Apellido')
     nombre = models.CharField(max_length=100, verbose_name='Nombre')
-    formulario = models.FileField(upload_to=subida_documentacion, null='True', blank=True, verbose_name='Formulario')
+    formulario = models.CharField(max_length=33, null='True', blank=True, verbose_name='Número GDE del Formulario')
     DNI = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Documento N°')
-    pdf_dni = models.FileField(upload_to=subida_documentacion, null='True', blank=True)
+    pdf_dni = models.CharField(max_length=33, null='True', blank=True, verbose_name='Número GDE del D.N.I.')
     secundario = models.CharField(max_length=100, null='True', blank=True, verbose_name='Secundario')
-    pdf_secundario = models.FileField(upload_to=subida_documentacion, null='True', blank=True)
-    acta = models.FileField(upload_to=subida_documentacion, null='True', blank=True, verbose_name='Acta de Examen')
+    pdf_secundario = models.CharField(max_length=33, null='True', blank=True, verbose_name='Número GDE del Secundario')
+    acta = models.CharField(max_length=33, null='True', blank=True, verbose_name='Número GDE del Acta de Examen')
     habilitación = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Número de Habilitación')
     año_expediente = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True, verbose_name='Año del Expediente')
     número_expediente = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Número del Expediente')
     año_disposición = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True, verbose_name='Año de la Disposición')
     número_disposición = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Número de la Disposición')
-    acuse = models.FileField(upload_to=subida_documentacion, null='True', blank=True, verbose_name='Acuse')
+    acuse = models.CharField(max_length=33, null='True', blank=True, verbose_name='Número GDE del Acuse de Recibo')
     
     class Meta:
         abstract = True
@@ -29,7 +26,7 @@ class Persona(models.Model):
 
 class Nacional(models.Model):
     instituto = models.CharField(max_length=100, null='True', blank=True, verbose_name='Egresado de')
-    pdf_instituto = models.FileField(upload_to=subida_documentacion, null='True', blank=True)
+    pdf_instituto = models.CharField(max_length=33, null='True', blank=True, verbose_name='Número GDE del Analítico del Instituto')
 
     class Meta:
         abstract = True
@@ -37,7 +34,7 @@ class Nacional(models.Model):
 class Local(models.Model):
     localidad = models.CharField(max_length=100, null='True', blank=True, verbose_name='Localidad')
     provincia = models.CharField(max_length=100, null='True', blank=True, verbose_name='Provincia')
-    certificado = models.FileField(upload_to=subida_documentacion, null='True', blank=True, verbose_name='Certificado Laboral')
+    certificado = models.CharField(max_length=33, null='True', blank=True, verbose_name='Número GDE del Certificado Laboral')
 
     class Meta:
         abstract = True

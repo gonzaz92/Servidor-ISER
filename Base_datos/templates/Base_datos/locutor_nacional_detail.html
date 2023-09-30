@@ -20,7 +20,7 @@
       {% if locutor_nacional.formulario %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Formulario de datos personales:
-          <a href="{{ locutor_nacional.formulario.url }}" target="_blank">{{locutor_nacional.formulario}}</a>
+          <a>{{locutor_nacional.formulario}}</a>
         </h2>
       </div>
       {% else %}
@@ -33,7 +33,7 @@
       {% if locutor_nacional.pdf_dni %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Copia del D.N.I.:
-          <a href="{{locutor_nacional.pdf_dni.url }}" target="_blank">{{locutor_nacional.pdf_dni}}</a>
+          <a>{{locutor_nacional.pdf_dni}}</a>
         </h2>
       </div>
       {% else %}
@@ -46,7 +46,7 @@
       {% if locutor_nacional.pdf_secundario %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Secundario: {{locutor_nacional.secundario}} -
-          <a href="{{ locutor_nacional.pdf_secundario.url }}" target="_blank">{{locutor_nacional.pdf_secundario}}</a>
+          <a>{{locutor_nacional.pdf_secundario.upper}}</a>
         </h2>
       </div>
       {% else %}
@@ -59,7 +59,7 @@
       {% if locutor_nacional.pdf_instituto %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Instituto: {{locutor_nacional.instituto}} -
-          <a href="{{locutor_nacional.pdf_instituto.url}}" target="_blank">{{locutor_nacional.pdf_instituto}}</a>
+          <a>{{locutor_nacional.pdf_instituto}}</a>
         </h2>
       </div>
       {% else %}
@@ -72,7 +72,7 @@
       {% if locutor_nacional.acta %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Acta de examen:
-          <a href="{{locutor_nacional.acta.url}}" target="_blank">{{locutor_nacional.acta}}</a>
+          <a>{{locutor_nacional.acta}}</a>
         </h2>
       </div>
       {% else %}
@@ -85,7 +85,7 @@
       {% if locutor_nacional.acuse %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Acuse de Recibo:
-          <a href="{{locutor_nacional.acuse.url}}" target="_blank">{{locutor_nacional.acuse}}</a>
+          <a>{{locutor_nacional.acuse}}</a>
         </h2>
       </div>
       {% else %}
