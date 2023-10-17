@@ -7,6 +7,7 @@ class Correo(models.Model):
     destinatario = models.CharField(max_length=100, verbose_name='Apellido')
     nombre = models.CharField(max_length=100, verbose_name='Nombre')
     dni = models.IntegerField(validators=[MaxValueValidator(999999999)], verbose_name='D.N.I.')
+    carnet = models.IntegerField(validators=[MaxValueValidator(999999999)], verbose_name='Carnet N°')
     direccion = models.CharField(max_length=100, verbose_name='Dirección de Envío')
     localidad = models.CharField(max_length=100, null='True', blank=True, verbose_name='Localidad')
     provincia = models.CharField(max_length=100, null='True', blank=True, verbose_name='Provincia')
