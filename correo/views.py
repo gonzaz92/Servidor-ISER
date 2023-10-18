@@ -36,7 +36,7 @@ class NuevoEnvio(CreateView):
 @method_decorator(user_passes_test(permiso_ver), name='get')
 class ListarCorreo(ListView):
     model = Correo
-    fields = Correo.envio, Correo.seguimiento, Correo.destinatario, Correo.direccion
+    fields = '__all__'
 
     def get_queryset(self):
         return Correo.objects.all().order_by('-envio')

@@ -11,7 +11,7 @@ class Correo(models.Model):
     direccion = models.CharField(max_length=100, verbose_name='Dirección de Envío')
     localidad = models.CharField(max_length=100, null='True', blank=True, verbose_name='Localidad')
     provincia = models.CharField(max_length=100, null='True', blank=True, verbose_name='Provincia')
-    seguimiento = models.CharField(max_length=15, verbose_name='Número de Seguimiento')
+    seguimiento = models.CharField(max_length=30, verbose_name='Número de Seguimiento')
     categoria = models.CharField(max_length=43, choices=categorias, verbose_name='Categoría')
     telefono = models.CharField(max_length=10, null='True', blank=True, verbose_name='Teléfono')
     mail = models.CharField(max_length=50, null='True', blank=True, verbose_name='e-mail')

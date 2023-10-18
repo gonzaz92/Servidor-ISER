@@ -2,17 +2,61 @@
 
 {% block contenido %}
 
-<h1 style="text-align: center;">Nuevo Envío</h1>
-
-<p></p>
-
-<div style="text-align: center;">
+<div class="container">
+    <h1 class="mt-4 text-center">Nuevo Envío</h1> 
     <form enctype="multipart/form-data" method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input class="btn btn-primary" type="submit" value="Cargar">
+        {{ form.non_field_errors }}
+        <table class="table borderless">
+            <tr>
+                <td>
+                    <label style="white-space: nowrap;" for="{{ form.envio.id_for_label }}">Fecha de Envío:</label>
+                </td>
+                <td>
+                    {{ form.envio }}
+                </td>
+            </tr>
+            <tr>
+                <td><label for="{{ form.destinatario.id_for_label }}">Apellido:</label></td>
+                <td>{{ form.destinatario }}</td>
+                <td><label for="{{ form.nombre.id_for_label }}">Nombre:</label></td>
+                <td>{{ form.nombre }}</td>
+                <td><label for="{{ form.dni.id_for_label }}">DNI:</label></td>
+                <td>{{ form.dni }}</td>
+                <td><label for="{{ form.carnet.id_for_label }}">Carnet:</label></td>
+                <td>{{ form.carnet }}</td>
+            </tr>
+            <tr>
+                <td><label for="{{ form.direccion.id_for_label }}">Dirección:</label></td>
+                <td>{{ form.direccion }}</td>
+                <td><label for="{{ form.localidad.id_for_label }}">Localidad:</label></td>
+                <td>{{ form.localidad }}</td>
+                <td><label for="{{ form.provincia.id_for_label }}">Provincia:</label></td>
+                <td>{{ form.provincia }}</td>
+                <td><label for="{{ form.seguimiento.id_for_label }}">Seguimiento:</label></td>
+                <td>{{ form.seguimiento }}</td>
+            </tr>
+            <tr>
+                <td><label for="{{ form.telefono.id_for_label }}">Teléfono:</label></td>
+                <td>{{ form.telefono }}</td>
+                <td><label for="{{ form.mail.id_for_label }}">Correo Electrónico:</label></td>
+                <td>{{ form.mail }}</td>
+                <td><label for="{{ form.observaciones.id_for_label }}">Observaciones:</label></td>
+                <td>{{ form.observaciones }}</td>
+            </tr>
+            <tr>
+                <td><label for="{{ form.categoria.id_for_label }}">Categoría:</label></td>
+                <td>{{ form.categoria }}</td>
+                <td><label style="white-space: nowrap;" for="{{ form.acuse.id_for_label }}">Acuse de Recibo:</label></td>
+                <td>{{ form.acuse }}</td>
+            </tr>
+        </table>
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary">Cargar</button>
+        </div>
     </form>
     <p></p>
 </div>
+<div></div>
 
 {% endblock %}

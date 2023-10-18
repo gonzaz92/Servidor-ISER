@@ -11,13 +11,18 @@
     </div>
 
     <div style="margin: 0; padding: 0; display: grid ;place-items: center">
-        <table style="width: 95%; margin-left: 5%">
+        <table style="width: 95%; margin-left: 5%; text-align: center">
             <thead>
                 <tr>
                     <th>Destinatario</th>
+                    <th>Documento N°</th>
+                    <th>Carnet N°</th>
+                    <th>Categoría</th>
                     <th>Fecha de envío</th>
                     <th>Dirección</th>
-                    <th>Número de Seguimiento</th>                    
+                    <th>Localidad</th>
+                    <th>Provincia</th>
+                    <th>Número de Seguimiento</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,8 +30,13 @@
                     {% if not cor.acuse %}
                         <tr>
                             <td style="padding-bottom: 1%;">{{cor.destinatario}}, {{cor.nombre}}</td>
+                            <td style="padding-bottom: 1%;">{{cor.dni}}</td>
+                            <td style="padding-bottom: 1%;">{{cor.carnet}}</td>
+                            <td style="padding-bottom: 1%;">{{cor.categoria}}</td>
                             <td style="text-transform: uppercase; padding-bottom: 1%">{{cor.envio}}</td>
                             <td style="text-transform: capitalize; padding-bottom: 1%;">{{cor.direccion}}</td>
+                            <td style="text-transform: capitalize; padding-bottom: 1%;">{{cor.localidad}}</td>
+                            <td style="text-transform: capitalize; padding-bottom: 1%;">{{cor.provincia}}</td>
                             <td style="padding-bottom: 1%;">{{ cor.seguimiento}}</td>
                             <td style="padding-bottom: 1%;">
                                 <a class="link" href="{% url 'actualizar_correo' cor.id %}" type="submit">Abrir</a>
