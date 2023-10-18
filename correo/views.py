@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from correo.forms import CorreoForm
+from correo.forms import CorreoForm, CorreoUpdate
 from correo.models import Correo
 from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -46,4 +46,4 @@ class ListarCorreo(ListView):
 class ActualizarCorreo(UpdateView):
     model = Correo
     success_url = reverse_lazy('correo')
-    fields = '__all__'
+    form_class = CorreoUpdate
