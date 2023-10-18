@@ -44,13 +44,22 @@
                 <td><label for="{{ form.observaciones.id_for_label }}">Observaciones:</label></td>
                 <td>{{ form.observaciones }}</td>
             </tr>
-            <tr>
+        </table>
+        
+        <!-- Fila separada para Categoría y Acuse de Recibo -->
+        <table class="table borderless">
+            <t>
                 <td><label for="{{ form.categoria.id_for_label }}">Categoría:</label></td>
                 <td>{{ form.categoria }}</td>
-                <td><label style="white-space: nowrap;" for="{{ form.acuse.id_for_label }}">Acuse de Recibo:</label></td>
-                <td>{{ form.acuse }}</td>
+                <td>
+                    <label style="white-space: nowrap;" for="{{ form.acuse.id_for_label }}">Acuse de Recibo: Año: {{ form.año_acuse }}</label>
+                </td>
+                <td>
+                    <label style="white-space: nowrap;" for="{{ form.acuse.id_for_label }}">Número: {{ form.acuse }}</label>
+                </td>
             </tr>
         </table>
+        
         <div class="text-center mt-4">
             <button type="submit" class="btn btn-primary">Cargar</button>
         </div>

@@ -19,6 +19,7 @@ class CorreoForm(forms.ModelForm):
             'telefono': forms.TextInput(),
             'mail': forms.TextInput(),
             'observaciones': forms.Textarea(attrs={'rows': 2, 'cols': 18}),
+            'año_acuse': forms.NumberInput(attrs={'size': 5}),
             'acuse': forms.TextInput(),
         }
 
@@ -39,5 +40,6 @@ class CorreoUpdate(forms.ModelForm):
             'telefono': forms.TextInput(),
             'mail': forms.TextInput(),
             'observaciones': forms.Textarea(attrs={'rows': 2, 'cols': 18}),
+            'año_acuse': forms.NumberInput(attrs={'size': 5}),
             'acuse': forms.TextInput(),
         }

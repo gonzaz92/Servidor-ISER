@@ -5,6 +5,7 @@ from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
+from django.db.models import Q
 
 def permiso_carga(user):
     return user.has_perm('correo.add_correo')
@@ -18,6 +19,14 @@ def permiso_actualizar(user):
 @login_required
 def correo(request):
     return render(request, 'correo/correo.html')
+
+@login_required
+@user_passes_test(permiso_ver)
+def buscar_envio(request):
+    query = request.GET.get('q')
+    resultados_correo = Correo.objects.filter(Q(destinatario__icontains=query) | Q(nombre__icontains=query) |
+                                                Q(dni__icontains=query) | Q(categoria__icontains=query) | Q(carnet__icontains=query))
+    return render(request, 'correo/resultados_correo.html', {'resultados_correo': resultados_correo})
 
 @login_required
 @user_passes_test(permiso_ver)

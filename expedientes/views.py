@@ -5,8 +5,7 @@ from django.views.generic import ListView, CreateView, DetailView, UpdateView, D
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils.decorators import method_decorator
-from django.db.models import Sum
-from django.db.models import Q
+from django.db.models import Sum, Q
 
 def permiso_carga(user):
     return user.has_perm('expedientes.add_expediente')
@@ -34,7 +33,8 @@ def expedientes_finalizados(request):
 @user_passes_test(permiso_ver)
 def buscar_expedientes(request):
     query = request.GET.get('q')
-    resultados_expedientes = Expediente.objects.filter(Q(Año_de_Expediente__icontains=query) | Q(Número_de_Expediente__icontains=query))
+    resultados_expedientes = Expediente.objects.filter(Q(Año_de_Expediente__icontains=query) | Q(Número_de_Expediente__icontains=query) |
+                                                    Q(Instituto_o_Localidad__icontains=query))
     return render(request, 'expedientes/resultados_expedientes.html', {'resultados_expedientes': resultados_expedientes})
 
 @login_required

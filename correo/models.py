@@ -16,4 +16,5 @@ class Correo(models.Model):
     telefono = models.CharField(max_length=10, null='True', blank=True, verbose_name='Teléfono')
     mail = models.CharField(max_length=50, null='True', blank=True, verbose_name='e-mail')
     observaciones = models.TextField(max_length=200, null='True', blank=True, verbose_name='Observaciones')
-    acuse = models.CharField(max_length=33, null='True', blank=True, verbose_name='Acuse de Recibo')
+    año_acuse = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True, verbose_name='Año')
+    acuse = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Número')
