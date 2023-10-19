@@ -4,7 +4,7 @@ from Base_datos.models import (Locutor_nacional, Locutor_local, Operador_naciona
                             Operador_local_radio, Operador_local_tv, Operador_local_planta, Productor, Guionista)
 from django.urls import reverse_lazy
 from django.db.models import Q
-from Base_datos.forms import UsuarioForm
+from Base_datos.forms import UsuarioForm, LocutorNacionalForm
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -186,15 +186,14 @@ def ln_incompletos(request):
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(carga_LocutorNacional), name='get')
 class CrearLocutorNacional(CreateView):
-    model = Locutor_nacional
+    template_name='Base_datos/locutor_nacional_form.html'
+    form_class= LocutorNacionalForm
     success_url = reverse_lazy('locutores_nacionales')
-    fields = '__all__'
 
 @method_decorator(login_required, name='get')
 class ListarLocutorNacional(ListView):
     model = Locutor_nacional
-    fields = (Locutor_nacional.apellido, Locutor_nacional.nombre, Locutor_nacional.DNI, Locutor_nacional.habilitación, Locutor_nacional.instituto,
-            Locutor_nacional.año_expediente, Locutor_nacional.número_expediente,Locutor_nacional.año_disposición, Locutor_nacional.número_disposición)
+    fields = '__all__'
     
     def get_queryset(self):
         return Locutor_nacional.objects.all().order_by('-habilitación')
@@ -209,7 +208,7 @@ class VerLocutorNacional(DetailView):
 class ActualizarLN(UpdateView):
     model = Locutor_nacional
     success_url = reverse_lazy('locutores_nacionales')
-    fields = '__all__'
+    form_class = LocutorNacionalForm
 
 ############################################################# Locutores Locales ######################################################################
 

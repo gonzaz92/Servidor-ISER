@@ -4,18 +4,22 @@ from django.core.validators import MaxValueValidator
 class Persona(models.Model):
     apellido = models.CharField(max_length=100, verbose_name='Apellido')
     nombre = models.CharField(max_length=100, verbose_name='Nombre')
-    formulario = models.CharField(max_length=33, null='True', blank=True, verbose_name='Número GDE del Formulario')
+    año_formulario = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True, verbose_name='Año Formulario')
+    formulario = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Número GDE - Formulario')
     DNI = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Documento N°')
-    pdf_dni = models.CharField(max_length=33, null='True', blank=True, verbose_name='Número GDE del D.N.I.')
-    secundario = models.CharField(max_length=100, null='True', blank=True, verbose_name='Secundario')
-    pdf_secundario = models.CharField(max_length=33, null='True', blank=True, verbose_name='Número GDE del Secundario')
-    acta = models.CharField(max_length=33, null='True', blank=True, verbose_name='Número GDE del Acta de Examen')
+    año_dni = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True, verbose_name='Año DNI')
+    pdf_dni = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Número GDE - D.N.I.')
+    secundario = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True, verbose_name='Año Secundario')
+    pdf_secundario = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Número GDE - Secundario')
+    año_acta = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True, verbose_name='Año Acta')
+    acta = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Número GDE - Acta de Examen')
     habilitación = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Número de Habilitación')
-    año_expediente = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True, verbose_name='Año del Expediente')
-    número_expediente = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Número del Expediente')
-    año_disposición = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True, verbose_name='Año de la Disposición')
-    número_disposición = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Número de la Disposición')
-    acuse = models.CharField(max_length=33, null='True', blank=True, verbose_name='Número GDE del Acuse de Recibo')
+    año_expediente = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True, verbose_name='Año Expediente')
+    número_expediente = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Número GDE - Expediente')
+    año_disposición = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True, verbose_name='Año Disposición')
+    número_disposición = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Número GDE - Disposición')
+    año_acuse = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True, verbose_name='Año Acuse de Recibo')
+    acuse = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Número GDE - Acuse de Recibo')
     
     class Meta:
         abstract = True
@@ -26,7 +30,8 @@ class Persona(models.Model):
 
 class Nacional(models.Model):
     instituto = models.CharField(max_length=100, null='True', blank=True, verbose_name='Egresado de')
-    pdf_instituto = models.CharField(max_length=33, null='True', blank=True, verbose_name='Número GDE del Analítico del Instituto')
+    año_instituto = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True, verbose_name='Año Analítico del Instituto')
+    pdf_instituto = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Número GDE - Analítico del Instituto')
 
     class Meta:
         abstract = True
@@ -34,7 +39,8 @@ class Nacional(models.Model):
 class Local(models.Model):
     localidad = models.CharField(max_length=100, null='True', blank=True, verbose_name='Localidad')
     provincia = models.CharField(max_length=100, null='True', blank=True, verbose_name='Provincia')
-    certificado = models.CharField(max_length=33, null='True', blank=True, verbose_name='Número GDE del Certificado Laboral')
+    año_certificado = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True, verbose_name='Año Certificado Laboral')
+    certificado = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Número GDE - Certificado Laboral')
 
     class Meta:
         abstract = True
