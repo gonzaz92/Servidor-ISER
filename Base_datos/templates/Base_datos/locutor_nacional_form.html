@@ -38,8 +38,10 @@
         <table class='table borderless'>
             <tr>
                 <td>Expediente: <span style='font-size: small;'>IF-{{ form.año_expediente }}-{{ form.número_expediente }}- -APN-SDYME#ENACOM</span></td>
+                {% if request.resolver_match.view_name == 'actualizar_ln' %}
                 <td>Disposición: <span style='font-size: small;'>IF-{{ form.año_disposición }}-{{ form.número_disposición }}-APN-DNSA#ENACOM</span></td>
                 <td>Acuse de Recibo: <span style='font-size: small;'>IF-{{ form.año_acuse }}-{{ form.acuse }}- -APN-ACAD#ENACOM</span></td>
+                {% endif %}
             </tr>
         </table>
         <div class="text-center mt-4">

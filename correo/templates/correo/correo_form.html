@@ -39,24 +39,20 @@
             <tr>
                 <td><label for="{{ form.telefono.id_for_label }}">Teléfono:</label></td>
                 <td>{{ form.telefono }}</td>
-                <td><label for="{{ form.mail.id_for_label }}">Correo Electrónico:</label></td>
+                <td><label for="{{ form.mail.id_for_label }}">e-mail:</label></td>
                 <td>{{ form.mail }}</td>
                 <td><label for="{{ form.observaciones.id_for_label }}">Observaciones:</label></td>
                 <td>{{ form.observaciones }}</td>
             </tr>
         </table>
-        
-        <!-- Fila separada para Categoría y Acuse de Recibo -->
         <table class="table borderless">
             <t>
-                <td><label for="{{ form.categoria.id_for_label }}">Categoría:</label></td>
-                <td>{{ form.categoria }}</td>
+                <td><label for="{{ form.categoria.id_for_label }}">Categoría: {{ form.categoria }}</label></td>
+                {% if request.resolver_match.view_name == 'actualizar_correo' %}
                 <td>
-                    <label style="white-space: nowrap;" for="{{ form.acuse.id_for_label }}">Acuse de Recibo: Año: {{ form.año_acuse }}</label>
+                    <label style="white-space: nowrap;" for="{{ form.acuse.id_for_label }}">Acuse de Recibo: IF-{{ form.año_acuse }}-{{ form.acuse }}-APN-ACAD o ISER#ENACOM</label>
                 </td>
-                <td>
-                    <label style="white-space: nowrap;" for="{{ form.acuse.id_for_label }}">Número: {{ form.acuse }}</label>
-                </td>
+                {% endif %}
             </tr>
         </table>
         

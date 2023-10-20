@@ -11,24 +11,28 @@
     </div>
 
     <div style="margin: 0; padding: 0; display: grid ;place-items: center">
-        <table style="width: 95%; margin-left: 5%">
+        <table style="width: 95%; margin-left: 5%; text-align: center;">
             <thead>
                 <tr>
                     <th>Expediente</th>
                     <th>Categoría</th>
+                    <th>Habilitados</th>
                     <th>Instituto o Localidad</th>
                     <th>Fecha de Caratulación</th>
                     <th>Estado</th>
+                    <th>Fecha de Disposición</th>
                 </tr>
             </thead>
             <tbody>
                 {% for resultado in resultados_expedientes %}
                     <tr>
-                        <td style="padding-bottom: 1%; font-size: small;">EX-{{resultado.Año_de_Expediente}}-{{resultado.Número_de_Expediente}}- -APN-SDYME#ENACOM</td>
+                        <td style="padding-bottom: 1%;">EX-{{resultado.Año_de_Expediente}}-{{resultado.Número_de_Expediente}}- -APN-SDYME#ENACOM</td>
                         <td style="text-transform: uppercase; padding-bottom: 1%">{{resultado.Categoría}}</td>
+                        <td style="text-transform: uppercase; padding-bottom: 1%">{{resultado.Cantidad_de_Habilitados}}</td>
                         <td style="text-transform: capitalize; padding-bottom: 1%;">{{resultado.Instituto_o_Localidad}}</td>
                         <td style="padding-bottom: 1%;">{{resultado.Fecha_de_Creación}}</td>
                         <td style="padding-bottom: 1%;">{{resultado.Estado}}</td>
+                        <td style="padding-bottom: 1%;">{{resultado.Fecha_de_disposición}}</td>
                         <td style="text-transform: uppercase; padding-bottom: 1%;">{{resultado.Instituto}}</td>
                         <td style="padding-bottom: 1%;">
                             <a class="link" href="{% url 'actualizar_expediente' resultado.id %}" type="submit">Abrir</a>

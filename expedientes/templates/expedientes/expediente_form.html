@@ -9,7 +9,31 @@
 <div style="text-align: center;">
     <form enctype="multipart/form-data" method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form.non_field_errors }}
+    <div class='container'>
+        <table class='table borderless'>
+            <tr>
+                <td>Fecha de Caratulación: {{form.Fecha_de_Creación}}</td>
+            </tr>
+        </table>
+        <table class='table borderless'>
+            <tr>
+                <td>EX-{{ form.Año_de_Expediente }}-{{ form.Número_de_Expediente }}- -APN-SDYME#ENACOM</td>
+                <td>Categoría: {{ form.Categoría }}</td>
+                <td>Habilitados: {{ form.Cantidad_de_Habilitados }}</td>
+            </tr>
+            <tr>
+                <td>Instituto o Localidad: {{ form.Instituto_o_Localidad }}</td>
+                <td>Estado: {{ form.Estado }}</td>
+            </tr>
+        </table>
+        {% if request.resolver_match.view_name == 'actualizar_expediente' %}
+            <table class='table borderless'>
+                <td>Fecha de Disposición: {{ form.Fecha_de_disposición }} </td>
+            </table>
+        {% endif %}
+    </div>
+
         <input class="btn btn-primary" type="submit" value="Cargar">
     </form>
     <p></p>

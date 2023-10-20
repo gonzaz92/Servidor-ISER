@@ -20,6 +20,7 @@
                     <th>Instituto o Localidad</th>
                     <th>Fecha de Caratulación</th>
                     <th>Estado</th>
+                    <th>Fecha de Disposición</th>
                 </tr>
             </thead>
             <tbody style="text-align: center">
@@ -32,6 +33,7 @@
                             <td style="text-transform: capitalize; padding-bottom: 1%;">{{exp.Instituto_o_Localidad}}</td>
                             <td style="padding-bottom: 1%;">{{ exp.Fecha_de_Creación}}</td>
                             <td style="padding-bottom: 1%;">{{exp.Estado}}</td>
+                            <td style="padding-bottom: 1%;">{{ exp.Fecha_de_disposición}}</td>
                             <td style="text-transform: uppercase; padding-bottom: 1%;">{{exp.Instituto}}</td>
                             <td style="padding-bottom: 1%;">
                                 <a class="link" href="{% url 'actualizar_expediente' exp.id %}" type="submit">Abrir</a>

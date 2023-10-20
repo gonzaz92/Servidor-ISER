@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from expedientes.forms import ExpedienteForm
+from expedientes.forms import ExpedienteForm, ExpedienteUpdate
 from expedientes.models import Expediente
-from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils.decorators import method_decorator
@@ -149,7 +149,7 @@ class ListarExpedientes(ListView):
 class ActualizarExpediente(UpdateView):
     model = Expediente
     success_url = reverse_lazy('expedientes')
-    fields = '__all__'
+    form_class = ExpedienteUpdate
 
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(permiso_borrar), name='get')
