@@ -20,10 +20,10 @@
         <h2 style="margin-right: 10px;">Localidad: {{locutor_local.localidad}} - Provincia: {{locutor_local.provincia}}</h2>
       </div>
     <div style="padding-bottom: 1%;">
-      {% if locutor_local.formulario %}
+      {% if locutor_local.año_formulario and locutor_local.formulario %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Formulario de datos personales:
-          <a href="{{ locutor_local.formulario.url }}" target="_blank">{{locutor_local.formulario}}</a>
+          <a>IF-{{locutor_local.año_formulario}}-{{locutor_local.formulario}}-APN-ACAD#ENACOM</a>
         </h2>
       </div>
       {% else %}
@@ -33,23 +33,23 @@
       {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-      {% if locutor_local.pdf_dni %}
+      {% if locutor_local.año_dni and locutor_local.pdf_dni %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
-        <h2 style="margin-right: 10px;">Copia del D.N.I.:
-          <a href="{{locutor_local.pdf_dni.url }}" target="_blank">{{locutor_local.pdf_dni}}</a>
+        <h2 style="margin-right: 10px;">D.N.I.:
+          <a>IF-{{locutor_local.año_dni}}-{{locutor_local.pdf_dni}}-APN-ACAD#ENACOM</a>
         </h2>
       </div>
       {% else %}
       <div style="background-color: #fff7ae; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
-        <h2 style="margin-right: 10px;">Copia del D.N.I.: No disponible</h2>
+        <h2 style="margin-right: 10px;">D.N.I.: No disponible</h2>
       </div>
       {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-      {% if locutor_local.pdf_secundario %}
+      {% if locutor_local.secundario and locutor_local.pdf_secundario %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Secundario: {{locutor_local.secundario}} -
-          <a href="{{ locutor_local.pdf_secundario.url }}" target="_blank">{{locutor_local.pdf_secundario}}</a>
+          <a>IF-{{locutor_local.secundario}}-{{locutor_local.pdf_secundario}}-APN-ACAD#ENACOM</a>
         </h2>
       </div>
       {% else %}
@@ -59,10 +59,10 @@
       {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-      {% if locutor_local.certificado %}
+      {% if locutor_local.año_certificado and locutor_local.certificado %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Certificado:
-          <a href="{{locutor_local.certificado.url}}" target="_blank">{{locutor_local.certificado}}</a>
+          <a>IF-{{locutor_local.año_certificado}}-{{locutor_local.certificado}}-APN-ACAD#ENACOM</a>
         </h2>
       </div>
       {% else %}
@@ -72,10 +72,10 @@
       {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-      {% if locutor_local.acta %}
+      {% if locutor_local.año_acta and locutor_local.acta %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Acta de examen:
-          <a href="{{locutor_local.acta.url}}" target="_blank">{{locutor_local.acta}}</a>
+          <a>IF-{{locutor_local.año_acta}}-{{locutor_local.acta}}-APN-ACAD#ENACOM</a>
         </h2>
       </div>
       {% else %}
@@ -85,10 +85,10 @@
       {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-      {% if locutor_local.acuse %}
+      {% if locutor_local.año_acuse and locutor_local.acuse %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Acuse de Recibo:
-          <a href="{{locutor_local.acuse.url}}" target="_blank">{{locutor_local.acuse}}</a>
+          <a>IF-{{locutor_local.año_acuse}}-{{locutor_local.acuse}}-APN-ACAD#ENACOM</a>
         </h2>
       </div>
       {% else %}

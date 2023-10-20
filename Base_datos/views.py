@@ -294,9 +294,9 @@ def oprn_incompletos(request):
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(carga_OperadorNRadio), name='get')
 class CrearOperadordeRadio(CreateView):
-    model = Operador_nacional_radio
+    template_name = 'Base_datos/operador_nacional_radio_form.html'
+    form_class = RadioNacionalForm
     success_url = reverse_lazy('operadores_nacionales')
-    fields = '__all__'
 
 @method_decorator(login_required, name='get')
 class ListarOperadordeRadio(ListView):
@@ -317,7 +317,7 @@ class VerOperadordeRadio(DetailView):
 class ActualizarOPR(UpdateView):
     model = Operador_nacional_radio
     success_url = reverse_lazy('operadores_nacionales')
-    fields = '__all__'
+    form_class = RadioNacionalForm
 
 ############################################################# Operadores de TV ######################################################################
 
@@ -342,9 +342,9 @@ def optvn_incompletos(request):
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(carga_OperadorNTV), name='get')
 class CrearOperadordeTV(CreateView):
-    model = Operador_nacional_tv
+    template_name = 'Base_datos/operador_nacional_tv_form.html'
+    form_class = TVNacionalForm
     success_url = reverse_lazy('operadores_nacionales')
-    fields = '__all__'
 
 @method_decorator(login_required, name='get')
 class ListarOperadordeTV(ListView):
@@ -365,7 +365,7 @@ class VerOperadordeTV(DetailView):
 class ActualizarOPTV(UpdateView):
     model = Operador_nacional_tv
     success_url = reverse_lazy('operadores_nacionales')
-    fields = '__all__'
+    form_class = TVNacionalForm
 
 ############################################################# Operadores de Planta ######################################################################
 
@@ -390,9 +390,9 @@ def opplantan_incompletos(request):
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(carga_OperadorNPlanta), name='get')
 class CrearOperadordePlanta(CreateView):
-    model = Operador_nacional_planta
+    template_name = 'Base_datos/operador_nacional_planta_form.html'
+    form_class = PlantaNacionalForm
     success_url = reverse_lazy('operadores_nacionales')
-    fields = '__all__'
 
 @method_decorator(login_required, name='get')
 class ListarOperadordePlanta(ListView):
@@ -413,7 +413,7 @@ class VerOperadordePlanta(DetailView):
 class ActualizarOPPlanta(UpdateView):
     model = Operador_nacional_planta
     success_url = reverse_lazy('operadores_nacionales')
-    fields = '__all__'
+    form_class = PlantaNacionalForm
 
 ############################################################# Operadores Locales ######################################################################
 
@@ -444,9 +444,9 @@ def oprl_incompletos(request):
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(carga_OperadorLRadio), name='get')
 class CrearOperadordeRadioLocal(CreateView):
-    model = Operador_local_radio
+    template_name = 'Base_datos/operador_local_radio_form.html'
+    form_class = RadioLocalForm
     success_url = reverse_lazy('operadores_locales')
-    fields = '__all__'
 
 @method_decorator(login_required, name='get')
 class ListarOperadordeRadioLocal(ListView):
@@ -467,7 +467,7 @@ class VerOperadordeRadioLocal(DetailView):
 class ActualizarOPRLocal(UpdateView):
     model = Operador_local_radio
     success_url = reverse_lazy('operadores_locales')
-    fields = '__all__'
+    form_class = RadioLocalForm
 
 ############################################################# Operadores de TV ######################################################################
 
@@ -492,9 +492,9 @@ def optvl_incompletos(request):
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(carga_OperadorLTV), name='get')
 class CrearOperadordeTVLocal(CreateView):
-    model = Operador_local_tv
+    template_name = 'Base_datos/operador_local_tv_form.html'
+    form_class = TVLocalForm
     success_url = reverse_lazy('operadores_locales')
-    fields = '__all__'
 
 @method_decorator(login_required, name='get')
 class ListarOperadordeTVLocal(ListView):
@@ -515,7 +515,7 @@ class VerOperadordeTVLocal(DetailView):
 class ActualizarOPTVLocal(UpdateView):
     model = Operador_local_tv
     success_url = reverse_lazy('operadores_locales')
-    fields = '__all__'
+    form_class = TVLocalForm
 
 ############################################################# Operadores de Planta ######################################################################
 
@@ -540,9 +540,9 @@ def opplantal_incompletos(request):
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(carga_OperadorLPlanta), name='get')
 class CrearOperadordePlantaLocal(CreateView):
-    model = Operador_local_planta
+    template_name = 'Base_datos/operador_local_planta_form.html'
+    form_class = PlantaLocalForm
     success_url = reverse_lazy('operadores_locales')
-    fields = '__all__'
 
 @method_decorator(login_required, name='get')
 class ListarOperadordePlantaLocal(ListView):
@@ -563,7 +563,7 @@ class VerOperadordePlantaLocal(DetailView):
 class ActualizarOPPlantaLocal(UpdateView):
     model = Operador_local_planta
     success_url = reverse_lazy('operadores_locales')
-    fields = '__all__'
+    form_class = PlantaLocalForm
 
 ############################################################# Productores y Directores ######################################################################
 
@@ -592,9 +592,9 @@ def prod_incompletos(request):
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(carga_productor), name='get')
 class CrearProductor(CreateView):
-    model = Productor
+    template_name='Base_datos/productor_form.html'
+    form_class= ProductorForm
     success_url = reverse_lazy('productores_y_directores')
-    fields = '__all__'
 
 @method_decorator(login_required, name='get')
 class ListarProductor(ListView):
@@ -615,7 +615,7 @@ class VerProductor(DetailView):
 class ActualizarProd(UpdateView):
     model = Productor
     success_url = reverse_lazy('productores_y_directores')
-    fields = '__all__'
+    form_class = ProductorForm
 
 ############################################################# Guionistas ######################################################################
 
@@ -644,9 +644,9 @@ def guion_incompletos(request):
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(carga_guionista), name='get')
 class CrearGuionista(CreateView):
-    model = Guionista
+    template_name = 'Base_datos/guionista_form.html'
+    form_class = GuionistaForm
     success_url = reverse_lazy('guionistas')
-    fields = '__all__'
 
 @method_decorator(login_required, name='get')
 class ListarGuionista(ListView):
@@ -667,4 +667,4 @@ class VerGuionista(DetailView):
 class ActualizarGuion(UpdateView):
     model = Guionista
     success_url = reverse_lazy('guionistas')
-    fields = '__all__'
+    form_class = GuionistaForm

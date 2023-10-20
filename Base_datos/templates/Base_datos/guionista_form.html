@@ -2,17 +2,53 @@
 
 {% block contenido %}
 
-<h1 style="text-align: center;">Guionista de Radio y TV</h1>
-
-<p></p>
-
-<div style="text-align: center;">
+<div class='container'>
+    <h1 class="mt-4 text-center">Guionista de Radio y TV</h1>
+    <p></p>
     <form enctype="multipart/form-data" method="POST">
         {% csrf_token %}
-        {{form.as_p}}
-        <input class="btn btn-primary" type="submit" value="Cargar">
+        {{ form.non_field_errors }}
+        <table class='table borderless'>
+            <tr>
+                <td><label for="{{ form.apellido.id_for_label }}">Apellido:</label></td>
+                <td>{{ form.apellido }}</td>
+                <td><label for="{{ form.nombre.id_for_label }}">Nombre:</label></td>
+                <td>{{ form.nombre }}</td>
+                <td><label for="{{ form.DNI.id_for_label }}">Documento N°:</label></td>
+                <td>{{ form.DNI }}</td>
+                <td>IF-{{ form.año_dni }}-{{form.pdf_dni}}-APN-ACAD#ENACOM</td>
+            </tr>
+        </table>
+        <table class='table borderless'>
+            <tr>
+                <td>Formulario: IF-{{ form.año_formulario }}-{{ form.formulario }}-APN-ACAD#ENACOM</td>
+                <td>Secundario: IF-{{ form.secundario }}-{{ form.pdf_secundario }}-APN-ACAD#ENACOM</td>
+                <td><label for="{{ form.habilitación.id_for_label }}">Habilitación:</label></td>
+                <td>{{ form.habilitación }}</td>
+            </tr>
+        </table>
+        <table class='table borderless'>
+            <tr>
+                <td><label for="{{ form.instituto.id_for_label }}">Egresado de:</label></td>
+                <td>{{ form.instituto }}</td>
+                <td>IF-{{ form.año_instituto }}-{{ form.pdf_instituto }}-APN-ACAD#ENACOM</td>
+                <td>Acta de Examen: IF-{{ form.año_acta }}-{{ form.acta }}-APN-ACAD#ENACOM</td>
+            </tr>
+        </table>
+        <table class='table borderless'>
+            <tr>
+                <td>Expediente: <span style='font-size: small;'>IF-{{ form.año_expediente }}-{{ form.número_expediente }}- -APN-SDYME#ENACOM</span></td>
+                {% if request.resolver_match.view_name == 'actualizar_guion' %}
+                <td>Disposición: <span style='font-size: small;'>IF-{{ form.año_disposición }}-{{ form.número_disposición }}-APN-DNSA#ENACOM</span></td>
+                <td>Acuse de Recibo: <span style='font-size: small;'>IF-{{ form.año_acuse }}-{{ form.acuse }}- -APN-ACAD#ENACOM</span></td>
+                {% endif %}
+            </tr>
+        </table>
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary">Cargar</button>
+        </div>
     </form>
     <p></p>
 </div>
-
+<div></div>
 {% endblock %}
