@@ -4,7 +4,10 @@ from Base_datos.models import (Locutor_nacional, Locutor_local, Operador_naciona
                             Operador_local_radio, Operador_local_tv, Operador_local_planta, Productor, Guionista)
 from django.urls import reverse_lazy
 from django.db.models import Q
-from Base_datos.forms import UsuarioForm, LocutorNacionalForm
+from Base_datos.forms import (UsuarioForm,
+                            LocutorNacionalForm, RadioNacionalForm, TVNacionalForm, PlantaNacionalForm,
+                            LocutorLocalForm, RadioLocalForm, TVLocalForm, PlantaLocalForm,
+                            ProductorForm, GuionistaForm)
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -237,9 +240,9 @@ def ll_incompletos(request):
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(carga_LocutorLocal), name='get')
 class CrearLocutorLocal(CreateView):
-    model = Locutor_local
+    template_name='Base_datos/locutor_local_form.html'
+    form_class= LocutorLocalForm
     success_url = reverse_lazy('locutores_locales')
-    fields = '__all__'
 
 @method_decorator(login_required, name='get')
 class ListarLocutorLocal(ListView):
@@ -260,7 +263,7 @@ class VerLocutorLocal(DetailView):
 class ActualizarLL(UpdateView):
     model = Locutor_local
     success_url = reverse_lazy('locutores_locales')
-    fields = '__all__'
+    form_class = LocutorLocalForm
 
 ############################################################# Operadores Nacionales ######################################################################
 

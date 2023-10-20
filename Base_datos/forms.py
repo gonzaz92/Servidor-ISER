@@ -44,7 +44,7 @@ class LocutorNacionalForm(forms.ModelForm):
 
 ######################### Operador Nacional Radio ################################
 
-class OperadorNacionalRadioForm(forms.ModelForm):
+class RadioNacionalForm(forms.ModelForm):
     class Meta:
         model = Operador_nacional_radio
         fields = '__all__'
@@ -74,7 +74,7 @@ class OperadorNacionalRadioForm(forms.ModelForm):
 
 ######################### Operador Nacional TV ###################################
 
-class OperadorNacionalTVForm(forms.ModelForm):
+class TVNacionalForm(forms.ModelForm):
     class Meta:
         model = Operador_nacional_tv
         fields = '__all__'
@@ -104,7 +104,7 @@ class OperadorNacionalTVForm(forms.ModelForm):
 
 ######################### Operador Nacional Planta ###############################
 
-class OperadorNacionalPlantaForm(forms.ModelForm):
+class PlantaNacionalForm(forms.ModelForm):
     class Meta:
         model = Operador_nacional_planta
         fields = '__all__'
@@ -134,11 +134,127 @@ class OperadorNacionalPlantaForm(forms.ModelForm):
 
 ######################### Locutor Local ##########################################
 
+class LocutorLocalForm(forms.ModelForm):
+    class Meta:
+        model = Locutor_local
+        fields = '__all__'
+        widgets = {
+            'apellido': forms.TextInput(),
+            'nombre': forms.TextInput(),
+            'DNI': forms.NumberInput(),
+            'año_formulario': forms.NumberInput(attrs={'size': 5}),
+            'formulario': forms.NumberInput(attrs={'size': 10}),
+            'año_dni': forms.NumberInput(attrs={'size': 5}),
+            'pdf_dni': forms.NumberInput(attrs={'size': 10}),
+            'secundario': forms.NumberInput(attrs={'size': 5}),
+            'pdf_secundario': forms.NumberInput(attrs={'size': 10}),
+            'localidad': forms.TextInput(),
+            'provincia': forms.TextInput(),
+            'año_certificado': forms.NumberInput(attrs={'size': 5}),
+            'certificado': forms.NumberInput(attrs={'size': 10}),
+            'año_acta': forms.NumberInput(attrs={'size': 5}),
+            'acta': forms.NumberInput(attrs={'size': 10}),
+            'habilitación': forms.NumberInput(),
+            'año_expediente': forms.NumberInput(attrs={'size': 5}),
+            'número_expediente': forms.NumberInput(attrs={'size': 10}),
+            'año_disposición': forms.NumberInput(attrs={'size': 5}),
+            'número_disposición': forms.NumberInput(attrs={'size': 10}),
+            'año_acuse': forms.NumberInput(attrs={'size': 5}),
+            'acuse': forms.NumberInput(attrs={'size': 10}),
+            }
+
 ######################### Operador Local Radio ###################################
+
+class RadioLocalForm(forms.ModelForm):
+    class Meta:
+        model = Operador_local_radio
+        fields = '__all__'
+        widgets = {
+            'apellido': forms.TextInput(),
+            'nombre': forms.TextInput(),
+            'DNI': forms.NumberInput(),
+            'año_formulario': forms.NumberInput(attrs={'size': 5}),
+            'formulario': forms.NumberInput(attrs={'size': 10}),
+            'año_dni': forms.NumberInput(attrs={'size': 5}),
+            'pdf_dni': forms.NumberInput(attrs={'size': 10}),
+            'secundario': forms.NumberInput(attrs={'size': 5}),
+            'pdf_secundario': forms.NumberInput(attrs={'size': 10}),
+            'localidad': forms.TextInput(),
+            'provincia': forms.TextInput(),
+            'año_certificado': forms.NumberInput(attrs={'size': 5}),
+            'certificado': forms.NumberInput(attrs={'size': 10}),
+            'año_acta': forms.NumberInput(attrs={'size': 5}),
+            'acta': forms.NumberInput(attrs={'size': 10}),
+            'habilitación': forms.NumberInput(),
+            'año_expediente': forms.NumberInput(attrs={'size': 5}),
+            'número_expediente': forms.NumberInput(attrs={'size': 10}),
+            'año_disposición': forms.NumberInput(attrs={'size': 5}),
+            'número_disposición': forms.NumberInput(attrs={'size': 10}),
+            'año_acuse': forms.NumberInput(attrs={'size': 5}),
+            'acuse': forms.NumberInput(attrs={'size': 10}),
+            }
 
 ######################### Operador Local TV ######################################
 
+class TVLocalForm(forms.ModelForm):
+    class Meta:
+        model = Operador_local_tv
+        fields = '__all__'
+        widgets = {
+            'apellido': forms.TextInput(),
+            'nombre': forms.TextInput(),
+            'DNI': forms.NumberInput(),
+            'año_formulario': forms.NumberInput(attrs={'size': 5}),
+            'formulario': forms.NumberInput(attrs={'size': 10}),
+            'año_dni': forms.NumberInput(attrs={'size': 5}),
+            'pdf_dni': forms.NumberInput(attrs={'size': 10}),
+            'secundario': forms.NumberInput(attrs={'size': 5}),
+            'pdf_secundario': forms.NumberInput(attrs={'size': 10}),
+            'localidad': forms.TextInput(),
+            'provincia': forms.TextInput(),
+            'año_certificado': forms.NumberInput(attrs={'size': 5}),
+            'certificado': forms.NumberInput(attrs={'size': 10}),
+            'año_acta': forms.NumberInput(attrs={'size': 5}),
+            'acta': forms.NumberInput(attrs={'size': 10}),
+            'habilitación': forms.NumberInput(),
+            'año_expediente': forms.NumberInput(attrs={'size': 5}),
+            'número_expediente': forms.NumberInput(attrs={'size': 10}),
+            'año_disposición': forms.NumberInput(attrs={'size': 5}),
+            'número_disposición': forms.NumberInput(attrs={'size': 10}),
+            'año_acuse': forms.NumberInput(attrs={'size': 5}),
+            'acuse': forms.NumberInput(attrs={'size': 10}),
+            }
+
 ######################### Operador Local Planta ##################################
+
+class PlantaLocalForm(forms.ModelForm):
+    class Meta:
+        model = Operador_local_planta
+        fields = '__all__'
+        widgets = {
+            'apellido': forms.TextInput(),
+            'nombre': forms.TextInput(),
+            'DNI': forms.NumberInput(),
+            'año_formulario': forms.NumberInput(attrs={'size': 5}),
+            'formulario': forms.NumberInput(attrs={'size': 10}),
+            'año_dni': forms.NumberInput(attrs={'size': 5}),
+            'pdf_dni': forms.NumberInput(attrs={'size': 10}),
+            'secundario': forms.NumberInput(attrs={'size': 5}),
+            'pdf_secundario': forms.NumberInput(attrs={'size': 10}),
+            'localidad': forms.TextInput(),
+            'provincia': forms.TextInput(),
+            'año_certificado': forms.NumberInput(attrs={'size': 5}),
+            'certificado': forms.NumberInput(attrs={'size': 10}),
+            'año_acta': forms.NumberInput(attrs={'size': 5}),
+            'acta': forms.NumberInput(attrs={'size': 10}),
+            'habilitación': forms.NumberInput(),
+            'año_expediente': forms.NumberInput(attrs={'size': 5}),
+            'número_expediente': forms.NumberInput(attrs={'size': 10}),
+            'año_disposición': forms.NumberInput(attrs={'size': 5}),
+            'número_disposición': forms.NumberInput(attrs={'size': 10}),
+            'año_acuse': forms.NumberInput(attrs={'size': 5}),
+            'acuse': forms.NumberInput(attrs={'size': 10}),
+            }
 
 ######################### Productor ##############################################
 
