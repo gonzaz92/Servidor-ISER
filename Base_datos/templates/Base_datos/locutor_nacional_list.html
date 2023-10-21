@@ -33,8 +33,8 @@
                             <td style="padding-bottom: 1%;">{{locutor_nacional.DNI}}</td>
                             <td style="padding-bottom: 1%;">{{locutor_nacional.habilitación}}</td>
                             <td style="text-transform: uppercase; padding-bottom: 1%;">{{locutor_nacional.instituto}}</td>
-                            <td style="padding-bottom: 1%; font-size: small;">EX-{{locutor_nacional.año_expediente}}-{{locutor_nacional.número_expediente}}- -APN-SDYME#ENACOM</td>
-                            <td style="padding-bottom: 1%; font-size: small;">DI-{{locutor_nacional.año_disposición}}-{{locutor_nacional.número_disposición}}-APN-DNSA#ENACOM</td>
+                            <td style="padding-bottom: 1%;">EX-{{locutor_nacional.año_expediente}}-{{locutor_nacional.número_expediente}}- -APN-SDYME#ENACOM</td>
+                            <td style="padding-bottom: 1%">DI-{{locutor_nacional.año_disposición}}-{{locutor_nacional.número_disposición}}-APN-DNSA#ENACOM</td>
                             <td style="padding-bottom: 1%;">
                                 <a class="link" href="{% url 'ver_locutor' locutor_nacional.id %}" type="submit">Abrir</a>
                             </td>
@@ -43,6 +43,23 @@
                 {% endfor %}
             </tbody>
         </table>
+    </div>
+    <div style='text-align: center;'>
+        <span class="step-links">
+            {% if object_list.has_previous %}
+                <a href="?page=1">&laquo; primera</a>
+                <a href="?page={{ object_list.previous_page_number }}">anterior</a>
+            {% endif %}
+
+            <span class="current-page">
+                Página {{ object_list.number }} de {{ object_list.paginator.num_pages }}
+            </span>
+
+            {% if object_list.has_next %}
+                <a href="?page={{ object_list.next_page_number }}">siguiente</a>
+                <a href="?page={{ object_list.paginator.num_pages }}">última &raquo;</a>
+            {% endif %}
+        </span>
     </div>
     <p></p>
 {% endblock %}

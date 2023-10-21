@@ -12,6 +12,7 @@ from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils.decorators import method_decorator
+from django.core.paginator import Paginator
 
 # Permisos Locutor Nacional
 
@@ -200,6 +201,14 @@ class ListarLocutorNacional(ListView):
     
     def get_queryset(self):
         return Locutor_nacional.objects.all().order_by('-habilitación')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = Paginator(context['object_list'], 500)
+        page = self.request.GET.get('page')
+        locutores_paginados = paginator.get_page(page)
+        context['object_list'] = locutores_paginados
+        return context
 
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(ver_LocutorNacional), name='get')
@@ -252,6 +261,14 @@ class ListarLocutorLocal(ListView):
     
     def get_queryset(self):
         return Locutor_local.objects.all().order_by('-habilitación')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = Paginator(context['object_list'], 500)
+        page = self.request.GET.get('page')
+        locutores_paginados = paginator.get_page(page)
+        context['object_list'] = locutores_paginados
+        return context
 
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(ver_LocutorLocal), name='get')
@@ -306,6 +323,14 @@ class ListarOperadordeRadio(ListView):
     
     def get_queryset(self):
         return Operador_nacional_radio.objects.all().order_by('-habilitación')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = Paginator(context['object_list'], 500)
+        page = self.request.GET.get('page')
+        operadores_paginados = paginator.get_page(page)
+        context['object_list'] = operadores_paginados
+        return context
 
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(ver_OperadorNRadio), name='get')
@@ -354,6 +379,14 @@ class ListarOperadordeTV(ListView):
     
     def get_queryset(self):
         return Operador_nacional_tv.objects.all().order_by('-habilitación')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = Paginator(context['object_list'], 500)
+        page = self.request.GET.get('page')
+        operadores_paginados = paginator.get_page(page)
+        context['object_list'] = operadores_paginados
+        return context
 
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(ver_OperadorNTV), name='get')
@@ -402,6 +435,14 @@ class ListarOperadordePlanta(ListView):
     
     def get_queryset(self):
         return Operador_nacional_planta.objects.all().order_by('-habilitación')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = Paginator(context['object_list'], 500)
+        page = self.request.GET.get('page')
+        operadores_paginados = paginator.get_page(page)
+        context['object_list'] = operadores_paginados
+        return context
 
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(ver_OperadorNPlanta), name='get')
@@ -456,6 +497,14 @@ class ListarOperadordeRadioLocal(ListView):
     
     def get_queryset(self):
         return Operador_local_radio.objects.all().order_by('-habilitación')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = Paginator(context['object_list'], 500)
+        page = self.request.GET.get('page')
+        operadores_paginados = paginator.get_page(page)
+        context['object_list'] = operadores_paginados
+        return context
 
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(ver_OperadorLRadio), name='get')
@@ -504,6 +553,14 @@ class ListarOperadordeTVLocal(ListView):
     
     def get_queryset(self):
         return Operador_local_tv.objects.all().order_by('-habilitación')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = Paginator(context['object_list'], 500)
+        page = self.request.GET.get('page')
+        operadores_paginados = paginator.get_page(page)
+        context['object_list'] = operadores_paginados
+        return context
 
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(ver_OperadorLTV), name='get')
@@ -552,6 +609,14 @@ class ListarOperadordePlantaLocal(ListView):
     
     def get_queryset(self):
         return Operador_local_planta.objects.all().order_by('-habilitación')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = Paginator(context['object_list'], 500)
+        page = self.request.GET.get('page')
+        operadores_paginados = paginator.get_page(page)
+        context['object_list'] = operadores_paginados
+        return context
 
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(ver_OperadorLPlanta), name='get')
@@ -604,6 +669,14 @@ class ListarProductor(ListView):
     
     def get_queryset(self):
         return Productor.objects.all().order_by('-habilitación')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = Paginator(context['object_list'], 500)
+        page = self.request.GET.get('page')
+        productores_paginados = paginator.get_page(page)
+        context['object_list'] = productores_paginados
+        return context
 
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(ver_productor), name='get')
@@ -656,6 +729,14 @@ class ListarGuionista(ListView):
     
     def get_queryset(self):
         return Guionista.objects.all().order_by('-habilitación')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = Paginator(context['object_list'], 500)
+        page = self.request.GET.get('page')
+        guionistas_paginados = paginator.get_page(page)
+        context['object_list'] = guionistas_paginados
+        return context
 
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(ver_guionista), name='get')
