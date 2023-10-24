@@ -23,4 +23,4 @@ class Correo(models.Model):
     observaciones = models.TextField(max_length=200, null='True', blank=True, verbose_name='Observaciones')
     año_acuse = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True, verbose_name='Año')
     acuse = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Número')
-    finalizado = models.Charfield(max_length=43, choices=opciones, verbose_name='Finalizado')
+    finalizado = models.CharField(max_length=43, choices=opciones, verbose_name='Finalizado')
