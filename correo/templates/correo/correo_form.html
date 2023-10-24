@@ -1,81 +1,81 @@
 {% extends 'Base_datos/base.html' %}
 
 {% block contenido %}
-<div class="container">
-    <h1 class="mt-4 text-center">Nuevo Envío</h1> 
-    <form enctype="multipart/form-data" method="POST">
+<div class="container text-center">
+    <h1 class="mt-4">Nuevo Envío</h1> 
+    <form class="mt-4" enctype="multipart/form-data" method="POST">
         {% csrf_token %}
         {{ form.non_field_errors }}
         
-        <div>
+        <div class="mb-2">
             <label style="white-space: nowrap;" for="{{ form.envio.id_for_label }}">Fecha de Envío:</label>
             {{ form.envio }}
         </div>
         
-        <div>
+        <div class="mb-2">
             <label for="{{ form.destinatario.id_for_label }}">Apellido:</label>
             {{ form.destinatario }}
         </div>
         
-        <div>
+        <div class="mb-2">
             <label for="{{ form.nombre.id_for_label }}">Nombre:</label>
             {{ form.nombre }}
         </div>
         
-        <div>
+        <div class="mb-2">
             <label for="{{ form.dni.id_for_label }}">DNI:</label>
             {{ form.dni }}
         </div>
         
-        <div>
+        <div class="mb-2">
             <label for="{{ form.carnet.id_for_label }}">Carnet:</label>
             {{ form.carnet }}
         </div>
         
-        <div>
+        <div class="mb-2">
             <label for="{{ form.direccion.id_for_label }}">Dirección:</label>
             {{ form.direccion }}
         </div>
         
-        <div>
+        <div class="mb-2">
             <label for="{{ form.localidad.id_for_label }}">Localidad:</label>
             {{ form.localidad }}
         </div>
         
-        <div>
+        <div class="mb-2">
             <label for="{{ form.provincia.id_for_label }}">Provincia:</label>
             {{ form.provincia }}
         </div>
         
-        <div>
+        <div class="mb-2">
             <label for="{{ form.seguimiento.id_for_label }}">Seguimiento:</label>
             {{ form.seguimiento }}
         </div>
         
-        <div>
+        <div class="mb-2">
             <label for="{{ form.telefono.id_for_label }}">Teléfono:</label>
             {{ form.telefono }}
         </div>
         
-        <div>
+        <div class="mb-2">
             <label for="{{ form.mail.id_for_label }}">e-mail:</label>
             {{ form.mail }}
         </div>
         
-        <div>
+        <div class="mb-2">
             <label for="{{ form.observaciones.id_for_label }}">Observaciones:</label>
             {{ form.observaciones }}
         </div>
         
-        <div>
+        <div class="mb-2">
             <label for="{{ form.categoria.id_for_label }}">Categoría: {{ form.categoria }}</label>
         </div>
         
         {% if request.resolver_match.view_name == 'actualizar_correo' %}
-            <div>
+            <div class="mb-2">
                 <label style="white-space: nowrap;" for="{{ form.acuse.id_for_label }}">Acuse de Recibo: IF-{{ form.año_acuse }}-{{ form.acuse }}-APN-ACAD o ISER#ENACOM</label>
             </div>
-            <div>
+            <div class="mb-2">
                 <label style="white-space: nowrap;" for="{{ form.finalizado.id_for_label }}">Finalizado: {{ form.finalizado }}</label>
             </div>
         {% endif %}
@@ -84,7 +84,6 @@
             <button type="submit" class="btn btn-primary">Cargar</button>
         </div>
     </form>
-    <p></p>
 </div>
 <div></div>
 {% endblock %}
