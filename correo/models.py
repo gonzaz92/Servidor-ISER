@@ -2,6 +2,11 @@ from django.db import models
 from django.core.validators import MaxValueValidator
 from expedientes.models import categorias, validar_numero
 
+opciones = (
+    ('Si', 'Si'),
+    ('No', 'No'),
+)
+
 class Correo(models.Model):
     envio = models.DateField(verbose_name='Fecha de Envío')
     destinatario = models.CharField(max_length=100, verbose_name='Apellido')
@@ -18,3 +23,4 @@ class Correo(models.Model):
     observaciones = models.TextField(max_length=200, null='True', blank=True, verbose_name='Observaciones')
     año_acuse = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True, verbose_name='Año')
     acuse = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Número')
+    finalizado = models.Charfield(max_length=43, choices=opciones, verbose_name='Finalizado')
