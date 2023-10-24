@@ -6,47 +6,80 @@
     <form enctype="multipart/form-data" method="POST">
         {% csrf_token %}
         {{ form.non_field_errors }}
-        <label style="white-space: nowrap;" for="{{ form.envio.id_for_label }}">Fecha de Envío:</label>
-        {{ form.envio }}
         
-        <label for="{{ form.destinatario.id_for_label }}">Apellido:</label>
-        {{ form.destinatario }}
+        <div>
+            <label style="white-space: nowrap;" for="{{ form.envio.id_for_label }}">Fecha de Envío:</label>
+            {{ form.envio }}
+        </div>
         
-        <label for="{{ form.nombre.id_for_label }}">Nombre:</label>
-        {{ form.nombre }}
+        <div>
+            <label for="{{ form.destinatario.id_for_label }}">Apellido:</label>
+            {{ form.destinatario }}
+        </div>
         
-        <label for="{{ form.dni.id_for_label }}">DNI:</label>
-        {{ form.dni }}
+        <div>
+            <label for="{{ form.nombre.id_for_label }}">Nombre:</label>
+            {{ form.nombre }}
+        </div>
         
-        <label for="{{ form.carnet.id_for_label }}">Carnet:</label>
-        {{ form.carnet }}
+        <div>
+            <label for="{{ form.dni.id_for_label }}">DNI:</label>
+            {{ form.dni }}
+        </div>
         
-        <label for="{{ form.direccion.id_for_label }}">Dirección:</label>
-        {{ form.direccion }}
+        <div>
+            <label for="{{ form.carnet.id_for_label }}">Carnet:</label>
+            {{ form.carnet }}
+        </div>
         
-        <label for="{{ form.localidad.id_for_label }}">Localidad:</label>
-        {{ form.localidad }}
+        <div>
+            <label for="{{ form.direccion.id_for_label }}">Dirección:</label>
+            {{ form.direccion }}
+        </div>
         
-        <label for="{{ form.provincia.id_for_label }}">Provincia:</label>
-        {{ form.provincia }}
+        <div>
+            <label for="{{ form.localidad.id_for_label }}">Localidad:</label>
+            {{ form.localidad }}
+        </div>
         
-        <label for "{{ form.seguimiento.id_for_label }}">Seguimiento:</label>
-        {{ form.seguimiento }}
+        <div>
+            <label for="{{ form.provincia.id_for_label }}">Provincia:</label>
+            {{ form.provincia }}
+        </div>
         
-        <label for="{{ form.telefono.id_for_label }}">Teléfono:</label>
-        {{ form.telefono }}
+        <div>
+            <label for="{{ form.seguimiento.id_for_label }}">Seguimiento:</label>
+            {{ form.seguimiento }}
+        </div>
         
-        <label for="{{ form.mail.id_for_label }}">e-mail:</label>
-        {{ form.mail }}
+        <div>
+            <label for="{{ form.telefono.id_for_label }}">Teléfono:</label>
+            {{ form.telefono }}
+        </div>
         
-        <label for="{{ form.observaciones.id_for_label }}">Observaciones:</label>
-        {{ form.observaciones }}
+        <div>
+            <label for="{{ form.mail.id_for_label }}">e-mail:</label>
+            {{ form.mail }}
+        </div>
         
-        <label for="{{ form.categoria.id_for_label }}">Categoría: {{ form.categoria }}</label>
+        <div>
+            <label for="{{ form.observaciones.id_for_label }}">Observaciones:</label>
+            {{ form.observaciones }}
+        </div>
+        
+        <div>
+            <label for="{{ form.categoria.id_for_label }}">Categoría: {{ form.categoria }}</label>
+        </div>
+        
         {% if request.resolver_match.view_name == 'actualizar_correo' %}
-            <label style="white-space: nowrap;" for="{{ form.acuse.id_for_label }}">Acuse de Recibo: IF-{{ form.año_acuse }}-{{ form.acuse }}-APN-ACAD o ISER#ENACOM</label>
-            <label style="white-space: nowrap;" for="{{ form.finalizado.id_for_label }}">Finalizado: {{ form.finalizado }}</label>
+            <div>
+                <label style="white-space: nowrap;" for="{{ form.acuse.id_for_label }}">Acuse de Recibo: IF-{{ form.año_acuse }}-{{ form.acuse }}-APN-ACAD o ISER#ENACOM</label>
+            </div>
+            <div>
+                <label style="white-space: nowrap;" for="{{ form.finalizado.id_for_label }}">Finalizado: {{ form.finalizado }}</label>
+            </div>
         {% endif %}
+        
         <div class="text-center mt-4">
             <button type="submit" class="btn btn-primary">Cargar</button>
         </div>
