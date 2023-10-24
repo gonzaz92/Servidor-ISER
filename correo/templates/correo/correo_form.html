@@ -17,44 +17,29 @@
                 </td>
             </tr>
             <tr>
-                <td><label for="{{ form.destinatario.id_for_label }}">Apellido:</label></td>
-                <td>{{ form.destinatario }}</td>
-                <td><label for="{{ form.nombre.id_for_label }}">Nombre:</label></td>
-                <td>{{ form.nombre }}</td>
-                <td><label for="{{ form.dni.id_for_label }}">DNI:</label></td>
-                <td>{{ form.dni }}</td>
-                <td><label for="{{ form.carnet.id_for_label }}">Carnet:</label></td>
-                <td>{{ form.carnet }}</td>
+                <label for="{{ form.destinatario.id_for_label }}">Apellido:</label> {{ form.destinatario }}
+                <label for="{{ form.nombre.id_for_label }}">Nombre:</label> {{ form.nombre }}
+                <label for="{{ form.dni.id_for_label }}">DNI:</label></td> {{ form.dni }}
+                <label for="{{ form.carnet.id_for_label }}">Carnet:</label> {{ form.carnet }}
             </tr>
             <tr>
-                <td><label for="{{ form.direccion.id_for_label }}">Dirección:</label></td>
-                <td>{{ form.direccion }}</td>
-                <td><label for="{{ form.localidad.id_for_label }}">Localidad:</label></td>
-                <td>{{ form.localidad }}</td>
-                <td><label for="{{ form.provincia.id_for_label }}">Provincia:</label></td>
-                <td>{{ form.provincia }}</td>
-                <td><label for="{{ form.seguimiento.id_for_label }}">Seguimiento:</label></td>
-                <td>{{ form.seguimiento }}</td>
+                <label for="{{ form.direccion.id_for_label }}">Dirección:</label> {{ form.direccion }}
+                <label for="{{ form.localidad.id_for_label }}">Localidad:</label> {{ form.localidad }}
+                <label for="{{ form.provincia.id_for_label }}">Provincia:</label> {{ form.provincia }}
+                <label for="{{ form.seguimiento.id_for_label }}">Seguimiento:</label> {{ form.seguimiento }}
             </tr>
             <tr>
-                <td><label for="{{ form.telefono.id_for_label }}">Teléfono:</label></td>
-                <td>{{ form.telefono }}</td>
-                <td><label for="{{ form.mail.id_for_label }}">e-mail:</label></td>
-                <td>{{ form.mail }}</td>
-                <td><label for="{{ form.observaciones.id_for_label }}">Observaciones:</label></td>
-                <td>{{ form.observaciones }}</td>
+                <label for="{{ form.telefono.id_for_label }}">Teléfono:</label> {{ form.telefono }}
+                <label for="{{ form.mail.id_for_label }}">e-mail:</label>{{ form.mail }}
+                <label for="{{ form.observaciones.id_for_label }}">Observaciones:</label> {{ form.observaciones }}
             </tr>
         </table>
         <table class="table borderless">
             <t>
-                <td><label for="{{ form.categoria.id_for_label }}">Categoría: {{ form.categoria }}</label></td>
+                <label for="{{ form.categoria.id_for_label }}">Categoría: {{ form.categoria }}</label>
                 {% if request.resolver_match.view_name == 'actualizar_correo' %}
-                <td>
                     <label style="white-space: nowrap;" for="{{ form.acuse.id_for_label }}">Acuse de Recibo: IF-{{ form.año_acuse }}-{{ form.acuse }}-APN-ACAD o ISER#ENACOM</label>
-                </td>
-                <td>
                     <label style="white-space: nowrap;" for="{{ form.finalizado.id_for_label }}">Finalizado: {{ form.finalizado }}</label>
-                </td>
                 {% endif %}
             </tr>
         </table>
