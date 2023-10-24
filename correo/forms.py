@@ -42,4 +42,5 @@ class CorreoUpdate(forms.ModelForm):
             'observaciones': forms.Textarea(attrs={'rows': 2, 'cols': 18}),
             'año_acuse': forms.NumberInput(attrs={'size': 5}),
             'acuse': forms.NumberInput(),
+            'finalizado': forms.TextInpu(),
         }
