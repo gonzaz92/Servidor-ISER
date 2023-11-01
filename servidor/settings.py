@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Base_datos.apps.BaseDatosConfig',
     'expedientes.apps.ExpedientesConfig',
     'correo.apps.CorreoConfig',
+    'Libros.apps.LibrosConfig',
 ]
 
 MIDDLEWARE = [

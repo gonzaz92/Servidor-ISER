@@ -33,6 +33,7 @@ from Base_datos.views import (index, buscar, UserSingUp, UserLogin, UserLogout, 
                             guionistas, guion_completos, guion_completos_exp,guion_incompletos, CrearGuionista, ListarGuionista, VerGuionista, ActualizarGuion)
 from expedientes.views import (expedientes, expedientes_finalizados,calculadora_anual, buscar_expedientes, año, CrearExpediente, ListarExpedientes, ActualizarExpediente)
 from correo.views import correo, correo_finalizados, buscar_envio, NuevoEnvio, ListarCorreo, ActualizarCorreo
+from Libros.views import libros, NuevoLibro, ListarLibros, ActualizarLibro ,NuevaActa, ListarActas, DetalleActa, ActualizarActa
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -174,6 +175,17 @@ urlpatterns = [
     path('correo/<int:pk>/actualizar/', ActualizarCorreo.as_view(), name='actualizar_correo'),
     path('correo/finalizados/', correo_finalizados, name='correo_finalizados' ),
     path('buscar/envio/', buscar_envio, name='buscar_envio'),
+
+    ############Libros de Actas######################
+
+    path('libros/', libros, name='libros'),
+    path('libros/nuevo_libro/', NuevoLibro.as_view(), name='nuevo_libro'),
+    path('libros/listar_libros/', ListarLibros.as_view(), name='listar_libros'),
+    path('libros/actualizar/<int:pk>/', ActualizarLibro.as_view(), name='actualizar_libro'),
+    path('libros/actas/nueva_acta/', NuevaActa.as_view(), name='nueva_acta'),
+    path('libros/actas/listar_actas/', ListarActas.as_view(), name='listar_actas'),
+    path('libros/actas/detalle/<int:pk>/', DetalleActa.as_view(), name='detalle_acta'),
+    path('libros/actas/actualizar/<int:pk>/', ActualizarActa.as_view(), name='actualizar_acta'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

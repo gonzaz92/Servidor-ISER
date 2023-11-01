@@ -1,0 +1,24 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+
+<div class="container px-lg-5">
+    <div class="row">
+        {% for lib in object_list %}
+            <div class="col-lg-4 col-md-6 col-12 mb-4">
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                        <a class="nav-link" href="{% url 'nueva_acta' %}">
+                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-person-plus"></i></div>
+                            <h2 class="fs-4 fw-bold">{{lib.nombre}}</h2>
+                            <p class="mb-0">Actas de Examen</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

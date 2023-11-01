@@ -1,0 +1,16 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+
+<form class="mt-4" enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p></p>
+    <div class='text-center mt-4'>
+        <button type='submit' class='btn btn-primary'>Aceptar</button>
+    </div>
+    <p></p>
+</form>
+
+
+{% endblock %}

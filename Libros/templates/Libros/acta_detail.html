@@ -1,0 +1,213 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+
+<div class='container'>
+    <div style='text-align: center;'>
+        <h1>Instituto Superior de Enseñanza Radiofónica</h1>
+    </div>
+        <div style='text-align: center;'>
+            {{ acta.instituto }}
+        </div>
+        <p></p>
+        <div style='margin-left: 135px; margin-right: 135px; text-align: justify'>
+            <div class='container'>
+                <div>
+                    Examen de {{ acta.examen }}: {{ acta.carrera }}
+                </div>
+            </div>
+            <div class='container'>
+                <div>
+                    <label>Fecha: {{ acta.fecha }}</label>
+                </div>
+                <div>
+                    Reunida la mesa examinadora, con asistencia de sus miembros profesores: {{ acta.profesores }}, se procedió a cumplir su cometido con el resultado que se consigna a continuación.
+                </div>
+            </div>
+        </div>
+        <table class='table-bordered print-table' style='margin: 0 auto; width: 1000px'>
+            <tr style='text-align: center;'>
+                <th style='width: 30px'></th>
+                <th>Apellido y Nombre</th>
+                <th style='width: 200px'>Documento N°</th>
+                <th style='width: 200px'>Nota</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>{{ acta.persona1 }}</td><td>{{ acta.dni1 }}</td><td>{{ acta.nota1 }}</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>{% if acta.persona2 is not none %}{{ acta.persona2 }}{% endif %}</td>
+                <td>{% if acta.dni2 is not none %}{{ acta.dni2 }}{% endif %}</td>
+                <td>{% if acta.nota2 is not none %}{{ acta.nota2 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>{% if acta.persona3 is not none %}{{ acta.persona3 }}{% endif %}</td>
+                <td>{% if acta.dni3 is not none %}{{ acta.dni3 }}{% endif %}</td>
+                <td>{% if acta.nota3 is not none %}{{ acta.nota3 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>{% if acta.persona4 is not none %}{{ acta.persona4 }}{% endif %}</td>
+                <td>{% if acta.dni4 is not none %}{{ acta.dni4 }}{% endif %}</td>
+                <td>{% if acta.nota4 is not none %}{{ acta.nota4 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>{% if acta.persona5 is not none %}{{ acta.persona5 }}{% endif %}</td>
+                <td>{% if acta.dni5 is not none %}{{ acta.dni5 }}{% endif %}</td>
+                <td>{% if acta.nota5 is not none %}{{ acta.nota5 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>{% if acta.persona6 is not none %}{{ acta.persona6 }}{% endif %}</td>
+                <td>{% if acta.dni6 is not none %}{{ acta.dni6 }}{% endif %}</td>
+                <td>{% if acta.nota6 is not none %}{{ acta.nota6 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>{% if acta.persona7 is not none %}{{ acta.persona7 }}{% endif %}</td>
+                <td>{% if acta.dni7 is not none %}{{ acta.dni7 }}{% endif %}</td>
+                <td>{% if acta.nota7 is not none %}{{ acta.nota7 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>{% if acta.persona8 is not none %}{{ acta.persona8 }}{% endif %}</td>
+                <td>{% if acta.dni8 is not none %}{{ acta.dni8 }}{% endif %}</td>
+                <td>{% if acta.nota8 is not none %}{{ acta.nota8 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>{% if acta.persona9 is not none %}{{ acta.persona9 }}{% endif %}</td>
+                <td>{% if acta.dni9 is not none %}{{ acta.dni9 }}{% endif %}</td>
+                <td>{% if acta.nota9 is not none %}{{ acta.nota9 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>{% if acta.persona10 is not none %}{{ acta.persona10 }}{% endif %}</td>
+                <td>{% if acta.dni10 is not none %}{{ acta.dni10 }}{% endif %}</td>
+                <td>{% if acta.nota10 is not none %}{{ acta.nota10 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>{% if acta.persona11 is not none %}{{ acta.persona11 }}{% endif %}</td>
+                <td>{% if acta.dni11 is not none %}{{ acta.dni11 }}{% endif %}</td>
+                <td>{% if acta.nota11 is not none %}{{ acta.nota11 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>{% if acta.persona12 is not none %}{{ acta.persona12 }}{% endif %}</td>
+                <td>{% if acta.dni12 is not none %}{{ acta.dni12 }}{% endif %}</td>
+                <td>{% if acta.nota12 is not none %}{{ acta.nota12 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>{% if acta.persona13 is not none %}{{ acta.persona13 }}{% endif %}</td>
+                <td>{% if acta.dni13 is not none %}{{ acta.dni13 }}{% endif %}</td>
+                <td>{% if acta.nota13 is not none %}{{ acta.nota13 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>{% if acta.persona14 is not none %}{{ acta.persona14 }}{% endif %}</td>
+                <td>{% if acta.dni14 is not none %}{{ acta.dni14 }}{% endif %}</td>
+                <td>{% if acta.nota14 is not none %}{{ acta.nota14 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>{% if acta.persona15 is not none %}{{ acta.persona15 }}{% endif %}</td>
+                <td>{% if acta.dni15 is not none %}{{ acta.dni15 }}{% endif %}</td>
+                <td>{% if acta.nota15 is not none %}{{ acta.nota15 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>16</td>
+                <td>{% if acta.persona16 is not none %}{{ acta.persona16 }}{% endif %}</td>
+                <td>{% if acta.dni16 is not none %}{{ acta.dni16 }}{% endif %}</td>
+                <td>{% if acta.nota16 is not none %}{{ acta.nota16 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>17</td>
+                <td>{% if acta.persona17 is not none %}{{ acta.persona17 }}{% endif %}</td>
+                <td>{% if acta.dni17 is not none %}{{ acta.dni17 }}{% endif %}</td>
+                <td>{% if acta.nota17 is not none %}{{ acta.nota17 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>18</td>
+            <td>{% if acta.persona18 is not none %}{{ acta.persona18 }}{% endif %}</td>
+            <td>{% if acta.dni18 is not none %}{{ acta.dni18 }}{% endif %}</td>
+            <td>{% if acta.nota18 is not none %}{{ acta.nota18 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>19</td>
+                <td>{% if acta.persona19 is not none %}{{ acta.persona19 }}{% endif %}</td>
+                <td>{% if acta.dni19 is not none %}{{ acta.dni19 }}{% endif %}</td>
+                <td>{% if acta.nota19 is not none %}{{ acta.nota19 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td>{% if acta.persona20 is not none %}{{ acta.persona20 }}{% endif %}</td>
+                <td>{% if acta.dni20 is not none %}{{ acta.dni20 }}{% endif %}</td>
+                <td>{% if acta.nota20 is not none %}{{ acta.nota20 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>21</td>
+                <td>{% if acta.persona21 is not none %}{{ acta.persona21 }}{% endif %}</td>
+                <td>{% if acta.dni21 is not none %}{{ acta.dni21 }}{% endif %}</td>
+                <td>{% if acta.nota21 is not none %}{{ acta.nota21 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>22</td>
+                <td>{% if acta.persona22 is not none %}{{ acta.persona22 }}{% endif %}</td>
+                <td>{% if acta.dni22 is not none %}{{ acta.dni22 }}{% endif %}</td>
+                <td>{% if acta.nota22 is not none %}{{ acta.nota22 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>23</td>
+                <td>{% if acta.persona23 is not none %}{{ acta.persona23 }}{% endif %}</td>
+                <td>{% if acta.dni23 is not none %}{{ acta.dni23 }}{% endif %}</td>
+                <td>{% if acta.nota23 is not none %}{{ acta.nota23 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>24</td>
+                <td>{% if acta.persona24 is not none %}{{ acta.persona24 }}{% endif %}</td>
+                <td>{% if acta.dni24 is not none %}{{ acta.dni24 }}{% endif %}</td>
+                <td>{% if acta.nota24 is not none %}{{ acta.nota24 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>25</td>
+                <td>{% if acta.persona25 is not none %}{{ acta.persona25 }}{% endif %}</td>
+                <td>{% if acta.dni25 is not none %}{{ acta.dni25 }}{% endif %}</td>
+                <td>{% if acta.nota25 is not none %}{{ acta.nota25 }}{% endif %}</td>
+            </tr>
+        </table>
+        <div class='container'>
+            <div style='margin-left: 135px; margin-right: 135px; text-align: justify'>
+                Se hace constar que, sobre un total de {{ acta.total }} alumnos/as, resultaron {{ acta.aprobados }} aprobados/as, {{ acta.desaprobados }} desaprobados/as, y {{ acta.ausentes }} ausentes.
+            </div>
+        </div>
+        <p></p>
+        <table style='margin: 0 auto; width: 1000px'>
+            <tr>
+                <td style='text-align: left; padding-left: 50px;'>{% if acta.firma1 is not none %}<img src="{{ acta.firma1 }}" alt="Firma 1">{% endif %}</td>
+                <td style='text-align: center;'>{% if acta.firma2 is not none %}{{ acta.firma2 }}{% endif %}</td>
+                <td style='text-align: right; padding-right: 50px;'>{% if acta.firma3 is not none %}{{ acta.firma3 }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td style='text-align: left;'>........................................</td>
+                <td style='text-align: center;'>........................................</td>
+                <td style='text-align: right;'>........................................</td>
+            </tr>
+            <tr>
+                <td style='text-align: left; padding-left: 50px;'>Firma</td>
+                <td style='text-align: center;'>Firma</td>
+                <td style='text-align: right; padding-right: 50px;'>Firma</td>
+            </tr>
+        </table>
+        <p></p>
+        <div class='text-center mt-4'>
+            <button type='submit' class='btn btn-primary'>Aceptar</button>
+        </div>
+</div>
+<p></p>
+{% endblock %}

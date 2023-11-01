@@ -1,0 +1,168 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+<div class='container'>
+    <form class="mt-4" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div style='text-align: center;'>
+            <h1>Instituto Superior de Enseñanza Radiofónica</h1>
+        </div>
+        <div style='text-align: center;'>
+            {{ form.instituto }}
+        </div>
+        <p></p>
+        <div style='margin-left: 135px; margin-right: 135px; text-align: justify'>
+            <div class='container'>
+                <div>
+                    Examen de {{ form.examen }}: {{ form.carrera }}
+                </div>
+            </div>
+            <div class='container'>
+                <div>
+                    <label>Fecha: {{ form.fecha }}</label>
+                </div>
+                <div>
+                    Reunida la mesa examinadora, con asistencia de sus miembros profesores: {{ form.profesores }}, se procedió a cumplir su cometido con el resultado que se consigna a continuación.
+                </div>
+            </div>
+        </div>
+        <table class='table-bordered' style='margin: 0 auto; width: 1000px'>
+            <tr style='text-align: center;'>
+                <th style='width: 30px'></th>
+                <th>Apellido y Nombre</th>
+                <th style='width: 200px'>Documento N°</th>
+                <th style='width: 200px'>Nota</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>{{ form.persona1 }}</td><td>{{ form.dni1 }}</td><td>{{ form.nota1 }}</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>{{ form.persona2 }}</td><td>{{ form.dni2 }}</td><td>{{ form.nota2 }}</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>{{ form.persona3 }}</td><td>{{ form.dni3 }}</td><td>{{ form.nota3 }}</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>{{ form.persona4 }}</td><td>{{ form.dni4 }}</td><td>{{ form.nota4 }}</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>{{ form.persona5 }}</td><td>{{ form.dni5 }}</td><td>{{ form.nota5 }}</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>{{ form.persona6 }}</td><td>{{ form.dni6 }}</td><td>{{ form.nota6 }}</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>{{ form.persona7 }}</td><td>{{ form.dni7 }}</td><td>{{ form.nota7 }}</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>{{ form.persona8 }}</td><td>{{ form.dni8 }}</td><td>{{ form.nota8 }}</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>{{ form.persona9 }}</td><td>{{ form.dni9 }}</td><td>{{ form.nota9 }}</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>{{ form.persona10 }}</td><td>{{ form.dni10 }}</td><td>{{ form.nota10 }}</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>{{ form.persona11 }}</td><td>{{ form.dni11 }}</td><td>{{ form.nota11 }}</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>{{ form.persona12 }}</td><td>{{ form.dni12 }}</td><td>{{ form.nota12 }}</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>{{ form.persona13 }}</td><td>{{ form.dni13 }}</td><td>{{ form.nota13 }}</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>{{ form.persona14 }}</td><td>{{ form.dni14 }}</td><td>{{ form.nota14 }}</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>{{ form.persona15 }}</td><td>{{ form.dni15 }}</td><td>{{ form.nota15 }}</td>
+            </tr>
+            <tr>
+                <td>16</td>
+                <td>{{ form.persona16 }}</td><td>{{ form.dni16 }}</td><td>{{ form.nota16 }}</td>
+            </tr>
+            <tr>
+                <td>17</td>
+                <td>{{ form.persona17 }}</td><td>{{ form.dni17 }}</td><td>{{ form.nota17 }}</td>
+            </tr>
+            <tr>
+                <td>18</td>
+                <td>{{ form.persona18 }}</td><td>{{ form.dni18 }}</td><td>{{ form.nota18 }}</td>
+            </tr>
+            <tr>
+                <td>19</td>
+                <td>{{ form.persona19 }}</td><td>{{ form.dni19 }}</td><td>{{ form.nota19 }}</td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td>{{ form.persona20 }}</td><td>{{ form.dni20 }}</td><td>{{ form.nota20 }}</td>
+            </tr>
+            <tr>
+                <td>21</td>
+                <td>{{ form.persona21 }}</td><td>{{ form.dni21 }}</td><td>{{ form.nota21 }}</td>
+            </tr>
+            <tr>
+                <td>22</td>
+                <td>{{ form.persona22 }}</td><td>{{ form.dni22 }}</td><td>{{ form.nota22 }}</td>
+            </tr>
+            <tr>
+                <td>23</td>
+                <td>{{ form.persona23 }}</td><td>{{ form.dni23 }}</td><td>{{ form.nota23 }}</td>
+            </tr>
+            <tr>
+                <td>24</td>
+                <td>{{ form.persona24 }}</td><td>{{ form.dni24 }}</td><td>{{ form.nota24 }}</td>
+            </tr>
+            <tr>
+                <td>25</td>
+                <td>{{ form.persona25 }}</td><td>{{ form.dni25 }}</td><td>{{ form.nota25 }}</td>
+            </tr>
+        </table>
+        <div class='container'>
+            <div style='margin-left: 135px; margin-right: 135px; text-align: justify'>
+                Se hace constar que, sobre un total de {{ form.total }} alumnos/as, resultaron {{ form.aprobados }} aprobados/as, {{ form.desaprobados }} desaprobados/as, y {{ form.ausentes }} ausentes.
+            </div>
+        </div>
+        <p></p>
+        <table style='margin: 0 auto; width: 1000px'>
+            <tr>
+                <td style='text-align: left; padding-left: 50px;'>{{ form.firma1 }}</td>
+                <td style='text-align: center;'>{{ form.firma2 }}</td>
+                <td style='text-align: right; padding-right: 50px;'>{{ form.firma3 }}</td>
+            </tr>
+            <tr>
+                <td style='text-align: left;'>........................................</td>
+                <td style='text-align: center;'>........................................</td>
+                <td style='text-align: right;'>........................................</td>
+            </tr>
+            <tr>
+                <td style='text-align: left; padding-left: 50px;'>Firma</td>
+                <td style='text-align: center;'>Firma</td>
+                <td style='text-align: right; padding-right: 50px;'>Firma</td>
+            </tr>
+        </table>
+        <p></p>
+        <div class='text-center mt-4'>
+            <button type='submit' class='btn btn-primary'>Aceptar</button>
+        </div>
+    </form>
+</div>
+<p></p>
+{% endblock %}
