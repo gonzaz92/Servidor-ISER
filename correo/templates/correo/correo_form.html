@@ -78,6 +78,10 @@
             <div class="mb-2">
                 <label style="white-space: nowrap;" for="{{ form.finalizado.id_for_label }}">Finalizado: {{ form.finalizado }}</label>
             </div>
+            <div class="mb-2">
+                <label for="{{ form.caja.id_for_label }}">Se guardo en Caja: {{ form.Caja }}</label>
+                {{ form.caja }}
+            </div>
         {% endif %}
         
         <div class="text-center mt-4">

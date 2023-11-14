@@ -1,0 +1,14 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+<form style="text-align: center;" method="post">
+    {% csrf_token %}
+    <p>¿Seguro que desea borrar el Expediete: EX-{{ expediente.Año_de_Expediente }}-{{ expediente.Número_de_Expediente }}- -APN-SDYME#ENACOM?</p>
+
+    <p>
+        <input class="btn btn-primary" type="submit" value="Si">
+        <a class="btn btn-primary" href="{% url 'lista_expedientes' %}" type="button" >No</a>
+    </p>
+</form>
+<p></p>
+{% endblock %}

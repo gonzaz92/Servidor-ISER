@@ -40,6 +40,9 @@
                             <td style="padding-bottom: 1%;">{{ cor.seguimiento}}</td>
                             <td style="padding-bottom: 1%;">
                                 <a class="link" href="{% url 'actualizar_correo' cor.id %}" type="submit">Abrir</a>
+                                {% if user.is_superuser %}
+                                    <a class="link" href="{% url 'borrar_correo' cor.id %}" type="submit">Borrar</a>
+                                {% endif %}
                             </td>
                         </tr>
                     {% endif %}

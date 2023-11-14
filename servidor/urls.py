@@ -31,8 +31,8 @@ from Base_datos.views import (index, buscar, UserSingUp, UserLogin, UserLogout, 
                             opplantal_completos, opplantal_completos_exp,opplantal_incompletos, CrearOperadordePlantaLocal, ListarOperadordePlantaLocal, VerOperadordePlantaLocal, ActualizarOPPlantaLocal,
                             productores, prod_completos, prod_completos_exp, prod_incompletos, CrearProductor, ListarProductor, VerProductor, ActualizarProd,
                             guionistas, guion_completos, guion_completos_exp,guion_incompletos, CrearGuionista, ListarGuionista, VerGuionista, ActualizarGuion)
-from expedientes.views import (expedientes, expedientes_finalizados,calculadora_anual, buscar_expedientes, año, CrearExpediente, ListarExpedientes, ActualizarExpediente)
-from correo.views import correo, correo_finalizados, buscar_envio, NuevoEnvio, ListarCorreo, ActualizarCorreo
+from expedientes.views import (expedientes, expedientes_finalizados,calculadora_anual, buscar_expedientes, año, CrearExpediente, ListarExpedientes, ActualizarExpediente, BorrarExpediente)
+from correo.views import correo, correo_finalizados, buscar_envio, NuevoEnvio, ListarCorreo, ActualizarCorreo, CorreoBorrar
 from Libros.views import libros, NuevoLibro, ListarLibros, ActualizarLibro ,NuevaActa, ListarActas, DetalleActa, ActualizarActa
 
 urlpatterns = [
@@ -166,6 +166,7 @@ urlpatterns = [
     path('expedientes/ingresar_año/', año, name='meta'),
     path('expediente/calcular/<int:anio_actual>', calculadora_anual, name='calculadora'),
     path('buscar/expedientes/', buscar_expedientes, name='buscar_expedientes'),
+    path('expediente/<int:pk>/borrar', staff_member_required(BorrarExpediente.as_view()), name='borrar_expediente'),
 
     ###############Correo#########################
     
@@ -175,6 +176,7 @@ urlpatterns = [
     path('correo/<int:pk>/actualizar/', ActualizarCorreo.as_view(), name='actualizar_correo'),
     path('correo/finalizados/', correo_finalizados, name='correo_finalizados' ),
     path('buscar/envio/', buscar_envio, name='buscar_envio'),
+    path('correo/borrar/<int:pk>/', staff_member_required(CorreoBorrar.as_view()), name='borrar_correo'),
 
     ############Libros de Actas######################
 

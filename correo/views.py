@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from correo.forms import CorreoForm, CorreoUpdate
 from correo.models import Correo
-from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
@@ -15,6 +15,9 @@ def permiso_ver(user):
 
 def permiso_actualizar(user):
     return user.has_perm('correo.change_correo')
+
+def permiso_borrar(user):
+    return user.has_perm('correo.delete_correo')
 
 @login_required
 def correo(request):
@@ -56,3 +59,14 @@ class ActualizarCorreo(UpdateView):
     model = Correo
     success_url = reverse_lazy('correo')
     form_class = CorreoUpdate
+
+@method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(permiso_borrar), name='get')
+class CorreoBorrar(DeleteView):
+    model = Correo
+    success_url = reverse_lazy('correo')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['envio'] = Correo.objects.get(pk=self.kwargs['pk'])
+        return context

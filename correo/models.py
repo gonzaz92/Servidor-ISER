@@ -24,3 +24,4 @@ class Correo(models.Model):
     año_acuse = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True, verbose_name='Año')
     acuse = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Número')
     finalizado = models.CharField(max_length=43, null='True', blank=True, choices=opciones, default='No', verbose_name='Finalizado')
+    caja = models.CharField(max_length=100, null='True', blank=True, name='Caja')
