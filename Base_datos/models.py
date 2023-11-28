@@ -20,6 +20,7 @@ class Persona(models.Model):
     número_disposición = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Número GDE - Disposición')
     año_acuse = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True, verbose_name='Año Acuse de Recibo')
     acuse = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Número GDE - Acuse de Recibo')
+    caja = models.CharField(max_length=100, null='True', blank=True, verbose_name='Caja')
     
     class Meta:
         abstract = True

@@ -35,15 +35,25 @@
                 <td>Acta de Examen: IF-{{ form.año_acta }}-{{ form.acta }}-APN-ACAD#ENACOM</td>
             </tr>
         </table>
-        <table class='table borderless'>
-            <tr>
-                <td>Expediente: <span style='font-size: small;'>IF-{{ form.año_expediente }}-{{ form.número_expediente }}- -APN-SDYME#ENACOM</span></td>
+        <div>
+            <table class='table borderless'>
+                <tr>
+                    <td>Expediente: <span style='font-size: small;'>IF-{{ form.año_expediente }}-{{ form.número_expediente }}- -APN-SDYME#ENACOM</span></td>
+                    {% if request.resolver_match.view_name == 'actualizar_ln' %}
+                    <td>Disposición: <span style='font-size: small;'>IF-{{ form.año_disposición }}-{{ form.número_disposición }}-APN-DNSA#ENACOM</span></td>
+                    <td>Acuse de Recibo: <span style='font-size: small;'>IF-{{ form.año_acuse }}-{{ form.acuse }}- -APN-ACAD#ENACOM</span></td>
+                    {% endif %}
+                </tr>
+            </table>
+            <table class='table borderless'>
                 {% if request.resolver_match.view_name == 'actualizar_ln' %}
-                <td>Disposición: <span style='font-size: small;'>IF-{{ form.año_disposición }}-{{ form.número_disposición }}-APN-DNSA#ENACOM</span></td>
-                <td>Acuse de Recibo: <span style='font-size: small;'>IF-{{ form.año_acuse }}-{{ form.acuse }}- -APN-ACAD#ENACOM</span></td>
+                <tr>
+                    <td style='text-align: center;'>Se guardó en caja: <span style='font-size: small;'>{{ form.caja }}</span></td>
+                </tr>
                 {% endif %}
-            </tr>
-        </table>
+            </table>
+        </div>
+        
         <div class="text-center mt-4">
             <button type="submit" class="btn btn-primary">Cargar</button>
         </div>

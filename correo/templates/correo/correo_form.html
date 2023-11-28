@@ -2,7 +2,12 @@
 
 {% block contenido %}
 <div class="container text-center">
-    <h1 class="mt-4">Nuevo Envío</h1> 
+    {% if request.resolver_match.view_name == 'actualizar_correo' %}
+        <h1 class="mt-4">Actualizar Envío</h1>
+    {% else %}
+        <h1 class="mt-4">Nuevo Envío</h1>
+    {% endif %}
+
     <form class="mt-4" enctype="multipart/form-data" method="POST">
         {% csrf_token %}
         {{ form.non_field_errors }}

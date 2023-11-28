@@ -40,6 +40,7 @@ class LocutorNacionalForm(forms.ModelForm):
             'número_disposición': forms.NumberInput(attrs={'size': 10}),
             'año_acuse': forms.NumberInput(attrs={'size': 5}),
             'acuse': forms.NumberInput(attrs={'size': 10}),
+            'caja': forms.TextInput(),
             }
 
 ######################### Operador Nacional Radio ################################
@@ -70,6 +71,7 @@ class RadioNacionalForm(forms.ModelForm):
             'número_disposición': forms.NumberInput(attrs={'size': 10}),
             'año_acuse': forms.NumberInput(attrs={'size': 5}),
             'acuse': forms.NumberInput(attrs={'size': 10}),
+            'caja': forms.TextInput(),
             }
 
 ######################### Operador Nacional TV ###################################
@@ -100,6 +102,7 @@ class TVNacionalForm(forms.ModelForm):
             'número_disposición': forms.NumberInput(attrs={'size': 10}),
             'año_acuse': forms.NumberInput(attrs={'size': 5}),
             'acuse': forms.NumberInput(attrs={'size': 10}),
+            'caja': forms.TextInput(),
             }
 
 ######################### Operador Nacional Planta ###############################
@@ -130,6 +133,7 @@ class PlantaNacionalForm(forms.ModelForm):
             'número_disposición': forms.NumberInput(attrs={'size': 10}),
             'año_acuse': forms.NumberInput(attrs={'size': 5}),
             'acuse': forms.NumberInput(attrs={'size': 10}),
+            'caja': forms.TextInput(),
             }
 
 ######################### Locutor Local ##########################################
@@ -161,6 +165,7 @@ class LocutorLocalForm(forms.ModelForm):
             'número_disposición': forms.NumberInput(attrs={'size': 10}),
             'año_acuse': forms.NumberInput(attrs={'size': 5}),
             'acuse': forms.NumberInput(attrs={'size': 10}),
+            'caja': forms.TextInput(),
             }
 
 ######################### Operador Local Radio ###################################
@@ -192,6 +197,7 @@ class RadioLocalForm(forms.ModelForm):
             'número_disposición': forms.NumberInput(attrs={'size': 10}),
             'año_acuse': forms.NumberInput(attrs={'size': 5}),
             'acuse': forms.NumberInput(attrs={'size': 10}),
+            'caja': forms.TextInput(),
             }
 
 ######################### Operador Local TV ######################################
@@ -223,6 +229,7 @@ class TVLocalForm(forms.ModelForm):
             'número_disposición': forms.NumberInput(attrs={'size': 10}),
             'año_acuse': forms.NumberInput(attrs={'size': 5}),
             'acuse': forms.NumberInput(attrs={'size': 10}),
+            'caja': forms.TextInput(),
             }
 
 ######################### Operador Local Planta ##################################
@@ -254,6 +261,7 @@ class PlantaLocalForm(forms.ModelForm):
             'número_disposición': forms.NumberInput(attrs={'size': 10}),
             'año_acuse': forms.NumberInput(attrs={'size': 5}),
             'acuse': forms.NumberInput(attrs={'size': 10}),
+            'caja': forms.TextInput(),
             }
 
 ######################### Productor ##############################################
@@ -284,6 +292,7 @@ class ProductorForm(forms.ModelForm):
             'número_disposición': forms.NumberInput(attrs={'size': 10}),
             'año_acuse': forms.NumberInput(attrs={'size': 5}),
             'acuse': forms.NumberInput(attrs={'size': 10}),
+            'caja': forms.TextInput(),
             }
 
 ######################### Guionista ##############################################
@@ -314,4 +323,5 @@ class GuionistaForm(forms.ModelForm):
             'número_disposición': forms.NumberInput(attrs={'size': 10}),
             'año_acuse': forms.NumberInput(attrs={'size': 5}),
             'acuse': forms.NumberInput(attrs={'size': 10}),
+            'caja': forms.TextInput(),
             }

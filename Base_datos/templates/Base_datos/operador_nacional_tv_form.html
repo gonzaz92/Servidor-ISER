@@ -44,6 +44,13 @@
                 {% endif %}
             </tr>
         </table>
+        <table class='table borderless'>
+            {% if request.resolver_match.view_name == 'actualizar_operador_nacional_tv' %}
+            <tr>
+                <td style='text-align: center;'>Se guardó en caja: <span style='font-size: small;'>{{ form.caja }}</span></td>
+            </tr>
+            {% endif %}
+        </table>
         <div class="text-center mt-4">
             <button type="submit" class="btn btn-primary">Cargar</button>
         </div>
