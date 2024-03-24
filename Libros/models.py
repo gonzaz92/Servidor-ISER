@@ -71,6 +71,12 @@ class Firma(models.Model):
     user = models.OneToOneField(to=User, on_delete=models.CASCADE, related_name='firma')
     imagen = models.ImageField(upload_to='firmas', null='True', blank=True)
 
+    def __str__(self):
+        return self.user.last_name + ',' + ' ' + self.user.first_name
+    
+    def ver_imagen(self):
+        return self.imagen
+
 class Libro(models.Model):
     nombre = models.CharField(max_length=200, unique=True, verbose_name='Nombre del instituto')
 
