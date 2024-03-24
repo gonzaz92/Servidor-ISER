@@ -75,7 +75,7 @@ class Firma(models.Model):
         return self.user.last_name + ',' + ' ' + self.user.first_name
     
     def ver_imagen(self):
-        return self.imagen
+        return self.imagen.url
 
 class Libro(models.Model):
     nombre = models.CharField(max_length=200, unique=True, verbose_name='Nombre del instituto')

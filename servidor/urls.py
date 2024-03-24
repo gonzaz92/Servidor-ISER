@@ -185,7 +185,7 @@ urlpatterns = [
     path('libros/listar_libros/', ListarLibros.as_view(), name='listar_libros'),
     path('libros/actualizar/<int:pk>/', ActualizarLibro.as_view(), name='actualizar_libro'),
     path('libros/actas/nueva_acta/', NuevaActa.as_view(), name='nueva_acta'),
-    path('libros/actas/listar_actas/', ListarActas.as_view(), name='listar_actas'),
+    path('libros/actas/listar_actas/<str:nombre>', ListarActas.as_view(), name='listar_actas'),
     path('libros/actas/detalle/<int:pk>/', DetalleActa.as_view(), name='detalle_acta'),
     path('libros/actas/actualizar/<int:pk>/', ActualizarActa.as_view(), name='actualizar_acta'),
 ]

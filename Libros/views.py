@@ -25,7 +25,7 @@ class NuevoLibro(CreateView):
 class ListarLibros(ListView):
     model = Libro
     fields = '__all__'
-    succes_url = reverse_lazy('libros')
+    success_url = reverse_lazy('libros')
 
 class ActualizarLibro(UpdateView):
     model = Libro
@@ -39,15 +39,14 @@ class NuevaActa (CreateView):
     form_class = ActaForm
     success_url = reverse_lazy('libros')
 
-    # def get_context_data(self, **kwargs):
-    #     context = super(NuevaActa, self).get_context_data(**kwargs)
-    #     context['institutos'] = institutos
-    #     print(context['institutos'])
-    #     return context
-
 class ListarActas(ListView):
     model = Acta
     fields = '__all__'
+    template_name = 'Libros/acta_list.html'
+
+    def get_queryset(self):
+        nombre = self.kwargs['nombre']
+        return Acta.objects.filter(instituto = nombre)
 
 class DetalleActa(DetailView):
     model = Acta

@@ -1,5 +1,46 @@
 {% extends 'Base_datos/base.html' %}
 
 {% block contenido %}
+    <div style="margin: 1%; width: 95%; display: flex">
+        {% if object_list %}
+            <div>
+                <h2 style="font-weight: bold">Actas de examen: {{object_list.0.instituto}} </h2>
+            </div>
+            <div style="margin-left: auto">
+                <a class="btn btn-primary btn-lg" style="justify-content: flex-end;" href="{% url 'listar_libros' %}" type="submit">Volver</a>
+            </div>
+        {% endif %}
+    </div>
+
+    <div style="margin: 0; padding: 0; display: grid ;place-items: center">
+        <table style="width: 95%; margin-left: 5%; text-align: center">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Tipo</th>
+                    <th>Carrera</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for insti in object_list %}
+                    {% if insti.id %}
+                        <tr>
+                            <td style="padding-bottom: 1%;">{{insti.fecha}}</td>
+                            <td style="padding-bottom: 1%;">{{insti.examen}}</td>
+                            <td style="padding-bottom: 1%;">{{insti.carrera}}</td>
+                            <td style="padding-bottom: 1%;">
+                                <a class="link" href="{% url 'detalle_acta' insti.id %}" type="submit">Abrir</a>
+                                {% if user.is_superuser %}
+                                    <a class="link" href="{% url 'actualizar_acta' insti.id %}" type="submit">Actualizar</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <p></p>
 
 {% endblock %}
