@@ -1,11 +1,18 @@
 from django import forms
-from .models import Acta
+from .models import Acta, Libro
+from django.contrib import admin
+from django.contrib.admin.widgets import AutocompleteSelect
+
 
 class ActaForm(forms.ModelForm):
     class Meta:
         model = Acta
         fields = '__all__'
         widgets = {
+            # 'instituto' : AutocompleteSelect(
+            #     Acta._meta.get_field('instituto').remote_field,
+            #     admin.site, 
+            #     attrs={'placeholder' : 'selecionar...'}),
             'fecha' : forms.DateInput(attrs={'type':'date'}),
             'profesores' : forms.TextInput(attrs={'size': '114%'}),
             'persona1' : forms.TextInput(attrs={'size': '60%'}),

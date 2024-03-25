@@ -172,3 +172,10 @@ class Acta(models.Model):
     firma2 = models.ForeignKey(Firma, on_delete=models.CASCADE, null='True', blank=True, related_name='acta_firma2')
     firma3 = models.ForeignKey(Firma, on_delete=models.CASCADE, null='True', blank=True, related_name='acta_firma3')
 
+    class Meta:
+        verbose_name = 'Acta'
+        verbose_name_plural = 'Actas'
+
+    def __str__(self):
+        return f'{self.fecha}, {self.instituto}'
+

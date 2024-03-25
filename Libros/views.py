@@ -6,16 +6,12 @@ from django.urls import reverse_lazy
 from django.db.models import Q
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required, user_passes_test
-import locale
+from django.http import JsonResponse
 
 institutos = Libro.objects.all()
 
 def libros(request):
     return render(request, 'Libros/libros.html')
-
-def prueba(request):
-    institutos
-    return render(request, 'Libros/acta_form.html', {'institutos' : institutos})
 
 class NuevoLibro(CreateView):
     model = Libro
@@ -38,6 +34,13 @@ class NuevaActa (CreateView):
     template_name = 'Libros/acta_form.html'
     form_class = ActaForm
     success_url = reverse_lazy('libros')
+
+    def buscar_libros(request):
+            if request.is_ajax():
+                query = request.GET.get('term', '')
+                libros = Libro.objects.filter(nombre__icontains=query)
+                results = [libro.nombre for libro in libros]
+                return JsonResponse(results, safe=False)
 
 class ListarActas(ListView):
     model = Acta
