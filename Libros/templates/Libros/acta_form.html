@@ -8,9 +8,15 @@
         <div style='text-align: center;'>
             <h1>Instituto Superior de Enseñanza Radiofónica</h1>
         </div>
-        <div style='text-align: center;'>
-            {{ form.instituto }}
-        </div>
+
+        {% csrf_token %}
+        <input type="text" id="instituto_input" name="instituto" list="opciones" style="display: block; margin: 0 auto; width: 700px;">
+        <datalist id="opciones">
+            {% for opcion in opciones %}
+                <option value="{{ opcion }}"></option>
+            {% endfor %}
+        </datalist>
+
         <p></p>
         <div style='margin-left: 135px; margin-right: 135px; text-align: justify'>
             <div class='container'>

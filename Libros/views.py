@@ -8,8 +8,6 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import JsonResponse
 
-institutos = Libro.objects.all()
-
 def libros(request):
     return render(request, 'Libros/libros.html')
 
@@ -30,17 +28,22 @@ class ActualizarLibro(UpdateView):
 
 #################Actas#####################
 
-class NuevaActa (CreateView):
+class NuevaActa(CreateView):
     template_name = 'Libros/acta_form.html'
     form_class = ActaForm
     success_url = reverse_lazy('libros')
 
-    def buscar_libros(request):
-            if request.is_ajax():
-                query = request.GET.get('term', '')
-                libros = Libro.objects.filter(nombre__icontains=query)
-                results = [libro.nombre for libro in libros]
-                return JsonResponse(results, safe=False)
+    def listado(self):
+        institutos = Libro.objects.values_list('nombre', flat=True)
+        opciones = []
+        for insti in institutos:
+            opciones.append(insti)
+        return opciones
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['opciones'] = self.listado
+        return context
 
 class ListarActas(ListView):
     model = Acta

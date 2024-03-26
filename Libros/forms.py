@@ -1,7 +1,7 @@
 from django import forms
 from .models import Acta, Libro
-from django.contrib import admin
-from django.contrib.admin.widgets import AutocompleteSelect
+
+# from django.contrib import admin
 
 
 class ActaForm(forms.ModelForm):
@@ -13,6 +13,7 @@ class ActaForm(forms.ModelForm):
             #     Acta._meta.get_field('instituto').remote_field,
             #     admin.site, 
             #     attrs={'placeholder' : 'selecionar...'}),
+            'instituto' : forms.TextInput(attrs={'size':'60%'}),
             'fecha' : forms.DateInput(attrs={'type':'date'}),
             'profesores' : forms.TextInput(attrs={'size': '114%'}),
             'persona1' : forms.TextInput(attrs={'size': '60%'}),
@@ -47,6 +48,7 @@ class ActaUpdate(forms.ModelForm):
         model = Acta
         fields = '__all__'
         widgets = {
+            'instituto' : forms.TextInput(attrs={'size':'60%'}),
             'fecha' : forms.DateInput(attrs={'type':'date'}),
             'profesores' : forms.TextInput(attrs={'size': '114%'}),
             'persona1' : forms.TextInput(attrs={'size': '60%'}),

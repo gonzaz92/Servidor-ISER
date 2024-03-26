@@ -188,6 +188,7 @@ urlpatterns = [
     path('libros/actas/listar_actas/<str:nombre>', ListarActas.as_view(), name='listar_actas'),
     path('libros/actas/detalle/<int:pk>/', DetalleActa.as_view(), name='detalle_acta'),
     path('libros/actas/actualizar/<int:pk>/', ActualizarActa.as_view(), name='actualizar_acta'),
+    path('libros/actas/actualizar/<int:pk>/', ActualizarActa.as_view(), name='actualizar_acta'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
