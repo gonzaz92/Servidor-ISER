@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Libro, Acta
+from .models import Libro, Acta, Firma
 from django.views.generic import CreateView, ListView, DetailView, UpdateView
 from .forms import ActaForm, ActaUpdate
 from django.urls import reverse_lazy
@@ -33,6 +33,13 @@ class NuevaActa(CreateView):
     form_class = ActaForm
     success_url = reverse_lazy('libros')
 
+    def firmo(self):
+        firmascargadas = Firma.objects.values_list('id', 'user__last_name', 'user__first_name')
+        firmas = []
+        for firm in firmascargadas:
+            firmas.append(firm)
+        return firmas
+
     def listado(self):
         institutos = Libro.objects.values_list('nombre', flat=True)
         opciones = []
@@ -42,7 +49,8 @@ class NuevaActa(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['opciones'] = self.listado
+        context['opciones'] = self.listado()
+        context['firmas'] = self.firmo()
         return context
 
 class ListarActas(ListView):
@@ -52,7 +60,7 @@ class ListarActas(ListView):
 
     def get_queryset(self):
         nombre = self.kwargs['nombre']
-        return Acta.objects.filter(instituto = nombre)
+        return Acta.objects.filter(instituto = nombre).order_by('-fecha')
 
 class DetalleActa(DetailView):
     model = Acta

@@ -1,6 +1,26 @@
 {% extends 'Base_datos/base.html' %}
 
 {% block contenido %}
+
+<script>
+    function checkUser(inputId) {
+        var usuario = document.getElementById(inputId).value.trim(); // Elimina espacios en blanco al inicio y al final
+        var numerosPermitidos = [1, 2, 3]; // Lista de números permitidos
+        
+        // Extraer el número del usuario del valor introducido en el campo de entrada
+        var user = parseInt(usuario.match(/\d+/));
+
+        // Verificar si el número extraído está en la lista de números permitidos
+        if (numerosPermitidos.includes(user)) {
+            document.getElementById(inputId).value = user;
+        } else {
+            // Si el usuario no está en la lista permitida, mostrar un mensaje de error
+            alert("El número introducido no es válido. Por favor, introduzca un número permitido.");
+            document.getElementById(inputId).value = ""; // Limpiar el campo de entrada
+        }
+    }
+</script>
+
 <div class='container'>
     <form class="mt-4" enctype="multipart/form-data" method="POST">
         {% csrf_token %}
@@ -149,9 +169,33 @@
         <p></p>
         <table style='margin: 0 auto; width: 1000px'>
             <tr>
-                <td style='text-align: left; padding-left: 50px;'>{{ form.firma1 }}</td>
+                {% comment %} <td style='text-align: left; padding-left: 50px;'>{{ form.firma1 }}</td>
                 <td style='text-align: center;'>{{ form.firma2 }}</td>
-                <td style='text-align: right; padding-right: 50px;'>{{ form.firma3 }}</td>
+                <td style='text-align: right; padding-right: 50px;'>{{ form.firma3 }}</td> {% endcomment %}
+                <td style='text-align: left;'>
+                    <input type="text" id="firma1_input" name="firma1" list="firmas" onblur="checkUser('firma1_input')">
+                    <datalist id="firmas">
+                        {% for firm in firmas %}
+                            <option value="{{ firm }}"></option>
+                        {% endfor %}
+                    </datalist>
+                </td>
+                <td style='text-align: center;'>
+                    <input type="text" id="firma2_input" name="firma2" list="firmas" onblur="checkUser('firma2_input')" style='text-align: left; padding-left: 50px;'>
+                    <datalist id="firmas">
+                        {% for firm in firmas %}
+                            <option value="{{ firm }}"></option>
+                        {% endfor %}
+                    </datalist>
+                </td>
+                <td style='text-align: right;'>
+                    <input type="text" id="firma3_input" name="firma3" list="firmas" onblur="checkUser('firma3_input')" style='text-align: left; padding-left: 50px;'>
+                    <datalist id="firmas">
+                        {% for firm in firmas %}
+                            <option value="{{ firm }}"></option>
+                        {% endfor %}
+                    </datalist>
+                </td>
             </tr>
             <tr>
                 <td style='text-align: left;'>........................................</td>

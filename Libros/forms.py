@@ -9,10 +9,6 @@ class ActaForm(forms.ModelForm):
         model = Acta
         fields = '__all__'
         widgets = {
-            # 'instituto' : AutocompleteSelect(
-            #     Acta._meta.get_field('instituto').remote_field,
-            #     admin.site, 
-            #     attrs={'placeholder' : 'selecionar...'}),
             'instituto' : forms.TextInput(attrs={'size':'60%'}),
             'fecha' : forms.DateInput(attrs={'type':'date'}),
             'profesores' : forms.TextInput(attrs={'size': '114%'}),
@@ -41,6 +37,9 @@ class ActaForm(forms.ModelForm):
             'persona23' : forms.TextInput(attrs={'size': '60%'}),
             'persona24' : forms.TextInput(attrs={'size': '60%'}),
             'persona25' : forms.TextInput(attrs={'size': '60%'}),
+            'firma1' : forms.TextInput(attrs={'size': '60%'}),
+            'firma2' : forms.TextInput(attrs={'size': '60%'}),
+            'firma3' : forms.TextInput(attrs={'size': '60%'}),
         }
 
 class ActaUpdate(forms.ModelForm):
