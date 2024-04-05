@@ -14,8 +14,6 @@
         if (numerosPermitidos.includes(user)) {
             document.getElementById(inputId).value = user;
         } else {
-            // Si el usuario no está en la lista permitida, mostrar un mensaje de error
-            alert("El número introducido no es válido. Por favor, introduzca un número permitido.");
             document.getElementById(inputId).value = ""; // Limpiar el campo de entrada
         }
     }

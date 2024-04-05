@@ -69,3 +69,23 @@ class ActualizarActa(UpdateView):
     model = Acta
     success_url = reverse_lazy('libros')
     form_class = ActaUpdate
+    
+    def firmo(self):
+        firmascargadas = Firma.objects.values_list('id', 'user__last_name', 'user__first_name')
+        firmas = []
+        for firm in firmascargadas:
+            firmas.append(firm)
+        return firmas
+
+    def listado(self):
+        institutos = Libro.objects.values_list('nombre', flat=True)
+        opciones = []
+        for insti in institutos:
+            opciones.append(insti)
+        return opciones
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['opciones'] = self.listado()
+        context['firmas'] = self.firmo()
+        return context

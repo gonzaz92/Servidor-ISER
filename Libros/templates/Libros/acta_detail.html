@@ -2,9 +2,26 @@
 
 {% block contenido %}
 
-<div style='text-align: center;'>
-    <h1>Instituto Superior de Enseñanza Radiofónica</h1>
-</div>
+<style>
+    @media print {
+        body * {
+            visibility: hidden; /* Oculta todos los elementos */
+        }
+        .print-area, .print-area * {
+            visibility: visible; /* Muestra solo los elementos dentro del área de impresión */
+        }
+        .print-area {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    }
+</style>
+
+<div class='print-area'>
+    <div style='text-align: center;'>
+        <h1>Instituto Superior de Enseñanza Radiofónica</h1>
+    </div>
     <div style='text-align: center;'>
         {{ acta.instituto }}
     </div>
@@ -199,9 +216,18 @@
             <td style='text-align: right; padding-right: 50px;'>Firma</td>
         </tr>
     </table>
+</div>
     <p></p>
     <div class='text-center mt-4'>
-        <button type='submit' class='btn btn-primary'>Aceptar</button>
+        <div style="text-align: center; margin-top: 20px;">
+            <button class='btn btn-primary' onclick="printArea()">Imprimir</button>
+        </div>
+    
+        <script>
+            function printArea() {
+                window.print();
+            }
+        </script>
     </div>
 <p></p>
 {% endblock %}
