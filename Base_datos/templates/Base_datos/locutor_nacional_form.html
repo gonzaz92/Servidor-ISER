@@ -2,6 +2,17 @@
 
 {% block contenido %}
 
+<style>
+    /* Define el tamaño de las cajas de entrada */
+    .input-small {
+        width: 65px; /* Define el ancho deseado */
+    }
+
+    .input-large {
+        width: 110px; /* Define el ancho deseado */
+    }
+</style>
+
 <div class='container'>
     <h1 class="mt-4 text-center">Locutor/a Nacional</h1>
     <p></p>
@@ -16,22 +27,22 @@
                 <td>{{ form.nombre }}</td>
                 <td><label for="{{ form.DNI.id_for_label }}">Documento N°:</label></td>
                 <td>{{ form.DNI }}</td>
-                <td>IF-{{ form.año_dni }}-{{form.pdf_dni}}-APN-ACAD#ENACOM</td>
+                <td>IF-{{ form.año_dni }}-{{form.pdf_dni}}-APN-ACAD#ENACOM {{ form.chequeo_dni }}</td>
             </tr>
         </table>
         <table class='table borderless'>
             <tr>
-                <td>Formulario: IF-{{ form.año_formulario }}-{{ form.formulario }}-APN-ACAD#ENACOM</td>
-                <td>Secundario: IF-{{ form.secundario }}-{{ form.pdf_secundario }}-APN-ACAD#ENACOM</td>
+                <td>Formulario: IF-{{ form.año_formulario }}-{{ form.formulario }}-APN-ACAD#ENACOM {{ form.chequeo_formulario }}</td>
+                <td>Secundario: IF-{{ form.secundario }}-{{ form.pdf_secundario }}-APN-ACAD#ENACOM {{ form.chequeo_secu }}</td>
                 <td><label for="{{ form.habilitación.id_for_label }}">Habilitación:</label></td>
                 <td>{{ form.habilitación }}</td>
             </tr>
         </table>
         <table class='table borderless'>
             <tr>
-                <td><label for="{{ form.instituto.id_for_label }}">Egresado de:</label></td>
+                <td><label for="{{ form.instituto.id_for_label }}">Instituto:</label></td>
                 <td>{{ form.instituto }}</td>
-                <td>IF-{{ form.año_instituto }}-{{ form.pdf_instituto }}-APN-ACAD#ENACOM</td>
+                <td>IF-{{ form.año_instituto }}-{{ form.pdf_instituto }}-APN-ACAD#ENACOM {{ form.chequeo_insti }}</td>
                 <td>Acta de Examen: IF-{{ form.año_acta }}-{{ form.acta }}-APN-ACAD#ENACOM</td>
             </tr>
         </table>

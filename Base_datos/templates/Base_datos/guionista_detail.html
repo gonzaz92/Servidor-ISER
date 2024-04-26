@@ -17,7 +17,7 @@
       <h2 style="margin-right: 10px;">Documento N°: {{guionista.DNI}} - Habilitación: {{guionista.habilitación}} - Disposición: DI-{{guionista.año_disposición}}-{{guionista.número_disposición}}-APN-DNSA#ENACOM</h2>
     </div>
     <div style="padding-bottom: 1%;">
-      {% if guionista.año_formulario and guionista.formulario %}
+      {% if guionista.chequeo_formulario %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Formulario de datos personales:
           <a>IF-{{ guionista.año_formulario }}-{{guionista.formulario}}-APN-ACAD#ENACOM</a>
@@ -30,7 +30,7 @@
       {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-      {% if guionista.año_dni and guionista.pdf_dni %}
+      {% if guionista.chequeo_dni %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">D.N.I.:
           <a>IF-{{guionista.año_dni}}-{{guionista.pdf_dni}}-APN-ACAD#ENACOM</a>
@@ -43,7 +43,7 @@
       {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-      {% if guionista.secundario and guionista.pdf_secundario %}
+      {% if guionista.chequeo_secu %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Secundario: {{guionista.secundario}} -
           <a>IF-{{guionista.secundario}}-{{guionista.pdf_secundario}}-APN-ACAD#ENACOM</a>
@@ -56,7 +56,7 @@
       {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-      {% if guionista.año_instituto and guionista.pdf_instituto %}
+      {% if guionista.chequeo_insti %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Instituto: {{guionista.instituto}} |
           <a>IF-{{guionista.año_instituto}}-{{guionista.pdf_instituto}}-APN-ACAD#ENACOM</a>

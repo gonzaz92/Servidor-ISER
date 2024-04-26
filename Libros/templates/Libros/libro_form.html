@@ -2,9 +2,22 @@
 
 {% block contenido %}
 
+<h1 class="mt-4 text-center">Nuevo Libro de Actas</h1>
+
 <form class="mt-4" enctype="multipart/form-data" method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
+    <table align='center'>
+        <tr>
+            <th style='text-align:center'>
+                Nombre del Instituto
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <span class="mt-4 text-center">{{form.nombre}}</span>
+            </td>
+        </tr>
+    </table>
     <p></p>
     <div class='text-center mt-4'>
         <button type='submit' class='btn btn-primary'>Aceptar</button>

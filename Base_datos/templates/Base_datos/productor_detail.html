@@ -17,7 +17,7 @@
       <h2 style="margin-right: 10px;">Documento N°: {{productor.DNI}} - Habilitación: {{productor.habilitación}} - Disposición: DI-{{productor.año_disposición}}-{{productor.número_disposición}}-APN-DNSA#ENACOM</h2>
     </div>
     <div style="padding-bottom: 1%;">
-      {% if productor.año_formulario and productor.formulario %}
+      {% if productor.chequeo_formulario %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Formulario de datos personales:
           <a>IF-{{ productor.año_formulario }}-{{productor.formulario}}-APN-ACAD#ENACOM</a>
@@ -30,7 +30,7 @@
       {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-      {% if productor.año_dni and productor.pdf_dni %}
+      {% if productor.chequeo_dni %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">D.N.I.:
           <a>IF-{{productor.año_dni}}-{{productor.pdf_dni}}-APN-ACAD#ENACOM</a>
@@ -43,7 +43,7 @@
       {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-      {% if productor.secundario and productor.pdf_secundario %}
+      {% if productor.chequeo_secu %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Secundario: {{productor.secundario}} -
           <a>IF-{{productor.secundario}}-{{productor.pdf_secundario}}-APN-ACAD#ENACOM</a>
@@ -56,7 +56,7 @@
       {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-      {% if productor.año_instituto and productor.pdf_instituto %}
+      {% if productor.chequeo_insti %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Instituto: {{productor.instituto}} |
           <a>IF-{{productor.año_instituto}}-{{productor.pdf_instituto}}-APN-ACAD#ENACOM</a>

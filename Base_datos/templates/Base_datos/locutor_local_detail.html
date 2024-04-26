@@ -20,7 +20,7 @@
         <h2 style="margin-right: 10px;">Localidad: {{locutor_local.localidad}} - Provincia: {{locutor_local.provincia}}</h2>
       </div>
     <div style="padding-bottom: 1%;">
-      {% if locutor_local.año_formulario and locutor_local.formulario %}
+      {% if locutor_local.chequeo_dni %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Formulario de datos personales:
           <a>IF-{{locutor_local.año_formulario}}-{{locutor_local.formulario}}-APN-ACAD#ENACOM</a>
@@ -33,7 +33,7 @@
       {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-      {% if locutor_local.año_dni and locutor_local.pdf_dni %}
+      {% if locutor_local.chequeo_dni %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">D.N.I.:
           <a>IF-{{locutor_local.año_dni}}-{{locutor_local.pdf_dni}}-APN-ACAD#ENACOM</a>
@@ -46,7 +46,7 @@
       {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-      {% if locutor_local.secundario and locutor_local.pdf_secundario %}
+      {% if locutor_local.chequeo_secu %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Secundario: {{locutor_local.secundario}} -
           <a>IF-{{locutor_local.secundario}}-{{locutor_local.pdf_secundario}}-APN-ACAD#ENACOM</a>
@@ -59,7 +59,7 @@
       {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-      {% if locutor_local.año_certificado and locutor_local.certificado %}
+      {% if locutor_local.chequeo_certi %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Certificado:
           <a>IF-{{locutor_local.año_certificado}}-{{locutor_local.certificado}}-APN-ACAD#ENACOM</a>

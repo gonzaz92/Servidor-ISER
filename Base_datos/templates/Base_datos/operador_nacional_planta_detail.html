@@ -17,7 +17,7 @@
       <h2 style="margin-right: 10px;">Documento N°: {{operador_nacional_planta.DNI}} - Habilitación: {{operador_nacional_planta.habilitación}} - Disposición: DI-{{operador_nacional_planta.año_disposición}}-{{operador_nacional_planta.número_disposición}}-APN-DNSA#ENACOM</h2>
     </div>
     <div style="padding-bottom: 1%;">
-      {% if operador_nacional_planta.año_formulario and operador_nacional_planta.formulario %}
+      {% if operador_nacional_planta.chequeo_formulario %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Formulario de datos personales:
           <a>IF-{{ operador_nacional_planta.año_formulario }}-{{operador_nacional_planta.formulario}}-APN-ACAD#ENACOM</a>
@@ -30,7 +30,7 @@
       {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-      {% if operador_nacional_planta.año_dni and operador_nacional_planta.pdf_dni %}
+      {% if operador_nacional_planta.chequeo_dni %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">D.N.I.:
           <a>IF-{{operador_nacional_planta.año_dni}}-{{operador_nacional_planta.pdf_dni}}-APN-ACAD#ENACOM</a>
@@ -43,7 +43,7 @@
       {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-      {% if operador_nacional_planta.secundario and operador_nacional_planta.pdf_secundario %}
+      {% if operador_nacional_planta.chequeo_secu %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Secundario: {{operador_nacional_planta.secundario}} -
           <a>IF-{{operador_nacional_planta.secundario}}-{{operador_nacional_planta.pdf_secundario}}-APN-ACAD#ENACOM</a>
@@ -56,7 +56,7 @@
       {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-      {% if operador_nacional_planta.año_instituto and operador_nacional_planta.pdf_instituto %}
+      {% if operador_nacional_planta.chequeo_insti %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Instituto: {{operador_nacional_planta.instituto}} |
           <a>IF-{{operador_nacional_planta.año_instituto}}-{{operador_nacional_planta.pdf_instituto}}-APN-ACAD#ENACOM</a>

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Libro, Acta, Firma
 from django.views.generic import CreateView, ListView, DetailView, UpdateView
-from .forms import ActaForm, ActaUpdate
+from .forms import LibroForm, ActaForm
 from django.urls import reverse_lazy
 from django.db.models import Q
 from django.utils.decorators import method_decorator
@@ -32,8 +32,8 @@ def libros(request):
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(nuevo_libro), name='get')
 class NuevoLibro(CreateView):
-    model = Libro
-    fields = '__all__'
+    template_name = 'Libros/libro_form.html'
+    form_class = LibroForm
     success_url = reverse_lazy('libros')
 
 @method_decorator(login_required, name='get')
@@ -96,7 +96,7 @@ class DetalleActa(DetailView):
 class ActualizarActa(UpdateView):
     model = Acta
     success_url = reverse_lazy('libros')
-    form_class = ActaUpdate
+    form_class = ActaForm
     
     def firmo(self):
         firmascargadas = Firma.objects.values_list('id', 'user__last_name', 'user__first_name')

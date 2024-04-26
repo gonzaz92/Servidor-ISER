@@ -20,7 +20,7 @@
         <h2 style="margin-right: 10px;">Localidad: {{operador_local_planta.localidad}} - Provincia: {{operador_local_planta.provincia}}</h2>
       </div>
     <div style="padding-bottom: 1%;">
-      {% if operador_local_planta.año_formulario and operador_local_planta.formulario %}
+      {% if operador_local_planta.chequeo_formulario %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Formulario de datos personales:
           <a>IF-{{operador_local_planta.año_formulario}}-{{operador_local_planta.formulario}}-APN-ACAD#ENACOM</a>
@@ -33,7 +33,7 @@
       {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-      {% if operador_local_planta.año_dni and operador_local_planta.pdf_dni %}
+      {% if operador_local_planta.chequeo_dni %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">D.N.I.:
           <a>IF-{{operador_local_planta.año_dni}}-{{operador_local_planta.pdf_dni}}-APN-ACAD#ENACOM</a>
@@ -46,7 +46,7 @@
       {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-      {% if operador_local_planta.secundario and operador_local_planta.pdf_secundario %}
+      {% if operador_local_planta.chequeo_secu %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Secundario: {{operador_local_planta.secundario}} -
           <a>IF-{{operador_local_planta.secundario}}-{{operador_local_planta.pdf_secundario}}-APN-ACAD#ENACOM</a>
@@ -59,7 +59,7 @@
       {% endif %}
     </div>
     <div style="padding-bottom: 1%;">
-      {% if operador_local_planta.año_certificado and operador_local_planta.certificado %}
+      {% if operador_local_planta.chequeo_certi %}
       <div style="background-color: #c2f0c2; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block;">
         <h2 style="margin-right: 10px;">Certificado:
           <a>IF-{{operador_local_planta.año_certificado}}-{{operador_local_planta.certificado}}-APN-ACAD#ENACOM</a>
