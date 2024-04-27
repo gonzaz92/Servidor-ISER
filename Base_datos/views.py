@@ -204,7 +204,7 @@ class ListarLocutorNacional(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator(context['object_list'], 500)
+        paginator = Paginator(context['object_list'], 100)
         page = self.request.GET.get('page')
         locutores_paginados = paginator.get_page(page)
         context['object_list'] = locutores_paginados
@@ -264,7 +264,7 @@ class ListarLocutorLocal(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator(context['object_list'], 500)
+        paginator = Paginator(context['object_list'], 100)
         page = self.request.GET.get('page')
         locutores_paginados = paginator.get_page(page)
         context['object_list'] = locutores_paginados
@@ -326,7 +326,7 @@ class ListarOperadordeRadio(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator(context['object_list'], 500)
+        paginator = Paginator(context['object_list'], 100)
         page = self.request.GET.get('page')
         operadores_paginados = paginator.get_page(page)
         context['object_list'] = operadores_paginados
@@ -382,7 +382,7 @@ class ListarOperadordeTV(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator(context['object_list'], 500)
+        paginator = Paginator(context['object_list'], 100)
         page = self.request.GET.get('page')
         operadores_paginados = paginator.get_page(page)
         context['object_list'] = operadores_paginados
@@ -438,7 +438,7 @@ class ListarOperadordePlanta(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator(context['object_list'], 500)
+        paginator = Paginator(context['object_list'], 100)
         page = self.request.GET.get('page')
         operadores_paginados = paginator.get_page(page)
         context['object_list'] = operadores_paginados
@@ -500,7 +500,7 @@ class ListarOperadordeRadioLocal(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator(context['object_list'], 500)
+        paginator = Paginator(context['object_list'], 100)
         page = self.request.GET.get('page')
         operadores_paginados = paginator.get_page(page)
         context['object_list'] = operadores_paginados
@@ -556,7 +556,7 @@ class ListarOperadordeTVLocal(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator(context['object_list'], 500)
+        paginator = Paginator(context['object_list'], 100)
         page = self.request.GET.get('page')
         operadores_paginados = paginator.get_page(page)
         context['object_list'] = operadores_paginados
@@ -612,7 +612,7 @@ class ListarOperadordePlantaLocal(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator(context['object_list'], 500)
+        paginator = Paginator(context['object_list'], 100)
         page = self.request.GET.get('page')
         operadores_paginados = paginator.get_page(page)
         context['object_list'] = operadores_paginados
@@ -672,7 +672,7 @@ class ListarProductor(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator(context['object_list'], 500)
+        paginator = Paginator(context['object_list'], 100)
         page = self.request.GET.get('page')
         productores_paginados = paginator.get_page(page)
         context['object_list'] = productores_paginados
@@ -732,7 +732,7 @@ class ListarGuionista(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator(context['object_list'], 500)
+        paginator = Paginator(context['object_list'], 100)
         page = self.request.GET.get('page')
         guionistas_paginados = paginator.get_page(page)
         context['object_list'] = guionistas_paginados
