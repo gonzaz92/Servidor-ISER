@@ -127,9 +127,9 @@ def ver_guionista(user):
 ########################## Condiciones Nacional ############################
 
 completos_nacional = Q(número_disposición__isnull=True) & Q(número_expediente__isnull=True) & (
-                                                                                                Q(pdf_dni__isnull=False) |
-                                                                                                Q(pdf_secundario__isnull=False) |
-                                                                                                Q(pdf_instituto__isnull=False) |
+                                                                                                Q(pdf_dni__isnull=False) &
+                                                                                                Q(pdf_secundario__isnull=False) &
+                                                                                                Q(pdf_instituto__isnull=False) &
                                                                                                 Q(acta__isnull=False)
                                                                                                 )
 
@@ -145,9 +145,9 @@ incompletos_nacional = Q(número_disposición__isnull=True) & Q(número_expedien
 ########################## Condiciones Local ############################
 
 completos_local = Q(número_disposición__isnull=True) & Q(número_expediente__isnull=True) & (
-                                                                                            Q(pdf_dni__isnull=False) |
-                                                                                            Q(pdf_secundario__isnull=False) |
-                                                                                            Q(certificado__isnull=False) |
+                                                                                            Q(pdf_dni__isnull=False) &
+                                                                                            Q(pdf_secundario__isnull=False) &
+                                                                                            Q(certificado__isnull=False) &
                                                                                             Q(acta__isnull=False)
                                                                                             )
 
