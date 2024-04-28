@@ -45,18 +45,18 @@
     </table>
     <div style='text-align: center;'>
         <span class="step-links">
-            {% if lnc.has_previous %}
+            {% if llc_exp.has_previous %}
                 <a href="?page=1">&laquo; primera</a>
-                <a href="?page={{ lnc.previous_page_number }}">anterior</a>
+                <a href="?page={{ llc_exp.previous_page_number }}">anterior</a>
             {% endif %}
 
             <span class="current-page">
-                Página {{ lnc.number }} de {{ lnc.paginator.num_pages }}
+                Página {{ llc_exp.number }} de {{ llc_exp.paginator.num_pages }}
             </span>
 
-            {% if lnc.has_next %}
-                <a href="?page={{ lnc.next_page_number }}">siguiente</a>
-                <a href="?page={{ lnc.paginator.num_pages }}">última &raquo;</a>
+            {% if llc_exp.has_next %}
+                <a href="?page={{ llc_exp.next_page_number }}">siguiente</a>
+                <a href="?page={{ llc_exp.paginator.num_pages }}">última &raquo;</a>
             {% endif %}
         </span>
     </div>
