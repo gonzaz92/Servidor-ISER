@@ -124,7 +124,59 @@ def actualizar_guionista(user):
 def ver_guionista(user):
     return user.has_perm('Base_datos.view_guionista')
 
-######################################################
+########################## Condiciones Nacional ############################
+
+completos_nacional = Q(número_disposición__isnull=True) & Q(número_expediente__isnull=True) & (
+                                                                                                Q(pdf_dni__isnull=False) |
+                                                                                                Q(pdf_secundario__isnull=False) |
+                                                                                                Q(pdf_instituto__isnull=False) |
+                                                                                                Q(acta__isnull=False)
+                                                                                                )
+
+nacional_exp = Q(número_disposición__isnull=True) & Q(número_expediente__isnull=False)
+
+incompletos_nacional = Q(número_disposición__isnull=True) & Q(número_expediente__isnull=True) & (
+                                                                                                Q(pdf_dni__isnull=True) |
+                                                                                                Q(pdf_secundario__isnull=True) |
+                                                                                                Q(pdf_instituto__isnull=True) |
+                                                                                                Q(acta__isnull=True)
+                                                                                                )
+
+########################## Condiciones Local ############################
+
+completos_local = Q(número_disposición__isnull=True) & Q(número_expediente__isnull=True) & (
+                                                                                            Q(pdf_dni__isnull=False) |
+                                                                                            Q(pdf_secundario__isnull=False) |
+                                                                                            Q(certificado__isnull=False) |
+                                                                                            Q(acta__isnull=False)
+                                                                                            )
+
+local_exp = Q(número_disposición__isnull=True) & Q(número_expediente__isnull=False)
+
+incompletos_local = Q(número_disposición__isnull=True) & Q(número_expediente__isnull=True) & (
+                                                                                            Q(pdf_dni__isnull=True) |
+                                                                                            Q(pdf_secundario__isnull=True) |
+                                                                                            Q(certificado__isnull=True) |
+                                                                                            Q(acta__isnull=True)
+                                                                                            )
+
+########################## Funciones para condición ############################
+
+def pag_nacional(a, b, c):
+    object = b.objects.filter(c).order_by('-id').all()
+    paginator = Paginator(object, 100)
+    page_number = a.GET.get('page')
+    objetc_nacional = paginator.get_page(page_number)
+    return objetc_nacional
+
+def pag_local(a, b, c):
+    object = b.objects.filter(c).order_by('-id').all()
+    paginator = Paginator(object, 100)
+    page_number = a.GET.get('page')
+    objetc_local = paginator.get_page(page_number)
+    return objetc_local
+
+###################### Vistas ################################
 
 @login_required
 def index(request):
@@ -146,6 +198,8 @@ def buscar(request):
     resultados = (list(resultados_ln) + list(resultados_ll) + list(resultados_oprn) + list(resultados_optvn) + list(resultados_opplantan) +
                 list(resultados_oprl) + list(resultados_optvl) + list(resultados_opplantal) + list(resultados_prod) + list(resultado_guion))
     return render(request, 'Base_datos/resultados_busqueda.html', {'resultados':resultados})
+
+###################### Usuarios ################################
 
 class UserSingUp(CreateView):
     form_class = UsuarioForm
@@ -172,20 +226,20 @@ def locutores(request):
 @login_required
 @user_passes_test(ver_LocutorNacional)
 def ln_completos(request):
-    lnc = Locutor_nacional.objects.all()
+    lnc = pag_nacional(request, Locutor_nacional, completos_nacional)
     return render(request, 'Base_datos/locutor_nacional_completos.html', {'lnc' : lnc})
 
 @login_required
 @user_passes_test(ver_LocutorNacional)
 def ln_completos_exp(request):
-    lnc_exp = Locutor_nacional.objects.all()
+    lnc_exp = pag_nacional(request, Locutor_nacional, nacional_exp)
     return render(request, 'Base_datos/locutor_nacional_completos_exp.html', {'lnc_exp' : lnc_exp})
 
 @login_required
 @user_passes_test(ver_LocutorNacional)
 def ln_incompletos(request):
-    ln = Locutor_nacional.objects.all()
-    return render(request, 'Base_datos/ln_incompletos.html', {'ln' : ln})
+    ln = pag_nacional(request, Locutor_nacional, incompletos_nacional)
+    return render(request, 'Base_datos/ln_incompletos.html', {'ln': ln})
 
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(carga_LocutorNacional), name='get')
@@ -231,19 +285,19 @@ def locutor_local(request):
 @login_required
 @user_passes_test(ver_LocutorLocal)
 def ll_completos(request):
-    llc = Locutor_local.objects.all()
+    llc = pag_local(request, Locutor_local, completos_local)
     return render(request, 'Base_datos/locutor_local_completos.html', {'llc' : llc})
 
 @login_required
 @user_passes_test(ver_LocutorLocal)
 def ll_completos_exp(request):
-    llc_exp = Locutor_local.objects.all()
+    llc_exp = pag_local(request, Locutor_local, local_exp)
     return render(request, 'Base_datos/locutor_local_completos_exp.html', {'llc_exp' : llc_exp})
 
 @login_required
 @user_passes_test(ver_LocutorLocal)
 def ll_incompletos(request):
-    ll = Locutor_local.objects.all()
+    ll = pag_local(request, Locutor_local, incompletos_local)
     return render(request, 'Base_datos/ll_incompletos.html', {'ll' : ll} )
 
 @method_decorator(login_required, name='get')
@@ -293,19 +347,19 @@ def operadores_nacionales(request):
 @login_required
 @user_passes_test(ver_OperadorNRadio)
 def oprn_completos(request):
-    oprnc = Operador_nacional_radio.objects.all()
+    oprnc = pag_nacional(request, Operador_nacional_radio, completos_nacional)
     return render(request, 'Base_datos/operador_nacional_radio_completos.html', {'oprnc' : oprnc})
 
 @login_required
 @user_passes_test(ver_OperadorNRadio)
 def oprn_completos_exp(request):
-    oprnc_exp = Operador_nacional_radio.objects.all()
+    oprnc_exp = pag_nacional(request, Operador_nacional_radio, nacional_exp)
     return render(request, 'Base_datos/operador_nacional_radio_completos_exp.html', {'oprnc_exp' : oprnc_exp})
 
 @login_required
 @user_passes_test(ver_OperadorNRadio)
 def oprn_incompletos(request):
-    oprn = Operador_nacional_radio.objects.all()
+    oprn = pag_nacional(request, Operador_nacional_radio, incompletos_nacional)
     return render(request, 'Base_datos/oprn_incompletos.html', {'oprn' : oprn} )
 
 @method_decorator(login_required, name='get')
@@ -350,18 +404,19 @@ class ActualizarOPR(UpdateView):
 @user_passes_test(ver_OperadorNTV)
 def optvn_completos(request):
     optvnc = Operador_nacional_tv.objects.all()
+    optvnc = pag_nacional(request, Operador_nacional_tv, completos_nacional)
     return render(request, 'Base_datos/operador_nacional_tv_completos.html', {'optvnc' : optvnc})
 
 @login_required
 @user_passes_test(ver_OperadorNTV)
 def optvn_completos_exp(request):
-    optvnc_exp = Operador_nacional_tv.objects.all()
+    optvnc_exp = pag_nacional(request, Operador_nacional_tv, nacional_exp)
     return render(request, 'Base_datos/operador_nacional_tv_completos_exp.html', {'optvnc_exp' : optvnc_exp})
 
 @login_required
 @user_passes_test(ver_OperadorNTV)
 def optvn_incompletos(request):
-    optvn = Operador_nacional_tv.objects.all()
+    optvn = pag_nacional(request, Operador_nacional_tv, incompletos_nacional)
     return render(request, 'Base_datos/optvn_incompletos.html', {'optvn' : optvn} )
 
 @method_decorator(login_required, name='get')
@@ -405,19 +460,19 @@ class ActualizarOPTV(UpdateView):
 @login_required
 @user_passes_test(ver_OperadorNPlanta)
 def opplantan_completos(request):
-    opplantanc = Operador_nacional_planta.objects.all()
+    opplantanc = pag_nacional(request, Operador_nacional_planta, completos_nacional)
     return render(request, 'Base_datos/operador_nacional_planta_completos.html', {'opplantanc' : opplantanc})
 
 @login_required
 @user_passes_test(ver_OperadorNPlanta)
 def opplantan_completos_exp(request):
-    opplantanc_exp = Operador_nacional_planta.objects.all()
+    opplantanc_exp = pag_nacional(request, Operador_nacional_planta, nacional_exp)
     return render(request, 'Base_datos/operador_nacional_planta_completos_exp.html', {'opplantanc_exp' : opplantanc_exp})
 
 @login_required
 @user_passes_test(ver_OperadorNPlanta)
 def opplantan_incompletos(request):
-    opplantan = Operador_nacional_planta.objects.all()
+    opplantan = pag_nacional(request, Operador_nacional_planta, incompletos_nacional)
     return render(request, 'Base_datos/opplantan_incompletos.html', {'opplantan' : opplantan} )
 
 @method_decorator(login_required, name='get')
@@ -467,19 +522,19 @@ def operadores_locales(request):
 @login_required
 @user_passes_test(ver_OperadorLRadio)
 def oprl_completos(request):
-    oprlc = Operador_local_radio.objects.all()
+    oprlc = pag_local(request, Operador_local_radio, completos_local)
     return render(request, 'Base_datos/operador_local_radio_completos.html', {'oprlc' : oprlc})
 
 @login_required
 @user_passes_test(ver_OperadorLRadio)
 def oprl_completos_exp(request):
-    oprlc_exp = Operador_local_radio.objects.all()
+    oprlc_exp = pag_local(request, Operador_local_radio, local_exp)
     return render(request, 'Base_datos/operador_local_radio_completos_exp.html', {'oprlc_exp' : oprlc_exp})
 
 @login_required
 @user_passes_test(ver_OperadorLRadio)
 def oprl_incompletos(request):
-    oprl = Operador_local_radio.objects.all()
+    oprl = pag_local(request, Operador_local_radio, incompletos_local)
     return render(request, 'Base_datos/oprl_incompletos.html', {'oprl' : oprl} )
 
 @method_decorator(login_required, name='get')
@@ -523,19 +578,19 @@ class ActualizarOPRLocal(UpdateView):
 @login_required
 @user_passes_test(ver_OperadorLTV)
 def optvl_completos(request):
-    optvlc = Operador_local_tv.objects.all()
+    optvlc = pag_local(request, Operador_local_tv, completos_local)
     return render(request, 'Base_datos/operador_local_tv_completos.html', {'optvlc' : optvlc})
 
 @login_required
 @user_passes_test(ver_OperadorLTV)
 def optvl_completos_exp(request):
-    optvlc_exp = Operador_local_tv.objects.all()
+    optvlc_exp = pag_local(request, Operador_local_tv, local_exp)
     return render(request, 'Base_datos/operador_local_tv_completos_exp.html', {'optvlc_exp' : optvlc_exp})
 
 @login_required
 @user_passes_test(ver_OperadorLTV)
 def optvl_incompletos(request):
-    optvl = Operador_local_tv.objects.all()
+    optvl = pag_local(request, Operador_local_tv, incompletos_local)
     return render(request, 'Base_datos/optvl_incompletos.html', {'optvl' : optvl} )
 
 @method_decorator(login_required, name='get')
@@ -579,19 +634,19 @@ class ActualizarOPTVLocal(UpdateView):
 @login_required
 @user_passes_test(ver_OperadorLPlanta)
 def opplantal_completos(request):
-    opplantalc = Operador_local_planta.objects.all()
+    opplantalc = pag_local(request, Operador_local_planta, completos_local)
     return render(request, 'Base_datos/operador_local_planta_completos.html', {'opplantalc' : opplantalc})
 
 @login_required
 @user_passes_test(ver_OperadorLPlanta)
 def opplantal_completos_exp(request):
-    opplantalc_exp = Operador_local_planta.objects.all()
+    opplantalc_exp = pag_local(request, Operador_local_planta, local_exp)
     return render(request, 'Base_datos/operador_local_planta_completos_exp.html', {'opplantalc_exp' : opplantalc_exp})
 
 @login_required
 @user_passes_test(ver_OperadorLPlanta)
 def opplantal_incompletos(request):
-    opplantal = Operador_local_planta.objects.all()
+    opplantal = pag_local(request, Operador_local_planta, incompletos_local)
     return render(request, 'Base_datos/opplantal_incompletos.html', {'opplantal' : opplantal} )
 
 @method_decorator(login_required, name='get')
@@ -639,19 +694,19 @@ def productores(request):
 @login_required
 @user_passes_test(ver_productor)
 def prod_completos(request):
-    prodc = Productor.objects.all()
+    prodc = pag_nacional(request, Productor, completos_nacional)
     return render(request, 'Base_datos/productores_completos.html', {'prodc' : prodc})
 
 @login_required
 @user_passes_test(ver_productor)
 def prod_completos_exp(request):
-    prodc_exp = Productor.objects.all()
+    prodc_exp = pag_nacional(request, Productor, nacional_exp)
     return render(request, 'Base_datos/productores_completos_exp.html', {'prodc_exp' : prodc_exp})
 
 @login_required
 @user_passes_test(ver_productor)
 def prod_incompletos(request):
-    prod = Productor.objects.all()
+    prod = pag_nacional(request, Productor, incompletos_nacional)
     return render(request, 'Base_datos/prod_incompletos.html', {'prod' : prod} )
 
 @method_decorator(login_required, name='get')
@@ -699,19 +754,19 @@ def guionistas(request):
 @login_required
 @user_passes_test(ver_guionista)
 def guion_completos(request):
-    guionc = Guionista.objects.all()
+    guionc = pag_nacional(request, Guionista, completos_local)
     return render(request, 'Base_datos/guionistas_completos.html', {'guionc' : guionc})
 
 @login_required
 @user_passes_test(ver_guionista)
 def guion_completos_exp(request):
-    guionc_exp = Guionista.objects.all()
+    guionc_exp = pag_nacional(request, Guionista, nacional_exp)
     return render(request, 'Base_datos/guionistas_completos_exp.html', {'guionc_exp' : guionc_exp})
 
 @login_required
 @user_passes_test(ver_guionista)
 def guion_incompletos(request):
-    guion = Guionista.objects.all()
+    guion = pag_nacional(request, Guionista, incompletos_nacional)
     return render(request, 'Base_datos/guion_incompletos.html', {'guion' : guion} )
 
 @method_decorator(login_required, name='get')

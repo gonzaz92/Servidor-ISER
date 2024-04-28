@@ -25,8 +25,6 @@
         </thead>
         <tbody>
             {% for locutor_local in llc %}
-                {% if locutor_local.formulario and locutor_local.pdf_dni and locutor_local.pdf_secundario and locutor_local.certificado and locutor_local.acta %}
-                    {% if not locutor_local.número_disposición and not locutor_local.año_expediente and not locutor_local.número_expediente %}
                         <tr>
                             <td style="text-transform: uppercase; padding-bottom: 1%;">{{ locutor_local.apellido }}</td>
                             <td style="text-transform: capitalize; padding-bottom: 1%;">{{ locutor_local.nombre }}</td>
@@ -40,11 +38,26 @@
                                 <a class="link" href="{% url 'actualizar_ll' locutor_local.id %}" type="submit">Actualizar</a>
                             </td>
                         </tr>
-                    {% endif %}
-                {% endif%}
             {% endfor %}
         </tbody>
     </table>
+    <div style='text-align: center;'>
+        <span class="step-links">
+            {% if llc.has_previous %}
+                <a href="?page=1">&laquo; primera</a>
+                <a href="?page={{ llc.previous_page_number }}">anterior</a>
+            {% endif %}
+
+            <span class="current-page">
+                Página {{ llc.number }} de {{ llc.paginator.num_pages }}
+            </span>
+
+            {% if llc.has_next %}
+                <a href="?page={{ llc.next_page_number }}">siguiente</a>
+                <a href="?page={{ llc.paginator.num_pages }}">última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 </div>
 <p></p>
 {% endblock %}

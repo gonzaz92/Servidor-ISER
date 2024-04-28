@@ -25,26 +25,39 @@
         </thead>
         <tbody>
             {% for operador_local_tv in optvlc %}
-                {% if operador_local_tv.formulario and operador_local_tv.pdf_dni and operador_local_tv.pdf_secundario and operador_local_tv.certificado and operador_local_tv.acta %}
-                    {% if not operador_local_tv.número_disposición and not operador_local_tv.año_expediente and not operador_local_tv.número_expediente %}
-                        <tr>
-                            <td style="text-transform: uppercase; padding-bottom: 1%;">{{ operador_local_tv.apellido }}</td>
-                            <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_tv.nombre }}</td>
-                            <td style="padding-bottom: 1%;">{{ operador_local_tv.DNI }}</td>
-                            <td style="padding-bottom: 1%;">{{ operador_local_tv.habilitación }}</td>
-                            <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_tv.localidad }}</td>
-                            <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_tv.provincia }}</td>
-                            <td style="padding-bottom: 1%;">
-                                <a class="link" href="{% url 'ver_operador_local_tv' operador_local_tv.id %}" type="submit">Abrir</a>
-                                -
-                                <a class="link" href="{% url 'actualizar_operador_local_tv' operador_local_tv.id %}" type="submit">Actualizar</a>
-                            </td>
-                        </tr>
-                    {% endif %}
-                {% endif%}
+                <tr>
+                    <td style="text-transform: uppercase; padding-bottom: 1%;">{{ operador_local_tv.apellido }}</td>
+                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_tv.nombre }}</td>
+                    <td style="padding-bottom: 1%;">{{ operador_local_tv.DNI }}</td>
+                    <td style="padding-bottom: 1%;">{{ operador_local_tv.habilitación }}</td>
+                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_tv.localidad }}</td>
+                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_tv.provincia }}</td>
+                    <td style="padding-bottom: 1%;">
+                        <a class="link" href="{% url 'ver_operador_local_tv' operador_local_tv.id %}" type="submit">Abrir</a>
+                        -
+                        <a class="link" href="{% url 'actualizar_operador_local_tv' operador_local_tv.id %}" type="submit">Actualizar</a>
+                    </td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
+    <div style='text-align: center;'>
+        <span class="step-links">
+            {% if optvlc.has_previous %}
+                <a href="?page=1">&laquo; primera</a>
+                <a href="?page={{ optvlc.previous_page_number }}">anterior</a>
+            {% endif %}
+
+            <span class="current-page">
+                Página {{ optvlc.number }} de {{ optvlc.paginator.num_pages }}
+            </span>
+
+            {% if optvlc.has_next %}
+                <a href="?page={{ optvlc.next_page_number }}">siguiente</a>
+                <a href="?page={{ optvlc.paginator.num_pages }}">última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 </div>
 <p></p>
 {% endblock %}

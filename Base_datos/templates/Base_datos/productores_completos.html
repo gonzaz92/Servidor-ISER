@@ -24,25 +24,38 @@
         </thead>
         <tbody>
             {% for productor in prodc %}
-                {% if productor.formulario and productor.pdf_dni and productor.pdf_secundario and productor.pdf_instituto and productor.acta %}
-                    {% if not productor.número_disposición and not productor.año_expediente and not productor.número_expediente %}
-                        <tr>
-                            <td style="text-transform: uppercase; padding-bottom: 1%">{{ productor.apellido }}</td>
-                            <td style="text-transform: capitalize; padding-bottom: 1%;">{{ productor.nombre }}</td>
-                            <td style="padding-bottom: 1%;">{{ productor.DNI }}</td>
-                            <td style="padding-bottom: 1%;">{{ productor.habilitación }}</td>
-                            <td style="text-transform: uppercase; padding-bottom: 1%;">{{ productor.instituto }}</td>
-                            <td style="padding-bottom: 1%;">
-                                <a class="link" href="{% url 'ver_productor' productor.id %}" type="submit">Abrir</a>
-                                -
-                                <a class="link" href="{% url 'actualizar_prod' productor.id %}" type="submit">Actualizar</a>
-                            </td>
-                        </tr>
-                    {% endif %}
-                {% endif %}
+                <tr>
+                    <td style="text-transform: uppercase; padding-bottom: 1%">{{ productor.apellido }}</td>
+                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ productor.nombre }}</td>
+                    <td style="padding-bottom: 1%;">{{ productor.DNI }}</td>
+                    <td style="padding-bottom: 1%;">{{ productor.habilitación }}</td>
+                    <td style="text-transform: uppercase; padding-bottom: 1%;">{{ productor.instituto }}</td>
+                    <td style="padding-bottom: 1%;">
+                        <a class="link" href="{% url 'ver_productor' productor.id %}" type="submit">Abrir</a>
+                        -
+                        <a class="link" href="{% url 'actualizar_prod' productor.id %}" type="submit">Actualizar</a>
+                    </td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
+    <div style='text-align: center;'>
+        <span class="step-links">
+            {% if prodc.has_previous %}
+                <a href="?page=1">&laquo; primera</a>
+                <a href="?page={{ prodc.previous_page_number }}">anterior</a>
+            {% endif %}
+
+            <span class="current-page">
+                Página {{ prodc.number }} de {{ prodc.paginator.num_pages }}
+            </span>
+
+            {% if prodc.has_next %}
+                <a href="?page={{ prodc.next_page_number }}">siguiente</a>
+                <a href="?page={{ prodc.paginator.num_pages }}">última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 </div>
 
 <p></p>

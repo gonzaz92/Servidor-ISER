@@ -25,26 +25,39 @@
         </thead>
         <tbody>
             {% for operador_local_radio in oprlc %}
-                {% if operador_local_radio.formulario and operador_local_radio.pdf_dni and operador_local_radio.pdf_secundario and operador_local_radio.certificado and operador_local_radio.acta %}
-                    {% if not operador_local_radio.número_disposición and not operador_local_radio.año_expediente and not operador_local_radio.número_expediente %}
-                        <tr>
-                            <td style="text-transform: uppercase; padding-bottom: 1%;">{{ operador_local_radio.apellido }}</td>
-                            <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_radio.nombre }}</td>
-                            <td style="padding-bottom: 1%;">{{ operador_local_radio.DNI }}</td>
-                            <td style="padding-bottom: 1%;">{{ operador_local_radio.habilitación }}</td>
-                            <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_radio.localidad }}</td>
-                            <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_radio.provincia }}</td>
-                            <td style="padding-bottom: 1%;">
-                                <a class="link" href="{% url 'ver_operador_local_radio' operador_local_radio.id %}" type="submit">Abrir</a>
-                                -
-                                <a class="link" href="{% url 'actualizar_operador_local_radio' operador_local_radio.id %}" type="submit">Actualizar</a>
-                            </td>
-                        </tr>
-                    {% endif %}
-                {% endif%}
+                <tr>
+                    <td style="text-transform: uppercase; padding-bottom: 1%;">{{ operador_local_radio.apellido }}</td>
+                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_radio.nombre }}</td>
+                    <td style="padding-bottom: 1%;">{{ operador_local_radio.DNI }}</td>
+                    <td style="padding-bottom: 1%;">{{ operador_local_radio.habilitación }}</td>
+                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_radio.localidad }}</td>
+                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_radio.provincia }}</td>
+                    <td style="padding-bottom: 1%;">
+                        <a class="link" href="{% url 'ver_operador_local_radio' operador_local_radio.id %}" type="submit">Abrir</a>
+                        -
+                        <a class="link" href="{% url 'actualizar_operador_local_radio' operador_local_radio.id %}" type="submit">Actualizar</a>
+                    </td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
+    <div style='text-align: center;'>
+        <span class="step-links">
+            {% if oprlc.has_previous %}
+                <a href="?page=1">&laquo; primera</a>
+                <a href="?page={{ oprlc.previous_page_number }}">anterior</a>
+            {% endif %}
+
+            <span class="current-page">
+                Página {{ oprlc.number }} de {{ oprlc.paginator.num_pages }}
+            </span>
+
+            {% if oprlc.has_next %}
+                <a href="?page={{ oprlc.next_page_number }}">siguiente</a>
+                <a href="?page={{ oprlc.paginator.num_pages }}">última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 </div>
 <p></p>
 {% endblock %}

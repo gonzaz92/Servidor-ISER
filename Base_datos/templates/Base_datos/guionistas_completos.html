@@ -24,25 +24,38 @@
         </thead>
         <tbody>
             {% for guic in guionc %}
-                {% if guic.formulario and guic.pdf_dni and guic.pdf_secundario and guic.pdf_instituto and guic.acta %}
-                    {% if not guic.número_disposición and not guic.año_expediente and not guic.número_expediente %}
-                        <tr>
-                            <td style="text-transform: uppercase; padding-bottom: 1%">{{ guic.apellido }}</td>
-                            <td style="text-transform: capitalize; padding-bottom: 1%;">{{ guic.nombre }}</td>
-                            <td style="padding-bottom: 1%;">{{ guic.DNI }}</td>
-                            <td style="padding-bottom: 1%;">{{ guic.habilitación }}</td>
-                            <td style="text-transform: uppercase; padding-bottom: 1%;">{{ guic.instituto }}</td>
-                            <td style="padding-bottom: 1%;">
-                                <a class="link" href="{% url 'ver_guionista' guic.id %}" type="submit">Abrir</a>
-                                -
-                                <a class="link" href="{% url 'actualizar_guion' guic.id %}" type="submit">Actualizar</a>
-                            </td>
-                        </tr>
-                    {% endif %}
-                {% endif %}
+                <tr>
+                    <td style="text-transform: uppercase; padding-bottom: 1%">{{ guic.apellido }}</td>
+                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ guic.nombre }}</td>
+                    <td style="padding-bottom: 1%;">{{ guic.DNI }}</td>
+                    <td style="padding-bottom: 1%;">{{ guic.habilitación }}</td>
+                    <td style="text-transform: uppercase; padding-bottom: 1%;">{{ guic.instituto }}</td>
+                    <td style="padding-bottom: 1%;">
+                        <a class="link" href="{% url 'ver_guionista' guic.id %}" type="submit">Abrir</a>
+                        -
+                        <a class="link" href="{% url 'actualizar_guion' guic.id %}" type="submit">Actualizar</a>
+                    </td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
+    <div style='text-align: center;'>
+        <span class="step-links">
+            {% if guionc.has_previous %}
+                <a href="?page=1">&laquo; primera</a>
+                <a href="?page={{ guionc.previous_page_number }}">anterior</a>
+            {% endif %}
+
+            <span class="current-page">
+                Página {{ guionc.number }} de {{ guionc.paginator.num_pages }}
+            </span>
+
+            {% if guionc.has_next %}
+                <a href="?page={{ guionc.next_page_number }}">siguiente</a>
+                <a href="?page={{ guionc.paginator.num_pages }}">última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 </div>
 
 <p></p>

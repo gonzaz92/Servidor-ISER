@@ -25,26 +25,39 @@
         </thead>
         <tbody>
             {% for locutor_nacional in lnc_exp %}
-                {% if locutor_nacional.formulario and locutor_nacional.pdf_dni and locutor_nacional.pdf_secundario and locutor_nacional.pdf_instituto and locutor_nacional.acta and locutor_nacional.año_expediente and locutor_nacional.número_expediente %}
-                    {% if not locutor_nacional.número_disposición %}
-                        <tr>
-                            <td style="text-transform: uppercase; padding-bottom: 1%">{{ locutor_nacional.apellido }}</td>
-                            <td style="text-transform: capitalize; padding-bottom: 1%;">{{ locutor_nacional.nombre }}</td>
-                            <td style="padding-bottom: 1%;">{{ locutor_nacional.DNI }}</td>
-                            <td style="padding-bottom: 1%;">{{ locutor_nacional.habilitación }}</td>
-                            <td style="text-transform: uppercase; padding-bottom: 1%;">{{ locutor_nacional.instituto }}</td>
-                            <td style="padding-bottom: 1%; font-size: small;">EX-{{ locutor_nacional.año_expediente }}-{{ locutor_nacional.número_expediente }}- -APN-SDYME#ENACOM</td>
-                            <td style="padding-bottom: 1%;">
-                                <a class="link" href="{% url 'ver_locutor' locutor_nacional.id %}" type="submit">Abrir</a>
-                                -
-                                <a class="link" href="{% url 'actualizar_ln' locutor_nacional.id %}" type="submit">Actualizar</a>
-                            </td>
-                        </tr>
-                    {% endif %}
-                {% endif %}
+                <tr>
+                    <td style="text-transform: uppercase; padding-bottom: 1%">{{ locutor_nacional.apellido }}</td>
+                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ locutor_nacional.nombre }}</td>
+                    <td style="padding-bottom: 1%;">{{ locutor_nacional.DNI }}</td>
+                    <td style="padding-bottom: 1%;">{{ locutor_nacional.habilitación }}</td>
+                    <td style="text-transform: uppercase; padding-bottom: 1%;">{{ locutor_nacional.instituto }}</td>
+                    <td style="padding-bottom: 1%; font-size: small;">EX-{{ locutor_nacional.año_expediente }}-{{ locutor_nacional.número_expediente }}- -APN-SDYME#ENACOM</td>
+                    <td style="padding-bottom: 1%;">
+                        <a class="link" href="{% url 'ver_locutor' locutor_nacional.id %}" type="submit">Abrir</a>
+                        -
+                        <a class="link" href="{% url 'actualizar_ln' locutor_nacional.id %}" type="submit">Actualizar</a>
+                    </td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
+    <div style='text-align: center;'>
+        <span class="step-links">
+            {% if lnc_exp.has_previous %}
+                <a href="?page=1">&laquo; primera</a>
+                <a href="?page={{ lnc_exp.previous_page_number }}">anterior</a>
+            {% endif %}
+
+            <span class="current-page">
+                Página {{ lnc_exp.number }} de {{ lnc_exp.paginator.num_pages }}
+            </span>
+
+            {% if lnc_exp.has_next %}
+                <a href="?page={{ lnc_exp.next_page_number }}">siguiente</a>
+                <a href="?page={{ lnc_exp.paginator.num_pages }}">última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 </div>
 
 <p></p>

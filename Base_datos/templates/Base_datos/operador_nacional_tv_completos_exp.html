@@ -25,26 +25,39 @@
         </thead>
         <tbody>
             {% for operador_nacional_tv in optvnc_exp %}
-                {% if operador_nacional_tv.formulario and operador_nacional_tv.pdf_dni and operador_nacional_tv.pdf_secundario and operador_nacional_tv.pdf_instituto and operador_nacional_tv.acta %}
-                    {% if not operador_nacional_tv.número_disposición and operador_nacional_tv.año_expediente and operador_nacional_tv.número_expediente %}
-                        <tr>
-                            <td style="text-transform: uppercase; padding-bottom: 1%">{{ operador_nacional_tv.apellido }}</td>
-                            <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_nacional_tv.nombre }}</td>
-                            <td style="padding-bottom: 1%;">{{ operador_nacional_tv.DNI }}</td>
-                            <td style="padding-bottom: 1%;">{{ operador_nacional_tv.habilitación }}</td>
-                            <td style="text-transform: uppercase; padding-bottom: 1%;">{{ operador_nacional_tv.instituto }}</td>
-                            <td style="padding-bottom: 1%; font-size: small;">EX-{{ operador_nacional_tv.año_expediente }}-{{ operador_nacional_tv.número_expediente }}- -APN-SDYME#ENACOM</td>
-                            <td style="padding-bottom: 1%;">
-                                <a class="link" href="{% url 'ver_operador_nacional_tv' operador_nacional_tv.id %}" type="submit">Abrir</a>
-                                -
-                                <a class="link" href="{% url 'actualizar_operador_nacional_tv' operador_nacional_tv.id %}" type="submit">Actualizar</a>
-                            </td>
-                        </tr>
-                    {% endif %}
-                {% endif %}
+                <tr>
+                    <td style="text-transform: uppercase; padding-bottom: 1%">{{ operador_nacional_tv.apellido }}</td>
+                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_nacional_tv.nombre }}</td>
+                    <td style="padding-bottom: 1%;">{{ operador_nacional_tv.DNI }}</td>
+                    <td style="padding-bottom: 1%;">{{ operador_nacional_tv.habilitación }}</td>
+                    <td style="text-transform: uppercase; padding-bottom: 1%;">{{ operador_nacional_tv.instituto }}</td>
+                    <td style="padding-bottom: 1%; font-size: small;">EX-{{ operador_nacional_tv.año_expediente }}-{{ operador_nacional_tv.número_expediente }}- -APN-SDYME#ENACOM</td>
+                    <td style="padding-bottom: 1%;">
+                        <a class="link" href="{% url 'ver_operador_nacional_tv' operador_nacional_tv.id %}" type="submit">Abrir</a>
+                        -
+                        <a class="link" href="{% url 'actualizar_operador_nacional_tv' operador_nacional_tv.id %}" type="submit">Actualizar</a>
+                    </td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
+    <div style='text-align: center;'>
+        <span class="step-links">
+            {% if optvnc_exp.has_previous %}
+                <a href="?page=1">&laquo; primera</a>
+                <a href="?page={{ optvnc_exp.previous_page_number }}">anterior</a>
+            {% endif %}
+
+            <span class="current-page">
+                Página {{ optvnc_exp.number }} de {{ optvnc_exp.paginator.num_pages }}
+            </span>
+
+            {% if optvnc_exp.has_next %}
+                <a href="?page={{ optvnc_exp.next_page_number }}">siguiente</a>
+                <a href="?page={{ optvnc_exp.paginator.num_pages }}">última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 </div>
 
 <p></p>

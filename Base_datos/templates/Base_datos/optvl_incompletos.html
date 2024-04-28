@@ -26,27 +26,40 @@
         </thead>
         <tbody>
             {% for operador_local_tv in optvl %}
-                {% if not operador_local_tv.número_disposición%}
-                    {% if not operador_local_tv.formulario or not operador_local_tv.pdf_dni or not operador_local_tv.pdf_secundario or not operador_local_tv.certificado or not operador_local_tv.acta %}
-                        <tr>
-                            <td style="text-transform: uppercase; padding-bottom: 1%;">{{ operador_local_tv.apellido }}</td>
-                            <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_tv.nombre }}</td>
-                            <td style="padding-bottom: 1%;">{{ operador_local_tv.DNI }}</td>
-                            <td style="padding-bottom: 1%;">{{ operador_local_tv.habilitación }}</td>
-                            <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_tv.localidad }}</td>
-                            <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_tv.provincia }}</td>
-                            <td style="padding-bottom: 1%; font-size: small;">EX-{{ operador_local_tv.año_expediente }}-{{ operador_local_tv.número_expediente }}- -APN-SDYME#ENACOM</td>
-                            <td style="padding-bottom: 1%;">
-                                <a class="link" href="{% url 'ver_operador_local_tv' operador_local_tv.id %}" type="submit">Abrir</a>
-                                -
-                                <a class="link" href="{% url 'actualizar_operador_local_tv' operador_local_tv.id %}" type="submit">Actualizar</a>
-                            </td>
-                        </tr>
-                    {% endif %}
-                {% endif %}
+                <tr>
+                    <td style="text-transform: uppercase; padding-bottom: 1%;">{{ operador_local_tv.apellido }}</td>
+                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_tv.nombre }}</td>
+                    <td style="padding-bottom: 1%;">{{ operador_local_tv.DNI }}</td>
+                    <td style="padding-bottom: 1%;">{{ operador_local_tv.habilitación }}</td>
+                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_tv.localidad }}</td>
+                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_tv.provincia }}</td>
+                    <td style="padding-bottom: 1%; font-size: small;">EX-{{ operador_local_tv.año_expediente }}-{{ operador_local_tv.número_expediente }}- -APN-SDYME#ENACOM</td>
+                    <td style="padding-bottom: 1%;">
+                        <a class="link" href="{% url 'ver_operador_local_tv' operador_local_tv.id %}" type="submit">Abrir</a>
+                        -
+                        <a class="link" href="{% url 'actualizar_operador_local_tv' operador_local_tv.id %}" type="submit">Actualizar</a>
+                    </td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
+    <div style='text-align: center;'>
+        <span class="step-links">
+            {% if optvl.has_previous %}
+                <a href="?page=1">&laquo; primera</a>
+                <a href="?page={{ optvl.previous_page_number }}">anterior</a>
+            {% endif %}
+
+            <span class="current-page">
+                Página {{ optvl.number }} de {{ optvl.paginator.num_pages }}
+            </span>
+
+            {% if optvl.has_next %}
+                <a href="?page={{ optvl.next_page_number }}">siguiente</a>
+                <a href="?page={{ optvl.paginator.num_pages }}">última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 </div>
 <p></p>
 {% endblock %}

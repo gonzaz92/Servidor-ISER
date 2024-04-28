@@ -25,26 +25,39 @@
         </thead>
         <tbody>
             {% for operador_nacional_planta in opplantan %}
-                {% if not operador_nacional_planta.número_disposición %}
-                    {% if not operador_nacional_planta.formulario or not operador_nacional_planta.pdf_dni or not operador_nacional_planta.pdf_secundario or not operador_nacional_planta.pdf_instituto or not operador_nacional_planta.acta %}
-                    <tr>
-                        <td style="text-transform: uppercase; padding-bottom: 1%">{{ operador_nacional_planta.apellido }}</td>
-                        <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_nacional_planta.nombre }}</td>
-                        <td style="padding-bottom: 1%;">{{ operador_nacional_planta.DNI }}</td>
-                        <td style="padding-bottom: 1%;">{{ operador_nacional_planta.habilitación }}</td>
-                        <td style="text-transform: uppercase; padding-bottom: 1%;">{{ operador_nacional_planta.instituto }}</td>
-                        <td style="padding-bottom: 1%; font-size: small;">EX-{{ operador_nacional_planta.año_expediente }}-{{ operador_nacional_planta.número_expediente }}- -APN-SDYME#ENACOM</td>
-                        <td style="padding-bottom: 1%;">
-                            <a class="link" href="{% url 'ver_operador_nacional_planta' operador_nacional_planta.id %}" type="submit">Abrir</a>
-                            -
-                            <a class="link" href="{% url 'actualizar_operador_nacional_planta' operador_nacional_planta.id %}" type="submit">Actualizar</a>
-                        </td>
-                    </tr>
-                    {% endif %}
-                {% endif %}
+                <tr>
+                    <td style="text-transform: uppercase; padding-bottom: 1%">{{ operador_nacional_planta.apellido }}</td>
+                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_nacional_planta.nombre }}</td>
+                    <td style="padding-bottom: 1%;">{{ operador_nacional_planta.DNI }}</td>
+                    <td style="padding-bottom: 1%;">{{ operador_nacional_planta.habilitación }}</td>
+                    <td style="text-transform: uppercase; padding-bottom: 1%;">{{ operador_nacional_planta.instituto }}</td>
+                    <td style="padding-bottom: 1%; font-size: small;">EX-{{ operador_nacional_planta.año_expediente }}-{{ operador_nacional_planta.número_expediente }}- -APN-SDYME#ENACOM</td>
+                    <td style="padding-bottom: 1%;">
+                        <a class="link" href="{% url 'ver_operador_nacional_planta' operador_nacional_planta.id %}" type="submit">Abrir</a>
+                        -
+                        <a class="link" href="{% url 'actualizar_operador_nacional_planta' operador_nacional_planta.id %}" type="submit">Actualizar</a>
+                    </td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
+    <div style='text-align: center;'>
+        <span class="step-links">
+            {% if opplantan.has_previous %}
+                <a href="?page=1">&laquo; primera</a>
+                <a href="?page={{ opplantan.previous_page_number }}">anterior</a>
+            {% endif %}
+
+            <span class="current-page">
+                Página {{ opplantan.number }} de {{ opplantan.paginator.num_pages }}
+            </span>
+
+            {% if opplantan.has_next %}
+                <a href="?page={{ opplantan.next_page_number }}">siguiente</a>
+                <a href="?page={{ opplantan.paginator.num_pages }}">última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 </div>
 
 <p></p>
