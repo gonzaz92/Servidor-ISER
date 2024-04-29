@@ -11,7 +11,7 @@
     </div>
 
     <div style="margin: 0; padding: 0; display: grid ;place-items: center">
-        <table style="width: 95%; margin-left: 5%; text-align: center">
+        <table class='table borderless' style="width: 95%; margin-left: 5%; text-align: center">
             <thead>
                 <tr>
                     <th>Destinatario</th>
@@ -41,6 +41,7 @@
                             <td style="padding-bottom: 1%;">
                                 <a class="link" href="{% url 'actualizar_correo' cor.id %}" type="submit">Abrir</a>
                                 {% if user.is_superuser %}
+                                    -
                                     <a class="link" href="{% url 'borrar_correo' cor.id %}" type="submit">Borrar</a>
                                 {% endif %}
                             </td>

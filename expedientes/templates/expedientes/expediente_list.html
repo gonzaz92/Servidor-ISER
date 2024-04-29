@@ -7,7 +7,7 @@
 </div>
 
 <div style="margin: 0; padding: 0; display: grid; place-items: center;">
-    <table style="width: 95%; margin-left: 5%;">
+    <table class='table borderless' style="width: 95%; margin-left: 5%;">
         <thead style="text-align: center">
             <tr>
                 <th>Expediente</th>
@@ -32,6 +32,7 @@
                         <td style="padding-bottom: 1%;">
                             <a class="link" href="{% url 'actualizar_expediente' exp.id %}" type="submit">Abrir</a>
                             {% if user.is_superuser %}
+                                -
                                 <a class="link" href="{% url 'borrar_expediente' exp.id %}" type="submit">Borrar</a>
                             {% endif %}
                         </td>

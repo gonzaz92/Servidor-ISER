@@ -61,15 +61,15 @@ class Locutor_local(Persona, Local):
 
 class Operador_nacional_radio(Persona, Nacional):
     def display_name(self):
-        return "Operador-a de Radio"
+        return "Operador-a Nacional de Radio"
 
 class Operador_nacional_tv(Persona, Nacional):
     def display_name(self):
-        return "Operador-a de TV"
+        return "Operador-a Nacional de TV"
 
 class Operador_nacional_planta(Persona, Nacional):
     def display_name(self):
-        return "Operador-a de Planta"
+        return "Operador-a Nacional de Planta"
 
 class Operador_local_radio(Persona, Local):
     def display_name(self):

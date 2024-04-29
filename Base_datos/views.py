@@ -185,19 +185,15 @@ def index(request):
 @login_required
 def buscar(request):
     query = request.GET.get('q')
-    resultados_ln = Locutor_nacional.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
-    resultados_ll = Locutor_local.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
-    resultados_oprn = Operador_nacional_radio.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
-    resultados_optvn = Operador_nacional_tv.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
-    resultados_opplantan = Operador_nacional_planta.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
-    resultados_oprl = Operador_local_radio.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
-    resultados_optvl = Operador_local_tv.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
-    resultados_opplantal = Operador_local_planta.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
-    resultados_prod = Productor.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
-    resultado_guion = Guionista.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
-    resultados = (list(resultados_ln) + list(resultados_ll) + list(resultados_oprn) + list(resultados_optvn) + list(resultados_opplantan) +
-                list(resultados_oprl) + list(resultados_optvl) + list(resultados_opplantal) + list(resultados_prod) + list(resultado_guion))
-    return render(request, 'Base_datos/resultados_busqueda.html', {'resultados':resultados})
+    modelos = [
+        Locutor_nacional, Locutor_local, Operador_nacional_radio, Operador_nacional_tv, Operador_nacional_planta,
+        Operador_local_radio, Operador_local_tv, Operador_local_planta, Productor, Guionista
+    ]
+    resultados = []
+    for modelo in modelos:
+        busqueda = modelo.objects.filter(Q(apellido__icontains=query) | Q(nombre__icontains=query) | Q(DNI__icontains=query))
+        resultados.extend(busqueda)
+    return render(request, 'Base_datos/resultados_busqueda.html', {'resultados': resultados})
 
 ###################### Usuarios ################################
 
@@ -754,7 +750,7 @@ def guionistas(request):
 @login_required
 @user_passes_test(ver_guionista)
 def guion_completos(request):
-    guionc = pag_nacional(request, Guionista, completos_local)
+    guionc = pag_nacional(request, Guionista, completos_nacional)
     return render(request, 'Base_datos/guionistas_completos.html', {'guionc' : guionc})
 
 @login_required

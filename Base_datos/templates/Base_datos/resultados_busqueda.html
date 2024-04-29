@@ -12,47 +12,87 @@
 </div>
 
 {% if resultados %}
-    <table align="center" style="width: 95%;">
+    <table class='table borderless' align="center" style="width: 95%;">
         <thead>
             <tr>
                 <th>Apellido</th>
                 <th>Nombre</th>
                 <th>Documento</th>
                 <th>Categoría</th>
+                <th>Estado</th>
                 <th>Documentación</th>
             </tr>
         </thead>
         <tbody>
             {% for resultado in resultados %}
-            <tr>
-                <td style="text-transform: uppercase; padding-bottom: 1%;">{{ resultado.apellido }}</td>
-                <td style="text-transform: capitalize; padding-bottom: 1%;">{{ resultado.nombre }}</td>
-                <td style="padding-bottom: 1%;">{{ resultado.dni }} {{ resultado.DNI }}</td>
-                <td style="padding-bottom: 1%;">{{ resultado.display_name }}</td>
-                <td>
-                    {% if resultado.display_name == 'Locutor-a Nacional' %}
-                        <a href="{% url 'ver_locutor' resultado.id %}" type="submit">Abrir</a>
-                    {% elif resultado.display_name == 'Locutor-a Local' %}
-                        <a href="{% url 'ver_locutor_local' resultado.id %}" type="submit">Abrir</a>
-                    {% elif resultado.display_name == 'Operador-a de Radio' %}
-                        <a href="{% url 'ver_operador_nacional_radio' resultado.id %}" type="submit">Abrir</a>
-                    {% elif resultado.display_name == 'Operador-a de TV' %}
-                        <a href="{% url 'ver_operador_nacional_tv' resultado.id %}" type="submit">Abrir</a>
-                    {% elif resultado.display_name == 'Operador-a de Planta' %}
-                        <a href="{% url 'ver_operador_nacional_planta' resultado.id %}" type="submit">Abrir</a>
-                    {% elif resultado.display_name == 'Operador-a Local Radio' %}
-                        <a href="{% url 'ver_operador_local_radio' resultado.id %}" type="submit">Abrir</a>
-                    {% elif resultado.display_name == 'Operador-a Local TV' %}
-                        <a href="{% url 'ver_operador_local_tv' resultado.id %}" type="submit">Abrir</a>
-                    {% elif resultado.display_name == 'Operador-a Local Planta' %}
-                        <a href="{% url 'ver_operador_local_planta' resultado.id %}" type="submit">Abrir</a>
-                    {% elif resultado.display_name == 'Productor-a y Director-a' %}
-                        <a href="{% url 'ver_productor' resultado.id %}" type="submit">Abrir</a>
-                    {% elif resultado.display_name == 'Guionista' %}
-                        <a href="{% url 'ver_guionista' resultado.id %}" type="submit">Abrir</a>
+                <tr>
+                    <td style="text-transform: uppercase; padding-bottom: 1%;">{{ resultado.apellido }}</td>
+                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ resultado.nombre }}</td>
+                    <td style="padding-bottom: 1%;">{{ resultado.dni }} {{ resultado.DNI }}</td>
+                    <td style="padding-bottom: 1%;">{{ resultado.display_name }}</td>
+                    {% if resultado.número_disposición %}
+                        <td style="padding-bottom: 1%;">Habilitado</td>
+                    {% elif not resultado.número_disposición and resultado.número_expediente %}
+                        <td style="padding-bottom: 1%;">En trámite</td>
+                    {% elif not resultado.número_disposición and not resultado.número_expediente %}
+                        {% if resultado.display_name == 'Locutor-a Nacional' or resultado.display_name == 'Operador-a Nacional de Radio' or resultado.display_name == 'Operador-a Nacional de TV' or resultado.display_name == 'Operador-a Nacional de Planta' or resultado.display_name == 'Productor-a y Director-a' or resultado.display_name == 'Guionista' %}
+                            {% if resultado.pdf_instituto and resultado.pdf_secundario and resultado.acta %}
+                                <td style="padding-bottom: 1%;">Completo</td>
+                            {% else %}
+                                <td style="padding-bottom: 1%;">Incompleto</td>
+                            {% endif %}
+                        {% elif resultado.display_name == 'Locutor-a Local' or resultado.display_name == 'Operador-a Local Radio' or resultado.display_name == 'Operador-a Local TV' or resultado.display_name == 'Operador-a Local Planta' %}
+                            {% if resultado.certificado and resultado.pdf_secundario and resultado.acta %}
+                                <td style="padding-bottom: 1%;">Completo</td>
+                            {% else %}
+                                <td style="padding-bottom: 1%;">Incompleto</td>
+                            {% endif %}
+                        {% endif %}
                     {% endif %}
-                </td>
-            </tr>
+                    <td>
+                        {% if resultado.display_name == 'Locutor-a Nacional' %}
+                            <a href="{% url 'ver_locutor' resultado.id %}" type="submit">Abrir</a>
+                            -
+                            <a href="{% url 'actualizar_ln' resultado.id %}" type="submit">Actualizar</a>
+                        {% elif resultado.display_name == 'Locutor-a Local' %}
+                            <a href="{% url 'ver_locutor_local' resultado.id %}" type="submit">Abrir</a>
+                            -
+                            <a href="{% url 'actualizar_ll' resultado.id %}" type="submit">Actualizar</a>
+                        {% elif resultado.display_name == 'Operador-a Nacional de Radio' %}
+                            <a href="{% url 'ver_operador_nacional_radio' resultado.id %}" type="submit">Abrir</a>
+                            -
+                            <a href="{% url 'actualizar_operador_nacional_radio' resultado.id %}" type="submit">Actualizar</a>
+                        {% elif resultado.display_name == 'Operador-a Nacional de TV' %}
+                            <a href="{% url 'ver_operador_nacional_tv' resultado.id %}" type="submit">Abrir</a>
+                            -
+                            <a href="{% url 'actualizar_operador_nacional_tv' resultado.id %}" type="submit">Actualizar</a>
+                        {% elif resultado.display_name == 'Operador-a Nacional de Planta' %}
+                            <a href="{% url 'ver_operador_nacional_planta' resultado.id %}" type="submit">Abrir</a>
+                            -
+                            <a href="{% url 'actualizar_operador_nacional_planta' resultado.id %}" type="submit">Actualizar</a>
+                        {% elif resultado.display_name == 'Operador-a Local Radio' %}
+                            <a href="{% url 'ver_operador_local_radio' resultado.id %}" type="submit">Abrir</a>
+                            -
+                            <a href="{% url 'actualizar_operador_local_radio' resultado.id %}" type="submit">Actualizar</a>
+                        {% elif resultado.display_name == 'Operador-a Local TV' %}
+                            <a href="{% url 'ver_operador_local_tv' resultado.id %}" type="submit">Abrir</a>
+                            -
+                            <a href="{% url 'actualizar_operador_local_tv' resultado.id %}" type="submit">Actualizar</a>
+                        {% elif resultado.display_name == 'Operador-a Local Planta' %}
+                            <a href="{% url 'ver_operador_local_planta' resultado.id %}" type="submit">Abrir</a>
+                            -
+                            <a href="{% url 'actualizar_operador_local_planta' resultado.id %}" type="submit">Actualizar</a>
+                        {% elif resultado.display_name == 'Productor-a y Director-a' %}
+                            <a href="{% url 'ver_productor' resultado.id %}" type="submit">Abrir</a>
+                            -
+                            <a href="{% url 'actualizar_prod' resultado.id %}" type="submit">Actualizar</a>
+                        {% elif resultado.display_name == 'Guionista' %}
+                            <a href="{% url 'ver_guionista' resultado.id %}" type="submit">Abrir</a>
+                            -
+                            <a href="{% url 'actualizar_guion' resultado.id %}" type="submit">Actualizar</a>
+                        {% endif %}
+                    </td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
