@@ -8,7 +8,7 @@ class ExpedienteForm(forms.ModelForm):
         widgets = {
             'Fecha_de_Creación': forms.DateInput(attrs={'type': 'date'}),
             'Fecha_de_disposición': forms.DateInput(attrs={'type': 'date'}),
-            'Año_de_Expediente': forms.NumberInput(attrs={'size': 5})
+            'Año_de_Expediente': forms.NumberInput(attrs={'class': 'input-small'})
         }
 
 class ExpedienteUpdate(forms.ModelForm):
@@ -17,5 +17,5 @@ class ExpedienteUpdate(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'Fecha_de_disposición': forms.DateInput(attrs={'type': 'date'}),
-            'Año_de_Expediente': forms.NumberInput(attrs={'size': 5})
+            'Año_de_Expediente': forms.NumberInput(attrs={'class': 'input-small'})
         }

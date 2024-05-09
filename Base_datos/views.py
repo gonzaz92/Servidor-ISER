@@ -124,41 +124,39 @@ def actualizar_guionista(user):
 def ver_guionista(user):
     return user.has_perm('Base_datos.view_guionista')
 
+exp = Q(número_disposición__isnull=True) & Q(chequeo_expediente=True)
+
 ########################## Condiciones Nacional ############################
 
-completos_nacional = Q(número_disposición__isnull=True) & Q(número_expediente__isnull=True) & (
-                                                                                                Q(pdf_dni__isnull=False) &
-                                                                                                Q(pdf_secundario__isnull=False) &
-                                                                                                Q(pdf_instituto__isnull=False) &
-                                                                                                Q(acta__isnull=False)
-                                                                                                )
+completos_nacional = Q(número_disposición__isnull=True) & Q(chequeo_expediente=False) & (
+                                                                                        Q(chequeo_dni=True) &
+                                                                                        Q(chequeo_formulario=True) &
+                                                                                        Q(chequeo_secu=True) &
+                                                                                        Q(chequeo_insti=True)
+                                                                                        )
 
-nacional_exp = Q(número_disposición__isnull=True) & Q(número_expediente__isnull=False)
-
-incompletos_nacional = Q(número_disposición__isnull=True) & Q(número_expediente__isnull=True) & (
-                                                                                                Q(pdf_dni__isnull=True) |
-                                                                                                Q(pdf_secundario__isnull=True) |
-                                                                                                Q(pdf_instituto__isnull=True) |
-                                                                                                Q(acta__isnull=True)
-                                                                                                )
+incompletos_nacional = Q(número_disposición__isnull=True) & Q(chequeo_expediente=False) & Q(
+                                                                                            Q(chequeo_dni=False) |
+                                                                                            Q(chequeo_formulario=False) |
+                                                                                            Q(chequeo_secu=False) |
+                                                                                            Q(chequeo_insti=False)
+                                                                                            )
 
 ########################## Condiciones Local ############################
 
-completos_local = Q(número_disposición__isnull=True) & Q(número_expediente__isnull=True) & (
-                                                                                            Q(pdf_dni__isnull=False) &
-                                                                                            Q(pdf_secundario__isnull=False) &
-                                                                                            Q(certificado__isnull=False) &
-                                                                                            Q(acta__isnull=False)
-                                                                                            )
+completos_local = Q(número_disposición__isnull=True) & Q(chequeo_expediente=False) & (
+                                                                                    Q(chequeo_dni=True) &
+                                                                                    Q(chequeo_formulario=True) &
+                                                                                    Q(chequeo_secu=True) &
+                                                                                    Q(chequeo_certi=True)
+                                                                                    )
 
-local_exp = Q(número_disposición__isnull=True) & Q(número_expediente__isnull=False)
-
-incompletos_local = Q(número_disposición__isnull=True) & Q(número_expediente__isnull=True) & (
-                                                                                            Q(pdf_dni__isnull=True) |
-                                                                                            Q(pdf_secundario__isnull=True) |
-                                                                                            Q(certificado__isnull=True) |
-                                                                                            Q(acta__isnull=True)
-                                                                                            )
+incompletos_local = Q(número_disposición__isnull=True) & Q(chequeo_expediente=False) & (
+                                                                                        Q(chequeo_dni=False) |
+                                                                                        Q(chequeo_formulario=False) |
+                                                                                        Q(chequeo_secu=False) |
+                                                                                        Q(chequeo_certi=False)
+                                                                                        )
 
 ########################## Funciones para condición ############################
 
@@ -228,7 +226,7 @@ def ln_completos(request):
 @login_required
 @user_passes_test(ver_LocutorNacional)
 def ln_completos_exp(request):
-    lnc_exp = pag_nacional(request, Locutor_nacional, nacional_exp)
+    lnc_exp = pag_nacional(request, Locutor_nacional, exp)
     return render(request, 'Base_datos/locutor_nacional_completos_exp.html', {'lnc_exp' : lnc_exp})
 
 @login_required
@@ -287,7 +285,7 @@ def ll_completos(request):
 @login_required
 @user_passes_test(ver_LocutorLocal)
 def ll_completos_exp(request):
-    llc_exp = pag_local(request, Locutor_local, local_exp)
+    llc_exp = pag_local(request, Locutor_local, exp)
     return render(request, 'Base_datos/locutor_local_completos_exp.html', {'llc_exp' : llc_exp})
 
 @login_required
@@ -349,7 +347,7 @@ def oprn_completos(request):
 @login_required
 @user_passes_test(ver_OperadorNRadio)
 def oprn_completos_exp(request):
-    oprnc_exp = pag_nacional(request, Operador_nacional_radio, nacional_exp)
+    oprnc_exp = pag_nacional(request, Operador_nacional_radio, exp)
     return render(request, 'Base_datos/operador_nacional_radio_completos_exp.html', {'oprnc_exp' : oprnc_exp})
 
 @login_required
@@ -406,7 +404,7 @@ def optvn_completos(request):
 @login_required
 @user_passes_test(ver_OperadorNTV)
 def optvn_completos_exp(request):
-    optvnc_exp = pag_nacional(request, Operador_nacional_tv, nacional_exp)
+    optvnc_exp = pag_nacional(request, Operador_nacional_tv, exp)
     return render(request, 'Base_datos/operador_nacional_tv_completos_exp.html', {'optvnc_exp' : optvnc_exp})
 
 @login_required
@@ -462,7 +460,7 @@ def opplantan_completos(request):
 @login_required
 @user_passes_test(ver_OperadorNPlanta)
 def opplantan_completos_exp(request):
-    opplantanc_exp = pag_nacional(request, Operador_nacional_planta, nacional_exp)
+    opplantanc_exp = pag_nacional(request, Operador_nacional_planta, exp)
     return render(request, 'Base_datos/operador_nacional_planta_completos_exp.html', {'opplantanc_exp' : opplantanc_exp})
 
 @login_required
@@ -524,7 +522,7 @@ def oprl_completos(request):
 @login_required
 @user_passes_test(ver_OperadorLRadio)
 def oprl_completos_exp(request):
-    oprlc_exp = pag_local(request, Operador_local_radio, local_exp)
+    oprlc_exp = pag_local(request, Operador_local_radio, exp)
     return render(request, 'Base_datos/operador_local_radio_completos_exp.html', {'oprlc_exp' : oprlc_exp})
 
 @login_required
@@ -580,7 +578,7 @@ def optvl_completos(request):
 @login_required
 @user_passes_test(ver_OperadorLTV)
 def optvl_completos_exp(request):
-    optvlc_exp = pag_local(request, Operador_local_tv, local_exp)
+    optvlc_exp = pag_local(request, Operador_local_tv, exp)
     return render(request, 'Base_datos/operador_local_tv_completos_exp.html', {'optvlc_exp' : optvlc_exp})
 
 @login_required
@@ -636,7 +634,7 @@ def opplantal_completos(request):
 @login_required
 @user_passes_test(ver_OperadorLPlanta)
 def opplantal_completos_exp(request):
-    opplantalc_exp = pag_local(request, Operador_local_planta, local_exp)
+    opplantalc_exp = pag_local(request, Operador_local_planta, exp)
     return render(request, 'Base_datos/operador_local_planta_completos_exp.html', {'opplantalc_exp' : opplantalc_exp})
 
 @login_required
@@ -696,7 +694,7 @@ def prod_completos(request):
 @login_required
 @user_passes_test(ver_productor)
 def prod_completos_exp(request):
-    prodc_exp = pag_nacional(request, Productor, nacional_exp)
+    prodc_exp = pag_nacional(request, Productor, exp)
     return render(request, 'Base_datos/productores_completos_exp.html', {'prodc_exp' : prodc_exp})
 
 @login_required
@@ -756,7 +754,7 @@ def guion_completos(request):
 @login_required
 @user_passes_test(ver_guionista)
 def guion_completos_exp(request):
-    guionc_exp = pag_nacional(request, Guionista, nacional_exp)
+    guionc_exp = pag_nacional(request, Guionista, exp)
     return render(request, 'Base_datos/guionistas_completos_exp.html', {'guionc_exp' : guionc_exp})
 
 @login_required

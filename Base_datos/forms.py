@@ -32,6 +32,7 @@ class PersonaForm(forms.ModelForm):
             'habilitación': forms.NumberInput(),
             'año_expediente': forms.NumberInput(attrs={'class': 'input-small'}),
             'número_expediente': forms.NumberInput(attrs={'class': 'input-large'}),
+            'chequeo_expediente': forms.CheckboxInput(),
             'año_disposición': forms.NumberInput(attrs={'class': 'input-small'}),
             'número_disposición': forms.NumberInput(attrs={'class': 'input-large'}),
             'año_acuse': forms.NumberInput(attrs={'class': 'input-small'}),

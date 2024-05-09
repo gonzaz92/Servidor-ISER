@@ -26,7 +26,7 @@ def expedientes(request):
 @login_required
 @user_passes_test(permiso_ver)
 def expedientes_finalizados(request):
-    expe = Expediente.objects.all().order_by('-Fecha_de_Creación')
+    expe = Expediente.objects.all().order_by('-Fecha_de_disposición')
     return render(request, 'expedientes/expedientes_finalizados.html', {'expe' : expe})
 
 @login_required
