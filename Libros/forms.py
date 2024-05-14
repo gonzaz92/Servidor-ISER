@@ -6,7 +6,7 @@ class LibroForm(forms.ModelForm):
         model = Libro
         fields = '__all__'
         widgets = {
-            'nombre' : forms.TextInput(attrs={'size' : '100%'}),
+            'nombre' : forms.TextInput(attrs={'class': 'form-control mb-3', 'size' : '100%'}),
         }
 
 class ActaForm(forms.ModelForm):
@@ -46,3 +46,8 @@ class ActaForm(forms.ModelForm):
             'firma2' : forms.TextInput(attrs={'size': '60%'}),
             'firma3' : forms.TextInput(attrs={'size': '60%'}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super(ActaForm, self).__init__(*args, **kwargs)
+        if not self.instance.fecha:
+            self.fields['fecha'].widget = forms.DateInput(attrs={'type': 'date'})
