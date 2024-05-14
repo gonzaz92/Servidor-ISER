@@ -20,7 +20,7 @@
         </thead>
         <tbody style="text-align: center">
             {% for exp in object_list %}
-                {% if exp.Estado != 'Finalizado' %}
+                {% if exp.Estado != 'Finalizado' and exp.Estado != 'Hacer carnet' %}
                     <tr>
                         <td style="padding-bottom: 1%;">EX-{{exp.Año_de_Expediente}}-{{exp.Número_de_Expediente}}- -APN-SDYME#ENACOM</td>
                         <td style="text-transform: uppercase; padding-bottom: 1%;">{{exp.Categoría}}</td>

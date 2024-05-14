@@ -54,7 +54,7 @@
             <tr>
                 <td>Expediente: <span style='font-size: small;'>EX-{{ form.año_expediente }}-{{ form.número_expediente }}- -APN-SDYME#ENACOM {{ form.chequeo_expediente }}</span></td>
                 {% if request.resolver_match.view_name == 'actualizar_operador_local_tv' %}
-                <td>Disposición: <span style='font-size: small;'>IF-{{ form.año_disposición }}-{{ form.número_disposición }}-APN-DNSA#ENACOM</span></td>
+                <td>Disposición: <span style='font-size: small;'>DI-{{ form.año_disposición }}-{{ form.número_disposición }}-APN-DNSA#ENACOM</span></td>
                 {% endif %}
             </tr>
         </table>

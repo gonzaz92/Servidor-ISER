@@ -24,6 +24,12 @@ def expedientes(request):
     return render(request, 'expedientes/expedientes.html')
 
 @login_required
+@user_passes_test(permiso_actualizar)
+def carnets(request):
+    expe = Expediente.objects.all().order_by('-Fecha_de_disposición')
+    return render(request, 'expedientes/carnets.html', {'expe' : expe})
+
+@login_required
 @user_passes_test(permiso_ver)
 def expedientes_finalizados(request):
     expe = Expediente.objects.all().order_by('-Fecha_de_disposición')

@@ -8,6 +8,7 @@ tipos_de_estado = (
     ('Revisión DNSA', 'Revisión DNSA'),
     ('Esperando Dictamen', 'Esperando Dictamen'),
     ('Firma de Disposición', 'Firma de Disposición'),
+    ('Hacer carnet', 'Hacer carnet'),
     ('Finalizado', 'Finalizado'),
 )
 

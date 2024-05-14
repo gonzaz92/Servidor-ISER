@@ -1,0 +1,48 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+    <div style="margin: 1%; width: 95%; display: flex">
+        <div>
+            <h2 style="font-weight: bold">Expedientes con Disposición firmada</h2>
+        </div>
+        <div style="margin-left: auto">
+            <a class="btn btn-primary btn-lg" style="justify-content: flex-end;" href="{% url 'expedientes' %}" type="submit">Volver</a>
+        </div>
+    </div>
+
+    <div style="margin: 0; padding: 0; display: grid ;place-items: center">
+        <table class='table borderless' style="width: 95%; margin-left: 5%">
+            <thead style="text-align: center">
+                <tr>
+                    <th>Expediente</th>
+                    <th>Categoría</th>
+                    <th>Habilitados</th>
+                    <th>Instituto o Localidad</th>
+                    <th>Fecha de Caratulación</th>
+                    <th>Estado</th>
+                    <th>Fecha de Disposición</th>
+                </tr>
+            </thead>
+            <tbody style="text-align: center">
+                {% for exp in expe %}
+                    {% if exp.Estado == 'Hacer carnet' %}
+                        <tr>
+                            <td style="padding-bottom: 1%;">EX-{{exp.Año_de_Expediente}}-{{exp.Número_de_Expediente}}- -APN-SDYME#ENACOM</td>
+                            <td style="text-transform: uppercase; padding-bottom: 1%">{{exp.Categoría}}</td>
+                            <td style="text-transform: uppercase; padding-bottom: 1%">{{exp.Cantidad_de_Habilitados}}</td>
+                            <td style="text-transform: capitalize; padding-bottom: 1%;">{{exp.Instituto_o_Localidad}}</td>
+                            <td style="padding-bottom: 1%;">{{ exp.Fecha_de_Creación}}</td>
+                            <td style="padding-bottom: 1%;">{{exp.Estado}}</td>
+                            <td style="padding-bottom: 1%;">{{ exp.Fecha_de_disposición}}</td>
+                            <td style="text-transform: uppercase; padding-bottom: 1%;">{{exp.Instituto}}</td>
+                            <td style="padding-bottom: 1%;">
+                                <a class="link" href="{% url 'actualizar_expediente' exp.id %}" type="submit">Abrir</a>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <p></p>
+{% endblock %}

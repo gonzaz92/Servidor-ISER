@@ -31,7 +31,7 @@ from Base_datos.views import (index, buscar, UserSingUp, UserLogin, UserLogout, 
                             opplantal_completos, opplantal_completos_exp,opplantal_incompletos, CrearOperadordePlantaLocal, ListarOperadordePlantaLocal, VerOperadordePlantaLocal, ActualizarOPPlantaLocal,
                             productores, prod_completos, prod_completos_exp, prod_incompletos, CrearProductor, ListarProductor, VerProductor, ActualizarProd,
                             guionistas, guion_completos, guion_completos_exp,guion_incompletos, CrearGuionista, ListarGuionista, VerGuionista, ActualizarGuion)
-from expedientes.views import (expedientes, expedientes_finalizados,calculadora_anual, buscar_expedientes, año, CrearExpediente, ListarExpedientes, ActualizarExpediente, BorrarExpediente)
+from expedientes.views import (expedientes, carnets, expedientes_finalizados, calculadora_anual, buscar_expedientes, año, CrearExpediente, ListarExpedientes, ActualizarExpediente, BorrarExpediente)
 from correo.views import correo, correo_finalizados, buscar_envio, NuevoEnvio, ListarCorreo, ActualizarCorreo, CorreoBorrar
 from Libros.views import libros, NuevoLibro, ListarLibros, ActualizarLibro ,NuevaActa, ListarActas, DetalleActa, ActualizarActa
 
@@ -161,6 +161,7 @@ urlpatterns = [
     path('expedientes/', expedientes, name='expedientes'),
     path('expedientes/cargar/', CrearExpediente.as_view(), name='carga_expediente'),
     path('lista_expedientes/', ListarExpedientes.as_view(), name='lista_expedientes'),
+    path('carnets/', carnets, name='carnets'),
     path('expedientes_finalizados/', expedientes_finalizados, name='expedientes_finalizados'),
     path('expediente/<int:pk>/actualizar', ActualizarExpediente.as_view(), name='actualizar_expediente'),
     path('expedientes/ingresar_año/', año, name='meta'),
