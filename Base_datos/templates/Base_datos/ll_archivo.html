@@ -20,7 +20,7 @@
                 <th>Localidad</th>
                 <th>Provincia</th>
                 <th>Expediente</th>
-                <th>Ultima respuesta</th>
+                <th>Última respuesta</th>
                 <th>Documentación</th>
             </tr>
         </thead>
@@ -33,7 +33,7 @@
                     <td style="text-transform: capitalize; padding-bottom: 1%;">{{ locutor_local.localidad }}</td>
                     <td style="text-transform: capitalize; padding-bottom: 1%;">{{ locutor_local.provincia }}</td>
                     <td style="padding-bottom: 1%; font-size: small;">EX-{{ locutor_local.año_expediente }}-{{ locutor_local.número_expediente }}- -APN-SDYME#ENACOM</td>
-                    <td style="text-transform: padding-bottom: 1%;">{{ locutor_local.reclamo_tad }}</td>
+                    <td style="padding-bottom: 1;">{{ locutor_local.reclamo_tad }}</td>
                     <td style="padding-bottom: 1%;">
                         <a class="link" href="{% url 'ver_locutor_local' locutor_local.id %}" type="submit">Abrir</a>
                         -

@@ -28,7 +28,7 @@ from Base_datos.views import (index, buscar, UserSingUp, UserLogin, UserLogout, 
                             operadores_locales,
                             oprl_completos, oprl_completos_exp,oprl_incompletos, CrearOperadordeRadioLocal, ListarOperadordeRadioLocal, VerOperadordeRadioLocal, ActualizarOPRLocal,
                             optvl_completos, optvl_completos_exp,optvl_incompletos, CrearOperadordeTVLocal, ListarOperadordeTVLocal, VerOperadordeTVLocal, ActualizarOPTVLocal,
-                            opplantal_completos, opplantal_completos_exp,opplantal_incompletos, CrearOperadordePlantaLocal, ListarOperadordePlantaLocal, VerOperadordePlantaLocal, ActualizarOPPlantaLocal,
+                            opplantal_completos, opplantal_completos_exp, opplantal_archivo, opplantal_incompletos, CrearOperadordePlantaLocal, ListarOperadordePlantaLocal, VerOperadordePlantaLocal, ActualizarOPPlantaLocal,
                             productores, prod_completos, prod_completos_exp, prod_incompletos, CrearProductor, ListarProductor, VerProductor, ActualizarProd,
                             guionistas, guion_completos, guion_completos_exp,guion_incompletos, CrearGuionista, ListarGuionista, VerGuionista, ActualizarGuion)
 from expedientes.views import (expedientes, carnets, expedientes_finalizados, calculadora_anual, buscar_expedientes, año, CrearExpediente, ListarExpedientes, ActualizarExpediente, BorrarExpediente)
@@ -132,6 +132,7 @@ urlpatterns = [
     path('operadores_local_planta_completos/', opplantal_completos, name='opplantal_completos'),
     path('operadores_local_planta_completos_expedientes/', opplantal_completos_exp, name='opplantal_completos_exp'),
     path('operadores_local_planta_incompletos/', opplantal_incompletos, name='opplantal_incompletos'),
+    path('operadores_local_planta_archivo/', opplantal_archivo, name='opplantal_archivo'),
     path('operador_local_planta/<int:pk>/', VerOperadordePlantaLocal.as_view(), name='ver_operador_local_planta'),
     path('operador_local_planta/<int:pk>/actualizar/', ActualizarOPPlantaLocal.as_view(), name='actualizar_operador_local_planta'),
 

@@ -659,6 +659,12 @@ def opplantal_incompletos(request):
     opplantal = pag_local(request, Operador_local_planta, incompletos_local)
     return render(request, 'Base_datos/opplantal_incompletos.html', {'opplantal' : opplantal} )
 
+@login_required
+@user_passes_test(ver_OperadorLPlanta)
+def opplantal_archivo(request):
+    opplantal_arch = pag_local(request, Operador_local_planta, archivo_local)
+    return render(request, 'Base_datos/opplantal_archivo.html', {'opplantal_arch' : opplantal_arch} )
+
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(carga_OperadorLPlanta), name='get')
 class CrearOperadordePlantaLocal(CreateView):
