@@ -125,48 +125,60 @@ def actualizar_guionista(user):
 def ver_guionista(user):
     return user.has_perm('Base_datos.view_guionista')
 
+limite = datetime.now().date() - timedelta(days=10)
+
 exp = Q(número_disposición__isnull=True) & Q(chequeo_expediente=True)
 
 ########################## Condiciones Nacional ############################
 
-completos_nacional = Q(número_disposición__isnull=True) & Q(chequeo_expediente=False) & (
-                                                                                        Q(chequeo_dni=True) &
-                                                                                        Q(chequeo_formulario=True) &
-                                                                                        Q(chequeo_secu=True) &
-                                                                                        Q(chequeo_insti=True)
-                                                                                        )
+completos_nacional = Q(número_disposición__isnull=True) & (
+                                                            Q(chequeo_expediente=False) | Q(chequeo_expediente__isnull=True)
+                                                            ) & (
+                                                                Q(chequeo_dni=True) &
+                                                                Q(chequeo_formulario=True) &
+                                                                Q(chequeo_secu=True) &
+                                                                Q(chequeo_insti=True)
+                                                                )
 
-incompletos_nacional = Q(número_disposición__isnull=True) & Q(chequeo_expediente=False) & Q(
-                                                                                            Q(chequeo_dni=False) |
-                                                                                            Q(chequeo_formulario=False) |
-                                                                                            Q(chequeo_secu=False) |
-                                                                                            Q(chequeo_insti=False)
-                                                                                            )
+incompletos_nacional = Q(número_disposición__isnull=True) & (
+                                                            Q(chequeo_expediente=False) | Q(chequeo_expediente__isnull=True)
+                                                            ) & (
+                                                                (Q(chequeo_dni=False) | Q(chequeo_dni__isnull=True)) |
+                                                                (Q(chequeo_formulario=False) | Q(chequeo_formulario__isnull=True)) |
+                                                                (Q(chequeo_secu=False) | Q(chequeo_secu__isnull=True)) |
+                                                                (Q(chequeo_insti=False) | Q(chequeo_insti__isnull=True))
+                                                                )
 
 ########################## Condiciones Local ############################
 
-completos_local = Q(número_disposición__isnull=True) & Q(chequeo_expediente=False) & (
-                                                                                    Q(chequeo_dni=True) &
-                                                                                    Q(chequeo_formulario=True) &
-                                                                                    Q(chequeo_secu=True) &
-                                                                                    Q(chequeo_certi=True)
+completos_local = Q(número_disposición__isnull=True) & (
+                                                        Q(chequeo_expediente=False) | Q(chequeo_expediente__isnull=True)
+                                                        ) & (
+                                                            Q(chequeo_dni=True) &
+                                                            Q(chequeo_formulario=True) &
+                                                            Q(chequeo_secu=True) &
+                                                            Q(chequeo_certi=True)
+                                                            )
+
+incompletos_local = Q(número_disposición__isnull=True) & (
+                                                        Q(chequeo_expediente=False) | Q(chequeo_expediente__isnull=True)
+                                                        ) & (
+                                                            Q(reclamo_tad__gte=limite) | Q(reclamo_tad__isnull=True)
+                                                            ) & (
+                                                                (Q(chequeo_dni=False) | Q(chequeo_dni__isnull=True)) |
+                                                                (Q(chequeo_formulario=False) | Q(chequeo_formulario__isnull=True)) |
+                                                                (Q(chequeo_secu=False) | Q(chequeo_secu__isnull=True)) |
+                                                                (Q(chequeo_certi=False) | Q(chequeo_certi__isnull=True))
+                                                                )
+
+archivo_local = Q(número_disposición__isnull=True) & (
+                                                    Q(chequeo_expediente=False) | Q(chequeo_expediente__isnull=True)
+                                                    ) & Q(reclamo_tad__lt=limite) & (
+                                                                                    (Q(chequeo_dni=False) | Q(chequeo_dni__isnull=True)) |
+                                                                                    (Q(chequeo_formulario=False) | Q(chequeo_formulario__isnull=True)) |
+                                                                                    (Q(chequeo_secu=False) | Q(chequeo_secu__isnull=True)) |
+                                                                                    (Q(chequeo_certi=False) | Q(chequeo_certi__isnull=True))
                                                                                     )
-
-limite = datetime.now().date() - timedelta(days=10)
-
-incompletos_local = Q(número_disposición__isnull=True) & Q(chequeo_expediente=False) & (Q(reclamo_tad__gte=limite) | Q(reclamo_tad__isnull=True)) & (
-                                                                                                                                                    Q(chequeo_dni=False) |
-                                                                                                                                                    Q(chequeo_formulario=False) |
-                                                                                                                                                    Q(chequeo_secu=False) |
-                                                                                                                                                    Q(chequeo_certi=False)
-                                                                                                                                                    )
-
-archivo_local = Q(número_disposición__isnull=True) & Q(chequeo_expediente=False) & Q(reclamo_tad__lt=limite) & (
-                                                                                                                Q(chequeo_dni=False) |
-                                                                                                                Q(chequeo_formulario=False) |
-                                                                                                                Q(chequeo_secu=False) |
-                                                                                                                Q(chequeo_certi=False)
-                                                                                                                )
 
 ########################## Funciones para condición ############################
 
