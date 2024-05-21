@@ -50,13 +50,6 @@ class PersonaForm(forms.ModelForm):
             'certificado': forms.NumberInput(attrs={'class': 'input-large'}),
             'chequeo_certi' : forms.CheckboxInput(),
             }
-        
-    def __init__(self, *args, **kwargs):
-        super(PersonaForm, self).__init__(*args, **kwargs)
-        if not self.instance.inicio_tad:
-            self.fields['inicio_tad'].widget = forms.DateInput(attrs={'type': 'date'})
-        if not self.instance.reclamo_tad:
-            self.fields['reclamo_tad'].widget = forms.DateInput(attrs={'type': 'date'})
 
 ######################### Locutor Nacional #######################################
 
@@ -92,6 +85,13 @@ class LocutorLocalForm(PersonaForm):
     class Meta(PersonaForm.Meta):
         model = Locutor_local
         fields = '__all__'
+    
+    def __init__(self, *args, **kwargs):
+        super(PersonaForm, self).__init__(*args, **kwargs)
+        if not self.instance.inicio_tad:
+            self.fields['inicio_tad'].widget = forms.DateInput(attrs={'type': 'date'})
+        if not self.instance.reclamo_tad:
+            self.fields['reclamo_tad'].widget = forms.DateInput(attrs={'type': 'date'})
 
 ######################### Operador Local Radio ###################################
 
@@ -100,6 +100,13 @@ class RadioLocalForm(PersonaForm):
         model = Operador_local_radio
         fields = '__all__'
 
+    def __init__(self, *args, **kwargs):
+        super(PersonaForm, self).__init__(*args, **kwargs)
+        if not self.instance.inicio_tad:
+            self.fields['inicio_tad'].widget = forms.DateInput(attrs={'type': 'date'})
+        if not self.instance.reclamo_tad:
+            self.fields['reclamo_tad'].widget = forms.DateInput(attrs={'type': 'date'})
+
 ######################### Operador Local TV ######################################
 
 class TVLocalForm(PersonaForm):
@@ -107,12 +114,26 @@ class TVLocalForm(PersonaForm):
         model = Operador_local_tv
         fields = '__all__'
 
+    def __init__(self, *args, **kwargs):
+        super(PersonaForm, self).__init__(*args, **kwargs)
+        if not self.instance.inicio_tad:
+            self.fields['inicio_tad'].widget = forms.DateInput(attrs={'type': 'date'})
+        if not self.instance.reclamo_tad:
+            self.fields['reclamo_tad'].widget = forms.DateInput(attrs={'type': 'date'})
+
 ######################### Operador Local Planta ##################################
 
 class PlantaLocalForm(PersonaForm):
     class Meta(PersonaForm.Meta):
         model = Operador_local_planta
         fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super(PersonaForm, self).__init__(*args, **kwargs)
+        if not self.instance.inicio_tad:
+            self.fields['inicio_tad'].widget = forms.DateInput(attrs={'type': 'date'})
+        if not self.instance.reclamo_tad:
+            self.fields['reclamo_tad'].widget = forms.DateInput(attrs={'type': 'date'})
 
 ######################### Productor ##############################################
 
