@@ -13,6 +13,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils.decorators import method_decorator
 from django.core.paginator import Paginator
+from datetime import datetime, timedelta
 
 # Permisos Locutor Nacional
 
@@ -151,12 +152,21 @@ completos_local = Q(número_disposición__isnull=True) & Q(chequeo_expediente=Fa
                                                                                     Q(chequeo_certi=True)
                                                                                     )
 
-incompletos_local = Q(número_disposición__isnull=True) & Q(chequeo_expediente=False) & (
-                                                                                        Q(chequeo_dni=False) |
-                                                                                        Q(chequeo_formulario=False) |
-                                                                                        Q(chequeo_secu=False) |
-                                                                                        Q(chequeo_certi=False)
-                                                                                        )
+limite = datetime.now().date() - timedelta(days=10)
+
+incompletos_local = Q(número_disposición__isnull=True) & Q(chequeo_expediente=False) & (Q(reclamo_tad__gte=limite) | Q(reclamo_tad__isnull=True)) & (
+                                                                                                                                                    Q(chequeo_dni=False) |
+                                                                                                                                                    Q(chequeo_formulario=False) |
+                                                                                                                                                    Q(chequeo_secu=False) |
+                                                                                                                                                    Q(chequeo_certi=False)
+                                                                                                                                                    )
+
+archivo_local = Q(número_disposición__isnull=True) & Q(chequeo_expediente=False) & Q(reclamo_tad__lt=limite) & (
+                                                                                                                Q(chequeo_dni=False) |
+                                                                                                                Q(chequeo_formulario=False) |
+                                                                                                                Q(chequeo_secu=False) |
+                                                                                                                Q(chequeo_certi=False)
+                                                                                                                )
 
 ########################## Funciones para condición ############################
 
@@ -293,6 +303,12 @@ def ll_completos_exp(request):
 def ll_incompletos(request):
     ll = pag_local(request, Locutor_local, incompletos_local)
     return render(request, 'Base_datos/ll_incompletos.html', {'ll' : ll} )
+
+@login_required
+@user_passes_test(ver_LocutorLocal)
+def ll_archivo(request):
+    ll_arch = pag_local(request, Locutor_local, archivo_local)
+    return render(request, 'Base_datos/ll_archivo.html', {'ll_arch' : ll_arch} )
 
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(carga_LocutorLocal), name='get')

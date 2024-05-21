@@ -48,6 +48,9 @@ class Local(models.Model):
     año_certificado = models.IntegerField(validators=[MaxValueValidator(9999)], null='True', blank=True, verbose_name='Año Certificado Laboral')
     certificado = models.IntegerField(validators=[MaxValueValidator(999999999)], null='True', blank=True, verbose_name='Número GDE - Certificado Laboral')
     chequeo_certi = models.BooleanField(null='True', default=False)
+    inicio_tad = models.DateField(null='True', blank=True)
+    reclamo_tad = models.DateField(null='True', blank=True)
+
 
     class Meta:
         abstract = True

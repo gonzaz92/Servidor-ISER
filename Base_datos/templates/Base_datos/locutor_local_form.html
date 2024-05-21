@@ -19,6 +19,14 @@
     <form enctype="multipart/form-data" method="POST">
         {% csrf_token %}
         {{ form.non_field_errors }}
+        <div style="text-align: center;">
+            <table class='table borderless'>
+                <tr> 
+                    <td>Ingreso TAD: {{ form.inicio_tad }}</td>
+                    <td>Pedido documentación: {{ form.reclamo_tad }}</td>
+                </tr>
+            </table>
+        </div>
         <table class='table borderless'>
             <tr>
                 <td><label for="{{ form.apellido.id_for_label }}">Apellido:</label></td>

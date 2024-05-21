@@ -50,6 +50,13 @@ class PersonaForm(forms.ModelForm):
             'certificado': forms.NumberInput(attrs={'class': 'input-large'}),
             'chequeo_certi' : forms.CheckboxInput(),
             }
+        
+    def __init__(self, *args, **kwargs):
+        super(PersonaForm, self).__init__(*args, **kwargs)
+        if not self.instance.inicio_tad:
+            self.fields['inicio_tad'].widget = forms.DateInput(attrs={'type': 'date'})
+        if not self.instance.reclamo_tad:
+            self.fields['reclamo_tad'].widget = forms.DateInput(attrs={'type': 'date'})
 
 ######################### Locutor Nacional #######################################
 

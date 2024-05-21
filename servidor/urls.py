@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.contrib.admin.views.decorators import staff_member_required
 from Base_datos.views import (index, buscar, UserSingUp, UserLogin, UserLogout, ChangePassword,
                             locutores, ln_completos, ln_completos_exp,ln_incompletos, CrearLocutorNacional, ListarLocutorNacional, VerLocutorNacional, ActualizarLN,
-                            locutor_local, ll_completos, ll_completos_exp,ll_incompletos, CrearLocutorLocal, ListarLocutorLocal, VerLocutorLocal, ActualizarLL,
+                            locutor_local, ll_completos, ll_completos_exp,ll_incompletos, ll_archivo, CrearLocutorLocal, ListarLocutorLocal, VerLocutorLocal, ActualizarLL,
                             operadores_nacionales,
                             oprn_completos, oprn_completos_exp, oprn_incompletos, CrearOperadordeRadio, ListarOperadordeRadio, VerOperadordeRadio, ActualizarOPR,
                             optvn_completos, optvn_completos_exp,optvn_incompletos, CrearOperadordeTV, ListarOperadordeTV, VerOperadordeTV, ActualizarOPTV,
@@ -63,6 +63,7 @@ urlpatterns = [
     path('locutores_locales_completos/', ll_completos, name='ll_completos'),
     path('locutores_locales_completos_expedientes/', ll_completos_exp, name='ll_completos_exp'),
     path('locutores_locales_incompletos/', ll_incompletos, name='ll_incompletos'),
+    path('locutores_locales_archivo/', ll_archivo, name='ll_archivo'),
     path('locutor_local/<int:pk>/', VerLocutorLocal.as_view(), name='ver_locutor_local'),
     path('locutor_local/<int:pk>/actualizar/', ActualizarLL.as_view(), name='actualizar_ll'),
 
