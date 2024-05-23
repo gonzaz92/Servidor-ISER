@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 notas = (
+    ('APROBADO', 'APROBADO'),
+    ('DESAPROBADO', 'DESAPROBADO'),
     ('AUSENTE', 'AUSENTE'),
     ('1 (Uno con 00/100)', '1 (Uno con 00/100)'),
     ('1,50 (Uno con 50/100)', '1,50 (Uno con 50/100)'),
@@ -25,6 +27,7 @@ notas = (
 )
 
 cantidad = (
+    ('ningún', 'ningún'),
     ('0 (cero)', '0 (cero)'),
     ('1 (uno)', '1 (uno)'),
     ('2 (dos)', '2 (dos)'),
@@ -56,6 +59,10 @@ cantidad = (
 examenes = (
     ('Ingreso', 'Ingreso'),
     ('Habilitación', 'Habilitación'),
+    ('Práctica de voz', 'Práctica de voz'),
+    ('Régimen Legal', 'Régimen Legal'),
+    ('Cultural General', 'Cultural General'),
+    ('Teorías de la Comunicación', 'Teorías de la Comunicación'),
 )
 
 categorias = (
@@ -65,14 +72,19 @@ categorias = (
     ('Operador/a Nacional de Planta Transmisora', 'Operador/a Nacionales de Planta Transmisora'),
     ('Productor/a y Director/a para Radio y TV', 'Productor/a y Director/a para Radio y TV'),
     ('Guionista de Radio y TV', 'Guionista de Radio y TV'),
+    ('Locutor/a Local', 'Locutor/a Local'),
+    ('Operador Local de Radio', 'Operador Local de Radio'),
+    ('Operador Local de TV', 'Operador Local de TV'),
+    ('Operador Local de Planta Transmisora', 'Operador Local de Planta Transmisora'),
 )
 
 class Firma(models.Model):
-    user = models.OneToOneField(to=User, on_delete=models.CASCADE, related_name='firma')
+    apellido = models.CharField(max_length=100, verbose_name='Apellido')
+    nombre = models.CharField(max_length=100, verbose_name='Nombre')
     imagen = models.ImageField(upload_to='firmas', null='True', blank=True)
 
     def __str__(self):
-        return self.user.last_name + ',' + ' ' + self.user.first_name
+        return self.apellido + ',' + ' ' + self.nombre
     
     def ver_imagen(self):
         return self.imagen.url
@@ -88,7 +100,9 @@ class Acta(models.Model):
     instituto = models.ForeignKey(Libro, on_delete=models.CASCADE, to_field='nombre', verbose_name='Instituto')
     examen = models.CharField(max_length=50, choices=examenes, verbose_name='Examen')
     carrera = models.CharField(max_length=100, choices=categorias,verbose_name='Carrera')
-    profesores = models.CharField(max_length=200, verbose_name='Profesores')
+    profesor1 = models.CharField(max_length=100, verbose_name='Profesor1')
+    profesor2 = models.CharField(max_length=100, verbose_name='Profesor2', null='True', blank=True)
+    profesor3 = models.CharField(max_length=100, verbose_name='Profesor3', null='True', blank=True)
     persona1 = models.CharField(max_length=100, verbose_name='Alumno 1')
     dni1 = models.CharField(max_length=10, verbose_name='D.N.I. alumno 1')
     nota1 = models.CharField(max_length=100, choices=notas, verbose_name='Nota alumno 1')

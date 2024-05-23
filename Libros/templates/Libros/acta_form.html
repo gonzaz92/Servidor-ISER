@@ -5,17 +5,12 @@
 <script>
     function checkUser(inputId) {
         var usuario = document.getElementById(inputId).value.trim(); // Elimina espacios en blanco al inicio y al final
-        var numerosPermitidos = [1, 2, 3]; // Lista de números permitidos
         
         // Extraer el número del usuario del valor introducido en el campo de entrada
         var user = parseInt(usuario.match(/\d+/));
 
-        // Verificar si el número extraído está en la lista de números permitidos
-        if (numerosPermitidos.includes(user)) {
-            document.getElementById(inputId).value = user;
-        } else {
-            document.getElementById(inputId).value = ""; // Limpiar el campo de entrada
-        }
+        // Establecer el valor del campo de entrada como el número extraído
+        document.getElementById(inputId).value = user ? user : ""; // Si el usuario no ingresó un número válido, el campo se limpia
     }
 </script>
 
@@ -28,7 +23,7 @@
         </div>
 
         {% csrf_token %}
-        <input type="text" id="instituto_input" name="instituto" list="opciones" style="display: block; margin: 0 auto; width: 700px;">
+        <input type="text" id="instituto_input" name="instituto" list="opciones" style="display: block; margin: 0 auto; width: 700px;" value="{{ object.instituto }}">
         <datalist id="opciones">
             {% for opcion in opciones %}
                 <option value="{{ opcion }}"></option>
@@ -47,7 +42,15 @@
                     <label>Fecha: {{ form.fecha }}</label>
                 </div>
                 <div>
-                    Reunida la mesa examinadora, con asistencia de sus miembros profesores: {{ form.profesores }}, se procedió a cumplir su cometido con el resultado que se consigna a continuación.
+                    Reunida la mesa examinadora, con asistencia de sus miembros profesores:
+                    <datalist id="profexa">
+                        {% for apellido, nombre in profexa %}
+                            <option value="{{ apellido }}, {{ nombre }}"></option>
+                        {% endfor %}
+                    </datalist>
+                    <input type="text" id="profesor1_input" name="profesor1" list="profexa" value="{{ object.profesor1 }}">;
+                    <input type="text" id="profesor2_input" name="profesor2" list="profexa" value="{{ object.profesor2 }}">; 
+                    <input type="text" id="profesor3_input" name="profesor3" list="profexa" value="{{ object.profesor3 }}">, se procedió a cumplir su cometido con el resultado que se consigna a continuación.
                 </div>
             </div>
         </div>
@@ -168,28 +171,18 @@
         <table style='margin: 0 auto; width: 1000px'>
             <tr>
                 <td style='text-align: left;'>
-                    <input type="text" id="firma1_input" name="firma1" list="firmas" onblur="checkUser('firma1_input')">
                     <datalist id="firmas">
                         {% for firm in firmas %}
                             <option value="{{ firm }}"></option>
                         {% endfor %}
                     </datalist>
+                    <input type="text" id="firma1_input" name="firma1" list="firmas" onblur="checkUser('firma1_input')">
                 </td>
                 <td style='text-align: center;'>
                     <input type="text" id="firma2_input" name="firma2" list="firmas" onblur="checkUser('firma2_input')" style='text-align: left;'>
-                    <datalist id="firmas">
-                        {% for firm in firmas %}
-                            <option value="{{ firm }}"></option>
-                        {% endfor %}
-                    </datalist>
                 </td>
                 <td style='text-align: right;'>
                     <input type="text" id="firma3_input" name="firma3" list="firmas" onblur="checkUser('firma3_input')" style='text-align: left;'>
-                    <datalist id="firmas">
-                        {% for firm in firmas %}
-                            <option value="{{ firm }}"></option>
-                        {% endfor %}
-                    </datalist>
                 </td>
             </tr>
             <tr>

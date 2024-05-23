@@ -1,0 +1,24 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+
+<h1 class="mt-4 text-center">Nuevo Profesor </h1>
+
+<form class="mt-4" enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    <table class="table borderless">
+        <tr style="text-align: center;">
+            <td>Apellido: {{form.apellido}}</td>
+            <td>Nombre: {{form.nombre}}</td>
+            <td>Firma: {{form.imagen}}
+        </tr>
+    </table>
+    <p></p>
+    <div class='text-center mt-4'>
+        <button type='submit' class='btn btn-primary'>Aceptar</button>
+    </div>
+    <p></p>
+</form>
+
+
+{% endblock %}

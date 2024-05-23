@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Libro, Acta, Firma
 from django.views.generic import CreateView, ListView, DetailView, UpdateView
-from .forms import LibroForm, ActaForm
+from .forms import LibroForm, ActaForm, FirmaForm
 from django.urls import reverse_lazy
 from django.db.models import Q
 from django.utils.decorators import method_decorator
@@ -57,8 +57,15 @@ class NuevaActa(CreateView):
     form_class = ActaForm
     success_url = reverse_lazy('libros')
 
+    def profe(self):
+        profex = Firma.objects.values_list('apellido', 'nombre')
+        profexa = []
+        for prof in profex:
+            profexa.append(prof)
+        return profexa
+
     def firmo(self):
-        firmascargadas = Firma.objects.values_list('id', 'user__last_name', 'user__first_name')
+        firmascargadas = Firma.objects.values_list('id', 'apellido', 'nombre')
         firmas = []
         for firm in firmascargadas:
             firmas.append(firm)
@@ -75,6 +82,7 @@ class NuevaActa(CreateView):
         context = super().get_context_data(**kwargs)
         context['opciones'] = self.listado()
         context['firmas'] = self.firmo()
+        context['profexa'] = self.profe()
         return context
 
 @method_decorator(login_required, name='get')
@@ -97,9 +105,16 @@ class ActualizarActa(UpdateView):
     model = Acta
     success_url = reverse_lazy('libros')
     form_class = ActaForm
+
+    def profe(self):
+        profex = Firma.objects.values_list('apellido', 'nombre')
+        profexa = []
+        for prof in profex:
+            profexa.append(prof)
+        return profexa
     
     def firmo(self):
-        firmascargadas = Firma.objects.values_list('id', 'user__last_name', 'user__first_name')
+        firmascargadas = Firma.objects.values_list('id', 'apellido', 'nombre')
         firmas = []
         for firm in firmascargadas:
             firmas.append(firm)
@@ -116,4 +131,10 @@ class ActualizarActa(UpdateView):
         context = super().get_context_data(**kwargs)
         context['opciones'] = self.listado()
         context['firmas'] = self.firmo()
+        context['profexa'] = self.profe()
         return context
+    
+class Profesor(CreateView):
+    template_name = 'Libros/firma_form.html'
+    form_class = FirmaForm
+    success_url = reverse_lazy('libros')

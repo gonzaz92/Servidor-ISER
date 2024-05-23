@@ -31,7 +31,7 @@
             <td>
                 Examen de {{ acta.examen }}: {{ acta.carrera }}
                 <br>Fecha: {{ acta.fecha }}</br>        
-                Reunida la mesa examinadora, con asistencia de sus miembros profesores: {{ acta.profesores }}, se procedió a cumplir su cometido con el resultado que se consigna a continuación.
+                Reunida la mesa examinadora, con asistencia de sus miembros profesores: {{ acta.profesor1 }}; {{ acta.profesor2 }}; {{ acta.profesor3 }}, se procedió a cumplir su cometido con el resultado que se consigna a continuación.
             </td>
         </tr>
     </table>
@@ -201,9 +201,9 @@
     <p></p>
     <table style='margin: 0 auto; width: 1000px'>
         <tr>
-            <td style='text-align: left;'>{% if acta.firma1 is not none %}<img src="{{ acta.firma1.ver_imagen }}"> <br>{{ acta.firma1.user.last_name }}, {{ acta.firma1.user.first_name }}<br>{% endif %}</td>
-            <td style='text-align: center;'>{% if acta.firma2 is not none %}<img src="{{ acta.firma2.ver_imagen }}"> <br>{{ acta.firma2.user.last_name }}, {{ acta.firma2.user.first_name }}<br>{% endif %}</td>
-            <td style='text-align: right;'>{% if acta.firma3 is not none %}<img src="{{ acta.firma3.ver_imagen }}"> <br>{{ acta.firma3.user.last_name }}, {{ acta.firma3.user.first_name }}<br>{% endif %}</td>
+            <td style='text-align: left;'>{% if acta.firma1 is not none %}<img src="{{ acta.firma1.ver_imagen }}"> <br>{{ acta.firma1.apellido }}, {{ acta.firma1.nombre }}<br>{% endif %}</td>
+            <td style='text-align: center;'>{% if acta.firma2 is not none %}<img src="{{ acta.firma2.ver_imagen }}"> <br>{{ acta.firma2.apellido }}, {{ acta.firma2.nombre }}<br>{% endif %}</td>
+            <td style='text-align: right;'>{% if acta.firma3 is not none %}<img src="{{ acta.firma3.ver_imagen }}"> <br>{{ acta.firma3.apellido }}, {{ acta.firma3.nombre }}<br>{% endif %}</td>
         </tr>
         <tr>
             <td style='text-align: left;'>........................................</td>

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Acta, Libro
+from .models import Acta, Libro, Firma
 
 class LibroForm(forms.ModelForm):
     class Meta:
@@ -9,14 +9,20 @@ class LibroForm(forms.ModelForm):
             'nombre' : forms.TextInput(attrs={'class': 'form-control mb-3', 'size' : '100%'}),
         }
 
+class FirmaForm(forms.ModelForm):
+    class Meta:
+        model = Firma
+        fields = '__all__'
+
 class ActaForm(forms.ModelForm):
     class Meta:
         model = Acta
         fields = '__all__'
         widgets = {
             'instituto' : forms.TextInput(attrs={'size':'60%'}),
-            'fecha' : forms.DateInput(attrs={'type':'date'}),
-            'profesores' : forms.TextInput(attrs={'size': '114%'}),
+            'profesor1' : forms.TextInput(attrs={'size': '30%'}),
+            'profesor2' : forms.TextInput(attrs={'size': '30%'}),
+            'profesor3' : forms.TextInput(attrs={'size': '30%'}),
             'persona1' : forms.TextInput(attrs={'size': '60%'}),
             'persona2' : forms.TextInput(attrs={'size': '60%'}),
             'persona3' : forms.TextInput(attrs={'size': '60%'}),
