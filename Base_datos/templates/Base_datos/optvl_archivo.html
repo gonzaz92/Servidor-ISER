@@ -1,0 +1,65 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+<div style="margin: 1%; width: 95%; display: flex; justify-content: space-between;">
+    <div>
+        <h2 style="font-weight: bold;">Expedientes para archivar</h2>
+    </div>
+    <div>
+        <a class="btn btn-primary btn-lg" style="justify-content: right;" href="{% url 'operadores_locales' %}" type="submit">Volver</a>
+    </div>
+</div>
+
+<div style="margin: 0; padding: 0; display: grid; place-items: center;">
+    <table class='table borderless' style="width: 95%; margin-left: 5%;">
+        <thead>
+            <tr>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>Documento N°</th>
+                <th>Localidad</th>
+                <th>Provincia</th>
+                <th>Expediente</th>
+                <th>Última respuesta</th>
+                <th>Documentación</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for operador_local_tv in optvl_arch %}
+                <tr>
+                    <td style="text-transform: uppercase; padding-bottom: 1%;">{{ operador_local_tv.apellido }}</td>
+                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_tv.nombre }}</td>
+                    <td style="padding-bottom: 1%;">{{ operador_local_tv.DNI }}</td>
+                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_tv.localidad }}</td>
+                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{ operador_local_tv.provincia }}</td>
+                    <td style="padding-bottom: 1%; font-size: small;">EX-{{ operador_local_tv.año_expediente }}-{{ operador_local_tv.número_expediente }}- -APN-SDYME#ENACOM</td>
+                    <td style="padding-bottom: 1;">{{ operador_local_tv.reclamo_tad }}</td>
+                    <td style="padding-bottom: 1%;">
+                        <a class="link" href="{% url 'ver_operador_local_tv' operador_local_tv.id %}" type="submit">Abrir</a>
+                        -
+                        <a class="link" href="{% url 'actualizar_operador_local_tv' operador_local_tv.id %}" type="submit">Actualizar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div style='text-align: center;'>
+        <span class="step-links">
+            {% if optvl_arch.has_previous %}
+                <a href="?page=1">&laquo; primera</a>
+                <a href="?page={{ optvl_arch.previous_page_number }}">anterior</a>
+            {% endif %}
+
+            <span class="current-page">
+                Página {{ optvl_arch.number }} de {{ optvl_arch.paginator.num_pages }}
+            </span>
+
+            {% if optvl_arch.has_next %}
+                <a href="?page={{ optvl_arch.next_page_number }}">siguiente</a>
+                <a href="?page={{ optvl_arch.paginator.num_pages }}">última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+<p></p>
+{% endblock %}

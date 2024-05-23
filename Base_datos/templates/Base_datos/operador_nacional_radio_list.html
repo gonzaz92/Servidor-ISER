@@ -26,20 +26,18 @@
             </thead>
             <tbody>
                 {% for operador_nacional_radio in object_list %}
-                    {% if operador_nacional_radio.número_disposición %}
-                        <tr>
-                            <td style="text-transform: uppercase; padding-bottom: 1%">{{operador_nacional_radio.apellido}}</td>
-                            <td style="text-transform: capitalize; padding-bottom: 1%;">{{operador_nacional_radio.nombre}}</td>
-                            <td style="padding-bottom: 1%;">{{operador_nacional_radio.DNI}}</td>
-                            <td style="padding-bottom: 1%;">{{operador_nacional_radio.habilitación}}</td>
-                            <td style="text-transform: uppercase; padding-bottom: 1%;">{{operador_nacional_radio.instituto}}</td>
-                            <td style="padding-bottom: 1%; font-size: small;">EX-{{operador_nacional_radio.año_expediente}}-{{operador_nacional_radio.número_expediente}}- -APN-SDYME#ENACOM</td>
-                            <td style="padding-bottom: 1%; font-size: small;">DI-{{operador_nacional_radio.año_disposición}}-{{operador_nacional_radio.número_disposición}}-APN-DNSA#ENACOM</td>
-                            <td style="padding-bottom: 1%;">
-                                <a class="link" href="{% url 'ver_operador_nacional_radio' operador_nacional_radio.id %}" type="submit">Abrir</a>
-                            </td>
-                        </tr>
-                    {% endif %}
+                    <tr>
+                        <td style="text-transform: uppercase; padding-bottom: 1%">{{operador_nacional_radio.apellido}}</td>
+                        <td style="text-transform: capitalize; padding-bottom: 1%;">{{operador_nacional_radio.nombre}}</td>
+                        <td style="padding-bottom: 1%;">{{operador_nacional_radio.DNI}}</td>
+                        <td style="padding-bottom: 1%;">{{operador_nacional_radio.habilitación}}</td>
+                        <td style="text-transform: uppercase; padding-bottom: 1%;">{{operador_nacional_radio.instituto}}</td>
+                        <td style="padding-bottom: 1%; font-size: small;">EX-{{operador_nacional_radio.año_expediente}}-{{operador_nacional_radio.número_expediente}}- -APN-SDYME#ENACOM</td>
+                        <td style="padding-bottom: 1%; font-size: small;">DI-{{operador_nacional_radio.año_disposición}}-{{operador_nacional_radio.número_disposición}}-APN-DNSA#ENACOM</td>
+                        <td style="padding-bottom: 1%;">
+                            <a class="link" href="{% url 'ver_operador_nacional_radio' operador_nacional_radio.id %}" type="submit">Abrir</a>
+                        </td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>

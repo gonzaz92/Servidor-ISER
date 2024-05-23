@@ -26,20 +26,18 @@
             </thead>
             <tbody>
                 {% for productor in object_list %}
-                    {% if productor.número_disposición %}
-                        <tr>
-                            <td style="text-transform: uppercase; padding-bottom: 1%">{{productor.apellido}}</td>
-                            <td style="text-transform: capitalize; padding-bottom: 1%;">{{productor.nombre}}</td>
-                            <td style="padding-bottom: 1%;">{{productor.DNI}}</td>
-                            <td style="padding-bottom: 1%;">{{productor.habilitación}}</td>
-                            <td style="text-transform: uppercase; padding-bottom: 1%;">{{productor.instituto}}</td>
-                            <td style="padding-bottom: 1%; font-size: small;">EX-{{productor.año_expediente}}-{{productor.número_expediente}}- -APN-SDYME#ENACOM</td>
-                            <td style="padding-bottom: 1%; font-size: small;">DI-{{productor.año_disposición}}-{{productor.número_disposición}}-APN-DNSA#ENACOM</td>
-                            <td style="padding-bottom: 1%;">
-                                <a class="link" href="{% url 'ver_productor' productor.id %}" type="submit">Abrir</a>
-                            </td>
-                        </tr>
-                    {% endif %}
+                    <tr>
+                        <td style="text-transform: uppercase; padding-bottom: 1%">{{productor.apellido}}</td>
+                        <td style="text-transform: capitalize; padding-bottom: 1%;">{{productor.nombre}}</td>
+                        <td style="padding-bottom: 1%;">{{productor.DNI}}</td>
+                        <td style="padding-bottom: 1%;">{{productor.habilitación}}</td>
+                        <td style="text-transform: uppercase; padding-bottom: 1%;">{{productor.instituto}}</td>
+                        <td style="padding-bottom: 1%; font-size: small;">EX-{{productor.año_expediente}}-{{productor.número_expediente}}- -APN-SDYME#ENACOM</td>
+                        <td style="padding-bottom: 1%; font-size: small;">DI-{{productor.año_disposición}}-{{productor.número_disposición}}-APN-DNSA#ENACOM</td>
+                        <td style="padding-bottom: 1%;">
+                            <a class="link" href="{% url 'ver_productor' productor.id %}" type="submit">Abrir</a>
+                        </td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>

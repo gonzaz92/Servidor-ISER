@@ -25,24 +25,39 @@
             </thead>
             <tbody style="text-align: center">
                 {% for exp in expe %}
-                    {% if exp.Estado == 'Hacer carnet' %}
-                        <tr>
-                            <td style="padding-bottom: 1%;">EX-{{exp.Año_de_Expediente}}-{{exp.Número_de_Expediente}}- -APN-SDYME#ENACOM</td>
-                            <td style="text-transform: uppercase; padding-bottom: 1%">{{exp.Categoría}}</td>
-                            <td style="text-transform: uppercase; padding-bottom: 1%">{{exp.Cantidad_de_Habilitados}}</td>
-                            <td style="text-transform: capitalize; padding-bottom: 1%;">{{exp.Instituto_o_Localidad}}</td>
-                            <td style="padding-bottom: 1%;">{{ exp.Fecha_de_Creación}}</td>
-                            <td style="padding-bottom: 1%;">{{exp.Estado}}</td>
-                            <td style="padding-bottom: 1%;">{{ exp.Fecha_de_disposición}}</td>
-                            <td style="text-transform: uppercase; padding-bottom: 1%;">{{exp.Instituto}}</td>
-                            <td style="padding-bottom: 1%;">
-                                <a class="link" href="{% url 'actualizar_expediente' exp.id %}" type="submit">Abrir</a>
-                            </td>
-                        </tr>
-                    {% endif %}
+                    <tr>
+                        <td style="padding-bottom: 1%;">EX-{{exp.Año_de_Expediente}}-{{exp.Número_de_Expediente}}- -APN-SDYME#ENACOM</td>
+                        <td style="text-transform: uppercase; padding-bottom: 1%">{{exp.Categoría}}</td>
+                        <td style="text-transform: uppercase; padding-bottom: 1%">{{exp.Cantidad_de_Habilitados}}</td>
+                        <td style="text-transform: capitalize; padding-bottom: 1%;">{{exp.Instituto_o_Localidad}}</td>
+                        <td style="padding-bottom: 1%;">{{ exp.Fecha_de_Creación}}</td>
+                        <td style="padding-bottom: 1%;">{{exp.Estado}}</td>
+                        <td style="padding-bottom: 1%;">{{ exp.Fecha_de_disposición}}</td>
+                        <td style="text-transform: uppercase; padding-bottom: 1%;">{{exp.Instituto}}</td>
+                        <td style="padding-bottom: 1%;">
+                            <a class="link" href="{% url 'actualizar_expediente' exp.id %}" type="submit">Abrir</a>
+                        </td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
+    </div>
+    <div style='text-align: center;'>
+        <span class="step-links">
+            {% if expe.has_previous %}
+                <a href="?page=1">&laquo; primera</a>
+                <a href="?page={{ expe.previous_page_number }}">anterior</a>
+            {% endif %}
+
+            <span class="current-page">
+                Página {{ expe.number }} de {{ expe.paginator.num_pages }}
+            </span>
+
+            {% if expe.has_next %}
+                <a href="?page={{ expe.next_page_number }}">siguiente</a>
+                <a href="?page={{ expe.paginator.num_pages }}">última &raquo;</a>
+            {% endif %}
+        </span>
     </div>
     <p></p>
 {% endblock %}

@@ -127,6 +127,8 @@ def ver_guionista(user):
 
 limite = datetime.now().date() - timedelta(days=10)
 
+hab = Q(número_disposición__isnull=False)
+
 exp = Q(número_disposición__isnull=True) & Q(chequeo_expediente=True)
 
 ########################## Condiciones Nacional ############################
@@ -184,14 +186,14 @@ archivo_local = Q(número_disposición__isnull=True) & (
 
 def pag_nacional(a, b, c):
     object = b.objects.filter(c).order_by('-id').all()
-    paginator = Paginator(object, 100)
+    paginator = Paginator(object, 50)
     page_number = a.GET.get('page')
     objetc_nacional = paginator.get_page(page_number)
     return objetc_nacional
 
 def pag_local(a, b, c):
     object = b.objects.filter(c).order_by('-id').all()
-    paginator = Paginator(object, 100)
+    paginator = Paginator(object, 50)
     page_number = a.GET.get('page')
     objetc_local = paginator.get_page(page_number)
     return objetc_local
@@ -270,11 +272,11 @@ class ListarLocutorNacional(ListView):
     fields = '__all__'
     
     def get_queryset(self):
-        return Locutor_nacional.objects.all().order_by('-habilitación')
+        return Locutor_nacional.objects.filter(hab).all().order_by('-habilitación')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator(context['object_list'], 100)
+        paginator = Paginator(context['object_list'], 50)
         page = self.request.GET.get('page')
         locutores_paginados = paginator.get_page(page)
         context['object_list'] = locutores_paginados
@@ -336,11 +338,11 @@ class ListarLocutorLocal(ListView):
             Locutor_local.año_expediente, Locutor_local.número_expediente,Locutor_local.año_disposición, Locutor_local.número_disposición)
     
     def get_queryset(self):
-        return Locutor_local.objects.all().order_by('-habilitación')
+        return Locutor_local.objects.filter(hab).all().order_by('-habilitación')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator(context['object_list'], 100)
+        paginator = Paginator(context['object_list'], 50)
         page = self.request.GET.get('page')
         locutores_paginados = paginator.get_page(page)
         context['object_list'] = locutores_paginados
@@ -398,11 +400,11 @@ class ListarOperadordeRadio(ListView):
             Operador_nacional_radio.año_expediente, Operador_nacional_radio.número_expediente, Operador_nacional_radio.año_disposición, Operador_nacional_radio.número_disposición)
     
     def get_queryset(self):
-        return Operador_nacional_radio.objects.all().order_by('-habilitación')
+        return Operador_nacional_radio.objects.filter(hab).all().order_by('-habilitación')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator(context['object_list'], 100)
+        paginator = Paginator(context['object_list'], 50)
         page = self.request.GET.get('page')
         operadores_paginados = paginator.get_page(page)
         context['object_list'] = operadores_paginados
@@ -455,11 +457,11 @@ class ListarOperadordeTV(ListView):
             Operador_nacional_tv.año_expediente, Operador_nacional_tv.número_expediente, Operador_nacional_tv.año_disposición, Operador_nacional_tv.número_disposición)
     
     def get_queryset(self):
-        return Operador_nacional_tv.objects.all().order_by('-habilitación')
+        return Operador_nacional_tv.objects.filter(hab).all().order_by('-habilitación')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator(context['object_list'], 100)
+        paginator = Paginator(context['object_list'], 50)
         page = self.request.GET.get('page')
         operadores_paginados = paginator.get_page(page)
         context['object_list'] = operadores_paginados
@@ -511,11 +513,11 @@ class ListarOperadordePlanta(ListView):
             Operador_nacional_planta.año_expediente, Operador_nacional_planta.número_expediente, Operador_nacional_planta.año_disposición, Operador_nacional_planta.número_disposición)
     
     def get_queryset(self):
-        return Operador_nacional_planta.objects.all().order_by('-habilitación')
+        return Operador_nacional_planta.objects.filter(hab).all().order_by('-habilitación')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator(context['object_list'], 100)
+        paginator = Paginator(context['object_list'], 50)
         page = self.request.GET.get('page')
         operadores_paginados = paginator.get_page(page)
         context['object_list'] = operadores_paginados
@@ -559,6 +561,12 @@ def oprl_incompletos(request):
     oprl = pag_local(request, Operador_local_radio, incompletos_local)
     return render(request, 'Base_datos/oprl_incompletos.html', {'oprl' : oprl} )
 
+@login_required
+@user_passes_test(ver_OperadorLRadio)
+def oprl_archivo(request):
+    oprl_arch = pag_local(request, Operador_local_radio, archivo_local)
+    return render(request, 'Base_datos/oprl_archivo.html', {'oprl_arch' : oprl_arch} )
+
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(carga_OperadorLRadio), name='get')
 class CrearOperadordeRadioLocal(CreateView):
@@ -573,11 +581,11 @@ class ListarOperadordeRadioLocal(ListView):
             Operador_local_radio.año_expediente, Operador_local_radio.número_expediente, Operador_local_radio.año_disposición, Operador_local_radio.número_disposición)
     
     def get_queryset(self):
-        return Operador_local_radio.objects.all().order_by('-habilitación')
+        return Operador_local_radio.objects.filter(hab).all().order_by('-habilitación')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator(context['object_list'], 100)
+        paginator = Paginator(context['object_list'], 50)
         page = self.request.GET.get('page')
         operadores_paginados = paginator.get_page(page)
         context['object_list'] = operadores_paginados
@@ -615,6 +623,12 @@ def optvl_incompletos(request):
     optvl = pag_local(request, Operador_local_tv, incompletos_local)
     return render(request, 'Base_datos/optvl_incompletos.html', {'optvl' : optvl} )
 
+@login_required
+@user_passes_test(ver_OperadorLTV)
+def optvl_archivo(request):
+    optvl_arch = pag_local(request, Operador_local_tv, archivo_local)
+    return render(request, 'Base_datos/optvl_archivo.html', {'optvl_arch' : optvl_arch} )
+
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(carga_OperadorLTV), name='get')
 class CrearOperadordeTVLocal(CreateView):
@@ -629,11 +643,11 @@ class ListarOperadordeTVLocal(ListView):
             Operador_local_tv.año_expediente, Operador_local_tv.número_expediente, Operador_local_tv.año_disposición, Operador_local_tv.número_disposición)
     
     def get_queryset(self):
-        return Operador_local_tv.objects.all().order_by('-habilitación')
+        return Operador_local_tv.objects.filter(hab).all().order_by('-habilitación')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator(context['object_list'], 100)
+        paginator = Paginator(context['object_list'], 50)
         page = self.request.GET.get('page')
         operadores_paginados = paginator.get_page(page)
         context['object_list'] = operadores_paginados
@@ -691,11 +705,11 @@ class ListarOperadordePlantaLocal(ListView):
             Operador_local_planta.año_expediente, Operador_local_planta.número_expediente, Operador_local_planta.año_disposición, Operador_local_planta.número_disposición)
     
     def get_queryset(self):
-        return Operador_local_planta.objects.all().order_by('-habilitación')
+        return Operador_local_planta.objects.filter(hab).all().order_by('-habilitación')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator(context['object_list'], 100)
+        paginator = Paginator(context['object_list'], 50)
         page = self.request.GET.get('page')
         operadores_paginados = paginator.get_page(page)
         context['object_list'] = operadores_paginados
@@ -751,11 +765,11 @@ class ListarProductor(ListView):
             Productor.año_expediente, Productor.número_expediente, Productor.año_disposición, Productor.número_disposición)
     
     def get_queryset(self):
-        return Productor.objects.all().order_by('-habilitación')
+        return Productor.objects.filter(hab).all().order_by('-habilitación')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator(context['object_list'], 100)
+        paginator = Paginator(context['object_list'], 50)
         page = self.request.GET.get('page')
         productores_paginados = paginator.get_page(page)
         context['object_list'] = productores_paginados
@@ -811,11 +825,11 @@ class ListarGuionista(ListView):
             Guionista.año_expediente, Guionista.número_expediente, Guionista.año_disposición, Guionista.número_disposición)
     
     def get_queryset(self):
-        return Guionista.objects.all().order_by('-habilitación')
+        return Guionista.objects.filter(hab).all().order_by('-habilitación')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator(context['object_list'], 100)
+        paginator = Paginator(context['object_list'], 50)
         page = self.request.GET.get('page')
         guionistas_paginados = paginator.get_page(page)
         context['object_list'] = guionistas_paginados

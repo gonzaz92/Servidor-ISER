@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils.decorators import method_decorator
 from django.db.models import Sum, Q
+from django.core.paginator import Paginator
 
 def permiso_carga(user):
     return user.has_perm('expedientes.add_expediente')
@@ -23,16 +24,35 @@ def permiso_ver(user):
 def expedientes(request):
     return render(request, 'expedientes/expedientes.html')
 
+################################################################
+
+#condiciones filtros:
+
+en_curso = ~Q(Estado='Finalizado') & ~Q(Estado='Hacer carnet')
+
+carnet = Q(Estado='Hacer carnet')
+
+fin = Q(Estado='Finalizado')
+
+def filtro_exp(a,b,c):
+    object = b.objects.filter(c).order_by('-Fecha_de_disposición').all()
+    paginator = Paginator(object, 50)
+    page = a.GET.get('page')
+    object_exp = paginator.get_page(page)
+    return object_exp
+
+################################################################
+
 @login_required
 @user_passes_test(permiso_actualizar)
 def carnets(request):
-    expe = Expediente.objects.all().order_by('-Fecha_de_disposición')
+    expe = filtro_exp(request, Expediente, carnet)
     return render(request, 'expedientes/carnets.html', {'expe' : expe})
 
 @login_required
 @user_passes_test(permiso_ver)
 def expedientes_finalizados(request):
-    expe = Expediente.objects.all().order_by('-Fecha_de_disposición')
+    expe = filtro_exp(request, Expediente, fin)
     return render(request, 'expedientes/expedientes_finalizados.html', {'expe' : expe})
 
 @login_required
@@ -148,7 +168,15 @@ class ListarExpedientes(ListView):
     fields = Expediente.Año_de_Expediente, Expediente.Número_de_Expediente, Expediente.Categoría, Expediente.Instituto_o_Localidad, Expediente.Fecha_de_Creación, Expediente.Estado
 
     def get_queryset(self):
-        return Expediente.objects.all().order_by('-Fecha_de_Creación')
+        return Expediente.objects.all().filter(en_curso).order_by('-Fecha_de_Creación')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = Paginator(context['object_list'], 50)
+        page = self.request.GET.get('page')
+        expedientes_paginados = paginator.get_page(page)
+        context['object_list'] = expedientes_paginados
+        return context
 
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(permiso_actualizar), name='get')

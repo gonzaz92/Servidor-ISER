@@ -27,21 +27,19 @@
             </thead>
             <tbody>
                 {% for operador_local_tv in object_list %}
-                    {% if operador_local_tv.número_disposición %}
-                        <tr>
-                            <td style="text-transform: uppercase; padding-bottom: 1%">{{operador_local_tv.apellido}}</td>
-                            <td style="text-transform: capitalize; padding-bottom: 1%;">{{operador_local_tv.nombre}}</td>
-                            <td style="padding-bottom: 1%;">{{operador_local_tv.DNI}}</td>
-                            <td style="padding-bottom: 1%;">{{operador_local_tv.habilitación}}</td>
-                            <td style="text-transform: uppercase; padding-bottom: 1%;">{{operador_local_tv.localidad}}</td>
-                            <td style="text-transform: uppercase; padding-bottom: 1%;">{{operador_local_tv.provincia}}</td>
-                            <td style="padding-bottom: 1%; font-size: small;">EX-{{operador_local_tv.año_expediente}}-{{operador_local_tv.número_expediente}}- -APN-SDYME#ENACOM</td>
-                            <td style="padding-bottom: 1%; font-size: small;">DI-{{operador_local_tv.año_disposición}}-{{operador_local_tv.número_disposición}}-APN-DNSA#ENACOM</td>
-                            <td style="padding-bottom: 1%;">
-                                <a class="link" href="{% url 'ver_operador_local_tv' operador_local_tv.id %}" type="submit">Abrir</a>
-                            </td>
-                        </tr>
-                    {% endif %}
+                    <tr>
+                        <td style="text-transform: uppercase; padding-bottom: 1%">{{operador_local_tv.apellido}}</td>
+                        <td style="text-transform: capitalize; padding-bottom: 1%;">{{operador_local_tv.nombre}}</td>
+                        <td style="padding-bottom: 1%;">{{operador_local_tv.DNI}}</td>
+                        <td style="padding-bottom: 1%;">{{operador_local_tv.habilitación}}</td>
+                        <td style="text-transform: uppercase; padding-bottom: 1%;">{{operador_local_tv.localidad}}</td>
+                        <td style="text-transform: uppercase; padding-bottom: 1%;">{{operador_local_tv.provincia}}</td>
+                        <td style="padding-bottom: 1%; font-size: small;">EX-{{operador_local_tv.año_expediente}}-{{operador_local_tv.número_expediente}}- -APN-SDYME#ENACOM</td>
+                        <td style="padding-bottom: 1%; font-size: small;">DI-{{operador_local_tv.año_disposición}}-{{operador_local_tv.número_disposición}}-APN-DNSA#ENACOM</td>
+                        <td style="padding-bottom: 1%;">
+                            <a class="link" href="{% url 'ver_operador_local_tv' operador_local_tv.id %}" type="submit">Abrir</a>
+                        </td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>

@@ -26,20 +26,18 @@
             </thead>
             <tbody>
                 {% for operador_nacional_planta in object_list %}
-                    {% if operador_nacional_planta.número_disposición %}
-                        <tr>
-                            <td style="text-transform: uppercase; padding-bottom: 1%">{{operador_nacional_planta.apellido}}</td>
-                            <td style="text-transform: capitalize; padding-bottom: 1%;">{{operador_nacional_planta.nombre}}</td>
-                            <td style="padding-bottom: 1%;">{{operador_nacional_planta.DNI}}</td>
-                            <td style="padding-bottom: 1%;">{{operador_nacional_planta.habilitación}}</td>
-                            <td style="text-transform: uppercase; padding-bottom: 1%;">{{operador_nacional_planta.instituto}}</td>
-                            <td style="padding-bottom: 1%; font-size: small;">EX-{{operador_nacional_planta.año_expediente}}-{{operador_nacional_planta.número_expediente}}- -APN-SDYME#ENACOM</td>
-                            <td style="padding-bottom: 1%; font-size: small;">DI-{{operador_nacional_planta.año_disposición}}-{{operador_nacional_planta.número_disposición}}-APN-DNSA#ENACOM</td>
-                            <td style="padding-bottom: 1%;">
-                                <a class="link" href="{% url 'ver_operador_nacional_planta' operador_nacional_planta.id %}" type="submit">Abrir</a>
-                            </td>
-                        </tr>
-                    {% endif %}
+                    <tr>
+                        <td style="text-transform: uppercase; padding-bottom: 1%">{{operador_nacional_planta.apellido}}</td>
+                        <td style="text-transform: capitalize; padding-bottom: 1%;">{{operador_nacional_planta.nombre}}</td>
+                        <td style="padding-bottom: 1%;">{{operador_nacional_planta.DNI}}</td>
+                        <td style="padding-bottom: 1%;">{{operador_nacional_planta.habilitación}}</td>
+                        <td style="text-transform: uppercase; padding-bottom: 1%;">{{operador_nacional_planta.instituto}}</td>
+                        <td style="padding-bottom: 1%; font-size: small;">EX-{{operador_nacional_planta.año_expediente}}-{{operador_nacional_planta.número_expediente}}- -APN-SDYME#ENACOM</td>
+                        <td style="padding-bottom: 1%; font-size: small;">DI-{{operador_nacional_planta.año_disposición}}-{{operador_nacional_planta.número_disposición}}-APN-DNSA#ENACOM</td>
+                        <td style="padding-bottom: 1%;">
+                            <a class="link" href="{% url 'ver_operador_nacional_planta' operador_nacional_planta.id %}" type="submit">Abrir</a>
+                        </td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>

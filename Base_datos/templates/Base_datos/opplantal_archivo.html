@@ -37,9 +37,7 @@
                     <td style="padding-bottom: 1%;">
                         <a class="link" href="{% url 'ver_operador_local_planta' operador_local_planta.id %}" type="submit">Abrir</a>
                         -
-                        <a class="link" href="{% url 'actualizar_operador_planta_local' operador_local_planta.id %}" type="submit">Actualizar</a>
-                        {% comment %} -
-                        <a class="link" href="{% url 'borrar' operador_local_planta.id %}" type="submit">Borrar</a> {% endcomment %}
+                        <a class="link" href="{% url 'actualizar_operador_local_planta' operador_local_planta.id %}" type="submit">Actualizar</a>
                     </td>
                 </tr>
             {% endfor %}

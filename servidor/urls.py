@@ -26,8 +26,8 @@ from Base_datos.views import (index, buscar, UserSingUp, UserLogin, UserLogout, 
                             optvn_completos, optvn_completos_exp,optvn_incompletos, CrearOperadordeTV, ListarOperadordeTV, VerOperadordeTV, ActualizarOPTV,
                             opplantan_completos, opplantan_completos_exp,opplantan_incompletos, CrearOperadordePlanta, ListarOperadordePlanta, VerOperadordePlanta, ActualizarOPPlanta,
                             operadores_locales,
-                            oprl_completos, oprl_completos_exp,oprl_incompletos, CrearOperadordeRadioLocal, ListarOperadordeRadioLocal, VerOperadordeRadioLocal, ActualizarOPRLocal,
-                            optvl_completos, optvl_completos_exp,optvl_incompletos, CrearOperadordeTVLocal, ListarOperadordeTVLocal, VerOperadordeTVLocal, ActualizarOPTVLocal,
+                            oprl_completos, oprl_completos_exp,oprl_incompletos, oprl_archivo, CrearOperadordeRadioLocal, ListarOperadordeRadioLocal, VerOperadordeRadioLocal, ActualizarOPRLocal,
+                            optvl_completos, optvl_completos_exp,optvl_incompletos, optvl_archivo, CrearOperadordeTVLocal, ListarOperadordeTVLocal, VerOperadordeTVLocal, ActualizarOPTVLocal,
                             opplantal_completos, opplantal_completos_exp, opplantal_archivo, opplantal_incompletos, CrearOperadordePlantaLocal, ListarOperadordePlantaLocal, VerOperadordePlantaLocal, ActualizarOPPlantaLocal,
                             productores, prod_completos, prod_completos_exp, prod_incompletos, CrearProductor, ListarProductor, VerProductor, ActualizarProd,
                             guionistas, guion_completos, guion_completos_exp,guion_incompletos, CrearGuionista, ListarGuionista, VerGuionista, ActualizarGuion)
@@ -67,7 +67,7 @@ urlpatterns = [
     path('locutor_local/<int:pk>/', VerLocutorLocal.as_view(), name='ver_locutor_local'),
     path('locutor_local/<int:pk>/actualizar/', ActualizarLL.as_view(), name='actualizar_ll'),
 
-    #Operadores Nacionales
+    ##########################Operadores Nacionales######################################################
 
     path('operadores_nacionales/', operadores_nacionales, name='operadores_nacionales'),
 
@@ -101,7 +101,7 @@ urlpatterns = [
     path('operador_nacional_planta/<int:pk>/', VerOperadordePlanta.as_view(), name='ver_operador_nacional_planta'),
     path('operador_nacional_planta/<int:pk>/actualizar/', ActualizarOPPlanta.as_view(), name='actualizar_operador_nacional_planta'),
 
-    #Operadores Locales
+    ###########################Operadores Locales####################################
 
     path('operadores_locales/', operadores_locales, name='operadores_locales'),
 
@@ -112,6 +112,7 @@ urlpatterns = [
     path('operadores_local_radio_completos/', oprl_completos, name='oprl_completos'),
     path('operadores_local_radio_completos_expedientes/', oprl_completos_exp, name='oprl_completos_exp'),
     path('operadores_local_radio_incompletos/', oprl_incompletos, name='oprl_incompletos'),
+    path('operadores_local_radio_archivo/', oprl_archivo, name='oprl_archivo'),
     path('operador_local_radio/<int:pk>/', VerOperadordeRadioLocal.as_view(), name='ver_operador_local_radio'),
     path('operador_local_radio/<int:pk>/actualizar/', ActualizarOPRLocal.as_view(), name='actualizar_operador_local_radio'),
 
@@ -122,6 +123,7 @@ urlpatterns = [
     path('operadores_local_tv_completos/', optvl_completos, name='optvl_completos'),
     path('operadores_local_tv_completos_expedientes/', optvl_completos_exp, name='optvl_completos_exp'),
     path('operadores_local_tv_incompletos/', optvl_incompletos, name='optvl_incompletos'),
+    path('operadores_local_tv_archivo/', optvl_archivo, name='optvl_archivo'),
     path('operador_local_tv/<int:pk>/', VerOperadordeTVLocal.as_view(), name='ver_operador_local_tv'),
     path('operador_local_tv/<int:pk>/actualizar/', ActualizarOPTVLocal.as_view(), name='actualizar_operador_local_tv'),
 
@@ -136,7 +138,7 @@ urlpatterns = [
     path('operador_local_planta/<int:pk>/', VerOperadordePlantaLocal.as_view(), name='ver_operador_local_planta'),
     path('operador_local_planta/<int:pk>/actualizar/', ActualizarOPPlantaLocal.as_view(), name='actualizar_operador_local_planta'),
 
-    #Productores y Directores
+    ###################################Productores y Directores##############################################
 
     path('productores_y_directores/', productores, name='productores_y_directores'),
     path('carga_productor_y_director/', CrearProductor.as_view(), name='carga_productor'),
