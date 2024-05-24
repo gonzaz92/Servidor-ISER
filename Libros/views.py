@@ -6,7 +6,19 @@ from django.urls import reverse_lazy
 from django.db.models import Q
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.http import JsonResponse
+
+def buscar_acta(request):
+    query = request.GET.get('q')
+    filtros = Q(instituto__nombre__icontains=query)
+    
+    for i in range(1, 26):
+        persona_field = {f'persona{i}__icontains': query}
+        dni_field = {f'dni{i}__icontains': query}
+        filtros |= Q(**persona_field) | Q(**dni_field)
+    
+    resultados_acta = Acta.objects.filter(filtros)
+    return render(request, 'Libros/resultados_acta.html', {'resultados_acta' : resultados_acta})
+
 
 ########### Permisos ##########
 

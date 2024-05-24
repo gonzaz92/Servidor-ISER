@@ -45,7 +45,7 @@
     </nav>
 
     <!-- Header-->
-    {% if not request.resolver_match.view_name == 'expedientes' and not request.resolver_match.view_name == 'lista_expedientes' and not request.resolver_match.view_name == 'expedientes_finalizados' and not request.resolver_match.view_name == 'carga_expediente' and not request.resolver_match.view_name == 'buscar_expedientes' and not request.resolver_match.view_name == 'correo' and not request.resolver_match.view_name == 'nuevo_envio' and not request.resolver_match.view_name == 'listar_correo' and not request.resolver_match.view_name == 'actualizar_correo' and not request.resolver_match.view_name == 'correo_finalizados' and not request.resolver_match.view_name == 'buscar_envio' %}
+    {% if not request.resolver_match.view_name == 'expedientes' and not request.resolver_match.view_name == 'lista_expedientes' and not request.resolver_match.view_name == 'expedientes_finalizados' and not request.resolver_match.view_name == 'carga_expediente' and not request.resolver_match.view_name == 'buscar_expedientes' and not request.resolver_match.view_name == 'correo' and not request.resolver_match.view_name == 'nuevo_envio' and not request.resolver_match.view_name == 'listar_correo' and not request.resolver_match.view_name == 'actualizar_correo' and not request.resolver_match.view_name == 'correo_finalizados' and not request.resolver_match.view_name == 'buscar_envio' and not request.resolver_match.view_name == 'libros' and not request.resolver_match.view_name == 'nuevo_libro' and not request.resolver_match.view_name == 'listar_libros' and not request.resolver_match.view_name == 'actualizar_libro' and not request.resolver_match.view_name == 'nueva_acta' and not request.resolver_match.view_name == 'listar_actas' and not request.resolver_match.view_name == 'detalle_acta' and not request.resolver_match.view_name == 'actualizar_acta' and not request.resolver_match.view_name == 'nueva_firma' and not request.resolver_match.view_name == 'buscar_acta' %}
         <header class="py-5">
             <div class="container px-lg-5">
                 <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
@@ -92,6 +92,24 @@
                                 <div class="input-group">
                                     <input class="form-control" type="text" name="q" placeholder="Apellido, Nombre, DNI o Carnet" aria-label="Buscar..." aria-describedby="button-search" />
                                     <input type="hidden" name="tipo" value="Correo">
+                                    <button class="btn btn-primary btn-lg" id="button-search" type="submit">Buscar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        {% elif request.resolver_match.view_name == 'libros' or request.resolver_match.view_name == 'nuevo_libro' or request.resolver_match.view_name == 'listar_libros' or request.resolver_match.view_name == 'actualizar_libro' or request.resolver_match.view_name == 'nueva_acta' or request.resolver_match.view_name == 'listar_actas' or request.resolver_match.view_name == 'detalle_acta' or request.resolver_match.view_name == 'actualizar_acta' or request.resolver_match.view_name == 'nueva_firma' or request.resolver_match.view_name == 'buscar_acta' %}
+            <header class="py-5">
+                <div class="container px-lg-5">
+                    <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+                        <div class="m-4 m-lg-5">
+                            <h1 class="display-5 fw-bold">Instituto Superior de Enseñanza Radiofónica</h1>
+                            <p class="fs-4">Buscar en Acta</p>
+                            <form action="{% url 'buscar_acta' %}" method="get">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" name="q" placeholder="Apellido, Nombre, DNI" aria-label="Buscar..." aria-describedby="button-search" />
+                                    <input type="hidden" name="tipo" value="Acta">
                                     <button class="btn btn-primary btn-lg" id="button-search" type="submit">Buscar</button>
                                 </div>
                             </form>

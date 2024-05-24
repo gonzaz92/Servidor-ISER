@@ -18,7 +18,7 @@ from Base_datos.views import (index, buscar, UserSingUp, UserLogin, UserLogout, 
                             guionistas, guion_completos, guion_completos_exp,guion_incompletos, CrearGuionista, ListarGuionista, VerGuionista, ActualizarGuion)
 from expedientes.views import (expedientes, carnets, expedientes_finalizados, calculadora_anual, buscar_expedientes, año, CrearExpediente, ListarExpedientes, ActualizarExpediente, BorrarExpediente)
 from correo.views import correo, correo_finalizados, buscar_envio, NuevoEnvio, ListarCorreo, ActualizarCorreo, CorreoBorrar
-from Libros.views import libros, NuevoLibro, ListarLibros, ActualizarLibro ,NuevaActa, ListarActas, DetalleActa, ActualizarActa, Profesor
+from Libros.views import libros, buscar_acta, NuevoLibro, ListarLibros, ActualizarLibro ,NuevaActa, ListarActas, DetalleActa, ActualizarActa, Profesor
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -143,7 +143,7 @@ urlpatterns = [
     path('guionistas_completos_expedientes/', guion_completos_exp, name= 'guion_completos_exp'),
     path('guionistas_incompletos/', guion_incompletos, name= 'guion_incompletos'),
     path('guionista/<int:pk>/', VerGuionista.as_view(), name='ver_guionista'),
-    path('guionista/<int:pk>/actualizar/', ActualizarGuion.as_view(), name='actualizar_guion'),    
+    path('guionista/<int:pk>/actualizar/', ActualizarGuion.as_view(), name='actualizar_guion'),
 
     #############Expedientes###############
 
@@ -179,6 +179,7 @@ urlpatterns = [
     path('libros/actas/detalle/<int:pk>/', DetalleActa.as_view(), name='detalle_acta'),
     path('libros/actas/actualizar/<int:pk>/', ActualizarActa.as_view(), name='actualizar_acta'),
     path('libros/actas/nueva_firma/', Profesor.as_view(), name='nueva_firma'),
+    path('libros/actas/buscar', buscar_acta, name='buscar_acta'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

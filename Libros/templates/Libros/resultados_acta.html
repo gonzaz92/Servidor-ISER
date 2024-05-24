@@ -1,0 +1,39 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+    <div style="margin: 1%; width: 95%; display: flex">
+        <div>
+            <h2 style="font-weight: bold">Resultados de Búsqueda</h2>
+        </div>
+        <div style="margin-left: auto">
+            <a class="btn btn-primary btn-lg" style="justify-content: flex-end;" href="{% url 'libros' %}" type="submit">Volver</a>
+        </div>
+    </div>
+
+    <div style="margin: 0; padding: 0; display: grid ;place-items: center">
+        <table class='table borderless' style="width: 95%; margin-left: 5%; text-align: center;">
+            <thead>
+                <tr>
+                    <th>Categoría</th>
+                    <th>Fecha de Examen</th>
+                    <th>Instituto</th>
+                    <th>Tipo de Examen</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for resultado in resultados_acta %}
+                    <tr>
+                        <td style="padding-bottom: 1%;">{{ resultado.categoria }}</td>
+                        <td style="text-transform: uppercase; padding-bottom: 1%">{{ resultado.fecha }}</td>
+                        <td style="text-transform: uppercase; padding-bottom: 1%">{{ resultado.instituto }}</td>
+                        <td style="text-transform: capitalize; padding-bottom: 1%;">{{resultado.examen}}</td>
+                        <td style="padding-bottom: 1%;">
+                            <a class="link" href="{% url 'detalle_acta' resultado.id %}" type="submit">Abrir</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <p></p>
+{% endblock %}
