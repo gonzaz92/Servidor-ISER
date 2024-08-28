@@ -190,8 +190,3 @@ class ActualizarExpediente(UpdateView):
 class BorrarExpediente(DeleteView):
     model = Expediente
     success_url = reverse_lazy('expedientes')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['expediente'] = Expediente.objects.get(pk=self.kwargs['pk'])
-        return context

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from Base_datos.models import (Locutor_nacional, Locutor_local, Operador_nacional_radio, Operador_nacional_tv, Operador_nacional_planta,
                             Operador_local_radio, Operador_local_tv, Operador_local_planta, Productor, Guionista)
 from django.urls import reverse_lazy
@@ -14,6 +14,9 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils.decorators import method_decorator
 from django.core.paginator import Paginator
 from datetime import datetime, timedelta
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib import messages
+from django.shortcuts import redirect
 
 # Permisos Locutor Nacional
 
@@ -26,6 +29,9 @@ def actualizar_LocutorNacional(user):
 def ver_LocutorNacional(user):
     return user.has_perm('Base_datos.view_locutor_nacional')
 
+def borrar_LocutorNacional(user):
+    return user.has_perm('Base_datos.delete_locutor_nacional')
+
 # Permisos Locutor Local
 
 def carga_LocutorLocal(user):
@@ -36,6 +42,9 @@ def actualizar_LocutorLocal(user):
 
 def ver_LocutorLocal(user):
     return user.has_perm('Base_datos.view_locutor_local')
+
+def borrar_LocutorLocal(user):
+    return user.has_perm('Base_datos.delete_locutor_local')
 
 # Permisos Operador Nacional de Radio
 
@@ -48,6 +57,9 @@ def actualizar_OperadorNRadio(user):
 def ver_OperadorNRadio(user):
     return user.has_perm('Base_datos.view_operador_nacional_radio')
 
+def borrar_OperadorNRadio(user):
+    return user.has_perm('Base_datos.delete_operador_nacional_radio')
+
 # Permisos Operador Nacional de TV
 
 def carga_OperadorNTV(user):
@@ -58,6 +70,9 @@ def actualizar_OperadorNTV(user):
 
 def ver_OperadorNTV(user):
     return user.has_perm('Base_datos.view_operador_nacional_tv')
+
+def borrar_OperadorNTV(user):
+    return user.has_perm('Base_datos.delete_operador_nacional_tv')
 
 # Permisos Operador Nacional de Planta Transmisora
 
@@ -70,6 +85,9 @@ def actualizar_OperadorNPlanta(user):
 def ver_OperadorNPlanta(user):
     return user.has_perm('Base_datos.view_operador_nacional_planta')
 
+def borrar_OperadorNPlanta(user):
+    return user.has_perm('Base_datos.delete_operador_nacional_planta')
+
 # Permisos Operador Local de Radio
 
 def carga_OperadorLRadio(user):
@@ -80,6 +98,9 @@ def actualizar_OperadorLRadio(user):
 
 def ver_OperadorLRadio(user):
     return user.has_perm('Base_datos.view_operador_local_radio')
+
+def borrar_OperadorLRadio(user):
+    return user.has_perm('Base_datos.delete_locutor_local_radio')
 
 # Permisos Operador Local de TV
 
@@ -92,6 +113,9 @@ def actualizar_OperadorLTV(user):
 def ver_OperadorLTV(user):
     return user.has_perm('Base_datos.view_operador_local_tv')
 
+def borrar_OperadorLTV(user):
+    return user.has_perm('Base_datos.delete_operador_local_tv')
+
 # Permisos Operador Local de Planta Transmisora
 
 def carga_OperadorLPlanta(user):
@@ -102,6 +126,9 @@ def actualizar_OperadorLPlanta(user):
 
 def ver_OperadorLPlanta(user):
     return user.has_perm('Base_datos.view_operador_local_planta')
+
+def borrar_OperadorLPlanta(user):
+    return user.has_perm('Base_datos.delete_operador_local_planta')
 
 # Permiso de Productores
 
@@ -114,6 +141,9 @@ def actualizar_productor(user):
 def ver_productor(user):
     return user.has_perm('Base_datos.view_productor')
 
+def borrar_productor(user):
+    return user.has_perm('Base_datos.delete_productor')
+
 # Permisos de Guionistas
 
 def carga_guionista(user):
@@ -124,6 +154,11 @@ def actualizar_guionista(user):
 
 def ver_guionista(user):
     return user.has_perm('Base_datos.view_guionista')
+
+def borrar_guionista(user):
+    return user.has_perm('Base_datos.delete_guionista')
+
+#######################################################################################################
 
 limite = datetime.now().date() - timedelta(days=10)
 
@@ -294,6 +329,12 @@ class ActualizarLN(UpdateView):
     success_url = reverse_lazy('locutores_nacionales')
     form_class = LocutorNacionalForm
 
+@method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(borrar_LocutorNacional), name='get')
+class BorrarLN(DeleteView):
+    model = Locutor_nacional
+    success_url = reverse_lazy('locutores_nacionales')
+
 ############################################################# Locutores Locales ######################################################################
 
 @login_required
@@ -360,6 +401,12 @@ class ActualizarLL(UpdateView):
     success_url = reverse_lazy('locutores_locales')
     form_class = LocutorLocalForm
 
+@method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(borrar_LocutorLocal), name='get')
+class BorrarLL(DeleteView):
+    model = Locutor_local
+    success_url = reverse_lazy('locutores_locales')
+
 ############################################################# Operadores Nacionales ######################################################################
 
 @login_required
@@ -422,6 +469,12 @@ class ActualizarOPR(UpdateView):
     success_url = reverse_lazy('operadores_nacionales')
     form_class = RadioNacionalForm
 
+@method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(borrar_OperadorNRadio), name='get')
+class BorrarOPR(DeleteView):
+    model = Operador_nacional_radio
+    success_url = reverse_lazy('operadores_nacionales')
+
 ############################################################# Operadores de TV ######################################################################
 
 @login_required
@@ -479,6 +532,12 @@ class ActualizarOPTV(UpdateView):
     success_url = reverse_lazy('operadores_nacionales')
     form_class = TVNacionalForm
 
+@method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(borrar_OperadorNTV), name='get')
+class BorrarOPTV(DeleteView):
+    model = Operador_nacional_planta
+    success_url = reverse_lazy('operadores_nacionales')
+
 ############################################################# Operadores de Planta ######################################################################
 
 @login_required
@@ -534,6 +593,12 @@ class ActualizarOPPlanta(UpdateView):
     model = Operador_nacional_planta
     success_url = reverse_lazy('operadores_nacionales')
     form_class = PlantaNacionalForm
+
+@method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(borrar_OperadorNPlanta), name='get')
+class BorrarOPPlanta(DeleteView):
+    model = Operador_nacional_planta
+    success_url = reverse_lazy('operadores_nacionales')
 
 ############################################################# Operadores Locales ######################################################################
 
@@ -603,6 +668,12 @@ class ActualizarOPRLocal(UpdateView):
     success_url = reverse_lazy('operadores_locales')
     form_class = RadioLocalForm
 
+@method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(borrar_OperadorLRadio), name='get')
+class BorrarOPRLocal(DeleteView):
+    model = Operador_local_radio
+    success_url = reverse_lazy('operadores_locales')
+
 ############################################################# Operadores de TV ######################################################################
 
 @login_required
@@ -664,6 +735,12 @@ class ActualizarOPTVLocal(UpdateView):
     model = Operador_local_tv
     success_url = reverse_lazy('operadores_locales')
     form_class = TVLocalForm
+
+@method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(borrar_OperadorLTV), name='get')
+class BorrarOPTVLocal(DeleteView):
+    model = Operador_local_tv
+    success_url = reverse_lazy('operadores_locales')
 
 ############################################################# Operadores de Planta ######################################################################
 
@@ -727,6 +804,12 @@ class ActualizarOPPlantaLocal(UpdateView):
     success_url = reverse_lazy('operadores_locales')
     form_class = PlantaLocalForm
 
+@method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(borrar_OperadorLPlanta), name='get')
+class BorrarOPPlantaLocal(DeleteView):
+    model = Operador_local_planta
+    success_url = reverse_lazy('operadores_locales')
+
 ############################################################# Productores y Directores ######################################################################
 
 @login_required
@@ -787,6 +870,12 @@ class ActualizarProd(UpdateView):
     success_url = reverse_lazy('productores_y_directores')
     form_class = ProductorForm
 
+@method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(borrar_productor), name='get')
+class BorrarProd(DeleteView):
+    model = Productor
+    success_url = reverse_lazy('productores_y_directores')
+
 ############################################################# Guionistas ######################################################################
 
 @login_required
@@ -846,3 +935,9 @@ class ActualizarGuion(UpdateView):
     model = Guionista
     success_url = reverse_lazy('guionistas')
     form_class = GuionistaForm
+
+@method_decorator(login_required, name='get')
+@method_decorator(user_passes_test(borrar_guionista), name='get')
+class BorrarGuion(DeleteView):
+    model = Guionista
+    success_url = reverse_lazy('guionistas')

@@ -35,7 +35,12 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'alta_usuario' %}">Nuevo usuario</a></li>
                     {% endif %}
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url 'change_password' %}">Cambiar Contraseña</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Salir</a></li>
+                    <li class="nav-item">
+                        <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="nav-link btn btn-link" style="border: none; background: none;">Salir</button>
+                        </form>
+                    </li>
                     {% else %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a></li>
                     {% endif %}

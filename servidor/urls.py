@@ -4,21 +4,21 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.admin.views.decorators import staff_member_required
 from Base_datos.views import (index, buscar, UserSingUp, UserLogin, UserLogout, ChangePassword,
-                            locutores, ln_completos, ln_completos_exp,ln_incompletos, CrearLocutorNacional, ListarLocutorNacional, VerLocutorNacional, ActualizarLN,
-                            locutor_local, ll_completos, ll_completos_exp,ll_incompletos, ll_archivo, CrearLocutorLocal, ListarLocutorLocal, VerLocutorLocal, ActualizarLL,
+                            locutores, ln_completos, ln_completos_exp,ln_incompletos, CrearLocutorNacional, ListarLocutorNacional, VerLocutorNacional, ActualizarLN, BorrarLN,
+                            locutor_local, ll_completos, ll_completos_exp,ll_incompletos, ll_archivo, CrearLocutorLocal, ListarLocutorLocal, VerLocutorLocal, ActualizarLL, BorrarLL,
                             operadores_nacionales,
-                            oprn_completos, oprn_completos_exp, oprn_incompletos, CrearOperadordeRadio, ListarOperadordeRadio, VerOperadordeRadio, ActualizarOPR,
-                            optvn_completos, optvn_completos_exp,optvn_incompletos, CrearOperadordeTV, ListarOperadordeTV, VerOperadordeTV, ActualizarOPTV,
-                            opplantan_completos, opplantan_completos_exp,opplantan_incompletos, CrearOperadordePlanta, ListarOperadordePlanta, VerOperadordePlanta, ActualizarOPPlanta,
+                            oprn_completos, oprn_completos_exp, oprn_incompletos, CrearOperadordeRadio, ListarOperadordeRadio, VerOperadordeRadio, ActualizarOPR, BorrarOPR,
+                            optvn_completos, optvn_completos_exp,optvn_incompletos, CrearOperadordeTV, ListarOperadordeTV, VerOperadordeTV, ActualizarOPTV, BorrarOPTV,
+                            opplantan_completos, opplantan_completos_exp,opplantan_incompletos, CrearOperadordePlanta, ListarOperadordePlanta, VerOperadordePlanta, ActualizarOPPlanta, BorrarOPPlanta,
                             operadores_locales,
-                            oprl_completos, oprl_completos_exp,oprl_incompletos, oprl_archivo, CrearOperadordeRadioLocal, ListarOperadordeRadioLocal, VerOperadordeRadioLocal, ActualizarOPRLocal,
-                            optvl_completos, optvl_completos_exp,optvl_incompletos, optvl_archivo, CrearOperadordeTVLocal, ListarOperadordeTVLocal, VerOperadordeTVLocal, ActualizarOPTVLocal,
-                            opplantal_completos, opplantal_completos_exp, opplantal_archivo, opplantal_incompletos, CrearOperadordePlantaLocal, ListarOperadordePlantaLocal, VerOperadordePlantaLocal, ActualizarOPPlantaLocal,
-                            productores, prod_completos, prod_completos_exp, prod_incompletos, CrearProductor, ListarProductor, VerProductor, ActualizarProd,
-                            guionistas, guion_completos, guion_completos_exp,guion_incompletos, CrearGuionista, ListarGuionista, VerGuionista, ActualizarGuion)
+                            oprl_completos, oprl_completos_exp,oprl_incompletos, oprl_archivo, CrearOperadordeRadioLocal, ListarOperadordeRadioLocal, VerOperadordeRadioLocal, ActualizarOPRLocal, BorrarOPRLocal,
+                            optvl_completos, optvl_completos_exp,optvl_incompletos, optvl_archivo, CrearOperadordeTVLocal, ListarOperadordeTVLocal, VerOperadordeTVLocal, ActualizarOPTVLocal, BorrarOPTVLocal,
+                            opplantal_completos, opplantal_completos_exp, opplantal_archivo, opplantal_incompletos, CrearOperadordePlantaLocal, ListarOperadordePlantaLocal, VerOperadordePlantaLocal, ActualizarOPPlantaLocal, BorrarOPPlantaLocal,
+                            productores, prod_completos, prod_completos_exp, prod_incompletos, CrearProductor, ListarProductor, VerProductor, ActualizarProd, BorrarProd,
+                            guionistas, guion_completos, guion_completos_exp,guion_incompletos, CrearGuionista, ListarGuionista, VerGuionista, ActualizarGuion, BorrarGuion)
 from expedientes.views import (expedientes, carnets, expedientes_finalizados, calculadora_anual, buscar_expedientes, año, CrearExpediente, ListarExpedientes, ActualizarExpediente, BorrarExpediente)
 from correo.views import correo, correo_finalizados, buscar_envio, NuevoEnvio, ListarCorreo, ActualizarCorreo, CorreoBorrar
-from Libros.views import libros, buscar_acta, NuevoLibro, ListarLibros, ActualizarLibro ,NuevaActa, ListarActas, DetalleActa, ActualizarActa, Profesor
+from Libros.views import libros, buscar_acta, NuevoLibro, ListarLibros, ActualizarLibro, NuevaActa, ListarActas, DetalleActa, ActualizarActa, Profesor
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,6 +39,7 @@ urlpatterns = [
     path('locutores_nacionales_incompletos/', ln_incompletos, name= 'ln_incompletos'),
     path('locutor_nacional/<int:pk>/', VerLocutorNacional.as_view(), name='ver_locutor'),
     path('locutor_nacional/<int:pk>/actualizar/', ActualizarLN.as_view(), name='actualizar_ln'),
+    path('locutor_nacional/<int:pk>/borrar/', BorrarLN.as_view(), name='borrar_ln'),
 
     #Locutores Locales
 
@@ -51,6 +52,7 @@ urlpatterns = [
     path('locutores_locales_archivo/', ll_archivo, name='ll_archivo'),
     path('locutor_local/<int:pk>/', VerLocutorLocal.as_view(), name='ver_locutor_local'),
     path('locutor_local/<int:pk>/actualizar/', ActualizarLL.as_view(), name='actualizar_ll'),
+    path('locutor_local/<int:pk>/borrar/', BorrarLL.as_view(), name='borrar_ll'),
 
     ##########################Operadores Nacionales######################################################
 
@@ -65,6 +67,7 @@ urlpatterns = [
     path('operadores_nacionales_radio_incompletos/', oprn_incompletos, name='oprn_incompletos'),
     path('operador_nacional_radio/<int:pk>/', VerOperadordeRadio.as_view(), name='ver_operador_nacional_radio'),
     path('operador_nacional_radio/<int:pk>/actualizar/', ActualizarOPR.as_view(), name='actualizar_operador_nacional_radio'),
+    path('operador_nacional_radio/<int:pk>/borrar/', BorrarOPR.as_view(), name='borrar_operador_nacional_radio'),
 
     #Operadores de TV
 
@@ -75,6 +78,7 @@ urlpatterns = [
     path('operadores_nacionales_tv_incompletos/', optvn_incompletos, name='optvn_incompletos'),
     path('operador_nacional_tv/<int:pk>/', VerOperadordeTV.as_view(), name='ver_operador_nacional_tv'),
     path('operador_nacional_tv/<int:pk>/actualizar/', ActualizarOPTV.as_view(), name='actualizar_operador_nacional_tv'),
+    path('operador_nacional_tv/<int:pk>/borrar/', BorrarOPTV.as_view(), name='borrar_operador_nacional_tv'),
 
     #Operadores de Planta Transmisora
 
@@ -85,6 +89,7 @@ urlpatterns = [
     path('operadores_nacionales_planta_incompletos/', opplantan_incompletos, name='opplantan_incompletos'),
     path('operador_nacional_planta/<int:pk>/', VerOperadordePlanta.as_view(), name='ver_operador_nacional_planta'),
     path('operador_nacional_planta/<int:pk>/actualizar/', ActualizarOPPlanta.as_view(), name='actualizar_operador_nacional_planta'),
+    path('operador_nacional_planta/<int:pk>/borrar/', BorrarOPPlanta.as_view(), name='borrar_operador_nacional_planta'),
 
     ###########################Operadores Locales####################################
 
@@ -100,6 +105,7 @@ urlpatterns = [
     path('operadores_local_radio_archivo/', oprl_archivo, name='oprl_archivo'),
     path('operador_local_radio/<int:pk>/', VerOperadordeRadioLocal.as_view(), name='ver_operador_local_radio'),
     path('operador_local_radio/<int:pk>/actualizar/', ActualizarOPRLocal.as_view(), name='actualizar_operador_local_radio'),
+    path('operador_local_radio/<int:pk>/borrar/', BorrarOPRLocal.as_view(), name='borrar_operador_local_radio'),
 
     #Operadores de TV
 
@@ -111,6 +117,7 @@ urlpatterns = [
     path('operadores_local_tv_archivo/', optvl_archivo, name='optvl_archivo'),
     path('operador_local_tv/<int:pk>/', VerOperadordeTVLocal.as_view(), name='ver_operador_local_tv'),
     path('operador_local_tv/<int:pk>/actualizar/', ActualizarOPTVLocal.as_view(), name='actualizar_operador_local_tv'),
+    path('operador_local_tv/<int:pk>/borrar/', BorrarOPTVLocal.as_view(), name='borrar_operador_local_tv'),
 
     #Operadores de Planta Transmisora
 
@@ -122,6 +129,7 @@ urlpatterns = [
     path('operadores_local_planta_archivo/', opplantal_archivo, name='opplantal_archivo'),
     path('operador_local_planta/<int:pk>/', VerOperadordePlantaLocal.as_view(), name='ver_operador_local_planta'),
     path('operador_local_planta/<int:pk>/actualizar/', ActualizarOPPlantaLocal.as_view(), name='actualizar_operador_local_planta'),
+    path('operador_local_planta/<int:pk>/borrar/', BorrarOPPlantaLocal.as_view(), name='borrar_operador_local_planta'),
 
     ###################################Productores y Directores##############################################
 
@@ -133,6 +141,7 @@ urlpatterns = [
     path('productores_incompletos/', prod_incompletos, name= 'prod_incompletos'),
     path('productor_y_director/<int:pk>/', VerProductor.as_view(), name='ver_productor'),
     path('productor_y_director/<int:pk>/actualizar/', ActualizarProd.as_view(), name='actualizar_prod'),
+    path('productor_y_director/<int:pk>/borrar/', BorrarProd.as_view(), name='borrar_prod'),
 
     #Guionistas
 
@@ -144,6 +153,7 @@ urlpatterns = [
     path('guionistas_incompletos/', guion_incompletos, name= 'guion_incompletos'),
     path('guionista/<int:pk>/', VerGuionista.as_view(), name='ver_guionista'),
     path('guionista/<int:pk>/actualizar/', ActualizarGuion.as_view(), name='actualizar_guion'),
+    path('guionista/<int:pk>/borrar/', BorrarGuion.as_view(), name='borrar_guion'),
 
     #############Expedientes###############
 

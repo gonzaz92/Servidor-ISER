@@ -6,9 +6,6 @@
     <div>
         <h2 style="font-weight: bold">Resultados de Búsqueda</h2>
     </div>
-    <div style="margin-left: auto">
-        <a class="btn btn-primary btn-lg" style="justify-content: flex-end;" href="{% url 'index' %}" type="submit">Volver</a>
-    </div>
 </div>
 
 {% if resultados %}
@@ -51,45 +48,82 @@
                     {% endif %}
                     <td>
                         {% if resultado.display_name == 'Locutor-a Nacional' %}
+
                             <a href="{% url 'ver_locutor' resultado.id %}" type="submit">Abrir</a>
                             -
                             <a href="{% url 'actualizar_ln' resultado.id %}" type="submit">Actualizar</a>
+                            -
+                            <a class="link" href="{% url 'borrar_ln' resultado.id %}" type="submit">Borrar</a>
+
                         {% elif resultado.display_name == 'Locutor-a Local' %}
+
                             <a href="{% url 'ver_locutor_local' resultado.id %}" type="submit">Abrir</a>
                             -
                             <a href="{% url 'actualizar_ll' resultado.id %}" type="submit">Actualizar</a>
+                            -
+                            <a class="link" href="{% url 'borrar_ll' resultado.id %}" type="submit">Borrar</a>
+                            
                         {% elif resultado.display_name == 'Operador-a Nacional de Radio' %}
+
                             <a href="{% url 'ver_operador_nacional_radio' resultado.id %}" type="submit">Abrir</a>
                             -
                             <a href="{% url 'actualizar_operador_nacional_radio' resultado.id %}" type="submit">Actualizar</a>
+                            -
+                            <a class="link" href="{% url 'borrar_operador_nacional_radio' resultado.id %}" type="submit">Borrar</a>
+
                         {% elif resultado.display_name == 'Operador-a Nacional de TV' %}
+
                             <a href="{% url 'ver_operador_nacional_tv' resultado.id %}" type="submit">Abrir</a>
                             -
                             <a href="{% url 'actualizar_operador_nacional_tv' resultado.id %}" type="submit">Actualizar</a>
+                            -
+                            <a class="link" href="{% url 'borrar_operador_nacional_tv' resultado.id %}" type="submit">Borrar</a>
+
                         {% elif resultado.display_name == 'Operador-a Nacional de Planta' %}
+
                             <a href="{% url 'ver_operador_nacional_planta' resultado.id %}" type="submit">Abrir</a>
                             -
                             <a href="{% url 'actualizar_operador_nacional_planta' resultado.id %}" type="submit">Actualizar</a>
+                            -
+                            <a class="link" href="{% url 'borrar_operador_nacional_tv' resultado.id %}" type="submit">Borrar</a>
+
                         {% elif resultado.display_name == 'Operador-a Local Radio' %}
+
                             <a href="{% url 'ver_operador_local_radio' resultado.id %}" type="submit">Abrir</a>
                             -
                             <a href="{% url 'actualizar_operador_local_radio' resultado.id %}" type="submit">Actualizar</a>
+                            -
+                            <a class="link" href="{% url 'borrar_operador_local_radio' resultado.id %}" type="submit">Borrar</a>
+
                         {% elif resultado.display_name == 'Operador-a Local TV' %}
+
                             <a href="{% url 'ver_operador_local_tv' resultado.id %}" type="submit">Abrir</a>
                             -
                             <a href="{% url 'actualizar_operador_local_tv' resultado.id %}" type="submit">Actualizar</a>
+                            -
+                            <a class="link" href="{% url 'borrar_operador_local_tv' resultado.id %}" type="submit">Borrar</a>
+
                         {% elif resultado.display_name == 'Operador-a Local Planta' %}
+
                             <a href="{% url 'ver_operador_local_planta' resultado.id %}" type="submit">Abrir</a>
                             -
                             <a href="{% url 'actualizar_operador_local_planta' resultado.id %}" type="submit">Actualizar</a>
+                            -
+                            <a class="link" href="{% url 'borrar_operador_local_planta' resultado.id %}" type="submit">Borrar</a>
+
                         {% elif resultado.display_name == 'Productor-a y Director-a' %}
                             <a href="{% url 'ver_productor' resultado.id %}" type="submit">Abrir</a>
                             -
                             <a href="{% url 'actualizar_prod' resultado.id %}" type="submit">Actualizar</a>
+                            <a class="link" href="{% url 'borrar_prod' resultado.id %}" type="submit">Borrar</a>
                         {% elif resultado.display_name == 'Guionista' %}
+
                             <a href="{% url 'ver_guionista' resultado.id %}" type="submit">Abrir</a>
                             -
                             <a href="{% url 'actualizar_guion' resultado.id %}" type="submit">Actualizar</a>
+                            -
+                            <a class="link" href="{% url 'borrar_guion' resultado.id %}" type="submit">Borrar</a>
+
                         {% endif %}
                     </td>
                 </tr>

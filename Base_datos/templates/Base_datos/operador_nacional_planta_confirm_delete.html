@@ -1,0 +1,14 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+<form style="text-align: center;" method="post">
+    {% csrf_token %}
+    <p>¿Seguro que desea borrar a {{ operador_nacional_planta.apellido }}, {{ operador_nacional_planta.nombre }} D.N.I. N° {{ operador_nacional_planta.DNI }}?</p>
+
+    <p>
+        <input class="btn btn-primary" type="submit" value="Si">
+        <a class="btn btn-primary" href="{% url 'operadores_nacionales' %}" type="button" >No</a>
+    </p>
+</form>
+<p></p>
+{% endblock %}

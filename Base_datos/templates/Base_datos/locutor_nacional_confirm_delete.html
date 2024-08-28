@@ -1,0 +1,14 @@
+{% extends 'Base_datos/base.html' %}
+
+{% block contenido %}
+<form style="text-align: center;" method="post">
+    {% csrf_token %}
+    <p>¿Seguro que desea borrar a {{ locutor_nacional.apellido }}, {{ locutor_nacional.nombre }} D.N.I. N° {{ locutor_nacional.DNI }}?</p>
+
+    <p>
+        <input class="btn btn-primary" type="submit" value="Si">
+        <a class="btn btn-primary" href="{% url 'locutores_nacionales' %}" type="button" >No</a>
+    </p>
+</form>
+<p></p>
+{% endblock %}
