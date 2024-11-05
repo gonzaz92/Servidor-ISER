@@ -168,7 +168,15 @@ class ListarExpedientes(ListView):
     fields = Expediente.Año_de_Expediente, Expediente.Número_de_Expediente, Expediente.Categoría, Expediente.Instituto_o_Localidad, Expediente.Fecha_de_Creación, Expediente.Estado
 
     def get_queryset(self):
-        return Expediente.objects.all().filter(en_curso).order_by('-Fecha_de_Creación')
+        estado_filtro = self.request.GET.get('estado', None)
+
+        # Si hay un filtro de estado, agregamos el filtro de estado a la consulta
+        if estado_filtro:
+            # Filtramos por el estado específico
+            return Expediente.objects.filter(Estado=estado_filtro).filter(en_curso).order_by('-Fecha_de_Creación')
+        
+        # Si no hay filtro de estado, devolvemos todos los expedientes en curso
+        return Expediente.objects.filter(en_curso).order_by('-Fecha_de_Creación')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

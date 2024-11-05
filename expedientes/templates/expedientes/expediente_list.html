@@ -7,6 +7,18 @@
 </div>
 
 <div style="margin: 0; padding: 0; display: grid; place-items: center;">
+    <!-- Botones de filtro por estado -->
+    <div style="margin-bottom: 20px; text-align: center;">
+        <a href="?estado=Armado ISER" class="btn btn-success">Filtrar por Armado</a>
+        <a href="?estado=Revisión ISER" class="btn btn-info">Revisión ISER</a>
+        <a href="?estado=Revisión DNSA" class="btn btn-info">Revisión DNSA</a>
+        <a href="?estado=Esperando Dictamen" class="btn btn-warning">Filtrar por Jurídicos</a>
+        <a href="?estado=Firma de Disposición" class="btn btn-warning">Firma</a>
+
+        <a href="?" class="btn btn-secondary">Mostrar Todos</a>
+    </div>
+
+    <!-- Tabla de expedientes -->
     <table class='table borderless' style="width: 95%; margin-left: 5%;">
         <thead style="text-align: center">
             <tr>
@@ -39,11 +51,13 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <!-- Paginación -->
     <div style='text-align: center;'>
         <span class="step-links">
             {% if object_list.has_previous %}
-                <a href="?page=1">&laquo; primera</a>
-                <a href="?page={{ object_list.previous_page_number }}">anterior</a>
+                <a href="?page=1{% if request.GET.estado %}&estado={{ request.GET.estado }}{% endif %}">&laquo; primera</a>
+                <a href="?page={{ object_list.previous_page_number }}{% if request.GET.estado %}&estado={{ request.GET.estado }}{% endif %}">anterior</a>
             {% endif %}
 
             <span class="current-page">
@@ -51,8 +65,8 @@
             </span>
 
             {% if object_list.has_next %}
-                <a href="?page={{ object_list.next_page_number }}">siguiente</a>
-                <a href="?page={{ object_list.paginator.num_pages }}">última &raquo;</a>
+                <a href="?page={{ object_list.next_page_number }}{% if request.GET.estado %}&estado={{ request.GET.estado }}{% endif %}">siguiente</a>
+                <a href="?page={{ object_list.paginator.num_pages }}{% if request.GET.estado %}&estado={{ request.GET.estado }}{% endif %}">última &raquo;</a>
             {% endif %}
         </span>
     </div>
