@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 
 tipos_de_estado = (
     ('Armado ISER', 'Armado ISER'),
@@ -40,3 +41,5 @@ class Expediente(models.Model):
     Categoría = models.CharField(max_length=43, choices=categorias)
     Fecha_de_disposición = models.DateField(null='True', blank=True)
     Estado = models.CharField(max_length=20, choices=tipos_de_estado)
+    observaciones = models.TextField(null=True, blank=True)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)

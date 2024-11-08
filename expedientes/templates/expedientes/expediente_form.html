@@ -43,6 +43,12 @@
                 <td>Fecha de Disposición: {{ form.Fecha_de_disposición }} </td>
             </table>
         {% endif %}
+        <table class="table table-borderless">
+            <tr>
+                <td class="observaciones-label">Observaciones:</td>
+                <td>{{ form.observaciones }}</td>
+            </tr>
+        </table>
     </div>
 
         <input class="btn btn-primary" type="submit" value="Cargar">

@@ -11,6 +11,11 @@
     .input-large {
         width: 110px; /* Define el ancho deseado */
     }
+    .observaciones-label {
+        text-align: left;   /* Asegura que el texto esté alineado a la izquierda */
+        padding-left: 10px; /* Agrega un pequeño margen a la izquierda */
+        vertical-align: top; /* Asegura que esté alineado en la parte superior */
+    }
 </style>
 
 <div class='container'>
@@ -61,6 +66,12 @@
                 <td style='text-align: center;'>Se guardó en caja: <span style='font-size: small;'>{{ form.caja }}</span></td>
             </tr>
             {% endif %}
+        </table>
+        <table class="table table-borderless">
+            <tr>
+                <td class="observaciones-label">Observaciones:</td>
+                <td>{{ form.observaciones }}</td>
+            </tr>
         </table>
         <div class="text-center mt-4">
             <button type="submit" class="btn btn-primary">Cargar</button>

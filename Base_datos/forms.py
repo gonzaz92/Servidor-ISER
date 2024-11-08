@@ -38,6 +38,7 @@ class PersonaForm(forms.ModelForm):
             'año_acuse': forms.NumberInput(attrs={'class': 'input-small'}),
             'acuse': forms.NumberInput(attrs={'class': 'input-large'}),
             'caja': forms.TextInput(),
+            'observaciones': forms.Textarea(attrs={'rows': 3, 'cols': 100}),
             # Para aspirantes Nacionales
             'instituto': forms.TextInput(),
             'año_instituto': forms.NumberInput(attrs={'class': 'input-small'}),

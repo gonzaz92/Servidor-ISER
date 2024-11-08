@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils.decorators import method_decorator
 from django.db.models import Sum, Q
 from django.core.paginator import Paginator
+from django.contrib.auth.models import User
 
 def permiso_carga(user):
     return user.has_perm('expedientes.add_expediente')
@@ -160,6 +161,10 @@ class CrearExpediente(CreateView):
     template_name = 'expedientes/expediente_form.html'
     form_class = ExpedienteForm
     success_url = reverse_lazy('expedientes')
+
+    def form_valid(self, form):
+        form.instance.autor = self.request.user
+        return super().form_valid(form)
 
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(permiso_ver), name='get')
