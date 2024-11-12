@@ -10,6 +10,7 @@ class ExpedienteForm(forms.ModelForm):
             'Fecha_de_disposición': forms.DateInput(attrs={'type': 'date'}),
             'Año_de_Expediente': forms.NumberInput(attrs={'class': 'input-small'}),
             'observaciones': forms.Textarea(attrs={'rows': 3, 'cols': 100}),
+            'usuario': forms.HiddenInput(),
         }
 
 class ExpedienteUpdate(forms.ModelForm):

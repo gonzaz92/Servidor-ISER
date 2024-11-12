@@ -163,7 +163,7 @@ class CrearExpediente(CreateView):
     success_url = reverse_lazy('expedientes')
 
     def form_valid(self, form):
-        form.instance.autor = self.request.user
+        form.instance.usuario = self.request.user
         return super().form_valid(form)
 
 @method_decorator(login_required, name='get')

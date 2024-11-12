@@ -49,6 +49,21 @@
                 <td>{{ form.observaciones }}</td>
             </tr>
         </table>
+        <table class="table table-borderless">
+        {% if request.resolver_match.view_name == 'carga_expediente'%}
+            <tr>
+                <td>Iniciador: {{ request.user.username }}</td>   
+            </tr>
+        {%elif request.resolver_match.view_name == 'actualizar_expediente' and user.is_superuser %}
+            <tr>
+                <td> Iniciador: {{ form.usuario }}
+            </tr>
+        {%elif request.resolver_match.view_name == 'actualizar_expediente' and not user.is_superuser %}
+            <tr>
+                <td> Iniciador: {{ object.usuario }}
+            </tr>
+        {% endif %}
+        </table>
     </div>
 
         <input class="btn btn-primary" type="submit" value="Cargar">
