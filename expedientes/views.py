@@ -183,12 +183,20 @@ class ListarExpedientes(ListView):
         # Si no hay filtro de estado, devolvemos todos los expedientes en curso
         return Expediente.objects.filter(en_curso).order_by('-Fecha_de_Creación')
     
+    def sumar_en_curso(self):
+        expedientes = Expediente.objects.filter(en_curso)
+        total_en_curso = expedientes.aggregate(totales=Sum('Cantidad_de_Habilitados'))
+        return total_en_curso['totales']
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        
         paginator = Paginator(context['object_list'], 50)
         page = self.request.GET.get('page')
         expedientes_paginados = paginator.get_page(page)
+        
         context['object_list'] = expedientes_paginados
+        context['totales'] = self.sumar_en_curso()
         return context
 
 @method_decorator(login_required, name='get')
