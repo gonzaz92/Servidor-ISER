@@ -93,6 +93,10 @@
         <h2 style="margin-right: 10px;">Acuse de Recibo: No disponible</h2>
       </div>
       {% endif %}
+      <div style="padding-bottom: 1%;">
+        <h2 style="font-weight: bold; text-align: center;">Observaciones:</h2>
+        <h2 style="white-space: pre-line;">{{productor.observaciones}}</h2>
+      </div>
     </div>
     <div style="padding-bottom: 1%; display: flex; justify-content: flex-end; margin-right: 10px; margin-top: 10px;">
       <a class="btn btn-primary btn-lg" href="{% url 'actualizar_prod' productor.id %}" type="submit" style="margin-right: 10px;">Actualizar</a>
