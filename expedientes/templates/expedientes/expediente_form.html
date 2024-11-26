@@ -56,11 +56,11 @@
             </tr>
         {%elif request.resolver_match.view_name == 'actualizar_expediente' and user.is_superuser %}
             <tr>
-                <td> Iniciador: {{ form.usuario }}
+                <td> Iniciador: {{ form.usuario }}</td>
             </tr>
         {%elif request.resolver_match.view_name == 'actualizar_expediente' and not user.is_superuser %}
             <tr>
-                <td> Iniciador: {{ object.usuario }}
+                <td> Iniciador: {{ object.usuario }}</td> <td hidden>{{ form.usuario }}</td>
             </tr>
         {% endif %}
         </table>
