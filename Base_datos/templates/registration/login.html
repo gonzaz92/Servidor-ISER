@@ -1,10 +1,24 @@
 {% extends 'Base_datos/base.html' %}
 
 {% block contenido %}
-    <form style="text-align: center" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input class="btn btn-primary" type="submit" value="Ingresar">
-    </form>
-    <p></p>
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-header bg-primary text-white text-center">
+                    <h2 class="font-weight-bold">Iniciar sesión</h2>
+                </div>
+                <div class="card-body text-center">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button class="btn btn-primary btn-block" type="submit">Ingresar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br></br>
 {% endblock %}
