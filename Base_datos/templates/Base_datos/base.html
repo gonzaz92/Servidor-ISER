@@ -50,7 +50,7 @@
     </nav>
 
     <!-- Header-->
-    {% if not request.resolver_match.view_name == 'expedientes' and not request.resolver_match.view_name == 'lista_expedientes' and not request.resolver_match.view_name == 'expedientes_finalizados' and not request.resolver_match.view_name == 'carga_expediente' and not request.resolver_match.view_name == 'buscar_expedientes' and not request.resolver_match.view_name == 'correo' and not request.resolver_match.view_name == 'nuevo_envio' and not request.resolver_match.view_name == 'listar_correo' and not request.resolver_match.view_name == 'actualizar_correo' and not request.resolver_match.view_name == 'correo_finalizados' and not request.resolver_match.view_name == 'buscar_envio' and not request.resolver_match.view_name == 'libros' and not request.resolver_match.view_name == 'nuevo_libro' and not request.resolver_match.view_name == 'listar_libros' and not request.resolver_match.view_name == 'actualizar_libro' and not request.resolver_match.view_name == 'nueva_acta' and not request.resolver_match.view_name == 'listar_actas' and not request.resolver_match.view_name == 'detalle_acta' and not request.resolver_match.view_name == 'actualizar_acta' and not request.resolver_match.view_name == 'nueva_firma' and not request.resolver_match.view_name == 'buscar_acta' %}
+    {% if not request.resolver_match.view_name in lista_personas %}
         <header class="py-5">
             <div class="container px-lg-5">
                 <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
@@ -68,7 +68,7 @@
                 </div>
             </div>
         </header>
-        {% elif request.resolver_match.view_name == 'expedientes' or request.resolver_match.view_name == 'lista_expedientes' or request.resolver_match.view_name == 'expedientes_finalizados' or request.resolver_match.view_name == 'carga_expediente' or request.resolver_match.view_name == 'buscar_expedientes' %}
+        {% elif request.resolver_match.view_name in lista_expedientes %}
             <header class="py-5">
                 <div class="container px-lg-5">
                     <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
@@ -86,7 +86,7 @@
                     </div>
                 </div>
             </header>
-        {% elif request.resolver_match.view_name == 'correo' or request.resolver_match.view_name == 'nuevo_envio' or request.resolver_match.view_name == 'listar_correo' or request.resolver_match.view_name == 'actualizar_correo' or request.resolver_match.view_name == 'correo_finalizados' or request.resolver_match.view_name == 'buscar_envio' %}
+        {% elif request.resolver_match.view_name in lista_correos %}
             <header class="py-5">
                 <div class="container px-lg-5">
                     <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
@@ -104,7 +104,7 @@
                     </div>
                 </div>
             </header>
-        {% elif request.resolver_match.view_name == 'libros' or request.resolver_match.view_name == 'nuevo_libro' or request.resolver_match.view_name == 'listar_libros' or request.resolver_match.view_name == 'actualizar_libro' or request.resolver_match.view_name == 'nueva_acta' or request.resolver_match.view_name == 'listar_actas' or request.resolver_match.view_name == 'detalle_acta' or request.resolver_match.view_name == 'actualizar_acta' or request.resolver_match.view_name == 'nueva_firma' or request.resolver_match.view_name == 'buscar_acta' %}
+        {% elif request.resolver_match.view_name in lista_actas %}
             <header class="py-5">
                 <div class="container px-lg-5">
                     <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
