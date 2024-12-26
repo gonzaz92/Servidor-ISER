@@ -205,6 +205,13 @@ class ActualizarExpediente(UpdateView):
     model = Expediente
     success_url = reverse_lazy('expedientes')
     form_class = ExpedienteUpdate
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        expedi = self.object
+        incompletos = expedi.aprobados - expedi.Cantidad_de_Habilitados
+        context['incompletos'] = incompletos
+        return context
 
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(permiso_borrar), name='get')

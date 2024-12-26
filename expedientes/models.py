@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MaxValueValidator
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
+from datetime import date
 
 tipos_de_estado = (
     ('Armado ISER', 'Armado ISER'),
@@ -33,13 +34,17 @@ def validar_numero(self):
         raise ValidationError('Solo ingrese números en el siguiente campo')
 
 class Expediente(models.Model):
-    Año_de_Expediente = models.IntegerField(validators=[MaxValueValidator(9999)])
-    Número_de_Expediente = models.CharField(max_length=9, validators=[validar_numero])
-    Fecha_de_Creación = models.DateField(verbose_name='Fecha de Caratulación')
-    Cantidad_de_Habilitados = models.IntegerField()
+    Año_de_Expediente = models.IntegerField(null=True, blank=True, validators=[MaxValueValidator(9999)])
+    Número_de_Expediente = models.CharField(max_length=9, null=True, blank=True, validators=[validar_numero])
+    Fecha_de_Creación = models.DateField(null=True, blank=True, verbose_name='Fecha de Caratulación')
+    Cantidad_de_Habilitados = models.IntegerField(null=True, blank=True)
     Instituto_o_Localidad = models.CharField(max_length=100)
     Categoría = models.CharField(max_length=43, choices=categorias)
-    Fecha_de_disposición = models.DateField(null='True', blank=True)
+    Fecha_de_disposición = models.DateField(null=True, blank=True)
     Estado = models.CharField(max_length=20, choices=tipos_de_estado)
     observaciones = models.TextField(null=True, blank=True)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    fecha_asignado = models.DateField()
+    aprobados = models.IntegerField(default=1)
+    fecha_pase = models.DateField(null=True, blank=True)
+    pase_legal = models.DateField(null=True, blank=True)

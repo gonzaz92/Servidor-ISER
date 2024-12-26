@@ -24,6 +24,8 @@
     <div class='container'>
         <table class='table borderless'>
             <tr>
+                <td>Fecha de Asignación: {{ form.fecha_asignado }}</td>
+                <td> Aprobados Totales {{ form.aprobados }} </td>
                 <td>Fecha de Caratulación: {{form.Fecha_de_Creación}}</td>
             </tr>
         </table>
@@ -35,11 +37,14 @@
             </tr>
             <tr>
                 <td>Instituto o Localidad: {{ form.Instituto_o_Localidad }}</td>
+                <td>Pase a Revisión {{ form.fecha_pase }}</td>
                 <td>Estado: {{ form.Estado }}</td>
             </tr>
         </table>
         {% if request.resolver_match.view_name == 'actualizar_expediente' %}
             <table class='table borderless'>
+                <td>Incompletos: {{ incompletos }}</td>
+                <td>Pase a Jurídicos: {{ form.pase_legal }}</td>
                 <td>Fecha de Disposición: {{ form.Fecha_de_disposición }} </td>
             </table>
         {% endif %}
@@ -50,17 +55,21 @@
             </tr>
         </table>
         <table class="table table-borderless">
-        {% if request.resolver_match.view_name == 'carga_expediente'%}
+        {% if request.resolver_match.view_name == 'carga_expediente' and user.is_superuser %}
             <tr>
-                <td>Iniciador: {{ request.user.username }}</td>   
+                <td> Responsable: {{ form.usuario }}</td>
             </tr>
-        {%elif request.resolver_match.view_name == 'actualizar_expediente' and user.is_superuser %}
+        {% elif request.resolver_match.view_name == 'carga_expediente' and not user.is_superuser%}
             <tr>
-                <td> Iniciador: {{ form.usuario }}</td>
+                <td>Responsable: {{ request.user.username }}</td>   
             </tr>
-        {%elif request.resolver_match.view_name == 'actualizar_expediente' and not user.is_superuser %}
+        {% elif request.resolver_match.view_name == 'actualizar_expediente' and user.is_superuser %}
             <tr>
-                <td> Iniciador: {{ object.usuario }}</td> <td hidden>{{ form.usuario }}</td>
+                <td> Responsable: {{ form.usuario }}</td>
+            </tr>
+        {% elif request.resolver_match.view_name == 'actualizar_expediente' and not user.is_superuser %}
+            <tr>
+                <td> Responsable: {{ object.usuario }}</td> <td hidden>{{ form.usuario }}</td>
             </tr>
         {% endif %}
         </table>

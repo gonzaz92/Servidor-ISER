@@ -29,30 +29,32 @@
     <table class='table borderless' style="width: 95%; margin-left: 5%;">
         <thead style="text-align: center">
             <tr>
-                <th>Expediente</th>
-                <th>Categoría</th>
-                <th>Interesados</th>
-                <th>Instituto o Localidad</th>
-                <th>Fecha de Caratulación</th>
-                <th>Estado</th>
-                <th>Iniciador</th>
+                <th style="font-size: 0.8em;">Expediente</th>
+                <th style="font-size: 0.8em;">Categoría</th>
+                <th style="font-size: 0.8em;">Interesados</th>
+                <th style="font-size: 0.8em;">Instituto o Localidad</th>
+                <th style="font-size: 0.8em;">Fecha de Caratulación</th>
+                <th style="font-size: 0.8em;">Estado</th>
+                <th style="font-size: 0.8em;">Responsable</th>
+                <th style="font-size: 0.8em;">Fecha de Asigación</th>
             </tr>
         </thead>
         <tbody style="text-align: center">
             {% for exp in object_list %}
                 <tr>
-                    <td style="padding-bottom: 1%;">EX-{{exp.Año_de_Expediente}}-{{exp.Número_de_Expediente}}- -APN-SDYME#ENACOM</td>
-                    <td style="text-transform: uppercase; padding-bottom: 1%;">{{exp.Categoría}}</td>
-                    <td style="text-transform: uppercase; padding-bottom: 1%;">{{exp.Cantidad_de_Habilitados}}</td>
-                    <td style="text-transform: capitalize; padding-bottom: 1%;">{{exp.Instituto_o_Localidad}}</td>
-                    <td style="padding-bottom: 1%;">{{ exp.Fecha_de_Creación}}</td>
-                    <td style="padding-bottom: 1%;">{{exp.Estado}}</td>
-                    <td style="text-transform: uppercase; padding-bottom: 1%;">{{exp.usuario}}</td>
+                    <td style="padding-bottom: 1%; font-size: 0.8em;">EX-{{exp.Año_de_Expediente}}-{{exp.Número_de_Expediente}}- -APN-SDYME#ENACOM</td>
+                    <td style="text-transform: uppercase; padding-bottom: 1%; font-size: 0.8em;">{{exp.Categoría}}</td>
+                    <td style="text-transform: uppercase; padding-bottom: 1%; font-size: 0.8em;">{{exp.Cantidad_de_Habilitados}}</td>
+                    <td style="text-transform: capitalize; padding-bottom: 1%; font-size: 0.8em;">{{exp.Instituto_o_Localidad}}</td>
+                    <td style="padding-bottom: 1%; font-size: 0.8em;">{{ exp.Fecha_de_Creación}}</td>
+                    <td style="padding-bottom: 1%; font-size: 0.8em;">{{exp.Estado}}</td>
+                    <td style="text-transform: uppercase; padding-bottom: 1%; font-size: 0.8em;">{{exp.usuario}}</td>
+                    <td style="padding-bottom: 1%; font-size: 0.8em;">{{exp.fecha_asignado}}</td>
                     <td style="padding-bottom: 1%;">
-                        <a class="link" href="{% url 'actualizar_expediente' exp.id %}" type="submit">Abrir</a>
+                        <a class="link" style="font-size: 0.8em;" href="{% url 'actualizar_expediente' exp.id %}" type="submit">Abrir</a>
                         {% if user.is_superuser %}
                             -
-                            <a class="link" href="{% url 'borrar_expediente' exp.id %}" type="submit">Borrar</a>
+                            <a class="link" style="font-size: 0.8em;" href="{% url 'borrar_expediente' exp.id %}" type="submit">Borrar</a>
                         {% endif %}
                     </td>
                 </tr>

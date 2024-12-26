@@ -15,40 +15,40 @@ class UsuarioForm(UserCreationForm):
 class PersonaForm(forms.ModelForm):
     class Meta:
         widgets = {
-            'apellido': forms.TextInput(),
-            'nombre': forms.TextInput(),
-            'DNI': forms.NumberInput(attrs={'class': 'input-large'}),
-            'año_formulario': forms.NumberInput(attrs={'class': 'input-small'}),
-            'formulario': forms.NumberInput(attrs={'class': 'input-large'}),
+            'apellido': forms.TextInput(attrs={'class': 'form-control-sm input-large'}),
+            'nombre': forms.TextInput(attrs={'class': 'form-control-sm input-large'}),
+            'DNI': forms.NumberInput(attrs={'class': 'form-control-sm input-medium'}),
+            'año_formulario': forms.NumberInput(attrs={'class': 'form-control-sm input-small'}),
+            'formulario': forms.NumberInput(attrs={'class': 'form-control-sm input-medium'}),
             'chequeo_formulario' : forms.CheckboxInput(),
-            'año_dni': forms.NumberInput(attrs={'class': 'input-small'}),
-            'pdf_dni': forms.NumberInput(attrs={'class': 'input-large'}),
+            'año_dni': forms.NumberInput(attrs={'class': 'form-control-sm input-small'}),
+            'pdf_dni': forms.NumberInput(attrs={'class': 'form-control-sm input-medium'}),
             'chequeo_dni' : forms.CheckboxInput(),
-            'secundario': forms.NumberInput(attrs={'class': 'input-small'}),
-            'pdf_secundario': forms.NumberInput(attrs={'class': 'input-large'}),
+            'secundario': forms.NumberInput(attrs={'class': 'form-control-sm input-small'}),
+            'pdf_secundario': forms.NumberInput(attrs={'class': 'form-control-sm input-medium'}),
             'chequeo_secu' : forms.CheckboxInput(),
-            'año_acta': forms.NumberInput(attrs={'class': 'input-small'}),
-            'acta': forms.NumberInput(attrs={'class': 'input-large'}),
-            'habilitación': forms.NumberInput(),
-            'año_expediente': forms.NumberInput(attrs={'class': 'input-small'}),
-            'número_expediente': forms.NumberInput(attrs={'class': 'input-large'}),
+            'año_acta': forms.NumberInput(attrs={'class': 'form-control-sm input-small'}),
+            'acta': forms.NumberInput(attrs={'class': 'form-control-sm input-medium'}),
+            'habilitación': forms.NumberInput(attrs={'class': 'form-control-sm input-medium'}),
+            'año_expediente': forms.NumberInput(attrs={'class': 'form-control-sm input-small'}),
+            'número_expediente': forms.NumberInput(attrs={'class': 'form-control-sm input-medium'}),
             'chequeo_expediente': forms.CheckboxInput(),
-            'año_disposición': forms.NumberInput(attrs={'class': 'input-small'}),
-            'número_disposición': forms.NumberInput(attrs={'class': 'input-large'}),
-            'año_acuse': forms.NumberInput(attrs={'class': 'input-small'}),
-            'acuse': forms.NumberInput(attrs={'class': 'input-large'}),
-            'caja': forms.TextInput(),
-            'observaciones': forms.Textarea(attrs={'rows': 3, 'cols': 100}),
+            'año_disposición': forms.NumberInput(attrs={'class': 'form-control-sm input-small'}),
+            'número_disposición': forms.NumberInput(attrs={'class': 'form-control-sm input-large'}),
+            'año_acuse': forms.NumberInput(attrs={'class': 'form-control-sm input-small'}),
+            'acuse': forms.NumberInput(attrs={'class': 'form-control-sm input-medium'}),
+            'caja': forms.TextInput(attrs={'class': 'form-control-sm input-medium'}),
+            'observaciones': forms.Textarea(attrs={'class': 'form-control w-100', 'rows':3, 'cols': 100}),
             # Para aspirantes Nacionales
-            'instituto': forms.TextInput(),
-            'año_instituto': forms.NumberInput(attrs={'class': 'input-small'}),
-            'pdf_instituto': forms.NumberInput(attrs={'class': 'input-large'}),
+            'instituto': forms.TextInput(attrs={'class': 'form-control-sm input-large'}),
+            'año_instituto': forms.NumberInput(attrs={'class': 'form-control-sm input-small'}),
+            'pdf_instituto': forms.NumberInput(attrs={'class': 'form-control-sm input-medium'}),
             'chequeo_insti' : forms.CheckboxInput(),
             # Para aspirantes Locales
-            'localidad': forms.TextInput(),
-            'provincia': forms.TextInput(),
-            'año_certificado': forms.NumberInput(attrs={'class': 'input-small'}),
-            'certificado': forms.NumberInput(attrs={'class': 'input-large'}),
+            'localidad': forms.TextInput(attrs={'class': 'form-control-sm input large'}),
+            'provincia': forms.TextInput(attrs={'class': 'form-control-sm input large'}),
+            'año_certificado': forms.NumberInput(attrs={'class': 'form-control-sm input-small'}),
+            'certificado': forms.NumberInput(attrs={'class': 'form-control-sm input-medium'}),
             'chequeo_certi' : forms.CheckboxInput(),
             }
 
@@ -90,9 +90,9 @@ class LocutorLocalForm(PersonaForm):
     def __init__(self, *args, **kwargs):
         super(PersonaForm, self).__init__(*args, **kwargs)
         if not self.instance.inicio_tad:
-            self.fields['inicio_tad'].widget = forms.DateInput(attrs={'type': 'date'})
+            self.fields['inicio_tad'].widget = forms.DateInput(attrs={'class': 'form-control-sm', 'type': 'date'})
         if not self.instance.reclamo_tad:
-            self.fields['reclamo_tad'].widget = forms.DateInput(attrs={'type': 'date'})
+            self.fields['reclamo_tad'].widget = forms.DateInput(attrs={'class': 'form-control-sm', 'type': 'date'})
 
 ######################### Operador Local Radio ###################################
 
@@ -104,9 +104,9 @@ class RadioLocalForm(PersonaForm):
     def __init__(self, *args, **kwargs):
         super(PersonaForm, self).__init__(*args, **kwargs)
         if not self.instance.inicio_tad:
-            self.fields['inicio_tad'].widget = forms.DateInput(attrs={'type': 'date'})
+            self.fields['inicio_tad'].widget = forms.DateInput(attrs={'class': 'form-control-sm', 'type': 'date'})
         if not self.instance.reclamo_tad:
-            self.fields['reclamo_tad'].widget = forms.DateInput(attrs={'type': 'date'})
+            self.fields['reclamo_tad'].widget = forms.DateInput(attrs={'class': 'form-control-sm', 'type': 'date'})
 
 ######################### Operador Local TV ######################################
 
@@ -118,9 +118,9 @@ class TVLocalForm(PersonaForm):
     def __init__(self, *args, **kwargs):
         super(PersonaForm, self).__init__(*args, **kwargs)
         if not self.instance.inicio_tad:
-            self.fields['inicio_tad'].widget = forms.DateInput(attrs={'type': 'date'})
+            self.fields['inicio_tad'].widget = forms.DateInput(attrs={'class': 'form-control-sm', 'type': 'date'})
         if not self.instance.reclamo_tad:
-            self.fields['reclamo_tad'].widget = forms.DateInput(attrs={'type': 'date'})
+            self.fields['reclamo_tad'].widget = forms.DateInput(attrs={'class': 'form-control-sm', 'type': 'date'})
 
 ######################### Operador Local Planta ##################################
 
@@ -132,9 +132,9 @@ class PlantaLocalForm(PersonaForm):
     def __init__(self, *args, **kwargs):
         super(PersonaForm, self).__init__(*args, **kwargs)
         if not self.instance.inicio_tad:
-            self.fields['inicio_tad'].widget = forms.DateInput(attrs={'type': 'date'})
+            self.fields['inicio_tad'].widget = forms.DateInput(attrs={'class': 'form-control-sm', 'type': 'date'})
         if not self.instance.reclamo_tad:
-            self.fields['reclamo_tad'].widget = forms.DateInput(attrs={'type': 'date'})
+            self.fields['reclamo_tad'].widget = forms.DateInput(attrs={'class': 'form-control-sm', 'type': 'date'})
 
 ######################### Productor ##############################################
 

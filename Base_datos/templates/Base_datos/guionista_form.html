@@ -5,74 +5,81 @@
 <style>
     /* Define el tamaño de las cajas de entrada */
     .input-small {
-        width: 65px; /* Define el ancho deseado */
+        width: 70px; /* Define el ancho deseado */
     }
-
-    .input-large {
+    .input-medium {
         width: 110px; /* Define el ancho deseado */
     }
-    .observaciones-label {
-        text-align: left;   /* Asegura que el texto esté alineado a la izquierda */
-        padding-left: 10px; /* Agrega un pequeño margen a la izquierda */
-        vertical-align: top; /* Asegura que esté alineado en la parte superior */
+    .input-large {
+        width: 150px; /* Define el ancho deseado */
     }
 </style>
 
 <div class='container'>
-    <h1 class="mt-4 text-center">Guionista de Radio y TV</h1>
+    <h1 class="text-center">Guionista de Radio y TV</h1>
     <p></p>
     <form enctype="multipart/form-data" method="POST">
         {% csrf_token %}
         {{ form.non_field_errors }}
-        <table class='table borderless'>
-            <tr>
-                <td><label for="{{ form.apellido.id_for_label }}">Apellido:</label></td>
-                <td>{{ form.apellido }}</td>
-                <td><label for="{{ form.nombre.id_for_label }}">Nombre:</label></td>
-                <td>{{ form.nombre }}</td>
-                <td><label for="{{ form.DNI.id_for_label }}">Documento N°:</label></td>
-                <td>{{ form.DNI }}</td>
-                <td>IF-{{ form.año_dni }}-{{form.pdf_dni}}-APN-ACAD#ENACOM {{ form.chequeo_dni }}</td>
-            </tr>
-        </table>
-        <table class='table borderless'>
-            <tr>
-                <td>Formulario: IF-{{ form.año_formulario }}-{{ form.formulario }}-APN-ACAD#ENACOM {{ form.chequeo_formulario }}</td>
-                <td>Secundario: IF-{{ form.secundario }}-{{ form.pdf_secundario }}-APN-ACAD#ENACOM {{ form.chequeo_secu }}</td>
-                <td><label for="{{ form.habilitación.id_for_label }}">Habilitación:</label></td>
-                <td>{{ form.habilitación }}</td>
-            </tr>
-        </table>
-        <table class='table borderless'>
-            <tr>
-                <td><label for="{{ form.instituto.id_for_label }}">Instituto:</label></td>
-                <td>{{ form.instituto }}</td>
-                <td>IF-{{ form.año_instituto }}-{{ form.pdf_instituto }}-APN-ACAD#ENACOM {{ form.chequeo_insti }}</td>
-                <td>Acta de Examen: IF-{{ form.año_acta }}-{{ form.acta }}-APN-ACAD#ENACOM</td>
-            </tr>
-        </table>
-        <table class='table borderless'>
-            <tr>
-                <td>Expediente: <span style='font-size: small;'>EX-{{ form.año_expediente }}-{{ form.número_expediente }}- -APN-SDYME#ENACOM {{ form.chequeo_expediente }}</span></td>
-                {% if request.resolver_match.view_name == 'actualizar_guion' %}
-                <td>Disposición: <span style='font-size: small;'>DI-{{ form.año_disposición }}-{{ form.número_disposición }}-APN-DNSA#ENACOM</span></td>
-                {% endif %}
-            </tr>
-        </table>
-        <table class='table borderless'>
+        <div class='row justify-content-md-center'>
+            <div class='col-12 col-md-auto py-3'>
+                Apellido: {{ form.apellido }}
+            </div>
+            <div class='col-12 col-md-auto py-3'>
+                Nombre: {{ form.nombre }}
+            </div>
+            <div class='col-12 col-md-auto py-3'>
+                Documento N°: {{ form.DNI }}
+                IF-{{ form.año_dni }}-{{form.pdf_dni}}-APN-ACAD#ENACOM {{ form.chequeo_dni }}
+            </div>
+        </div>
+        <div class='row justify-content-md-center'>
+            <div class='col-12 col-md-auto py-3'>
+                Formulario: IF-{{ form.año_formulario }}-{{ form.formulario }}-APN-ACAD#ENACOM {{ form.chequeo_formulario }}
+            </div>
+            <div class='col-12 col-md-auto py-3'>
+                Secundario: IF-{{ form.secundario }}-{{ form.pdf_secundario }}-APN-ACAD#ENACOM {{ form.chequeo_secu }}
+            </div>
+            <div class='col-12 col-md-auto py-3'>
+                Habilitación {{ form.habilitación }}
+            </div>
+        </div>
+        <div class='row justify-content-md-center'>
+            <div class='col-12 col-md-auto py-3'>
+                Instituto: {{ form.instituto }}
+            </div>
+            <div class='col-12 col-md-auto py-3'>
+                IF-{{ form.año_instituto }}-{{ form.pdf_instituto }}-APN-ACAD#ENACOM {{ form.chequeo_insti }}
+            </div>
+            <div class='col-12 col-md-auto py-3'>
+                Acta de Examen: IF-{{ form.año_acta }}-{{ form.acta }}-APN-ACAD#ENACOM
+            </div>
+        </div>
+
+        <div class='row justify-content-md-center'>
+            <div class='col-12 col-md-auto py-3'>
+                Expediente: EX-{{ form.año_expediente }}-{{ form.número_expediente }}- -APN-SDYME#ENACOM {{ form.chequeo_expediente }}
+            </div>
             {% if request.resolver_match.view_name == 'actualizar_guion' %}
-            <tr>
-                <td>Acuse de Recibo: <span style='font-size: small;'>IF-{{ form.año_acuse }}-{{ form.acuse }}- -APN-ACAD#ENACOM</span></td>
-                <td style='text-align: center;'>Se guardó en caja: <span style='font-size: small;'>{{ form.caja }}</span></td>
-            </tr>
+                <div class='col-12 col-md-auto py-3'>
+                    Disposición: DI-{{ form.año_disposición }}-{{ form.número_disposición }}-APN-DNSA#ENACOM
+                </div>
             {% endif %}
-        </table>
-        <table class="table table-borderless">
-            <tr>
-                <td class="observaciones-label">Observaciones:</td>
-                <td>{{ form.observaciones }}</td>
-            </tr>
-        </table>
+        </div>
+        <div class='justify-content-md-center'>
+            {% if request.resolver_match.view_name == 'actualizar_guion' %}
+                <div class='col-12 col-md-auto py-3'>
+                    Acuse de Recibo: IF-{{ form.año_acuse }}-{{ form.acuse }}- -APN-ACAD#ENACOM
+                </div>
+                <div class='col-12 col-md-auto py-3'>
+                    Se guardó en caja: {{ form.caja }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-auto py-3 align-self-start">Observaciones:</div>
+            <div class="col-12 col-md-auto py-3 align-self-end">{{ form.observaciones }}</div>
+        </div>
         <div class="text-center mt-4">
             <button type="submit" class="btn btn-primary">Cargar</button>
         </div>
