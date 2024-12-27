@@ -12,82 +12,76 @@
         {% csrf_token %}
         {{ form.non_field_errors }}
         
-        <div class="mb-2">
-            <label style="white-space: nowrap;" for="{{ form.envio.id_for_label }}">Fecha de Envío:</label>
-            {{ form.envio }}
+        <div class='row justify-content-center'>
+            <div class="col-12 col-md-auto py-3">
+                Fecha de Envío: {{ form.envio }}
+            </div>
+            <div class="col-12 col-md-auto py-3">
+                Categoría: {{ form.categoria }}
+            </div>
         </div>
-        
-        <div class="mb-2">
-            <label for="{{ form.destinatario.id_for_label }}">Apellido:</label>
-            {{ form.destinatario }}
+
+        <div class='row justify-content-center'>
+            <div class="col-12 col-md-auto py-3">
+                Apellido: {{ form.destinatario }}
+            </div>    
+            <div class="col-12 col-md-auto py-3">
+                Nombre: {{ form.nombre }}
+            </div>
+            <div class="col-12 col-md-auto py-3">
+                DNI: {{ form.dni }}
+            </div>
+            <div class="col-12 col-md-auto py-3">
+                Carnet: {{ form.carnet }}
+            </div>
         </div>
-        
-        <div class="mb-2">
-            <label for="{{ form.nombre.id_for_label }}">Nombre:</label>
-            {{ form.nombre }}
+
+        <div class='row justify-content-center'>
+            <div class="col-12 col-md-auto py-3">
+                col-12 col-md-auto py-3Dirección:{{ form.direccion }}
+            </div>
+            <div class="col-12 col-md-auto py-3">
+                Localidad: {{ form.localidad }}
+            </div>
+            <div class="col-12 col-md-auto py-3">
+                Provincia: {{ form.provincia }}
+            </div>
         </div>
-        
-        <div class="mb-2">
-            <label for="{{ form.dni.id_for_label }}">DNI:</label>
-            {{ form.dni }}
-        </div>
-        
-        <div class="mb-2">
-            <label for="{{ form.carnet.id_for_label }}">Carnet:</label>
-            {{ form.carnet }}
-        </div>
-        
-        <div class="mb-2">
-            <label for="{{ form.direccion.id_for_label }}">Dirección:</label>
-            {{ form.direccion }}
-        </div>
-        
-        <div class="mb-2">
-            <label for="{{ form.localidad.id_for_label }}">Localidad:</label>
-            {{ form.localidad }}
-        </div>
-        
-        <div class="mb-2">
-            <label for="{{ form.provincia.id_for_label }}">Provincia:</label>
-            {{ form.provincia }}
-        </div>
-        
-        <div class="mb-2">
-            <label for="{{ form.seguimiento.id_for_label }}">Seguimiento:</label>
-            {{ form.seguimiento }}
-        </div>
-        
-        <div class="mb-2">
-            <label for="{{ form.telefono.id_for_label }}">Teléfono:</label>
-            {{ form.telefono }}
-        </div>
-        
-        <div class="mb-2">
-            <label for="{{ form.mail.id_for_label }}">e-mail:</label>
-            {{ form.mail }}
-        </div>
-        
-        <div class="mb-2">
-            <label for="{{ form.observaciones.id_for_label }}">Observaciones:</label>
-            {{ form.observaciones }}
-        </div>
-        
-        <div class="mb-2">
-            <label for="{{ form.categoria.id_for_label }}">Categoría: {{ form.categoria }}</label>
+
+        <div class='row justify-content-center'>
+            <div class="col-12 col-md-auto py-3">
+                Seguimiento: {{ form.seguimiento }}
+            </div>
+            <div class="col-12 col-md-auto py-3">
+                Teléfono: {{ form.telefono }}
+            </div>
+            <div class="col-12 col-md-auto py-3">
+                e-mail: {{ form.mail }}
+            </div>
         </div>
         
         {% if request.resolver_match.view_name == 'actualizar_correo' %}
-            <div class="mb-2">
-                <label style="white-space: nowrap;" for="{{ form.acuse.id_for_label }}">Acuse de Recibo: IF-{{ form.año_acuse }}-{{ form.acuse }}-APN-ACAD o ISER#ENACOM</label>
-            </div>
-            <div class="mb-2">
-                <label style="white-space: nowrap;" for="{{ form.finalizado.id_for_label }}">Finalizado: {{ form.finalizado }}</label>
-            </div>
-            <div class="mb-2">
-                <label for="{{ form.caja.id_for_label }}">Se guardo en Caja: {{ form.Caja }}</label>
-                {{ form.caja }}
+            <div class='row justify-content-center'>
+                <div class="col-12 col-md-auto py-3">
+                    Acuse de Recibo: IF-{{ form.año_acuse }}-{{ form.acuse }}-APN-ACAD o ISER#ENACOM
+                </div>
+                <div class="col-12 col-md-auto py-3">
+                    Finalizado: {{ form.finalizado }}
+                </div>
+                <div class="col-12 col-md-auto py-3">
+                    Se guardo en Caja: {{ form.caja }}
+                </div>
             </div>
         {% endif %}
+
+        <div class='row justify-content-center'>
+            <div class="col-12 col-md-auto py-3 align-self-start">
+                Observaciones: 
+            </div>
+            <div class='col-12 col-md-auto py-3 align-self-end'>
+                {{ form.observaciones }}
+            </div>
+        </div>
         
         <div class="text-center mt-4">
             <button type="submit" class="btn btn-primary">Cargar</button>
