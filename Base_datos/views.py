@@ -535,7 +535,7 @@ class ActualizarOPTV(UpdateView):
 @method_decorator(login_required, name='get')
 @method_decorator(user_passes_test(borrar_OperadorNTV), name='get')
 class BorrarOPTV(DeleteView):
-    model = Operador_nacional_planta
+    model = Operador_nacional_tv
     success_url = reverse_lazy('operadores_nacionales')
 
 ############################################################# Operadores de Planta ######################################################################
