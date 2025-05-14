@@ -20,7 +20,6 @@ class ExpedienteUpdate(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'observaciones': forms.Textarea(attrs={'rows': 3, 'cols': 100}),
-            'pase_legal': forms.DateInput(attrs={'type': 'date'})
         }
 
     def __init__(self, *args, **kwargs):
