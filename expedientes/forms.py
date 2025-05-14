@@ -19,8 +19,8 @@ class ExpedienteUpdate(forms.ModelForm):
         model = Expediente
         fields = '__all__'
         widgets = {
-             'observaciones': forms.Textarea(attrs={'rows': 3, 'cols': 100}),
-             'pase_legal': forms.DateInput(attrs={'type': 'date'})
+            'observaciones': forms.Textarea(attrs={'rows': 3, 'cols': 100}),
+            'pase_legal': forms.DateInput(attrs={'type': 'date'})
         }
 
     def __init__(self, *args, **kwargs):
@@ -30,3 +30,5 @@ class ExpedienteUpdate(forms.ModelForm):
             self.fields['Fecha_de_disposición'].widget = forms.DateInput(attrs={'type': 'date'})
         if not self.instance.fecha_pase:
             self.fields['fecha_pase'].widget = forms.DateInput(attrs={'type': 'date'})
+        if not self.instance.pase_legal:
+            self.fields['pase_legal'].widget = forms.DateInput(attrs={'type': 'date'})
